@@ -1,5 +1,6 @@
 $offlisting
-* UTOPIA_DATA.GMS - specify Utopia Model data in format required by GAMS
+* ITALY_DATA.GMS
+* Change of UTOPIA_DATA.GMS - specify Utopia Model data in format required by GAMS
 *
 * OSEMOSYS 2011.07.07 conversion to GAMS by Ken Noble.Noble-Soft Systems - August 2012
 * OSEMOSYS 2016.08.01 update by Thorsten Burandt, Konstantin L�ffler and Karlo Hainsch, TU Berlin (Workgroup for Infrastructure Policy) - October 2017
@@ -27,7 +28,7 @@ $offlisting
 
 
 $offlisting
-set     YEAR    / 1990*2010 /;
+set     YEAR    / 2015*2050 /;
 set     TECHNOLOGY      /
         E01 'Coal power plants'
         E21 'Nuclear power plants'
@@ -58,12 +59,21 @@ set     TECHNOLOGY      /
 /;
 
 set     TIMESLICE       /
-        ID 'Intermediate - day'
-        IN 'Intermediate - night'
-        SD 'Summer - day'
-        SN 'Summer - night'
-        WD 'Winter - day'
-        WN 'Winter - night'
+        S01B1 'Gen-feb, 1'
+        S01B2 'Gen-feb, 2'
+        S01B3 'Gen-feb, 3'
+        S02B1 'Mar-Apr, 1'
+        S02B2 'Mar-Apr, 2'
+        S02B3 'Mar-Apr, 3'
+        S03B1 'Apr-Sep, 1'
+        S03B2 'Apr-Sep, 2'
+        S03B3 'Apr-Sep, 3'
+        S04B1 'Oct-Nov, 1'
+        S04B2 'Oct-Nov, 2'
+        S04B3 'Oct-Nov, 3'
+        S05B1 'Nov-Dec, 1'
+        S05B2 'Nov-Dec, 2'
+        S05B3 'Nov-Dec, 3'
 /;
 
 set     FUEL    /
