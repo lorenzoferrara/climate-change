@@ -423,10 +423,10 @@ parameter ModelPeriodEmissionLimit(REGION,EMISSION);
 * energy that would be demanded in one time slice l if the latter lasted
 * the whole year. It is a function of the parameters SpecifiedAnnualDemand
 * and SpecifiedDemandProfile. [Energy (per year)]
-positive variable RateOfDemand(REGION,TIMESLICE,FUEL,YEAR);
+positive variable RATEOFDEMAND(REGION,TIMESLICE,FUEL,YEAR);
 
 * Demand[r,l,f,y]>=0: Demand for one fuel in one time slice. [Energy]
-positive variable Demand(REGION,TIMESLICE,FUEL,YEAR);
+positive variable DEMAND(REGION,TIMESLICE,FUEL,YEAR);
 
 
 
@@ -439,91 +439,91 @@ positive variable Demand(REGION,TIMESLICE,FUEL,YEAR);
 * in one time slice if the latter lasted the whole year. It is a function
 * of the RateOfActivity and the parameter TechnologyToStorage. [Energy
 * (per year)]
-free variable  RateOfStorageCharge(REGION,STORAGE,SEASON,DAYTYPE,DAILYTIMEBRACKET,YEAR);
+free variable  RATEOFSTORAGECHARGE(REGION,STORAGE,SEASON,DAYTYPE,DAILYTIMEBRACKET,YEAR);
 
 * RateOfStorageDischarge[r,s,ls,ld,lh,y]: Intermediate variable. It
 * represents the commodity that would be discharged from storage facility
 * s in one time slice if the latter lasted the whole year. It is a
 * function of the RateOfActivity and the parameter
 * TechnologyFromStorage. [Energy (per year)]
-free variable  RateOfStorageDischarge(REGION,STORAGE,SEASON,DAYTYPE,DAILYTIMEBRACKET,YEAR);
+free variable  RATEOFSTORAGEDISCHARGE(REGION,STORAGE,SEASON,DAYTYPE,DAILYTIMEBRACKET,YEAR);
 
 * NetChargeWithinYear[r,s,ls,ld,lh,y]: Net quantity of commodity charged
 * to storage facility s in year y. It is a function of the
 * RateOfStorageCharge and the RateOfStorageDischarge and it can be
 * negative. [Energy]
-free variable  NetChargeWithinYear(REGION,STORAGE,SEASON,DAYTYPE,DAILYTIMEBRACKET,YEAR);
+free variable  NETCHARGEWITHINYEAR(REGION,STORAGE,SEASON,DAYTYPE,DAILYTIMEBRACKET,YEAR);
 
 * NetChargeWithinDay[r,s,ls,ld,lh,y]: Net quantity of commodity charged to
 * storage facility s in daytype ld. It is a function of the
 * RateOfStorageCharge and the RateOfStorageDischarge and can be
 * negative. [Energy]
-free variable  NetChargeWithinDay(REGION,STORAGE,SEASON,DAYTYPE,DAILYTIMEBRACKET,YEAR);
+free variable NETCHARGEWITHINDAY(REGION,STORAGE,SEASON,DAYTYPE,DAILYTIMEBRACKET,YEAR);
 
 * StorageLevelYearStart[r,s,y]>=0: Level of stored commodity in storage
 * facility s in the first time step of year y. [Energy]
-positive variable StorageLevelYearStart(REGION,STORAGE,YEAR);
+positive variable STORAGELEVELYEARSTART(REGION,STORAGE,YEAR);
 
 * StorageLevelYearFinish[r,s,y]>=0: Level of stored commodity in storage
 * facility s in the last time step of year y. [Energy]
-positive variable StorageLevelYearFinish(REGION,STORAGE,YEAR);
+positive variable STORAGELEVELYEARFINISH(REGION,STORAGE,YEAR);
 
 * StorageLevelSeasonStart[r,s,ls,y]>=0: Level of stored commodity in
 * storage facility s in the first time step of season ls. [Energy]
-positive variable StorageLevelSeasonStart(REGION,STORAGE,SEASON,YEAR);
+positive variable STORAGELEVELSEASONSTART(REGION,STORAGE,SEASON,YEAR);
 
 * StorageLevelDayTypeStart[r,s,ls,ld,y]>=0: Level of stored commodity in
 * storage facility s in the first time step of daytype ld. [Energy]
-positive variable StorageLevelDayTypeStart(REGION,STORAGE,SEASON,DAYTYPE,YEAR);
+positive variable STORAGELEVELDAYTYPESTART(REGION,STORAGE,SEASON,DAYTYPE,YEAR);
 
 * StorageLevelDayTypeFinish[r,s,ls,ld,y]>=0: Level of stored commodity in
 * storage facility s in the last time step of daytype ld. [Energy]
-positive variable StorageLevelDayTypeFinish(REGION,STORAGE,SEASON,DAYTYPE,YEAR);
+positive variable STORAGELEVELDAYTYPEFINISH(REGION,STORAGE,SEASON,DAYTYPE,YEAR);
 
 * StorageLowerLimit[r,s,y]>=0: Minimum allowed level of stored commodity
 * in storage facility s, as a function of the storage capacity and the
 * user-defined MinStorageCharge ratio. [Energy]
-positive variable StorageLowerLimit(REGION,STORAGE,YEAR);
+positive variable STORAGELOWERLIMIT(REGION,STORAGE,YEAR);
 
 * StorageUpperLimit[r,s,y]>=0: Maximum allowed level of stored commodity
 * in storage facility s. It corresponds to the total existing capacity of
 * storage facility s (summing newly installed and pre-existing
 * capacities). [Energy]
-positive variable StorageUpperLimit(REGION,STORAGE,YEAR);
+positive variable STORAGEUPPERLIMIT(REGION,STORAGE,YEAR);
 
 * AccumulatedNewStorageCapacity[r,s,y]>=0: Cumulative capacity of newly
 * installed storage from the beginning of the time domain to year
 * y. [Energy]
-positive variable AccumulatedNewStorageCapacity(REGION,STORAGE,YEAR);
+positive variable ACCUMULATEDNEWSTORAGECAPACITY(REGION,STORAGE,YEAR);
 
 * NewStorageCapacity[r,s,y]>=0: Capacity of newly installed storage in
 * year y. [Energy]
-positive variable NewStorageCapacity(REGION,STORAGE,YEAR);
+positive variable NEWSTORAGECAPACITY(REGION,STORAGE,YEAR);
 
 * CapitalInvestmentStorage[r,s,y]>=0: Undiscounted investment in new
 * capacity for storage facility s. Derived from the NewStorageCapacity and
 * the parameter CapitalCostStorage. [Monetary units]
-positive variable CapitalInvestmentStorage(REGION,STORAGE,YEAR);
+positive variable CAPITALINVESTMENTSTORAGE(REGION,STORAGE,YEAR);
 
 * DiscountedCapitalInvestmentStorage[r,s,y]>=0: Investment in new capacity
 * for storage facility s, discounted through the parameter
 * DiscountRate. [Monetary units]
-positive variable DiscountedCapitalInvestmentStorage(REGION,STORAGE,YEAR);
+positive variable DISCOUNTEDCAPITALINVESTMENTSTORAGE(REGION,STORAGE,YEAR);
 
 * SalvageValueStorage[r,s,y]>=0: Salvage value of storage facility s in
 * year y, as a function of the parameters OperationalLifeStorage and
 * DepreciationMethod. [Monetary units]
-positive variable SalvageValueStorage(REGION,STORAGE,YEAR);
+positive variable SALVAGEVALUESTORAGE(REGION,STORAGE,YEAR);
 
 * DiscountedSalvageValueStorage[r,s,y]>=0: Salvage value of storage
 * facility s, discounted through the parameter DiscountRate. [Monetary
 * units]
-positive variable DiscountedSalvageValueStorage(REGION,STORAGE,YEAR);
+positive variable DISCOUNTEDSALVAGEVALUESTORAGE(REGION,STORAGE,YEAR);
 
 * TotalDiscountedStorageCost[r,s,y]>=0: Difference between the discounted
 * capital investment in new storage facilities and the salvage value in
 * year y. [Monetary units]
-positive variable TotalDiscountedStorageCost(REGION,STORAGE,YEAR);
+positive variable TOTALDISCOUNTEDSTORAGECOST(REGION,STORAGE,YEAR);
 
 
 *------------------------------------------------------------------------
@@ -533,20 +533,20 @@ positive variable TotalDiscountedStorageCost(REGION,STORAGE,YEAR);
 * NumberOfNewTechnologyUnits[r,t,y]>=0, integer: Number of newly installed
 * units of technology t in year y, as a function of the parameter
 * CapacityOfOneTechnologyUnit. [No unit]
-integer variable NumberOfNewTechnologyUnits(REGION,TECHNOLOGY,YEAR);
+integer variable NUMBEROFNEWTECHNOLOGYUNITS(REGION,TECHNOLOGY,YEAR);
 
 * NewCapacity[r,t,y]>=0: Newly installed capacity of technology t in year
 * y. [Power]
-positive variable NewCapacity(REGION,TECHNOLOGY,YEAR);
+positive variable NEWCAPACITY(REGION,TECHNOLOGY,YEAR);
 
 * AccumulatedNewCapacity[r,t,y]>=0: Cumulative newly installed capacity of
 * technology t from the beginning of the time domain to year y. [Power]
-positive variable AccumulatedNewCapacity(REGION,TECHNOLOGY,YEAR);
+positive variable ACCUMULATEDNEWCAPACITY(REGION,TECHNOLOGY,YEAR);
 
 * TotalCapacityAnnual[r,t,y]>=0: Total existing capacity of technology t
 * in year y (sum of cumulative newly installed and pre-existing
 * capacity). [Power]
-positive variable TotalCapacityAnnual(REGION,TECHNOLOGY,YEAR);
+positive variable TOTALCAPACITYANNUAL(REGION,TECHNOLOGY,YEAR);
 
 
 *------------------------------------------------------------------------	
@@ -556,89 +556,89 @@ positive variable TotalCapacityAnnual(REGION,TECHNOLOGY,YEAR);
 * RateOfActivity[r,l,t,m,y] >=0: Intermediate variable. It represents the
 * activity of technology t in one mode of operation and in time slice l,
 * if the latter lasted the whole year. [Energy (per year)]
-positive variable RateOfActivity(REGION,TIMESLICE,TECHNOLOGY,MODE_OF_OPERATION,YEAR);
+positive variable RATEOFACTIVITY(REGION,TIMESLICE,TECHNOLOGY,MODE_OF_OPERATION,YEAR);
 * RateOfTotalActivity[r,t,l,y] >=0: Sum of the RateOfActivity of a
 * technology over the modes of operation. [Energy (per year)]
-positive variable RateOfTotalActivity(REGION,TIMESLICE,TECHNOLOGY,YEAR);
+positive variable RATEOFTOTALACTIVITY(REGION,TIMESLICE,TECHNOLOGY,YEAR);
 * TotalTechnologyAnnualActivity[r,t,y] >=0: Total annual activity of
 * technology t. [Energy]
 
 * TotalTechnologyAnnualActivity[r,t,y] >=0: Total annual activity of
 * technology t. [Energy]
-positive variable TotalTechnologyAnnualActivity(REGION,TECHNOLOGY,YEAR);
+positive variable TOTALTECHNOLOGYANNUALACTIVITY(REGION,TECHNOLOGY,YEAR);
 
 * TotalAnnualTechnologyActivityByMode[r,t,m,y] >=0: Annual activity of
 * technology t in mode of operation m. [Energy]
-positive variable TotalAnnualTechnologyActivityByMode(REGION,TECHNOLOGY,MODE_OF_OPERATION,YEAR);
+positive variable TOTALANNUALTECHNOLOGYACTIVITYBYMODE(REGION,TECHNOLOGY,MODE_OF_OPERATION,YEAR);
 
 * RateOfProductionByTechnologyByMode[r,l,t,m,f,y] >=0: Intermediate variable. It represents the quantity of fuel f that technology t would produce in one mode of operation and in time slice l, if the latter lasted the whole year. It is a function of the variable RateOfActivity and the parameter OutputActivityRatio. [Energy (per year)]
-positive variable RateOfProductionByTechnologyByMode(REGION,TIMESLICE,TECHNOLOGY,MODE_OF_OPERATION,FUEL,YEAR);
+positive variable RATEOFPRODUCTIONBYTECHNOLOGYBYMODE(REGION,TIMESLICE,TECHNOLOGY,MODE_OF_OPERATION,FUEL,YEAR);
 
 * RateOfProductionByTechnology[r,l,t,f,y] >=0: Sum of the
 * RateOfProductionByTechnologyByMode over the modes of operation. [Energy
 * (per year)]
-positive variable RateOfProductionByTechnology(REGION,TIMESLICE,TECHNOLOGY,FUEL,YEAR);
+positive variable RATEOFPRODUCTIONBYTECHNOLOGY(REGION,TIMESLICE,TECHNOLOGY,FUEL,YEAR);
 
 * ProductionByTechnology[r,l,t,f,y] >=0: Production of fuel f by
 * technology t in time slice l. [Energy]
-positive variable ProductionByTechnology(REGION,TIMESLICE,TECHNOLOGY,FUEL,YEAR);
+positive variable PRODUCTIONBYTECHNOLOGY(REGION,TIMESLICE,TECHNOLOGY,FUEL,YEAR);
 
 * ProductionByTechnologyAnnual[r,t,f,y] >=0: Annual production of fuel f
 * by technology t. [Energy]
-positive variable ProductionByTechnologyAnnual(REGION,TECHNOLOGY,FUEL,YEAR);
+positive variable PRODUCTIONBYTECHNOLOGYANNUAL(REGION,TECHNOLOGY,FUEL,YEAR);
 
 * RateOfProduction[r,l,f,y] >=0: Sum of the RateOfProductionByTechnology
 * over all the technologies. [Energy (per year)]
-positive variable RateOfProduction(REGION,TIMESLICE,FUEL,YEAR);
+positive variable RATEOFPRODUCTION(REGION,TIMESLICE,FUEL,YEAR);
 
 * Production[r,l,f,y] >=0: Total production of fuel f in time slice l. It
 * is the sum of the ProductionByTechnology over all technologies. [Energy]
-positive variable Production(REGION,TIMESLICE,FUEL,YEAR);
+positive variable PRODUCTION(REGION,TIMESLICE,FUEL,YEAR);
 
 * RateOfUseByTechnologyByMode[r,l,t,m,f,y] >=0: Intermediate variable. It
 * represents the quantity of fuel f that technology t would use in one
 * mode of operation and in time slice l, if the latter lasted the whole
 * year. It is the function of the variable RateOfActivity and the
 * parameter InputActivityRatio. [Energy (per year)]
-positive variable RateOfUseByTechnologyByMode(REGION,TIMESLICE,TECHNOLOGY,MODE_OF_OPERATION,FUEL,YEAR);
+positive variable RATEOFUSEBYTECHNOLOGYBYMODE(REGION,TIMESLICE,TECHNOLOGY,MODE_OF_OPERATION,FUEL,YEAR);
 
 * RateOfUseByTechnology[r,l,t,f,y] >=0: Sum of the
 * RateOfUseByTechnologyByMode over the modes of operation. [Energy (per
 * year)]
-positive variable RateOfUseByTechnology(REGION,TIMESLICE,TECHNOLOGY,FUEL,YEAR);
+positive variable RATEOFUSEBYTECHNOLOGY(REGION,TIMESLICE,TECHNOLOGY,FUEL,YEAR);
 
 * UseByTechnologyAnnual[r,t,f,y] >=0: Annual use of fuel f by technology
 * t. [Energy]
-positive variable UseByTechnologyAnnual(REGION,TECHNOLOGY,FUEL,YEAR);
+positive variable USEBYTECHNOLOGYANNUAL(REGION,TECHNOLOGY,FUEL,YEAR);
 
 * RateOfUse[r,l,f,y] >=0: Sum of the RateOfUseByTechnology
 * over all the technologies. [Energy (per year)]
-positive variable RateOfUse(REGION,TIMESLICE,FUEL,YEAR);
+positive variable RATEOFUSE(REGION,TIMESLICE,FUEL,YEAR);
 
 * UseByTechnology[r,l,t,f,y] >=0: Use of fuel f by technology t in time
 * slice l. [Energy]
-positive variable UseByTechnology(REGION,TIMESLICE,TECHNOLOGY,FUEL,YEAR);
+positive variable USEBYTECHNOLOGY(REGION,TIMESLICE,TECHNOLOGY,FUEL,YEAR);
 
 * Use[r,l,f,y] >=0: Total use of fuel f in time slice l. It is the sum of
 * the UseByTechnology over all technologies. [Energy]
-positive variable Use(REGION,TIMESLICE,FUEL,YEAR);
+positive variable USE(REGION,TIMESLICE,FUEL,YEAR);
 
 * Trade[r,rr,l,f,y]: Quantity of fuel f traded between region r and rr in
 * time slice l. [Energy]
-positive variable Trade(REGION,rr,TIMESLICE,FUEL,YEAR);
+positive variable TRADE(REGION,rr,TIMESLICE,FUEL,YEAR);
 
 * TradeAnnual[r,rr,f,y]: Annual quantity of fuel f traded between region r
 * and rr. It is the sum of the variable Trade over all the time
 * slices. [Energy]
-positive variable TradeAnnual(REGION,rr,FUEL,YEAR);
+positive variable TRADEANNUAL(REGION,rr,FUEL,YEAR);
 
 * ProductionAnnual[r,f,y] >=0: Total annual production of fuel f. It is
 * the sum of the variable Production over all technologies. [Energy]
-positive variable ProductionAnnual(REGION,FUEL,YEAR);
+positive variable PRODUCTIONANNUAL(REGION,FUEL,YEAR);
 
 * UseAnnual[r,f,y] >=0: Total annual use of fuel f. It is the sum of the
 * variable Use over all technologies. [Energy]
-positive variable UseAnnual(REGION,FUEL,YEAR);
+positive variable USEANNUAL(REGION,FUEL,YEAR);
 
 
 *------------------------------------------------------------------------	
@@ -648,52 +648,52 @@ positive variable UseAnnual(REGION,FUEL,YEAR);
 * CapitalInvestment[r,t,y] >=0: Undiscounted investment in new capacity of
 * technology t. It is a function of the NewCapacity and the parameter
 * CapitalCost. [Monetary units]
-positive variable CapitalInvestment(REGION,TECHNOLOGY,YEAR);
+positive variable CAPITALINVESTMENT(REGION,TECHNOLOGY,YEAR);
 
 * DiscountedCapitalInvestment[r,t,y] >=0: Investment in new capacity of
 * technology t, discounted through the parameter DiscountRate. [Monetary
 * units]
-positive variable DiscountedCapitalInvestment(REGION,TECHNOLOGY,YEAR);
+positive variable DISCOUNTEDCAPITALINVESTMENT(REGION,TECHNOLOGY,YEAR);
 
 * SalvageValue[r,t,y] >=0: Salvage value of technology t in year y, as a
 * function of the parameters OperationalLife and
 * DepreciationMethod. [Monetary units]
-positive variable SalvageValue(REGION,TECHNOLOGY,YEAR);
+positive variable SALVAGEVALUE(REGION,TECHNOLOGY,YEAR);
 
 * DiscountedSalvageValue[r,t,y] >=0: Salvage value of technology t,
 * discounted through the parameter DiscountRate. [Monetary units]
-positive variable DiscountedSalvageValue(REGION,TECHNOLOGY,YEAR);
+positive variable DISCOUNTEDSALVAGEVALUE(REGION,TECHNOLOGY,YEAR);
 
 * OperatingCost[r,t,y] >=0: Undiscounted sum of the annual variable and
 * fixed operating costs of technology t. [Monetary units]
-positive variable OperatingCost(REGION,TECHNOLOGY,YEAR);
+positive variable OPERATINGCOST(REGION,TECHNOLOGY,YEAR);
 
 * DiscountedOperatingCost[r,t,y] >=0: Annual OperatingCost of technology
 * t, discounted through the parameter DiscountRate. [Monetary units]
-positive variable DiscountedOperatingCost(REGION,TECHNOLOGY,YEAR);
+positive variable DISCOUNTEDOPERATINGCOST(REGION,TECHNOLOGY,YEAR);
 
 * AnnualVariableOperatingCost[r,t,y] >=0: Annual variable operating cost
 * of technology t. Derived from the TotalAnnualTechnologyActivityByMode
 * and the parameter VariableCost. [Monetary units]
-positive variable AnnualVariableOperatingCost(REGION,TECHNOLOGY,YEAR);
+positive variable ANNUALVARIABLEOPERATINGCOST(REGION,TECHNOLOGY,YEAR);
 
 * AnnualFixedOperatingCost[r,t,y] >=0: Annual fixed operating cost of
 * technology t. Derived from the TotalCapacityAnnual and the parameter
 * FixedCost. [Monetary units]
-positive variable AnnualFixedOperatingCost(REGION,TECHNOLOGY,YEAR);
+positive variable ANNUALFIXEDOPERATINGCOST(REGION,TECHNOLOGY,YEAR);
 
 * TotalDiscountedCostByTechnology[r,t,y] >=0: Difference between the sum
 * of discounted operating cost / capital cost / emission penalties and the
 * salvage value. [Monetary units]
-positive variable TotalDiscountedCostByTechnology(REGION,TECHNOLOGY,YEAR);
+positive variable TOTALDISCOUNTEDCOSTBYTECHNOLOGY(REGION,TECHNOLOGY,YEAR);
 
 * TotalDiscountedCost[r,y] >=0: Sum of the TotalDiscountedCostByTechnology
 * over all the technologies. [Monetary units]
-positive variable TotalDiscountedCost(REGION,YEAR);
+positive variable TOTALDISCOUNTEDCOST(REGION,YEAR);
 
 * ModelPeriodCostByRegion[r] >=0: Sum of the TotalDiscountedCost over all
 * modelled years. [Monetary units]
-positive variable ModelPeriodCostByRegion(REGION);
+positive variable MODELPERIODCOSTBYREGION(REGION);
 
 
 
@@ -705,13 +705,13 @@ positive variable ModelPeriodCostByRegion(REGION);
 * technologies required to provide reserve margin. It is derived from the
 * TotalCapacityAnnual and the parameter
 * ReserveMarginTagTechnology. [Energy]
-positive variable TotalCapacityInReserveMargin(REGION,YEAR);
+positive variable TOTALCAPACITYINRESERVEMARGIN(REGION,YEAR);
 
 * DemandNeedingReserveMargin[r,l,y] >=0: Quantity of fuel produced that is
 * assigned to a target of reserve margin. Derived from the
 * RateOfProduction and the parameter ReserveMarginTagFuel. [Energy (per
 * year)]
-positive variable DemandNeedingReserveMargin(REGION,TIMESLICE,YEAR);
+positive variable DEMANDNEEDINGRESERVEMARGIN(REGION,TIMESLICE,YEAR);
 
 
 *------------------------------------------------------------------------	
@@ -721,17 +721,17 @@ positive variable DemandNeedingReserveMargin(REGION,TIMESLICE,YEAR);
 * TotalREProductionAnnual[r,y]: Annual production by all technologies
 * tagged as renewable in the model. Derived from the
 * ProductionByTechnologyAnnual and the parameter RETagTechnology. [Energy]
-free variable TotalREProductionAnnual(REGION,YEAR);
+free variable TOTALREPRODUCTIONANNUAL(REGION,YEAR);
 
 * RETotalProductionOfTargetFuelAnnual[r,y]: Annual production of fuels
 * tagged as renewable in the model. Derived from the RateOfProduction and
 * the parameter RETagFuel. [Energy]
-free variable RETotalProductionOfTargetFuelAnnual(REGION,YEAR);
+free variable RETOTALPRODUCTIONOFTARGETFUELANNUAL(REGION,YEAR);
 
 * TotalTechnologyModelPeriodActivity[r,t]: Sum of the
 * TotalTechnologyAnnualActivity over the years of the modelled
 * period. [Energy]
-free variable TotalTechnologyModelPeriodActivity(REGION,TECHNOLOGY);
+free variable TOTALTECHNOLOGYMODELPERIODACTIVITY(REGION,TECHNOLOGY);
 
 
 *------------------------------------------------------------------------	
@@ -742,37 +742,37 @@ free variable TotalTechnologyModelPeriodActivity(REGION,TECHNOLOGY);
 * e by technology t in mode of operation m. Derived from the
 * RateOfActivity and the parameter EmissionActivityRatio. [Quantity of
 * emission]
-positive variable AnnualTechnologyEmissionByMode(REGION,TECHNOLOGY,EMISSION,MODE_OF_OPERATION,YEAR);
+positive variable ANNUALTECHNOLOGYEMISSIONBYMODE(REGION,TECHNOLOGY,EMISSION,MODE_OF_OPERATION,YEAR);
 
 * AnnualTechnologyEmission[r,t,e,y] >=0: Sum of the
 * AnnualTechnologyEmissionByMode over the modes of operation. [Quantity of
 * emission]
-positive variable AnnualTechnologyEmission(REGION,TECHNOLOGY,EMISSION,YEAR);
+positive variable ANNUALTECHNOLOGYEMISSION(REGION,TECHNOLOGY,EMISSION,YEAR);
 
 * AnnualTechnologyEmissionPenaltyByEmission[r,t,e,y] >=0: Undiscounted
 * annual cost of emission e by technology t. It is a function of the
 * AnnualTechnologyEmission and the parameter EmissionPenalty. [Monetary
 * units]
-positive variable AnnualTechnologyEmissionPenaltyByEmission(REGION,TECHNOLOGY,EMISSION,YEAR);
+positive variable ANNUALTECHNOLOGYEMISSIONPENALTYBYEMISSION(REGION,TECHNOLOGY,EMISSION,YEAR);
 
 * AnnualTechnologyEmissionsPenalty[r,t,y] >=0: Total undiscounted annual
 * cost of all emissions generated by technology t. Sum of the
 * AnnualTechnologyEmissionPenaltyByEmission over all the emitted
 * agents. [Monetary units]
-positive variable AnnualTechnologyEmissionsPenalty(REGION,TECHNOLOGY,YEAR);
+positive variable ANNUALTECHNOLOGYEMISSIONSPENALTY(REGION,TECHNOLOGY,YEAR);
 
 * DiscountedTechnologyEmissionsPenalty[r,t,y] >=0: Annual cost of
 * emissions by technology t, discounted through the
 * DiscountRate. [Monetary units]
-positive variable DiscountedTechnologyEmissionsPenalty(REGION,TECHNOLOGY,YEAR);
+positive variable DISCOUNTEDTECHNOLOGYEMISSIONSPENALTY(REGION,TECHNOLOGY,YEAR);
 
 * AnnualEmissions[r,e,y] >=0: Sum of the AnnualTechnologyEmission over all
 * technologies. [Quantity of emission]
-positive variable AnnualEmissions(REGION,EMISSION,YEAR);
+positive variable ANNUALEMISSIONS(REGION,EMISSION,YEAR);
 
 * ModelPeriodEmissions[r,e] >=0: Total system emissions of agent e in the
 * model period, accounting for both the emissions by technologies and the
 * user defined ModelPeriodExogenousEmission. [Quantity of emission]
-positive variable ModelPeriodEmissions(EMISSION,REGION);
+positive variable MODELPERIODEMISSIONS(EMISSION,REGION);
 
 
