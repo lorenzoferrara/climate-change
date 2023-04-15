@@ -33,32 +33,30 @@ $include renewables_data.gms
 $offlisting
 $include osemosys_equ.gms
 
-* some scenario flags
-$ifthen.scen set ren_target
-equation my_RE4_EnergyConstraint(REGION,YEAR);
-my_RE4_EnergyConstraint(r,y)..
-    %ren_target%/100*(sum(f, AccumulatedAnnualDemand(r,f,y) + SpecifiedAnnualDemand(r,f,y))) =l= TotalREProductionAnnual(r,y);
-$setglobal scen "rentarget%ren_target%"
+* water limit flags
+$ifthen.scen set Riv_5 
+TotalAnnualMaxCapacity(r,'RIV',y) = 5;
+$setglobal scen Riv_5
 $endif.scen
 
-$ifthen.scen set ctax 
-EmissionsPenalty(r,'CO2',y) = %ctax%;
-$setglobal scen "ctax%ctax%"
+$ifthen.scen set Riv_6 
+TotalAnnualMaxCapacity(r,'RIV',y) = 6;
+$setglobal scen Riv_6
 $endif.scen
 
-$ifthen.scen set emicap 
-AnnualEmissionLimit(r,'CO2',y)$(ord(y) ge 10) = %emicap%;
-$setglobal scen "emicap%emicap%"
+$ifthen.scen set Riv_8 
+TotalAnnualMaxCapacity(r,'RIV',y) = 8;
+$setglobal scen Riv_8
 $endif.scen
 
-$ifthen.scen set nocoal 
-TotalAnnualMaxCapacity(r,'E01',y) = .5;
-$setglobal scen "nocoal"
+$ifthen.scen set Riv_10 
+TotalAnnualMaxCapacity(r,'RIV',y) = 10;
+$setglobal scen Riv_10
 $endif.scen
 
-$ifthen.scen set cost_res 
-CapitalCost(r,t,y)$t_res(t) = %cost_res%/100 * CapitalCost(r,t,y);
-$setglobal scen "lowcost"
+$ifthen.scen set Riv_15 
+TotalAnnualMaxCapacity(r,'RIV',y) = 15;
+$setglobal scen Riv_15
 $endif.scen
 
 * solve the model
