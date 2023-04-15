@@ -28,6 +28,7 @@ $include osemosys_dec.gms
 * specify Utopia Model data
 $include utopia_data.gms
 $include renewables_data.gms
+*$include Water_data.gms
 * define model equations
 $offlisting
 $include osemosys_equ.gms
