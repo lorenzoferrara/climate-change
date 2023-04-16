@@ -53,67 +53,40 @@ set     TECHNOLOGY      /
         HFCHPH3 'heavy fuel oil combined heat power'
         HFGCPH3 'heavy fuel oil gas cycle, holding'
         HFGCPN3 'heavy fuel oil gas cycle, new'
-        HFHPFH1 'heavy fuel internal combustion with heat recovery, final use, holding'
-        HFHPPH2 
-        HFSTPH2 
-        HFSTPH3 
-        HYDMPH0 
-        HYDMPH1 
-        HYDMPH2 
-        HYDMPH3 
-        HYDSPH2 
-        HYDSPH3 
-        NG00I00 
-        NG00X00 
-        NGCCPH2 
-        NGCHPH3 
-        NGCHPN3 
-        NGFCFH1 
-        NGGCPH2 
-        NGGCPN2 
-        NGHPFH1 
-        NGHPPH2 
-        NGSTPH2 
-        OCWVPH1 
-        OI00I00 
-        OI00X00 
-        OIRFPH0 
-        SODIFH1 
-        SOUTPH2 
-        WIOFPN2 
-        WIOFPN3 
-        WIONPH3 
-        WIONPN3 
-        WS00X00 
-        WSCHPH2 
-        WSSTPH1 ;
-
-        E01 'Coal power plants'
-        E21 'Nuclear power plants'
-        E31 'Hydroelectric power plants'
-        E51 'Pumped storage'
-        E70 'Diesel power plants'
-        IMPDSL1 'Diesel imports'
-        IMPGSL1 'Gasoline imports'
-        IMPHCO1 'Coal imports'
-        IMPOIL1 'Crude oil imports'
-        IMPURN1 'Uranium imports'
-        RHE 'Residential heaters - electric'
-        RHO 'Residential heaters - oil'
-        RL1 'Residential light bulbs'
-        SRE 'Crude oil refinery'
-        TXD 'Personal vehicles - diesel'
-        TXE 'Personal vehicles - electric'
-        TXG 'Personal vehicles - gasoline'
-        RIV 'River'
-        RHu 'Residential heating - Unmet demand'
-        RLu 'Residential lighting - Unmet demand'
-        TXu 'Personal transport - Unmet demand'
-* new technologies
-        SPP 'Solar power plants'
-        WPP 'Wind power plants'
-        SUN 'Energy input from the sun'
-        WIN 'Energy input from the wind'
+        HFHPFH1 'heavy fuel oil internal combustion with heat recovery, final use, holding'
+        HFHPPH2 'heavy fuel oil internal combustion with heat recovery, production, holding'
+        HFSTPH2 'heavy fuel oil steam cycle, size2'
+        HFSTPH3 'heavy fuel oil steam cycle, size3'
+        HYDMPH0 'hydroelectric dam size0'
+        HYDMPH1 'hydroelectric dam size1'
+        HYDMPH2 'hydroelectric dam size2'
+        HYDMPH3 'hydroelectric dam size3'
+        HYDSPH2 'hydroelectric pumped storage, size2'
+        HYDSPH3 'hydroelectric pumped storage, size3'
+        NG00I00 'natural gas import'
+        NG00X00 'natural gas extraction'
+        NGCCPH2 'natural gas combined cycle'
+        NGCHPH3 'natural gas combined heat power, holding'
+        NGCHPN3 'natural gas combined heat power, new'
+        NGFCFH1 'natural gas fuel cell, final use, holding' 
+        NGGCPH2 'natural gas gas cycle, holding'
+        NGGCPN2 'natural gas gas cycle, new'
+        NGHPFH1 'natural gas internal combustion with heat recovery, final use, holding'
+        NGHPPH2 'heavy fuel oil internal combustion with heat recovery, production, holding'
+        NGSTPH2 'natural gas steam cycle'
+        OCWVPH1 'ocean wave power production'
+        OI00I00 'oil import'
+        OI00X00 'oil extraction'
+        OIRFPH0 'oil refinery'
+        SODIFH1 'solar PV distributed, final consumption'
+        SOUTPH2 'solar PV utility, production'
+        WIOFPN2 'wind offshore new, size2'
+        WIOFPN3 'wind offshore new, size3'
+        WIONPH3 'wind onshore holding'
+        WIONPN3 'wind onshore new'
+        WS00X00 'waste generation'
+        WSCHPH2 'waste combined heat power'
+        WSSTPH1 'waste steam cycle' 
 /;
 
 set     TIMESLICE       /
@@ -134,43 +107,62 @@ set     TIMESLICE       /
         S05B3 'Nov-Dec, 3'
 /;
 
-set     FUEL    /
-        DSL 'Diesel'
-        ELC 'Electricity'
-        GSL 'Gasoline'
-        HCO 'Coal'
-        HYD 'Hydro'
-        OIL 'Crude oil'
-        URN 'Uranium'
-        RH 'Demand for residential heating'
-        RL 'Demand for residential lighting'
-        TX 'Demand for personal transport'
-* new fuels 
-        SOL 'Solar'
-        WND 'Wind'
-/;
+set     FUEL    / BF BM CO E1 E2 GO HF NG OI UR WS /;
 
-set     EMISSION        / CO2, NOX /;
+set     EMISSION  /CO2 HO HY WI  /;   
+        *Old emissions / CO2, NOX /;
 set     MODE_OF_OPERATION       / 1, 2 /;
-set     REGION  / UTOPIA /;
-set     SEASON / 1, 2, 3 /;
-set     DAYTYPE / 1 /;
-set     DAILYTIMEBRACKET / 1, 2 /;
+set     REGION  / ITALY /;
+set     SEASON / 1, 2, 3, 4, 5 /;
+set     DAYTYPE / 1 /; *non so, penso 5 tipi diversi
+set     DAILYTIMEBRACKET / 1, 2, 3 /;
 set     STORAGE / DAM /;
 
 # characterize technologies 
-set power_plants(TECHNOLOGY) / E01, E21, E31, E70, SPP, WPP /;
-set storage_plants(TECHNOLOGY) / E51 /;
-set fuel_transformation(TECHNOLOGY) / SRE /;
-set appliances(TECHNOLOGY) / RHE, RHO, RL1, TXD, TXE, TXG /;
-set unmet_demand(TECHNOLOGY) / RHu, RLu, TXu /;
-set transport(TECHNOLOGY) / TXD, TXE, TXG /;
-set primary_imports(TECHNOLOGY) / IMPHCO1, IMPOIL1, IMPURN1 /;
-set secondary_imports(TECHNOLOGY) / IMPDSL1, IMPGSL1 /;
+*elettricità
+ EL00TD0 
+ ELMTPH1
+ ELSIPH1
+*heavy fuel tipo motori?
+ HFHPFH1
+ HFHPPH2
+*storage
+ HYDSPH2
+ HYDSPH3
+*NG fuel cells??
+ NGFCFH1
+ NGFCFH2
+*NG tipo motori?
+ NGHPFH1
+ NGHPPH2
+*solar distributed qui conta come final use... in che senso?
+ SODIFH1 
+ 
 
-set fuel_production(TECHNOLOGY);
+set power_plants(TECHNOLOGY) /BFHPFH1, BMCCPH1, BMCHPH3, BMSTPH3, COCHPH3, COSTPH1, COSTPH3, GOCVPH2, HFCCPH2, HFCHPH3, HFGCPH3, HFGCPN3, HFSTPH2, HFSTPH3,   HYDMPH0, HYDMPH1, HYDMPH2, HYDMPH3, NGCCPH2, NGCCPH3, NGCHPN3, NGGCPN2, NGSTPH2, OCWVPH1, SOUTPH2, WIOFPN2, WIOFPN3, WIONPH3, WIONPN3, WSCHPH2, WSSTPH1/;
+        */ E01, E21, E31, E70, SPP, WPP /;
+set storage_plants(TECHNOLOGY) / /;
+        */ E51 /;
+set fuel_transformation(TECHNOLOGY) / OIRFPH0/;
+        */ SRE /;
+set appliances(TECHNOLOGY) / /;
+        */ RHE, RHO, RL1, TXD, TXE, TXG /;
+set unmet_demand(TECHNOLOGY) / /;
+        */ RHu, RLu, TXu /;
+set transport(TECHNOLOGY) / /;
+        */ TXD, TXE, TXG /;
+set primary_imports(TECHNOLOGY) /BM00I00, CO00I00,  OI00I00, NG00I00/;
+        */ IMPHCO1, IMPOIL1, IMPURN1,  /;
+set secondary_imports(TECHNOLOGY) /BF00I00, HF00I00 /;
+        */ IMPDSL1, IMPGSL1 /;
+
+set fuel_production(TECHNOLOGY) /BF00X00, BM00X00, CO00X00, GO00X00, NG00X00, WS00X00, OI00X00,  /;
+        *su WS00X00 non sono sicurissima perchè la produzione di waste non è proprio ricercata
 set fuel_production_fict(TECHNOLOGY) /RIV, SUN, WIN/;
 set secondary_production(TECHNOLOGY) /E01, E21, E31, E51, E70, SPP, WPP, SRE/;
+
+*sistemato fin qui
+
 
 #Characterize fuels 
 set primary_fuel(FUEL) / HCO, OIL, URN, HYD, SOL, WND /;
@@ -181,7 +173,6 @@ set final_demand(FUEL) / RH, RL, TX /;
 *------------------------------------------------------------------------	
 * Parameters - Global
 *------------------------------------------------------------------------
-
 
 parameter YearSplit(l,y) /
   ID.(1990*2010)  .3333
