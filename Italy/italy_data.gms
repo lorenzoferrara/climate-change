@@ -28,8 +28,66 @@ $offlisting
 
 
 $offlisting
-set     YEAR    / 2015*2050 /;
+set     YEAR    / 2015*2060 /;
 set     TECHNOLOGY      /
+        BF00I00 'biofuel import'
+        BF00X00 'biofuel generation'
+        BFHPFH1 'biofuel internal combustion with heat recovery, final use, holding'
+        BM00I00 'biomass import'
+        BM00X00 'biomass generation'
+        BMCCPH1 'biomass combined cycle size1'
+        BMCHPH3 'biomass combined cycle size3'
+        BMSTPH3 'biomass steam cycle'
+        CO00I00 'coal import'
+        CO00X00 'coal extraction'
+        COCHPH3 'coal combined heat and power'
+        COSTPH1 'coal steam cycle size1'
+        COSTPH3 'coal steam cycle size3'
+        EL00TD0 'electricity transmission'
+        ELMTPH1 'electricity ??'
+        ELSIPH1 'electricity ??'
+        GO00X00 'geothermal generation'
+        GOCVPH2 'geothermal conventional plant'
+        HF00I00 'heavy fuel oil import'
+        HFCCPH2 'heavy fuel oil combined cycle'
+        HFCHPH3 'heavy fuel oil combined heat power'
+        HFGCPH3 'heavy fuel oil gas cycle, holding'
+        HFGCPN3 'heavy fuel oil gas cycle, new'
+        HFHPFH1 'heavy fuel internal combustion with heat recovery, final use, holding'
+        HFHPPH2 
+        HFSTPH2 
+        HFSTPH3 
+        HYDMPH0 
+        HYDMPH1 
+        HYDMPH2 
+        HYDMPH3 
+        HYDSPH2 
+        HYDSPH3 
+        NG00I00 
+        NG00X00 
+        NGCCPH2 
+        NGCHPH3 
+        NGCHPN3 
+        NGFCFH1 
+        NGGCPH2 
+        NGGCPN2 
+        NGHPFH1 
+        NGHPPH2 
+        NGSTPH2 
+        OCWVPH1 
+        OI00I00 
+        OI00X00 
+        OIRFPH0 
+        SODIFH1 
+        SOUTPH2 
+        WIOFPN2 
+        WIOFPN3 
+        WIONPH3 
+        WIONPN3 
+        WS00X00 
+        WSCHPH2 
+        WSSTPH1 ;
+
         E01 'Coal power plants'
         E21 'Nuclear power plants'
         E31 'Hydroelectric power plants'
