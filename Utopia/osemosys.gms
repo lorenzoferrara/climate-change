@@ -34,29 +34,9 @@ $offlisting
 $include osemosys_equ.gms
 
 * water limit flags
-$ifthen.scen set Riv_5 
-TotalAnnualMaxCapacity(r,'RIV',y) = 5;
-$setglobal scen Riv_5
-$endif.scen
-
-$ifthen.scen set Riv_6 
-TotalAnnualMaxCapacity(r,'RIV',y) = 6;
-$setglobal scen Riv_6
-$endif.scen
-
-$ifthen.scen set Riv_8 
-TotalAnnualMaxCapacity(r,'RIV',y) = 8;
-$setglobal scen Riv_8
-$endif.scen
-
-$ifthen.scen set Riv_10 
-TotalAnnualMaxCapacity(r,'RIV',y) = 10;
-$setglobal scen Riv_10
-$endif.scen
-
-$ifthen.scen set Riv_15 
-TotalAnnualMaxCapacity(r,'RIV',y) = 15;
-$setglobal scen Riv_15
+$ifthen.scen set riv 
+TotalAnnualMaxCapacity(r,'RIV',y) = %riv%;
+$setglobal scen "riv%riv%"
 $endif.scen
 
 * solve the model
