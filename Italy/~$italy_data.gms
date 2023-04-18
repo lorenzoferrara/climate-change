@@ -30,12 +30,12 @@ $offlisting
 
 $offlisting
 set     YEAR    / 2015*2060 /;
-TECHNOLOGY      /
+set     TECHNOLOGY      /
         BF00I00 'biofuel import'
         BF00X00 'biofuel generation'
-        BFHPFH1 'biofuel ICE Heat and Power unit, final use, holding'
+        BFHPFH1 'biofuel internal combustion with heat recovery, final use, holding'
         BM00I00 'biomass import'
-        BM00X00 'biomass extraction'
+        BM00X00 'biomass generation'
         BMCCPH1 'biomass combined cycle size1'
         BMCHPH3 'biomass combined cycle size3'
         BMCSPN2 'biomass carbon capture'
@@ -52,42 +52,39 @@ TECHNOLOGY      /
         HF00I00 'heavy fuel oil import'
         HFCCPH2 'heavy fuel oil combined cycle'
         HFCHPH3 'heavy fuel oil combined heat power'
-        HFGCPH3 'heavy fuel oil gas cycle, old'
+        HFGCPH3 'heavy fuel oil gas cycle, holding'
         HFGCPN3 'heavy fuel oil gas cycle, new'
-        HFHPFH1 'heavy fuel oil ICE Heat and Power unit, final use, holding'
-        HFHPPH2 'heavy fuel oil ICE Heat and Power unit, production, holding'
+        HFHPFH1 'heavy fuel oil internal combustion with heat recovery, final use, holding'
+        HFHPPH2 'heavy fuel oil internal combustion with heat recovery, production, holding'
         HFSTPH2 'heavy fuel oil steam cycle, size2'
         HFSTPH3 'heavy fuel oil steam cycle, size3'
-        HYDMPH0 'hydroelectric Run of river'
-        HYDMPH1 'Hydro Dam <10MW'
-        HYDMPH2 'Hydro Dam 10-100MW'
-        HYDMPH3 'Hydro Dam >100MW'
-        HYDSPH2 'hHydro Pumped Storage 10-100MW'
-        HYDSPH3 'Hydro Pumped Storage >100MW'
+        HYDMPH0 'hydroelectric dam size0'
+        HYDMPH1 'hydroelectric dam size1'
+        HYDMPH2 'hydroelectric dam size2'
+        HYDMPH3 'hydroelectric dam size3'
+        HYDSPH2 'hydroelectric pumped storage, size2'
+        HYDSPH3 'hydroelectric pumped storage, size3'
         NG00I00 'natural gas import'
         NG00X00 'natural gas extraction'
         NGCCPH2 'natural gas combined cycle'
-        NGCHPH3 'natural gas combined heat power, old'
+        NGCHPH3 'natural gas combined heat power, holding'
         NGCHPN3 'natural gas combined heat power, new'
-        NGCSPN2 'natural gas carbon capture and storage'
-        NGFCFH1 'natural gas fuel cell, final use' 
-        NGGCPH2 'natural gas gas cycle, old'
+        NGFCFH1 'natural gas fuel cell, final use, holding' 
+        NGGCPH2 'natural gas gas cycle, holding'
         NGGCPN2 'natural gas gas cycle, new'
-        NGHPFH1 'natural gas ICE Heat and Power unit, final use, holding'
-        NGHPPH2 'heavy fuel oil ICE Heat and Power unity, production, holding'
+        NGHPFH1 'natural gas internal combustion with heat recovery, final use, holding'
+        NGHPPH2 'heavy fuel oil internal combustion with heat recovery, production, holding'
         NGSTPH2 'natural gas steam cycle'
-        NUG3PH3 'Nuclear Generation 3'
         OCWVPH1 'ocean wave power production'
         OI00I00 'oil import'
         OI00X00 'oil extraction'
         OIRFPH0 'oil refinery'
-        SODIFH1 'Solar Distributed PV <=0.1MW, final consumption'
-        SOUTPH2 'Solar Utility PV >0.1MW, production'
-        UR00I00 'Uranium Import'
-        WIOFPN2 'wind offshore Near-term'
-        WIOFPN3 'wind offshore Long-term'
-        WIONPH3 'wind onshore current'
-        WIONPN3 'wind onshore near-term'
+        SODIFH1 'solar PV distributed, final consumption'
+        SOUTPH2 'solar PV utility, production'
+        WIOFPN2 'wind offshore new, size2'
+        WIOFPN3 'wind offshore new, size3'
+        WIONPH3 'wind onshore holding'
+        WIONPN3 'wind onshore new'
         WS00X00 'waste generation'
         WSCHPH2 'waste combined heat power'
         WSSTPH1 'waste steam cycle' 
@@ -123,18 +120,38 @@ set     DAILYTIMEBRACKET / 1, 2, 3 /;
 set     STORAGE / DAM /;
 
 # characterize technologies 
+*DUBBIO
+*elettricità
+ EL00TD0 
+ ELMTPH1 *in plants cause capacity to activity 31536
+ ELSIPH1 *in plants cause capacity to activity 31536
+*heavy fuel tipo motori? *in plants cause capacity to activity 31536
+ HFHPFH1
+ HFHPPH2
+*storage (anche in plants)
+ HYDSPH2
+ HYDSPH3
+*NG fuel cells??
+ NGFCFH1
+ NGFCFH2
+*NG tipo motori?
+ NGHPFH1
+ NGHPPH2
+*solar distributed qui conta come final use... in che senso?
+ SODIFH1 
+ 
 
-set power_plants(TECHNOLOGY) /BFHPFH1, BMCCPH1, BMCHPH3, BMSTPH3, BMCSPN2, COCSPN2, COCHPH3, COSTPH1, COSTPH3, GOCVPH2, HFCCPH2, HFCHPH3, HFGCPH3, HFGCPN3, HFSTPH2, HFSTPH3, HFHPFH1, HFHPPH2, 
-                                HYDMPH0, HYDMPH1, HYDMPH2, HYDMPH3, HYDSPH2, HYDSPH3, NGCCPH2, NGCHPH3, NGCHPN3, NGCSPN2, NGFCFH1, NGGCPH2, NGGCPN2, NGHPFH1, NGHPPH2, NUG3PH3, OCWVPH1, SOUTPH2,
-                                SODIFH1, WIOFPN2, WIOFPN3, WIONPH3, WIONPN3, WSCHPH2, WSSTPH1/;
+set power_plants(TECHNOLOGY) /BFHPFH1, BMCCPH1, BMCHPH3, BMSTPH3, COCHPH3, COSTPH1, COSTPH3, ELMTPH1, ELSIPH1, GOCVPH2, HFCCPH2, HFCHPH3, HFGCPH3, HFGCPN3, HFSTPH2, HFSTPH3, HFHPFH1, HFHPPH2, 
+                                HYDMPH0, HYDMPH1, HYDMPH2, HYDMPH3, HYDSPH2, HYDSPH3, NGCCPH2, NGCCPH3, NGCHPN3, NGGCPN2, NGSTPH2, OCWVPH1, SOUTPH2, SODIFH1, WIOFPN2, WIOFPN3, WIONPH3, WIONPN3, WSCHPH2, WSSTPH1/;
 set storage_plants(TECHNOLOGY) / HYDSPH2, HYDSPH3/;
 set fuel_transformation(TECHNOLOGY) / OIRFPH0/;
 set appliances(TECHNOLOGY) / /;
 set unmet_demand(TECHNOLOGY) / /;
+set transport(TECHNOLOGY) / /;
 set primary_imports(TECHNOLOGY) /BM00I00, CO00I00,  OI00I00, NG00I00/;
-set secondary_imports(TECHNOLOGY) /BF00I00, HF00I00/;
+set secondary_imports(TECHNOLOGY) /BF00I00, HF00I00 /;
 
-set fuel_production(TECHNOLOGY) /BF00X00, BM00X00, CO00X00, GO00X00, NG00X00, WS00X00, OI00X00, UR00I00/;
+set fuel_production(TECHNOLOGY) /BF00X00, BM00X00, CO00X00, GO00X00, NG00X00, WS00X00, OI00X00,  /;
         *su WS00X00 non sono sicurissima perchè la produzione di waste non è proprio ricercata
 set fuel_production_fict(TECHNOLOGY) /RIV, SUN, WIN/;
 set secondary_production(TECHNOLOGY) /E01, E21, E31, E51, E70, SPP, WPP, SRE/;
@@ -144,10 +161,31 @@ set secondary_production(TECHNOLOGY) /E01, E21, E31, E51, E70, SPP, WPP, SRE/;
 
 *DUBBIO HF hevy fuel oil come conta??? Anche il gas ha final?
 set primary_fuel(FUEL) /BF BM CO GO HF NG OI UR WS/;
-set secondary_carrier(FUEL) / E1 E2 /;
-set final_demand(FUEL) /BF HF NG /; 
+set secondary_carrier(FUEL) / E1 /;
+set final_demand(FUEL) /E2/; 
 *non sono sicura
 
+set power_plants(TECHNOLOGY) /BFHPFH1, BMCCPH1, BMCHPH3, BMSTPH3, BMCSPN2, COCSPN2, COCHPH3, COSTPH1, COSTPH3, GOCVPH2, HFCCPH2, HFCHPH3, HFGCPH3, HFGCPN3, HFSTPH2, HFSTPH3, HFHPFH1, HFHPPH2, 
+                                HYDMPH0, HYDMPH1, HYDMPH2, HYDMPH3, HYDSPH2, HYDSPH3, NGCCPH2, NGCHPH3, NGCHPN3, NGCSPN2, NGFCFH1, NGGCPH2, NGGCPN2, NGHPFH1, NGHPPH2, NUG3PH3,  OCWVPH1, SOUTPH2,
+                                SODIFH1, WIOFPN2, WIOFPN3, WIONPH3, WIONPN3, WSCHPH2, WSSTPH1/;
+set storage_plants(TECHNOLOGY) / HYDSPH2, HYDSPH3/;
+set fuel_transformation(TECHNOLOGY) /OIRFPH0/;
+set appliances(TECHNOLOGY) / EL00TD0 /;
+*set unmet_demand(TECHNOLOGY) / /; mi sembra inutile
+set primary_imports(TECHNOLOGY) /BM00I00, CO00I00, OI00I00, NG00I00, UR00I00/;
+set secondary_imports(TECHNOLOGY) /BF00I00, HF00I00 /;
+
+set fuel_production(TECHNOLOGY) /BF00X00, BM00X00, CO00X00, GO00X00, NG00X00, WS00X00, OI00X00, WS00X00 /;
+        *su WS00X00 non sono sicurissima perchè la produzione di waste non è proprio ricercata
+set fuel_production_fict(TECHNOLOGY) /RIV, SUN, WIN/;
+set secondary_production(TECHNOLOGY) /E01, E21, E31, E51, E70, SPP, WPP, SRE/;
+
+
+#Characterize fuels 
+
+set primary_fuel(FUEL) /BF BM CO GO HF NG OI UR WS/;
+set secondary_carrier(FUEL) / E1 /;
+set final_demand(FUEL) /E2 /; 
 
 *------------------------------------------------------------------------	
 * Parameters - Global
@@ -1657,68 +1695,28 @@ ITALY.WSSTPH1.WS.1.2060	2.631578947
 /;
 
 parameter OutputActivityRatio(r,t,f,m,y) /
-  ITALY.ITBF00I00.BF.1.(2015*2060)  1
-  ITALY.ITBF00X00.BF.1.(2015*2060)  1
-  ITALY.ITBFHPFH1.E2.1.(2015*2060)  1
-  ITALY.ITBM00I00.BM.1.(2015*2060)  1
-  ITALY.ITBM00X00.BM.1.(2015*2060)  1
-  ITALY.ITBMCCPH1.E1.1.(2015*2060)  1
-
-  ITALY.ITBMCHPH3.E1.1.(2015*2060)  1
-  ITALY.ITBMSTPH3.E1.1.(2015*2060)  1
-  ITALY.ITCO00I00.CO.1.(2015*2060)  1
-  ITALY.ITCO00X00.CO.1.(2015*2060)  1
-  ITALY.ITCOCHPH3.E1.1.(2015*2060)  1
-  ITALY.ITCOSTPH1.E1.1.(2015*2060)  1
-  ITALY.ITCOSTPH3.E1.1.(2015*2060)  1
-  ITALY.ITEL00TD0.E2.1.(2015*2060)  0.95
-  ITALY.ITELMTPH1.E1.2.(2015*2060)  0.95
-  ITALY.ITELMTPH1.MTE1.1.(2015*2060)  0.95
-  ITALY.ITELSIPH1.E1.2.(2015*2060)  0.95
-  ITALY.ITELSIPH1.SIE1.1.(2015*2060)  0.95
-  ITALY.ITGO00X00.GO.1.(2015*2060)  1
-  ITALY.ITGOCVPH2.E1.1.(2015*2060)  1
-  ITALY.ITHF00I00.HF.1.(2015*2060)  1
-  ITALY.ITHFCCPH2.E1.1.(2015*2060)  1
-  ITALY.ITHFCHPH3.E1.1.(2015*2060)  1
-  ITALY.ITHFGCPH3.E1.1.(2015*2060)  1
-  ITALY.ITHFGCPN3.E1.1.(2015*2060)  1
-  ITALY.ITHFHPFH1.E1.1.(2015*2060)  1
-  ITALY.ITHFHPPH2.E1.1.(2015*2060)  1
-  ITALY.ITHFSTPH2.E1.1.(2015*2060)  1
-  ITALY.ITHFSTPH3.E1.1.(2015*2060)  1
-
-
-  ITALY.ITHYDMPH0.E1.1.(2015*2060)  1
-  ITALY.ITHYDMPH1.E1.1.(2015*2060)  1
-  ITALY.ITHYDMPH2.E1.1.(2015*2060)  1
-  ITALY.ITHYDMPH3.E1.1.(2015*2060)  1
-  ITALY.ITHYDSPH2.E1.1.(2015*2060)  1
-  ITALY.ITHYDSPH3.E1.1.(2015*2060)  1
-  ITALY.ITNG00I00.E1.1.(2015*2060)  1
-  ITALY.ITNG00X00.E1.1.(2015*2060)  1
-  ITALY.ITNGCCPH2.E1.1.(2015*2060)  1
-  ITALY.ITNGCHPH3.E1.1.(2015*2060)  1
-  ITALY.ITNGCHPN3.E1.1.(2015*2060)  1
-  ITALY.ITNGFCFH1.E2.1.(2015*2060)  1
-  ITALY.ITNGGCPH2.E1.1.(2015*2060)  1
-  ITALY.ITNGGCPN2.E1.1.(2015*2060)  1
-  ITALY.ITNGHPFH1.E1.1.(2015*2060)  1
-  ITALY.ITNGHPPH2.E1.1.(2015*2060)  1
-  ITALY.ITNGSTPH2.E1.1.(2015*2060)  1
-  ITALY.ITOCWVPH1.E1.1.(2015*2060)  1
-  ITALY.ITOI00I00.E1.1.(2015*2060)  1
-  ITALY.ITOI00X00.E1.1.(2015*2060)  1
-  ITALY.ITOIRFPH0.E1.1.(2015*2060)  1
-  ITALY.ITSODIFH1.E1.1.(2015*2060)  1
-  ITALY.ITSOUTPH2.E1.1.(2015*2060)  1
-  ITALY.ITWIOFPN2.E1.1.(2015*2060)  1
-  ITALY.ITWIOFPN3.E1.1.(2015*2060)  1
-  ITALY.ITWIONPH3.E1.1.(2015*2060)  1
-  ITALY.ITWIONPN3.E1.1.(2015*2060)  1
-  ITALY.ITWS00X00.E1.1.(2015*2060)  1
-  ITALY.ITWSCHPH2.E1.1.(2015*2060)  1
-  ITALY.ITWSSTPH1.E1.1.(2015*2060)  1
+  UTOPIA.E01.ELC.1.(1990*2010)  1
+  UTOPIA.E21.ELC.1.(1990*2010)  1
+  UTOPIA.E31.ELC.1.(1990*2010)  1
+  UTOPIA.E51.ELC.1.(1990*2010)  1
+  UTOPIA.E70.ELC.1.(1990*2010)  1
+  UTOPIA.IMPDSL1.DSL.1.(1990*2010)  1
+  UTOPIA.IMPGSL1.GSL.1.(1990*2010)  1
+  UTOPIA.IMPHCO1.HCO.1.(1990*2010)  1
+  UTOPIA.IMPOIL1.OIL.1.(1990*2010)  1
+  UTOPIA.IMPURN1.URN.1.(1990*2010)  1
+  UTOPIA.RHE.RH.1.(1990*2010)  1
+  UTOPIA.RHO.RH.1.(1990*2010)  1
+  UTOPIA.RHU.RH.1.(1990*2010)  1
+  UTOPIA.RIV.HYD.1.(1990*2010)  1
+  UTOPIA.RL1.RL.1.(1990*2010)  1
+  UTOPIA.RLU.RL.1.(1990*2010)  1
+  UTOPIA.SRE.DSL.1.(1990*2010)  .7
+  UTOPIA.SRE.GSL.1.(1990*2010)  .3
+  UTOPIA.TXD.TX.1.(1990*2010)  1
+  UTOPIA.TXE.TX.1.(1990*2010)  1
+  UTOPIA.TXG.TX.1.(1990*2010)  1
+  UTOPIA.TXU.TX.1.(1990*2010)  1
 /;
 
 # By default, assume for imported secondary fuels the same efficiency of the internal refineries
@@ -1963,38 +1961,38 @@ ResidualStorageCapacity(r,s,y) = 999;
 CapacityOfOneTechnologyUnit(r,t,y) = 0;
 
 parameter TotalAnnualMaxCapacity /
-  ITALY.E31.1990  .1301
-  ITALY.E31.1991  .1401
-  ITALY.E31.1992  .1401
-  ITALY.E31.1993  .1501
-  ITALY.E31.1994  .1501
-  ITALY.E31.1995  .1501
-  ITALY.E31.1996  .1601
-  ITALY.E31.1997  .1601
-  ITALY.E31.1998  .1601
-  ITALY.E31.1999  .1601
-  ITALY.E31.2000  .1701
-  ITALY.E31.2001  .201
-  ITALY.E31.2002  .201
-  ITALY.E31.2003  .201
-  ITALY.E31.2004  .201
-  ITALY.E31.2005  .201
-  ITALY.E31.2006  .201
-  ITALY.E31.2007  .201
-  ITALY.E31.2008  .201
-  ITALY.E31.2009  .201
-  ITALY.E31.2010  .2101
-  ITALY.E51.(1990*2010)  3
-  ITALY.RHE.1990  EPS
-  ITALY.RHE.1991  EPS
-  ITALY.RHE.1992  EPS
-  ITALY.RHE.1993  EPS
-  ITALY.RHE.1994  EPS
-  ITALY.RHE.1995  EPS
-  ITALY.RHE.1996  EPS
-  ITALY.RHE.1997  EPS
-  ITALY.RHE.1998  EPS
-  ITALY.RHE.1999  EPS
+  UTOPIA.E31.1990  .1301
+  UTOPIA.E31.1991  .1401
+  UTOPIA.E31.1992  .1401
+  UTOPIA.E31.1993  .1501
+  UTOPIA.E31.1994  .1501
+  UTOPIA.E31.1995  .1501
+  UTOPIA.E31.1996  .1601
+  UTOPIA.E31.1997  .1601
+  UTOPIA.E31.1998  .1601
+  UTOPIA.E31.1999  .1601
+  UTOPIA.E31.2000  .1701
+  UTOPIA.E31.2001  .201
+  UTOPIA.E31.2002  .201
+  UTOPIA.E31.2003  .201
+  UTOPIA.E31.2004  .201
+  UTOPIA.E31.2005  .201
+  UTOPIA.E31.2006  .201
+  UTOPIA.E31.2007  .201
+  UTOPIA.E31.2008  .201
+  UTOPIA.E31.2009  .201
+  UTOPIA.E31.2010  .2101
+  UTOPIA.E51.(1990*2010)  3
+  UTOPIA.RHE.1990  EPS
+  UTOPIA.RHE.1991  EPS
+  UTOPIA.RHE.1992  EPS
+  UTOPIA.RHE.1993  EPS
+  UTOPIA.RHE.1994  EPS
+  UTOPIA.RHE.1995  EPS
+  UTOPIA.RHE.1996  EPS
+  UTOPIA.RHE.1997  EPS
+  UTOPIA.RHE.1998  EPS
+  UTOPIA.RHE.1999  EPS
   UTOPIA.RHE.2000  99999
   UTOPIA.RHE.2001  99999
   UTOPIA.RHE.2002  99999
@@ -2054,19 +2052,6 @@ TotalAnnualMaxCapacity(r,'TXE','1990') = 0;
 TotalAnnualMaxCapacity(r,'RHE','1990') = 0;
 
 parameter TotalAnnualMinCapacity(r,t,y) /
-
-ITALY.ELMTPH1.(2015*2060) 0
-ITALY.ELSIPH1.(2015*2060) 0 
-ITALY.HFGCPH3.(2015*2060) 0
-ITALY.NGCHPH3.(2015*2060) 0 
-ITALY.NGGCPH2.(2015*2060) 0 
-ITALY.SODIFH1.(2015*2060) 5 
-ITALY.SOUTPH2.(2015*2060) 5 
-ITALY.WIOFPN2.(2015*2060) 5 
-ITALY.WIOFPN3.(2015*2060) 0 
-ITALY.WIONPH3.(2015*2060) 0 
-ITALY.WIONPN3.(2015*2060) 5
-
   UTOPIA.E31.1990  .13
   UTOPIA.E31.1991  .14
   UTOPIA.E31.1992  .14
