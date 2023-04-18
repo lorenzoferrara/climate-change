@@ -142,10 +142,9 @@ set secondary_production(TECHNOLOGY) /E01, E21, E31, E51, E70, SPP, WPP, SRE/;
 
 #Characterize fuels 
 
-*DUBBIO HF hevy fuel oil come conta??? Anche il gas ha final?
 set primary_fuel(FUEL) /BF BM CO GO HF NG OI UR WS/;
-set secondary_carrier(FUEL) / E1  /;
-set final_demand(FUEL) /E2 BF HF NG /; 
+set secondary_carrier(FUEL) / E1 /;
+set final_demand(FUEL) /E2 /; 
 *non sono sicura
 
 
@@ -173,7 +172,6 @@ parameter YearSplit(l,y) /
 
 DiscountRate(r) = 0.05;
 
-*DUBBIO Che cos'è??? e tutti i successivi???
 DaySplit(y,lh) = 12/(24*365);
 
 parameter Conversionls(l,ls) /
