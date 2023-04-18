@@ -118,43 +118,23 @@ set     EMISSION  /CO2 HO HY WI  /;
 set     MODE_OF_OPERATION       / 1, 2 /;
 set     REGION  / ITALY /;
 set     SEASON / 1, 2, 3, 4, 5 /;
-set     DAYTYPE / 1 /; *non so, penso 5 tipi diversi
+set     DAYTYPE / 1 /; 
 set     DAILYTIMEBRACKET / 1, 2, 3 /;
 set     STORAGE / DAM /;
 
 # characterize technologies 
-*DUBBIO
-*elettricità
- EL00TD0 
- ELMTPH1 *in plants cause capacity to activity 31536
- ELSIPH1 *in plants cause capacity to activity 31536
-*heavy fuel tipo motori? *in plants cause capacity to activity 31536
- HFHPFH1
- HFHPPH2
-*storage (anche in plants)
- HYDSPH2
- HYDSPH3
-*NG fuel cells??
- NGFCFH1
- NGFCFH2
-*NG tipo motori?
- NGHPFH1
- NGHPPH2
-*solar distributed qui conta come final use... in che senso?
- SODIFH1 
- 
 
-set power_plants(TECHNOLOGY) /BFHPFH1, BMCCPH1, BMCHPH3, BMSTPH3, COCHPH3, COSTPH1, COSTPH3, ELMTPH1, ELSIPH1, GOCVPH2, HFCCPH2, HFCHPH3, HFGCPH3, HFGCPN3, HFSTPH2, HFSTPH3, HFHPFH1, HFHPPH2, 
-                                HYDMPH0, HYDMPH1, HYDMPH2, HYDMPH3, HYDSPH2, HYDSPH3, NGCCPH2, NGCCPH3, NGCHPN3, NGGCPN2, NGSTPH2, OCWVPH1, SOUTPH2, SODIFH1, WIOFPN2, WIOFPN3, WIONPH3, WIONPN3, WSCHPH2, WSSTPH1/;
+set power_plants(TECHNOLOGY) /BFHPFH1, BMCCPH1, BMCHPH3, BMSTPH3, BMCSPN2, COCSPN2, COCHPH3, COSTPH1, COSTPH3, GOCVPH2, HFCCPH2, HFCHPH3, HFGCPH3, HFGCPN3, HFSTPH2, HFSTPH3, HFHPFH1, HFHPPH2, 
+                                HYDMPH0, HYDMPH1, HYDMPH2, HYDMPH3, HYDSPH2, HYDSPH3, NGCCPH2, NGCHPH3, NGCHPN3, NGCSPN2, NGFCFH1, NGGCPH2, NGGCPN2, NGHPFH1, NGHPPH2, NUG3PH3,  OCWVPH1, SOUTPH2,
+                                SODIFH1, WIOFPN2, WIOFPN3, WIONPH3, WIONPN3, WSCHPH2, WSSTPH1/;
 set storage_plants(TECHNOLOGY) / HYDSPH2, HYDSPH3/;
-set fuel_transformation(TECHNOLOGY) / OIRFPH0/;
-set appliances(TECHNOLOGY) / /;
-set unmet_demand(TECHNOLOGY) / /;
-set transport(TECHNOLOGY) / /;
-set primary_imports(TECHNOLOGY) /BM00I00, CO00I00,  OI00I00, NG00I00/;
+set fuel_transformation(TECHNOLOGY) /OIRFPH0/;
+set appliances(TECHNOLOGY) / EL00TD0 /;
+*set unmet_demand(TECHNOLOGY) / /; mi sembra inutile
+set primary_imports(TECHNOLOGY) /BM00I00, CO00I00, OI00I00, NG00I00, UR00I00/;
 set secondary_imports(TECHNOLOGY) /BF00I00, HF00I00 /;
 
-set fuel_production(TECHNOLOGY) /BF00X00, BM00X00, CO00X00, GO00X00, NG00X00, WS00X00, OI00X00,  /;
+set fuel_production(TECHNOLOGY) /BF00X00, BM00X00, CO00X00, GO00X00, NG00X00, WS00X00, OI00X00, WS00X00 /;
         *su WS00X00 non sono sicurissima perchè la produzione di waste non è proprio ricercata
 set fuel_production_fict(TECHNOLOGY) /RIV, SUN, WIN/;
 set secondary_production(TECHNOLOGY) /E01, E21, E31, E51, E70, SPP, WPP, SRE/;
@@ -164,8 +144,8 @@ set secondary_production(TECHNOLOGY) /E01, E21, E31, E51, E70, SPP, WPP, SRE/;
 
 *DUBBIO HF hevy fuel oil come conta??? Anche il gas ha final?
 set primary_fuel(FUEL) /BF BM CO GO HF NG OI UR WS/;
-set secondary_carrier(FUEL) / E1 E2 /;
-set final_demand(FUEL) /BF HF NG /; 
+set secondary_carrier(FUEL) / E1  /;
+set final_demand(FUEL) /E2 BF HF NG /; 
 *non sono sicura
 
 
