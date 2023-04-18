@@ -5,3 +5,4 @@
 *.log
 *.log~2
 *.gsp
+.Rhistory
