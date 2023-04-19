@@ -122,10 +122,16 @@ parameter YearSplit(TIMESLICE,YEAR);
 * in decimals (e.g. 0.05)
 parameter DiscountRate(REGION);
 
+*OLD VERSION
 * DaySplit[lh,y]: Length of one DailyTimeBracket in one specific day as a
 * fraction of the year (e.g., when distinguishing between days and night:
 * 12h/(24h*365d)).
-parameter DaySplit(YEAR,DAILYTIMEBRACKET);
+* parameter DaySplit(YEAR,DAILYTIMEBRACKET);
+
+*OUR VERSION
+* DaySplit[lh,y,ls]: Length of one DailyTimeBracket in one specific day as a
+* fraction of the year 
+parameter DaySplit(YEAR,DAILYTIMEBRACKET,SEASON);
 
 * Conversionls[l,ls]: Binary parameter linking one TimeSlice to a certain
 * Season. It has value 0 if the TimeSlice does not pertain to the specific
