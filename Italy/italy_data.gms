@@ -118,7 +118,7 @@ set     EMISSION  /CO2 HO HY WI  /;
 set     MODE_OF_OPERATION       / 1, 2 /;
 set     REGION  / ITALY /;
 set     SEASON / 1, 2, 3, 4, 5 /;
-set     DAYTYPE / 1 /; *non so, penso 5 tipi diversi
+set     DAYTYPE / 1 /; 
 set     DAILYTIMEBRACKET / 1, 2, 3 /;
 set     STORAGE / DAM /;
 
@@ -174,18 +174,47 @@ parameter YearSplit(l,y) /
 DiscountRate(r) = 0.05;
 
 *DUBBIO Che cos'è??? e tutti i successivi???
-DaySplit(y,lh) = 12/(24*365);
+*12/(24*365)
+DaySplit(y,lh) =/
+  (2015*2060).1  
+    
+/;
 
 parameter Conversionls(l,ls) /
-ID.2 1
-IN.2 1
-SD.3 1
-SN.3 1
-WD.1 1
-WN.1 1
+    S01B1.1 1
+    S01B2.1 1
+    S01B3.1 1
+    S02B1.2 1
+    S02B2.2 1
+    S02B3.2 1
+    S03B1.3 1
+    S03B2.3 1
+    S03B3.3 1
+    S04B1.4 1
+    S04B2.4 1
+    S04B3.4 1
+    S05B1.5 1
+    S05B2.5 1
+    S05B3.5 1
 /;
 
 parameter Conversionld(l,ld) /
+    S01B1
+    S01B2
+    S01B3
+    S02B1
+    S02B2
+    S02B3
+    S03B1
+    S03B2
+    S03B3
+    S04B1
+    S04B2
+    S04B3
+    S05B1
+    S05B2
+    S05B3
+
 ID.1 1
 IN.1 1
 SD.1 1
