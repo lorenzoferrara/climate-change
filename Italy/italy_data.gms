@@ -111,9 +111,9 @@ set     TIMESLICE       /
         S05B3 'Nov-Dec, 3'
 /;
 
-set     FUEL    / BF BM CO E1 E2 GO HF NG OI UR WS /;
+set     FUEL    /BF, BM, CO, E1, E2, GO, HF, NG, OI, UR, WS /;
 
-set     EMISSION  /CO2 HO HY WI  /;   
+set     EMISSION  /CO2 ,HO, HY, WI  /;   
         *Old emissions / CO2, NOX /;
 set     MODE_OF_OPERATION       / 1, 2 /;
 set     REGION  / ITALY /;
@@ -136,17 +136,17 @@ set secondary_imports(TECHNOLOGY) /BF00I00, HF00I00/;
 
 set fuel_production(TECHNOLOGY) /BF00X00, BM00X00, CO00X00, GO00X00, NG00X00, WS00X00, OI00X00, UR00I00/;
         *su WS00X00 non sono sicurissima perchè la produzione di waste non è proprio ricercata
-set fuel_production_fict(TECHNOLOGY) /RIV, SUN, WIN/;
-set secondary_production(TECHNOLOGY) /E01, E21, E31, E51, E70, SPP, WPP, SRE/;
+set fuel_production_fict(TECHNOLOGY) //;
+*/RIV, SUN, WIN/
+set secondary_production(TECHNOLOGY) /E2/;
 
 
 #Characterize fuels 
 
-*DUBBIO HF hevy fuel oil come conta??? Anche il gas ha final?
-set primary_fuel(FUEL) /BF BM CO GO HF NG OI UR WS/;
-set secondary_carrier(FUEL) / E1 E2 /;
-set final_demand(FUEL) /BF HF NG /; 
-*non sono sicura
+set primary_fuel(FUEL) /BF, BM, CO, GO, HF, NG, OI, UR, WS/;
+set secondary_carrier(FUEL) / E1 /;
+set final_demand(FUEL) /E2 /; 
+*non sono sicura, ma sembra siano inutili
 
 
 *------------------------------------------------------------------------	
@@ -258,57 +258,81 @@ DepreciationMethod(r) = 1;
 *------------------------------------------------------------------------
 *prosegue il DUBBIO
 parameter SpecifiedAnnualDemand(r,f,y) /
-  UTOPIA.RH.1990  25.2
-  UTOPIA.RL.2010  12.6
-  
-  ITALY.E2.2015
+  ITALY.E2.2015 1058.76
+    ITALY.E2.2016   1066.09
+    ITALY.E2.2017   1073.43
+    ITALY.E2.2018   1080.76
+    ITALY.E2.2019   1088.1
+    ITALY.E2.2020   1095.43
+    ITALY.E2.2021   1096.88
+    ITALY.E2.2022   1098.33
+    ITALY.E2.2023   1099.78
+    ITALY.E2.2024   1101.23
+    ITALY.E2.2025   1102.68
+    ITALY.E2.2026   1108.04
+    ITALY.E2.2027   1113.4
+    ITALY.E2.2028   1118.75
+    ITALY.E2.2029   1124.11
+    ITALY.E2.2030   1129.47
+    ITALY.E2.2031   1145.35
+    ITALY.E2.2032   1161.23
+    ITALY.E2.2033   1177.1
+    ITALY.E2.2034   1192.98
+    ITALY.E2.2035   1208.85
+    ITALY.E2.2036   1225.71
+    ITALY.E2.2037   1242.57
+    ITALY.E2.2038   1259.42
+    ITALY.E2.2039   1276.28
+    ITALY.E2.2040   1293.14
+    ITALY.E2.2041   1306.33
+    ITALY.E2.2042   1319.53
+    ITALY.E2.2043   1332.73
+    ITALY.E2.2044   1345.92
+    ITALY.E2.2045   1359.12
+    ITALY.E2.2046   1371.61
+    ITALY.E2.2047   1384.11
+    ITALY.E2.2048   1396.6
+    ITALY.E2.2049   1409.09
+    ITALY.E2.2050   1421.59
+    ITALY.E2.2051   1430.12
+    ITALY.E2.2052   1438.7
+    ITALY.E2.2053   1447.33
+    ITALY.E2.2054   1456.01
+    ITALY.E2.2055   1464.75
+    ITALY.E2.2056   1473.54
+    ITALY.E2.2057   1482.38
+    ITALY.E2.2058   1491.27
+    ITALY.E2.2059   1500.22
+    ITALY.E2.2060   1509.22
 /;
 
 parameter SpecifiedDemandProfile(r,f,l,y) /
-  UTOPIA.RH.ID.(1990*2010)  0.12
-  UTOPIA.RH.IN.(1990*2010)  0.06
-  UTOPIA.RH.SD.(1990*2010)  0
-  UTOPIA.RH.SN.(1990*2010)  0
-  UTOPIA.RH.WD.(1990*2010)  0.5467
-  UTOPIA.RH.WN.(1990*2010)  0.2733
-  UTOPIA.RL.ID.(1990*2010)  0.15
-  UTOPIA.RL.IN.(1990*2010)  0.05
-  UTOPIA.RL.SD.(1990*2010)  0.15
-  UTOPIA.RL.SN.(1990*2010)  0.05
-  UTOPIA.RL.WD.(1990*2010)  0.5
-  UTOPIA.RL.WN.(1990*2010)  0.1
+  ITALY.E2.S01B1.(2015*2060) 0.031735813
+  ITALY.E2.S01B2.(2015*2060) 0.125099667
+  ITALY.E2.S01B3.(2015*2060) 0.021321847
+  ITALY.E2.S02B1.(2015*2060) 0.018228813
+  ITALY.E2.S02B2.(2015*2060) 0.072846668
+  ITALY.E2.S02B3.(2015*2060) 0.007645084
+  ITALY.E2.S03B1.(2015*2060) 0.081444192
+  ITALY.E2.S03B2.(2015*2060) 0.361288723
+  ITALY.E2.S03B3.(2015*2060) 0.063212768
+  ITALY.E2.S04B1.(2015*2060) 0.019802481
+  ITALY.E2.S04B2.(2015*2060) 0.076951675
+  ITALY.E2.S04B3.(2015*2060) 0.013082935
+  ITALY.E2.S05B1.(2015*2060) 0.019162822
+  ITALY.E2.S05B2.(2015*2060) 0.075273649
+  ITALY.E2.S05B3.(2015*2060) 0.012902865
 /;
 
-parameter AccumulatedAnnualDemand(r,f,y) /
-  UTOPIA.TX.1990  5.2
-  UTOPIA.TX.1991  5.46
-  UTOPIA.TX.1992  5.72
-  UTOPIA.TX.1993  5.98
-  UTOPIA.TX.1994  6.24
-  UTOPIA.TX.1995  6.5
-  UTOPIA.TX.1996  6.76
-  UTOPIA.TX.1997  7.02
-  UTOPIA.TX.1998  7.28
-  UTOPIA.TX.1999  7.54
-  UTOPIA.TX.2000  7.8
-  UTOPIA.TX.2001  8.189
-  UTOPIA.TX.2002  8.578
-  UTOPIA.TX.2003  8.967
-  UTOPIA.TX.2004  9.356
-  UTOPIA.TX.2005  9.745
-  UTOPIA.TX.2006  10.134
-  UTOPIA.TX.2007  10.523
-  UTOPIA.TX.2008  10.912
-  UTOPIA.TX.2009  11.301
-  UTOPIA.TX.2010  11.69
-/;
-*fine DUBBIO
+*" because it is defined for demands that do not depend on temporal slices, but here we only have E2."
+AccumulatedAnnualDemand(r,f,y)=0;
+
 
 *------------------------------------------------------------------------	
 * Parameters - Performance       
 *------------------------------------------------------------------------
 
-*Quelle che avevano 31536 in OSeMBE le ho messe in power_plants
+*Tech which had 31536 in OSeMBE were put in power_plants
 CapacityToActivityUnit(r,t)$power_plants(t) = 31.536;
 
 CapacityToActivityUnit(r,t)$(CapacityToActivityUnit(r,t) = 0) = 1;
