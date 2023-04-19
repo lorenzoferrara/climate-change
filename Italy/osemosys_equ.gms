@@ -229,7 +229,7 @@ S3_NetChargeWithinYear(r,s,ls,ld,lh,y)..
 
 equation S4_NetChargeWithinDay(REGION,STORAGE,SEASON,DAYTYPE,DAILYTIMEBRACKET,YEAR);
 S4_NetChargeWithinDay(r,s,ls,ld,lh,y)..
-    (RateOfStorageCharge(r,s,ls,ld,lh,y) - RateOfStorageDischarge(r,s,ls,ld,lh,y)) * DaySplit(y,lh) =e= NetChargeWithinDay(r,s,ls,ld,lh,y);
+    (RateOfStorageCharge(r,s,ls,ld,lh,y) - RateOfStorageDischarge(r,s,ls,ld,lh,y)) * DaySplit(y,lh,ls) =e= NetChargeWithinDay(r,s,ls,ld,lh,y);
 
 
 StorageLevelYearStart.fx(r,s,y)$(ord(y) eq 1) = StorageLevelStart(r,s);
