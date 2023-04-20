@@ -3,7 +3,7 @@ $offlisting
 * Change of UTOPIA_DATA.GMS - specify Utopia Model data in format required by GAMS
 *
 * OSEMOSYS 2011.07.07 conversion to GAMS by Ken Noble.Noble-Soft Systems - August 2012
-* OSEMOSYS 2016.08.01 update by Thorsten Burandt, Konstantin Lï¿½ffler and Karlo Hainsch, TU Berlin (Workgroup for Infrastructure Policy) - October 2017
+* OSEMOSYS 2016.08.01 update by Thorsten Burandt, Konstantin L?ffler and Karlo Hainsch, TU Berlin (Workgroup for Infrastructure Policy) - October 2017
 * OSEMOSYS 2020.04.13 reformatting by Giacomo Marangoni
 * OSEMOSYS 2020.04.15 change yearsplit by Giacomo Marangoni
 * OSEMOSYS 2023 Italy by WaterGAMS
@@ -135,7 +135,7 @@ set primary_imports(TECHNOLOGY) /BM00I00, CO00I00,  OI00I00, NG00I00/;
 set secondary_imports(TECHNOLOGY) /BF00I00, HF00I00/;
 
 set fuel_production(TECHNOLOGY) /BF00X00, BM00X00, CO00X00, GO00X00, NG00X00, WS00X00, OI00X00, UR00I00/;
-        *su WS00X00 non sono sicurissima perchÃ¨ la produzione di waste non Ã¨ proprio ricercata
+        *su WS00X00 non sono sicurissima perchè la produzione di waste non è proprio ricercata
 set fuel_production_fict(TECHNOLOGY) //;
 */RIV, SUN, WIN/
 set secondary_production(TECHNOLOGY) /E2/;
