@@ -4018,11 +4018,13 @@ ITALY.WSSTPH1.2060    47.13803408
 *------------------------------------------------------------------------
 *tutto da modificare e implementare qui
 parameter TechnologyToStorage(r,m,t,s) /
-  UTOPIA.2.E51.DAM  1
+  ITALY.2.HYDSPH2.DAM  1
+  ITALY.2.HYDSPH3.DAM  1
 /;
 
 parameter TechnologyFromStorage(r,m,t,s) /
-  UTOPIA.1.E51.DAM  1
+  ITALY.1.HYDSPH2.DAM  1
+  ITALY.1.HYDSPH3.DAM  1
 /;
 
 StorageLevelStart(r,s) = 999;
