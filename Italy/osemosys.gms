@@ -26,7 +26,7 @@ $offlisting
 $if not set scen $setglobal scen base
 $include osemosys_dec.gms
 * specify Utopia Model data
-$include utopia_data.gms
+$include italy_data.gms
 $include renewables_data.gms
 * define model equations
 $offlisting

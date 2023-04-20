@@ -30,7 +30,7 @@ $offlisting
 
 $offlisting
 set     YEAR    / 2015*2060 /;
-TECHNOLOGY      /
+set TECHNOLOGY      /
         BF00I00 'biofuel import'
         BF00X00 'biofuel generation'
         BFHPFH1 'biofuel ICE Heat and Power unit, final use, holding'
@@ -114,7 +114,7 @@ set     TIMESLICE       /
 set     FUEL    /BF, BM, CO, E1, E2, GO, HF, NG, OI, UR, WS /;
 
 set     EMISSION  /CO2 ,HO, HY, WI  /;   
-        *Old emissions / CO2, NOX /;
+*Old emissions / CO2, NOX /;
 set     MODE_OF_OPERATION       / 1, 2 /;
 set     REGION  / ITALY /;
 set     SEASON / 1, 2, 3, 4, 5 /;
@@ -135,7 +135,7 @@ set primary_imports(TECHNOLOGY) /BM00I00, CO00I00,  OI00I00, NG00I00/;
 set secondary_imports(TECHNOLOGY) /BF00I00, HF00I00/;
 
 set fuel_production(TECHNOLOGY) /BF00X00, BM00X00, CO00X00, GO00X00, NG00X00, WS00X00, OI00X00, UR00I00/;
-        *su WS00X00 non sono sicurissima perchè la produzione di waste non è proprio ricercata
+*su WS00X00 non sono sicurissima perchè la produzione di waste non è proprio ricercata
 set fuel_production_fict(TECHNOLOGY) //;
 */RIV, SUN, WIN/
 set secondary_production(TECHNOLOGY) /E2/;
@@ -460,7 +460,7 @@ AvailabilityFactor(r,'COCSPN2',y) = .85;
 AvailabilityFactor(r,'NGCSPN2',y) = .85;
 
 
-AvailabilityFactor(r,t,y) /
+parameter AvailabilityFactor(r,t,y) /
  ITALY.BFHPFH1.2015 .6
  ITALY.BFHPFH1.2016 .61
  ITALY.BFHPFH1.2017 .62

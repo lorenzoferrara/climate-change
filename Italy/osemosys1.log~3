@@ -1,0 +1,2325 @@
+--- Job osemosys.gms Start 04/20/23 11:42:06 42.3.0 dacf7d8e WEX-WEI x86 64bit/MS Windows
+--- Applying:
+    C:\GAMS\42\gmsprmNT.txt
+--- GAMS Parameters defined
+    Input C:\Users\ghesi\Documents\GitHub\climate-change\Italy\osemosys.gms
+    PageSize 0
+    ScrDir C:\Users\ghesi\Documents\GitHub\climate-change\Italy\225a\
+    SysDir C:\GAMS\42\
+    LogOption 3
+    ErrMsg 1
+    ErrorLog 99
+    IDE 1
+    LstTitleLeftAligned 1
+Licensee: Course License                                 S230216|0002AO-GEN
+          Fondazione CMCC, Complesso Ecotekne                       DCE1910
+          C:\Users\ghesi\Documents\GAMS\gamslice.txt
+          License Admin: Massimo Tavoni, massimo.tavoni@polimi.it          
+          Course license for use within the course and related course work
+Processor information: 1 socket(s), 4 core(s), and 8 thread(s) available
+GAMS 42.3.0   Copyright (C) 1987-2023 GAMS Development. All rights reserved
+--- Starting compilation
+--- osemosys.gms(27) 2 Mb
+--- . osemosys_dec.gms(784) 2 Mb
+--- osemosys.gms(29) 2 Mb
+--- . italy_data.gms(33) 3 Mb 4 Errors
+*** Error 188 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Assigning to this set is NOT allowed. The set may have been
+       used in a domain definition or is a predefined/readonly set.
+*** Error  93 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    A set has to be indexed when used on the left side
+*** Error 148 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Dimension different - The symbol is referenced with more/less
+       indices as declared
+*** Error  36 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    '=' or '..' or ':=' or '$=' operator expected
+    rest of statement ignored
+--- . italy_data.gms(117) 3 Mb 5 Errors
+*** Error 409 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Unrecognizable item - skip to find a new statement
+      looking for a ';' or a key word to get started again
+--- . italy_data.gms(127) 3 Mb 6 Errors
+*** Error 361 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Values for domain 1 are unknown - no checking possible
+--- . italy_data.gms(130) 3 Mb 7 Errors
+*** Error 361 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Values for domain 1 are unknown - no checking possible
+--- . italy_data.gms(131) 3 Mb 8 Errors
+*** Error 361 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Values for domain 1 are unknown - no checking possible
+--- . italy_data.gms(134) 3 Mb 9 Errors
+*** Error 361 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Values for domain 1 are unknown - no checking possible
+--- . italy_data.gms(135) 3 Mb 10 Errors
+*** Error 361 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Values for domain 1 are unknown - no checking possible
+--- . italy_data.gms(137) 3 Mb 11 Errors
+*** Error 361 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Values for domain 1 are unknown - no checking possible
+--- . italy_data.gms(138) 3 Mb 12 Errors
+*** Error 409 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Unrecognizable item - skip to find a new statement
+      looking for a ';' or a key word to get started again
+--- . italy_data.gms(141) 3 Mb 13 Errors
+*** Error 361 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Values for domain 1 are unknown - no checking possible
+--- . italy_data.gms(336) 3 Mb 15 Errors
+*** Error 352 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Set has not been initialized
+*** Error 352 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Set has not been initialized
+--- . italy_data.gms(338) 3 Mb 17 Errors
+*** Error 352 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Set has not been initialized
+*** Error 352 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Set has not been initialized
+--- . italy_data.gms(340) 3 Mb 18 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(341) 3 Mb 19 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(342) 3 Mb 20 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(343) 3 Mb 21 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(344) 3 Mb 22 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(345) 3 Mb 23 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(346) 3 Mb 24 Errors
+*** Error 409 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Unrecognizable item - skip to find a new statement
+      looking for a ';' or a key word to get started again
+--- . italy_data.gms(347) 3 Mb 25 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(348) 3 Mb 26 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(350) 3 Mb 27 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(351) 3 Mb 28 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(352) 3 Mb 29 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(353) 3 Mb 30 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(354) 3 Mb 31 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(355) 3 Mb 32 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(356) 3 Mb 33 Errors
+*** Error 409 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Unrecognizable item - skip to find a new statement
+      looking for a ';' or a key word to get started again
+--- . italy_data.gms(357) 3 Mb 34 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(358) 3 Mb 35 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(361) 3 Mb 36 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(362) 3 Mb 37 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(363) 3 Mb 38 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(364) 3 Mb 39 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(365) 3 Mb 40 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(366) 3 Mb 41 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(367) 3 Mb 42 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(368) 3 Mb 43 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(369) 3 Mb 44 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(370) 3 Mb 45 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(371) 3 Mb 46 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(372) 3 Mb 47 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(373) 3 Mb 48 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(374) 3 Mb 49 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(375) 3 Mb 50 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(377) 3 Mb 51 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(378) 3 Mb 52 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(379) 3 Mb 53 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(380) 3 Mb 54 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(381) 3 Mb 55 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(382) 3 Mb 56 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(383) 3 Mb 57 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(384) 3 Mb 58 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(385) 3 Mb 59 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(386) 3 Mb 60 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(387) 3 Mb 61 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(388) 3 Mb 62 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(389) 3 Mb 63 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(390) 3 Mb 64 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(391) 3 Mb 65 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(393) 3 Mb 66 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(394) 3 Mb 67 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(395) 3 Mb 68 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(396) 3 Mb 69 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(397) 3 Mb 70 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(398) 3 Mb 71 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(399) 3 Mb 72 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(400) 3 Mb 73 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(401) 3 Mb 74 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(402) 3 Mb 75 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(403) 3 Mb 76 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(404) 3 Mb 77 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(405) 3 Mb 78 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(406) 3 Mb 79 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(407) 3 Mb 80 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(409) 3 Mb 81 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(410) 3 Mb 82 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(411) 3 Mb 83 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(412) 3 Mb 84 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(413) 3 Mb 85 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(414) 3 Mb 86 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(415) 3 Mb 87 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(416) 3 Mb 88 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(417) 3 Mb 89 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(418) 3 Mb 90 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(419) 3 Mb 91 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(420) 3 Mb 92 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(421) 3 Mb 93 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(422) 3 Mb 94 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(423) 3 Mb 95 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(425) 3 Mb 97 Errors
+*** Error 352 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Set has not been initialized
+*** Error 352 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Set has not been initialized
+--- . italy_data.gms(427) 3 Mb 98 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(428) 3 Mb 99 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(429) 3 Mb 100 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(430) 3 Mb 101 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(431) 3 Mb 102 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(432) 3 Mb 103 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(433) 3 Mb 104 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(434) 3 Mb 105 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(435) 3 Mb 106 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(436) 3 Mb 107 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(437) 3 Mb 108 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(438) 3 Mb 109 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(439) 3 Mb 110 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(440) 3 Mb 111 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(441) 3 Mb 112 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(442) 3 Mb 113 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(443) 3 Mb 114 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(444) 3 Mb 115 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(445) 3 Mb 116 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(446) 3 Mb 117 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(447) 3 Mb 118 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(448) 3 Mb 119 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(449) 3 Mb 120 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(450) 3 Mb 121 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(451) 3 Mb 122 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(452) 3 Mb 123 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(453) 3 Mb 124 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(454) 3 Mb 125 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(455) 3 Mb 126 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(456) 3 Mb 127 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(457) 3 Mb 128 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(458) 3 Mb 129 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(459) 3 Mb 130 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(460) 3 Mb 131 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(463) 3 Mb 133 Errors
+*** Error 352 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Set has not been initialized
+*** Error  36 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    '=' or '..' or ':=' or '$=' operator expected
+    rest of statement ignored
+--- . italy_data.gms(586) 3 Mb 135 Errors
+*** Error 352 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Set has not been initialized
+*** Error 352 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Set has not been initialized
+--- . italy_data.gms(591) 3 Mb 136 Errors
+*** Error 362 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Values for domain 2 are unknown - no checking possible
+--- . italy_data.gms(654) 3 Mb 138 Errors
+*** Error 352 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Set has not been initialized
+*** Error 352 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Set has not been initialized
+--- . italy_data.gms(657) 3 Mb 139 Errors
+*** Error 362 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Values for domain 2 are unknown - no checking possible
+--- . italy_data.gms(1102) 3 Mb 140 Errors
+*** Error 362 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Values for domain 2 are unknown - no checking possible
+--- . italy_data.gms(1105) 3 Mb 141 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(1106) 3 Mb 142 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(1107) 3 Mb 143 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(1108) 3 Mb 144 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(1109) 3 Mb 145 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(1110) 3 Mb 146 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(1111) 3 Mb 147 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(1112) 3 Mb 148 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(1113) 3 Mb 149 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(1114) 3 Mb 150 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(1115) 3 Mb 151 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(1116) 3 Mb 152 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(1117) 3 Mb 153 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(1118) 3 Mb 154 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(1119) 3 Mb 155 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(1120) 3 Mb 156 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(1121) 3 Mb 157 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(1122) 3 Mb 158 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(1123) 3 Mb 159 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(1124) 3 Mb 160 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(1125) 3 Mb 161 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(1126) 3 Mb 162 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(1127) 3 Mb 163 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(1128) 3 Mb 164 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(1129) 3 Mb 165 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(1130) 3 Mb 166 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(1131) 3 Mb 167 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(1132) 3 Mb 168 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(1133) 3 Mb 169 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(1134) 3 Mb 170 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(1135) 3 Mb 171 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(1136) 3 Mb 172 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(1137) 3 Mb 173 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(1138) 3 Mb 174 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(1139) 3 Mb 175 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(1140) 3 Mb 176 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(1141) 3 Mb 177 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(1142) 3 Mb 178 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(1143) 3 Mb 179 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(1144) 3 Mb 180 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(1145) 3 Mb 181 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(1146) 3 Mb 182 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(1147) 3 Mb 183 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(1148) 3 Mb 184 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(1149) 3 Mb 185 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(1150) 3 Mb 186 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(1155) 3 Mb 187 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(1156) 3 Mb 188 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(1157) 3 Mb 189 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(1158) 3 Mb 190 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(1159) 3 Mb 191 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(1160) 3 Mb 192 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(1161) 3 Mb 193 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(1162) 3 Mb 194 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(1163) 3 Mb 195 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(1164) 3 Mb 196 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(1165) 3 Mb 197 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(1166) 3 Mb 198 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(1167) 3 Mb 199 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(1168) 3 Mb 200 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(1169) 3 Mb 201 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(1170) 3 Mb 202 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(1171) 3 Mb 203 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(1172) 3 Mb 204 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(1173) 3 Mb 205 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(1174) 3 Mb 206 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(1175) 3 Mb 207 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(1176) 3 Mb 208 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(1177) 3 Mb 209 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(1178) 3 Mb 210 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(1179) 3 Mb 211 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(1180) 3 Mb 212 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(1181) 3 Mb 213 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(1182) 3 Mb 214 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(1183) 3 Mb 215 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(1184) 3 Mb 216 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(1185) 3 Mb 217 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(1186) 3 Mb 218 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(1187) 3 Mb 219 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(1188) 3 Mb 220 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(1189) 3 Mb 221 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(1190) 3 Mb 222 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(1191) 3 Mb 223 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(1192) 3 Mb 224 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(1193) 3 Mb 225 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(1194) 3 Mb 226 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(1195) 3 Mb 227 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(1196) 3 Mb 228 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(1197) 3 Mb 229 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(1198) 3 Mb 230 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(1199) 3 Mb 231 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(1200) 3 Mb 232 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(1202) 3 Mb 234 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(1277) 3 Mb 235 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(1280) 3 Mb 236 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(1521) 3 Mb 237 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(1627) 3 Mb 238 Errors
+*** Error 362 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Values for domain 2 are unknown - no checking possible
+--- . italy_data.gms(1643) 3 Mb 239 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(1645) 3 Mb 240 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(1690) 3 Mb 243 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . italy_data.gms(1697) 3 Mb 244 Errors
+*** Error 362 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Values for domain 2 are unknown - no checking possible
+--- . italy_data.gms(2540) 3 Mb 245 Errors
+*** Error 362 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Values for domain 2 are unknown - no checking possible
+--- . italy_data.gms(2846) 3 Mb 246 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2847) 3 Mb 247 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2848) 3 Mb 248 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2849) 3 Mb 249 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2850) 3 Mb 250 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2851) 3 Mb 251 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2852) 3 Mb 252 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2853) 3 Mb 253 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2854) 3 Mb 254 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2855) 3 Mb 255 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2856) 3 Mb 256 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2857) 3 Mb 257 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2858) 3 Mb 258 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2859) 3 Mb 259 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2860) 3 Mb 260 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2861) 3 Mb 261 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2862) 3 Mb 262 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2863) 3 Mb 263 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2864) 3 Mb 264 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2865) 3 Mb 265 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2866) 3 Mb 266 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2867) 3 Mb 267 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2868) 3 Mb 268 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2869) 3 Mb 269 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2870) 3 Mb 270 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2871) 3 Mb 271 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2872) 3 Mb 272 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2873) 3 Mb 273 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2874) 3 Mb 274 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2875) 3 Mb 275 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2876) 3 Mb 276 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2877) 3 Mb 277 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2878) 3 Mb 278 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2879) 3 Mb 279 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2880) 3 Mb 280 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2881) 3 Mb 281 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2882) 3 Mb 282 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2883) 3 Mb 283 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2884) 3 Mb 284 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2885) 3 Mb 285 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2886) 3 Mb 286 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2887) 3 Mb 287 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2888) 3 Mb 288 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2889) 3 Mb 289 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2890) 3 Mb 290 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2891) 3 Mb 291 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2893) 3 Mb 292 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2894) 3 Mb 293 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2895) 3 Mb 294 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2896) 3 Mb 295 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2897) 3 Mb 296 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2898) 3 Mb 297 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2899) 3 Mb 298 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2900) 3 Mb 299 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2901) 3 Mb 300 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2902) 3 Mb 301 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2903) 3 Mb 302 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2904) 3 Mb 303 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2905) 3 Mb 304 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2906) 3 Mb 305 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2907) 3 Mb 306 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2908) 3 Mb 307 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2909) 3 Mb 308 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2910) 3 Mb 309 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2911) 3 Mb 310 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2912) 3 Mb 311 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2913) 3 Mb 312 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2914) 3 Mb 313 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2915) 3 Mb 314 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2916) 3 Mb 315 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2917) 3 Mb 316 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2918) 3 Mb 317 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2919) 3 Mb 318 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2920) 3 Mb 319 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2921) 3 Mb 320 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2922) 3 Mb 321 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2923) 3 Mb 322 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2924) 3 Mb 323 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2925) 3 Mb 324 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2926) 3 Mb 325 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2927) 3 Mb 326 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2928) 3 Mb 327 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2929) 3 Mb 328 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2930) 3 Mb 329 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2931) 3 Mb 330 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2932) 3 Mb 331 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2933) 3 Mb 332 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2934) 3 Mb 333 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2935) 3 Mb 334 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2936) 3 Mb 335 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2937) 3 Mb 336 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2938) 3 Mb 337 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2940) 3 Mb 338 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2942) 3 Mb 339 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2944) 3 Mb 340 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2946) 3 Mb 341 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2948) 3 Mb 342 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2949) 3 Mb 343 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2950) 3 Mb 344 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2951) 3 Mb 345 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2952) 3 Mb 346 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2953) 3 Mb 347 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2954) 3 Mb 348 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2955) 3 Mb 349 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2956) 3 Mb 350 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2957) 3 Mb 351 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2958) 3 Mb 352 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2959) 3 Mb 353 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2960) 3 Mb 354 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2961) 3 Mb 355 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2962) 3 Mb 356 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2963) 3 Mb 357 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2965) 3 Mb 358 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2966) 3 Mb 359 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2967) 3 Mb 360 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2968) 3 Mb 361 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2969) 3 Mb 362 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2970) 3 Mb 363 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2971) 3 Mb 364 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2972) 3 Mb 365 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2973) 3 Mb 366 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2974) 3 Mb 367 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2975) 3 Mb 368 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2976) 3 Mb 369 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2977) 3 Mb 370 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2978) 3 Mb 371 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2979) 3 Mb 372 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2980) 3 Mb 373 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2982) 3 Mb 374 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2984) 3 Mb 375 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2985) 3 Mb 376 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2986) 3 Mb 377 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2987) 3 Mb 378 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2988) 3 Mb 379 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2989) 3 Mb 380 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2990) 3 Mb 381 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2991) 3 Mb 382 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2992) 3 Mb 383 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2993) 3 Mb 384 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2994) 3 Mb 385 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2995) 3 Mb 386 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2996) 3 Mb 387 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2997) 3 Mb 388 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2998) 3 Mb 389 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(2999) 3 Mb 390 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3001) 3 Mb 391 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3003) 3 Mb 392 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3005) 3 Mb 393 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3007) 3 Mb 394 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3009) 3 Mb 395 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3011) 3 Mb 396 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3013) 3 Mb 397 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3015) 3 Mb 398 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3017) 3 Mb 399 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3019) 3 Mb 400 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3021) 3 Mb 401 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3023) 3 Mb 402 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3024) 3 Mb 403 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3025) 3 Mb 404 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3026) 3 Mb 405 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3027) 3 Mb 406 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3028) 3 Mb 407 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3029) 3 Mb 408 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3030) 3 Mb 409 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3031) 3 Mb 410 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3032) 3 Mb 411 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3033) 3 Mb 412 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3034) 3 Mb 413 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3035) 3 Mb 414 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3036) 3 Mb 415 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3037) 3 Mb 416 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3038) 3 Mb 417 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3040) 3 Mb 418 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3041) 3 Mb 419 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3042) 3 Mb 420 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3043) 3 Mb 421 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3044) 3 Mb 422 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3045) 3 Mb 423 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3046) 3 Mb 424 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3047) 3 Mb 425 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3048) 3 Mb 426 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3049) 3 Mb 427 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3050) 3 Mb 428 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3051) 3 Mb 429 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3052) 3 Mb 430 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3053) 3 Mb 431 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3054) 3 Mb 432 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3055) 3 Mb 433 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3057) 3 Mb 434 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3059) 3 Mb 435 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3061) 3 Mb 436 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3063) 3 Mb 437 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3064) 3 Mb 438 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3065) 3 Mb 439 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3066) 3 Mb 440 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3067) 3 Mb 441 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3068) 3 Mb 442 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3069) 3 Mb 443 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3070) 3 Mb 444 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3071) 3 Mb 445 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3072) 3 Mb 446 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3073) 3 Mb 447 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3074) 3 Mb 448 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3075) 3 Mb 449 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3076) 3 Mb 450 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3077) 3 Mb 451 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3078) 3 Mb 452 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3079) 3 Mb 453 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3080) 3 Mb 454 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3081) 3 Mb 455 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3082) 3 Mb 456 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3083) 3 Mb 457 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3084) 3 Mb 458 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3085) 3 Mb 459 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3086) 3 Mb 460 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3087) 3 Mb 461 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3088) 3 Mb 462 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3089) 3 Mb 463 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3090) 3 Mb 464 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3091) 3 Mb 465 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3092) 3 Mb 466 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3093) 3 Mb 467 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3094) 3 Mb 468 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3095) 3 Mb 469 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3096) 3 Mb 470 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3097) 3 Mb 471 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3098) 3 Mb 472 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3099) 3 Mb 473 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3100) 3 Mb 474 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3101) 3 Mb 475 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3102) 3 Mb 476 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3103) 3 Mb 477 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3104) 3 Mb 478 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3105) 3 Mb 479 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3106) 3 Mb 480 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3107) 3 Mb 481 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3108) 3 Mb 482 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3110) 3 Mb 483 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3112) 3 Mb 484 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3114) 3 Mb 485 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3116) 3 Mb 486 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3118) 3 Mb 487 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3119) 3 Mb 488 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3120) 3 Mb 489 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3121) 3 Mb 490 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3122) 3 Mb 491 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3123) 3 Mb 492 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3124) 3 Mb 493 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3125) 3 Mb 494 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3126) 3 Mb 495 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3127) 3 Mb 496 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3128) 3 Mb 497 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3129) 3 Mb 498 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3130) 3 Mb 499 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3131) 3 Mb 500 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3132) 3 Mb 501 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3133) 3 Mb 502 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3135) 3 Mb 503 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3136) 3 Mb 504 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3137) 3 Mb 505 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3138) 3 Mb 506 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3139) 3 Mb 507 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3140) 3 Mb 508 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3141) 3 Mb 509 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3142) 3 Mb 510 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3143) 3 Mb 511 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3144) 3 Mb 512 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3145) 3 Mb 513 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3146) 3 Mb 514 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3147) 3 Mb 515 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3148) 3 Mb 516 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3149) 3 Mb 517 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3150) 3 Mb 518 Errors
+*** Error 172 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Element is redefined
+--- . italy_data.gms(3157) 3 Mb 520 Errors
+*** Error 352 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Set has not been initialized
+*** Error 352 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Set has not been initialized
+--- . italy_data.gms(3161) 3 Mb 521 Errors
+*** Error 362 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Values for domain 2 are unknown - no checking possible
+--- . italy_data.gms(3178) 3 Mb 524 Errors
+*** Error   1 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Real number expected
+*** Error 334 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Illegal data following a data element - rest ignored
+*** Error 409 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Unrecognizable item - skip to find a new statement
+      looking for a ';' or a key word to get started again
+--- . italy_data.gms(4014) 3 Mb 526 Errors
+*** Error 363 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Values for domain 3 are unknown - no checking possible
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(4018) 3 Mb 528 Errors
+*** Error 363 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Values for domain 3 are unknown - no checking possible
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(4041) 3 Mb 529 Errors
+*** Error 352 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Set has not been initialized
+--- . italy_data.gms(4044) 3 Mb 531 Errors
+*** Error 362 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Values for domain 2 are unknown - no checking possible
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(4045) 3 Mb 532 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(4046) 3 Mb 533 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(4047) 3 Mb 534 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(4048) 3 Mb 535 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(4049) 3 Mb 536 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(4050) 3 Mb 537 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(4051) 3 Mb 538 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(4052) 3 Mb 539 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(4053) 3 Mb 540 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(4054) 3 Mb 541 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(4055) 3 Mb 542 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(4056) 3 Mb 543 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(4057) 3 Mb 544 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(4058) 3 Mb 545 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(4059) 3 Mb 546 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(4060) 3 Mb 547 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(4061) 3 Mb 548 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(4062) 3 Mb 549 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(4063) 3 Mb 550 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(4064) 3 Mb 551 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(4065) 3 Mb 552 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(4066) 3 Mb 553 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(4067) 3 Mb 554 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(4068) 3 Mb 555 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(4069) 3 Mb 556 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(4070) 3 Mb 557 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(4071) 3 Mb 558 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(4072) 3 Mb 559 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(4073) 3 Mb 560 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(4074) 3 Mb 561 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(4075) 3 Mb 562 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(4078) 3 Mb 564 Errors
+*** Error 352 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Set has not been initialized
+*** Error 352 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Set has not been initialized
+--- . italy_data.gms(4079) 3 Mb 566 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(4080) 3 Mb 568 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(4084) 3 Mb 569 Errors
+*** Error 362 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Values for domain 2 are unknown - no checking possible
+--- . italy_data.gms(4099) 3 Mb 570 Errors
+*** Error 352 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Set has not been initialized
+--- . italy_data.gms(4101) 3 Mb 571 Errors
+*** Error 352 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Set has not been initialized
+--- . italy_data.gms(4108) 3 Mb 572 Errors
+*** Error 352 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Set has not been initialized
+--- . italy_data.gms(4110) 3 Mb 573 Errors
+*** Error 352 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Set has not been initialized
+--- . italy_data.gms(4112) 3 Mb 574 Errors
+*** Error 352 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Set has not been initialized
+--- . italy_data.gms(4114) 3 Mb 575 Errors
+*** Error 352 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Set has not been initialized
+--- . italy_data.gms(4122) 3 Mb 578 Errors
+*** Error 362 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Values for domain 2 are unknown - no checking possible
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(4123) 3 Mb 580 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(4124) 3 Mb 582 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(4125) 3 Mb 584 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(4126) 3 Mb 586 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(4130) 3 Mb 589 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(4134) 3 Mb 591 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(4142) 3 Mb 592 Errors
+*** Error 352 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Set has not been initialized
+--- . italy_data.gms(4154) 3 Mb 593 Errors
+*** Error 362 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Values for domain 2 are unknown - no checking possible
+--- . italy_data.gms(4160) 3 Mb 594 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(4162) 3 Mb 595 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(4164) 3 Mb 596 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(4166) 3 Mb 597 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(4168) 3 Mb 598 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(4170) 3 Mb 599 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(4180) 3 Mb 600 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(4182) 3 Mb 601 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(4184) 3 Mb 602 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(4186) 3 Mb 603 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(4188) 3 Mb 604 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(4190) 3 Mb 605 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\italy_data.gms
+    Domain violation for element
+--- . italy_data.gms(4202) 3 Mb
+--- osemosys.gms(30) 3 Mb
+--- . renewables_data.gms(1) 3 Mb 606 Errors
+*** Error 361 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\renewables_data.gms
+    Values for domain 1 are unknown - no checking possible
+--- . renewables_data.gms(2) 3 Mb 609 Errors
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\renewables_data.gms
+    Domain violation for element
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\renewables_data.gms
+    Domain violation for element
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\renewables_data.gms
+    Domain violation for element
+--- . renewables_data.gms(5) 3 Mb 610 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\renewables_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . renewables_data.gms(6) 3 Mb 612 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\renewables_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\renewables_data.gms
+    Domain violation for element
+--- . renewables_data.gms(7) 3 Mb 614 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\renewables_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\renewables_data.gms
+    Domain violation for element
+--- . renewables_data.gms(8) 3 Mb 616 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\renewables_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\renewables_data.gms
+    Domain violation for element
+--- . renewables_data.gms(9) 3 Mb 618 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\renewables_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\renewables_data.gms
+    Domain violation for element
+--- . renewables_data.gms(10) 3 Mb 620 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\renewables_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\renewables_data.gms
+    Domain violation for element
+--- . renewables_data.gms(11) 3 Mb 622 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\renewables_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\renewables_data.gms
+    Domain violation for element
+--- . renewables_data.gms(13) 3 Mb 624 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\renewables_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\renewables_data.gms
+    Domain violation for element
+--- . renewables_data.gms(14) 3 Mb 626 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\renewables_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\renewables_data.gms
+    Domain violation for element
+--- . renewables_data.gms(15) 3 Mb 628 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\renewables_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\renewables_data.gms
+    Domain violation for element
+--- . renewables_data.gms(17) 3 Mb 629 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\renewables_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . renewables_data.gms(18) 3 Mb 630 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\renewables_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . renewables_data.gms(19) 3 Mb 631 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\renewables_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . renewables_data.gms(20) 3 Mb 632 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\renewables_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . renewables_data.gms(24) 3 Mb 633 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\renewables_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . renewables_data.gms(26) 3 Mb 635 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\renewables_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\renewables_data.gms
+    Domain violation for element
+--- . renewables_data.gms(27) 3 Mb 637 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\renewables_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\renewables_data.gms
+    Domain violation for element
+--- . renewables_data.gms(28) 3 Mb 639 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\renewables_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\renewables_data.gms
+    Domain violation for element
+--- . renewables_data.gms(29) 3 Mb 641 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\renewables_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\renewables_data.gms
+    Domain violation for element
+--- . renewables_data.gms(30) 3 Mb 643 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\renewables_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\renewables_data.gms
+    Domain violation for element
+--- . renewables_data.gms(31) 3 Mb 645 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\renewables_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\renewables_data.gms
+    Domain violation for element
+--- . renewables_data.gms(33) 3 Mb 647 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\renewables_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\renewables_data.gms
+    Domain violation for element
+--- . renewables_data.gms(34) 3 Mb 649 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\renewables_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\renewables_data.gms
+    Domain violation for element
+--- . renewables_data.gms(35) 3 Mb 651 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\renewables_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\renewables_data.gms
+    Domain violation for element
+--- . renewables_data.gms(37) 3 Mb 652 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\renewables_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . renewables_data.gms(38) 3 Mb 653 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\renewables_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . renewables_data.gms(39) 3 Mb 654 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\renewables_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . renewables_data.gms(40) 3 Mb 655 Errors
+*** Error 353 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\renewables_data.gms
+    The domain for this index position is unknown and the element
+       cannot be checked at this point. Missing data statement.
+--- . renewables_data.gms(43) 3 Mb 657 Errors
+*** Error 352 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\renewables_data.gms
+    Set has not been initialized
+*** Error 352 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\renewables_data.gms
+    Set has not been initialized
+--- . renewables_data.gms(44) 3 Mb
+--- osemosys.gms(33) 3 Mb
+--- . osemosys_equ.gms(649) 3 Mb
+--- osemosys.gms(67) 3 Mb 658 Errors
+*** Error 257 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\osemosys.gms
+    Solve statement not checked because of previous errors
+--- osemosys.gms(69) 3 Mb
+--- . osemosys_res.gms(10) 3 Mb 659 Errors
+*** Error 141 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\osemosys_res.gms
+    Symbol declared but no values have been assigned. Check for missing
+       data definition, assignment, data loading or implicit assignment
+       via a solve statement.
+       A wild shot: You may have spurious commas in the explanatory
+       text of a declaration. Check symbol reference list.
+--- . osemosys_res.gms(15) 3 Mb 660 Errors
+*** Error 141 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\osemosys_res.gms
+    Symbol declared but no values have been assigned. Check for missing
+       data definition, assignment, data loading or implicit assignment
+       via a solve statement.
+       A wild shot: You may have spurious commas in the explanatory
+       text of a declaration. Check symbol reference list.
+--- . osemosys_res.gms(28) 3 Mb 661 Errors
+*** Error 141 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\osemosys_res.gms
+    Symbol declared but no values have been assigned. Check for missing
+       data definition, assignment, data loading or implicit assignment
+       via a solve statement.
+       A wild shot: You may have spurious commas in the explanatory
+       text of a declaration. Check symbol reference list.
+--- . osemosys_res.gms(35) 3 Mb 662 Errors
+*** Error 141 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\osemosys_res.gms
+    Symbol declared but no values have been assigned. Check for missing
+       data definition, assignment, data loading or implicit assignment
+       via a solve statement.
+       A wild shot: You may have spurious commas in the explanatory
+       text of a declaration. Check symbol reference list.
+--- . osemosys_res.gms(39) 3 Mb 663 Errors
+*** Error 352 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\osemosys_res.gms
+    Set has not been initialized
+--- . osemosys_res.gms(41) 3 Mb 665 Errors
+*** Error 141 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\osemosys_res.gms
+    Symbol declared but no values have been assigned. Check for missing
+       data definition, assignment, data loading or implicit assignment
+       via a solve statement.
+       A wild shot: You may have spurious commas in the explanatory
+       text of a declaration. Check symbol reference list.
+*** Error 352 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\osemosys_res.gms
+    Set has not been initialized
+--- . osemosys_res.gms(45) 3 Mb 666 Errors
+*** Error 352 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\osemosys_res.gms
+    Set has not been initialized
+--- . osemosys_res.gms(47) 3 Mb 668 Errors
+*** Error 141 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\osemosys_res.gms
+    Symbol declared but no values have been assigned. Check for missing
+       data definition, assignment, data loading or implicit assignment
+       via a solve statement.
+       A wild shot: You may have spurious commas in the explanatory
+       text of a declaration. Check symbol reference list.
+*** Error 352 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\osemosys_res.gms
+    Set has not been initialized
+--- . osemosys_res.gms(51) 3 Mb 670 Errors
+*** Error 352 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\osemosys_res.gms
+    Set has not been initialized
+*** Error 352 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\osemosys_res.gms
+    Set has not been initialized
+--- . osemosys_res.gms(53) 3 Mb 672 Errors
+*** Error 141 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\osemosys_res.gms
+    Symbol declared but no values have been assigned. Check for missing
+       data definition, assignment, data loading or implicit assignment
+       via a solve statement.
+       A wild shot: You may have spurious commas in the explanatory
+       text of a declaration. Check symbol reference list.
+*** Error 352 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\osemosys_res.gms
+    Set has not been initialized
+--- . osemosys_res.gms(57) 3 Mb 674 Errors
+*** Error 352 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\osemosys_res.gms
+    Set has not been initialized
+*** Error 352 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\osemosys_res.gms
+    Set has not been initialized
+--- . osemosys_res.gms(59) 3 Mb 676 Errors
+*** Error 141 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\osemosys_res.gms
+    Symbol declared but no values have been assigned. Check for missing
+       data definition, assignment, data loading or implicit assignment
+       via a solve statement.
+       A wild shot: You may have spurious commas in the explanatory
+       text of a declaration. Check symbol reference list.
+*** Error 352 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\osemosys_res.gms
+    Set has not been initialized
+--- . osemosys_res.gms(63) 3 Mb 678 Errors
+*** Error 352 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\osemosys_res.gms
+    Set has not been initialized
+*** Error 352 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\osemosys_res.gms
+    Set has not been initialized
+--- . osemosys_res.gms(66) 3 Mb 680 Errors
+*** Error 141 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\osemosys_res.gms
+    Symbol declared but no values have been assigned. Check for missing
+       data definition, assignment, data loading or implicit assignment
+       via a solve statement.
+       A wild shot: You may have spurious commas in the explanatory
+       text of a declaration. Check symbol reference list.
+*** Error 352 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\osemosys_res.gms
+    Set has not been initialized
+--- . osemosys_res.gms(71) 3 Mb 682 Errors
+*** Error 352 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\osemosys_res.gms
+    Set has not been initialized
+*** Error 352 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\osemosys_res.gms
+    Set has not been initialized
+--- . osemosys_res.gms(74) 3 Mb 684 Errors
+*** Error 141 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\osemosys_res.gms
+    Symbol declared but no values have been assigned. Check for missing
+       data definition, assignment, data loading or implicit assignment
+       via a solve statement.
+       A wild shot: You may have spurious commas in the explanatory
+       text of a declaration. Check symbol reference list.
+*** Error 352 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\osemosys_res.gms
+    Set has not been initialized
+--- . osemosys_res.gms(81) 3 Mb 685 Errors
+*** Error 141 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\osemosys_res.gms
+    Symbol declared but no values have been assigned. Check for missing
+       data definition, assignment, data loading or implicit assignment
+       via a solve statement.
+       A wild shot: You may have spurious commas in the explanatory
+       text of a declaration. Check symbol reference list.
+--- . osemosys_res.gms(85) 3 Mb 687 Errors
+*** Error 352 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\osemosys_res.gms
+    Set has not been initialized
+*** Error 352 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\osemosys_res.gms
+    Set has not been initialized
+--- . osemosys_res.gms(87) 3 Mb 689 Errors
+*** Error 141 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\osemosys_res.gms
+    Symbol declared but no values have been assigned. Check for missing
+       data definition, assignment, data loading or implicit assignment
+       via a solve statement.
+       A wild shot: You may have spurious commas in the explanatory
+       text of a declaration. Check symbol reference list.
+*** Error 352 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\osemosys_res.gms
+    Set has not been initialized
+--- . osemosys_res.gms(90) 3 Mb
+--- osemosys.gms(70) 3 Mb
+--- . report.gms(48) 3 Mb 690 Errors
+*** Error 141 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\report.gms
+    Symbol declared but no values have been assigned. Check for missing
+       data definition, assignment, data loading or implicit assignment
+       via a solve statement.
+       A wild shot: You may have spurious commas in the explanatory
+       text of a declaration. Check symbol reference list.
+--- . report.gms(64) 3 Mb 694 Errors
+*** Error 352 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\report.gms
+    Set has not been initialized
+*** Error 352 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\report.gms
+    Set has not been initialized
+*** Error 352 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\report.gms
+    Set has not been initialized
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\report.gms
+    Domain violation for element
+--- . report.gms(68) 3 Mb 696 Errors
+*** Error 352 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\report.gms
+    Set has not been initialized
+*** Error 352 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\report.gms
+    Set has not been initialized
+--- . report.gms(69) 3 Mb 699 Errors
+*** Error 141 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\report.gms
+    Symbol declared but no values have been assigned. Check for missing
+       data definition, assignment, data loading or implicit assignment
+       via a solve statement.
+       A wild shot: You may have spurious commas in the explanatory
+       text of a declaration. Check symbol reference list.
+*** Error 352 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\report.gms
+    Set has not been initialized
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\report.gms
+    Domain violation for element
+--- . report.gms(76) 3 Mb 701 Errors
+*** Error 352 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\report.gms
+    Set has not been initialized
+*** Error 352 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\report.gms
+    Set has not been initialized
+--- . report.gms(77) 3 Mb 703 Errors
+*** Error 352 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\report.gms
+    Set has not been initialized
+*** Error 170 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\report.gms
+    Domain violation for element
+--- . report.gms(84) 3 Mb 705 Errors
+*** Error 352 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\report.gms
+    Set has not been initialized
+*** Error 352 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\report.gms
+    Set has not been initialized
+--- . report.gms(91) 3 Mb 708 Errors
+*** Error 352 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\report.gms
+    Set has not been initialized
+*** Error 352 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\report.gms
+    Set has not been initialized
+*** Error 352 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\report.gms
+    Set has not been initialized
+--- . report.gms(98) 3 Mb 712 Errors
+*** Error 352 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\report.gms
+    Set has not been initialized
+*** Error 352 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\report.gms
+    Set has not been initialized
+*** Error 141 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\report.gms
+    Symbol declared but no values have been assigned. Check for missing
+       data definition, assignment, data loading or implicit assignment
+       via a solve statement.
+       A wild shot: You may have spurious commas in the explanatory
+       text of a declaration. Check symbol reference list.
+*** Error 352 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\report.gms
+    Set has not been initialized
+--- . report.gms(107) 3 Mb 715 Errors
+*** Error 352 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\report.gms
+    Set has not been initialized
+*** Error 352 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\report.gms
+    Set has not been initialized
+*** Error 352 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\report.gms
+    Set has not been initialized
+--- . report.gms(125) 3 Mb 720 Errors
+*** Error 352 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\report.gms
+    Set has not been initialized
+*** Error 352 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\report.gms
+    Set has not been initialized
+*** Error 352 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\report.gms
+    Set has not been initialized
+*** Error 352 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\report.gms
+    Set has not been initialized
+*** Error 352 in C:\Users\ghesi\Documents\GitHub\climate-change\Italy\report.gms
+    Set has not been initialized
+--- . report.gms(147) 3 Mb
+--- osemosys.gms(71) 3 Mb 720 Errors
+*** Status: Compilation error(s)
+--- Job osemosys.gms Stop 04/20/23 11:42:06 elapsed 0:00:00.136
