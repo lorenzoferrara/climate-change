@@ -259,14 +259,24 @@ DepreciationMethod(r) = 1;
 *------------------------------------------------------------------------
 *Sintassi okay, dati da aggiornare
 parameter SpecifiedAnnualDemand(r,f,y) /
-  ITALY.E2.2015 1058.76
-    ITALY.E2.2016   1066.09
-    ITALY.E2.2017   1073.43
-    ITALY.E2.2018   1080.76
-    ITALY.E2.2019   1088.1
-    ITALY.E2.2020   1095.43
-    ITALY.E2.2021   1096.88
-    ITALY.E2.2022   1098.33
+*dati vecchi di OSeMBE
+*    ITALY.E2.2015   1058.76
+*    ITALY.E2.2016   1066.09
+*    ITALY.E2.2017   1073.43
+*    ITALY.E2.2018   1080.76
+*    ITALY.E2.2019   1088.1
+*    ITALY.E2.2020   1095.43 ehh non potevano immaginare cosa sarebbe successo nel 2020
+*    ITALY.E2.2021   1096.88
+*dati reali
+    ITALY.E2.2015   1140.83
+    ITALY.E2.2016   1131.34
+    ITALY.E2.2017   1153.97
+    ITALY.E2.2018   1157.15
+    ITALY.E2.2019   1150.64
+    ITALY.E2.2020   1084.25
+    ITALY.E2.2021   1151.71
+    ITALY.E2.2022   1140.48
+*ipotesi da OSeMBE (anche se stimati, da modificare in base a realtà del 2o22)
     ITALY.E2.2023   1099.78
     ITALY.E2.2024   1101.23
     ITALY.E2.2025   1102.68
