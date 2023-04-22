@@ -1112,9 +1112,9 @@ ITALY.WSSTPH1.(2040*2060)    0
 /;
 
 parameter InputActivityRatio(r,t,f,m,y) /
-*storage necessita elettricità in ingress: valore 1 è temporaneo!!!!!!!!!!!!!!!
-ITALY.HYDSPH2.E2.1.(2015*2060) 1
-ITALY.HYDSPH3.E2.1.(2015*2060) 1
+*Rendimento approssimato, internet dice circa 80%, faccio 80% per il grande e 75% per piccolo
+ITALY.HYDSPH2.E2.1.(2015*2060) 1.33
+ITALY.HYDSPH3.E2.1.(2015*2060) 1.25
 
   ITALY.BFHPFH1.BF.1.(2015*2060) 1.538461538
   ITALY.BMCCPH1.BM.1.(2015*2060) 1.538461538
