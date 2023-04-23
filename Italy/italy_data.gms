@@ -4038,14 +4038,18 @@ parameter TechnologyFromStorage(r,m,t,s) /
 /;
 
 StorageLevelStart(r,s) = 999;
+*gennaio 2015 era 4000GWh
 
 StorageMaxChargeRate(r,s) = 99;
+*2021 7,5 GW
 
 StorageMaxDischargeRate(r,s) = 99;
+*2021 7,5 GW
 
 MinStorageCharge(r,s,y) = 0;
 
 OperationalLifeStorage(r,s) = 99;
+*40years electromechanical, 100 years the dam
 
 CapitalCostStorage(r,s,y) = 0;
 
