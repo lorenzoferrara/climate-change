@@ -4,9 +4,12 @@ require(gdxtools)
 require(witchtools)
 require(ggpubr)
 
-file_directory <- "Utopia"
-complete_directory <- here::here()
+file_directory <- "Italy"
+#complete_directory <- here::here()
+complete_directory = "C:/Users/ghesi/Documents/GitHub/climate-change"
 all_gdx <- c(Sys.glob(here::here(file_directory,"report_*.gdx")))
+
+igdx('C:/GAMS/42')
 
 osemosys_sanitize <- function(.x) {
   .x[, scen := basename(gdx)]
