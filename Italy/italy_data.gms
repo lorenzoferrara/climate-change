@@ -110,7 +110,19 @@ set     TIMESLICE       /
         S05B3 'Nov-Dec, 3'
 /;
 
-set     FUEL    /BF, BM, CO, E1, E2, GO, HF, NG, OI, UR, WS /;
+set     FUEL /
+    BF 'biofuel liquid'
+    BM 'biomass'
+    CO 'coal'
+    E1 'electricity 1'
+    E2 'electricity 2'
+    GO 'Geothermal'
+    HF 'Heavy Fuel Oil'
+    NG ' Natural Gas'
+    OI 'Oil'
+    UR 'Uranium'
+    WS 'Waste'
+/;
 
 set     EMISSION  /CO2, SO, HO, HY, WI/;   
 *Old emissions / CO2, NOX /;
@@ -347,6 +359,7 @@ AccumulatedAnnualDemand(r,f,y)=0;
 CapacityToActivityUnit(r,t)$power_plants(t) = 31.536;
 
 CapacityToActivityUnit(r,t)$(CapacityToActivityUnit(r,t) = 0) = 1;
+
 *Solar capacity 
 CapacityFactor(r,'SODIFH1','S01B1',y) = 0.0000563558;
 CapacityFactor(r,'SODIFH1','S01B2',y) = 0.173036406;
@@ -1701,7 +1714,7 @@ parameter OutputActivityRatio(r,t,f,m,y) /
   ITALY.WSSTPH1.E1.1.(2015*2060)  1
 /;
 
-# By default, assume for imported secondary fuels the same efficiency of the internal refineries
+*By default, assume for imported secondary fuels the same efficiency of the internal refineries
 InputActivityRatio(r,'OI00I00','OI',m,y)$(not OutputActivityRatio(r,'OIRFPH0','HF',m,y) eq 0) = 1/OutputActivityRatio(r,'OIRFPH0','HF',m,y);
 
 *------------------------------------------------------------------------   
@@ -2551,6 +2564,8 @@ ITALY.WSSTPH1.2060    1685.928512
 
 /;
 
+*################################################################################################
+
 parameter VariableCost(r,t,m,y) /
   ITALY.BF00I00.1.2015 27.51234251
 ITALY.BF00I00.1.2016  27.43873938
@@ -2859,11 +2874,11 @@ ITALY.OI00X00.1.2029  14.4955669
 ITALY.OI00X00.1.(2030*2060)  14.93105603
 
 ITALY.WSCHPH2.1.(2015*2060)  0.007038
-    
 ITALY.WSSTPH1.1.(2015*2060)  0.00357
-
 /;
 VariableCost(r,t,m,y)$(VariableCost(r,t,m,y) = 0) = 1e-5;
+
+*################################################################################################
 
 parameter FixedCost /
 

@@ -6,3 +6,7 @@
 *.log~2
 *.gsp
 .Rhistory
+.DS_Store
+.RData
+
+~$italy_data.gms

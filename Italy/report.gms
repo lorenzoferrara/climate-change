@@ -51,7 +51,7 @@ rep_pes_tot('%scen%',r,y) = sum(primary_fuel(f), ProductionAnnual.L(r,f,y));
 *    - share of primary energy sources [%]       
 *------------------------------------------------------------------------
 
-rep_pes_share('%scen%',r,f,y)$(primary_fuel(f) and rep_pes_tot('%scen%',r,y)<>0 ) = 100.*ProductionAnnual.L(r,f,y)/rep_pes_tot('%scen%',r,y);
+rep_pes_share('%scen%',r,f,y)$(primary_fuel(f) and rep_pes_tot('%scen%',r,y) ) = 100.*ProductionAnnual.L(r,f,y)/rep_pes_tot('%scen%',r,y);
 
 *------------------------------------------------------------------------	
 *    - total electricity production [PJ/yr]       
@@ -67,14 +67,14 @@ ftm_elec(f,t,m) = yes$(sum((r,y)$(primary_fuel(f) and InputActivityRatio(r,t,f,m
 * by technology, e.g. RateOfProductionByTechnologyByMode.
 rep_elec_tot('%scen%',r,y) = sum((f,t,m,l)$ftm_elec(f,t,m),
     RateOfProductionByTechnologyByMode.l(r,l,t,m,'E2',y)*YearSplit(l,y));
-
+*rep_elec_tot('%scen%',r,y)$(rep_elec_tot('%scen%',r,y)<EPS) = 1e-9;
 
 *------------------------------------------------------------------------	
 *    - share of electricity production by primary energy source [%]       
 *------------------------------------------------------------------------
-rep_elec_tot('%scen%',r,y)$(rep_elec_tot('%scen%',r,y)<EPS) = 2*EPS;
 rep_elec_share('%scen%',r,f,y)$primary_fuel(f) = 100.*sum((t,m,l)$ftm_elec(f,t,m),
-    RateOfProductionByTechnologyByMode.l(r,l,t,m,'E2',y)*YearSplit(l,y))/rep_elec_tot('%scen%',r,y);
+    RateOfProductionByTechnologyByMode.l(r,l,t,m,'E2',y)*YearSplit(l,y));
+*/rep_elec_tot('%scen%',r,y);
 
 *------------------------------------------------------------------------	
 *    - total capacity for electricity production [GW]       
