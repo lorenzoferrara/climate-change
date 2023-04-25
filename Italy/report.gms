@@ -61,19 +61,19 @@ rep_pes_share('%scen%',r,f,y)$(primary_fuel(f) and rep_pes_tot('%scen%',r,y) ) =
 * electricity is produced from "fuel" using "tech" operating according to
 * "mode", where "fuel" is a primary energy source (i.e. for simplicity we
 * assume not to be interested in electricity supplied from storage).
-ftm_elec(f,t,m) = yes$(sum((r,y)$(primary_fuel(f) and InputActivityRatio(r,t,f,m,y) and OutputActivityRatio(r,t,'E2',m,y)),1));
+ftm_elec(f,t,m) = yes$(sum((r,y)$(primary_fuel(f) and InputActivityRatio(r,t,f,m,y) and OutputActivityRatio(r,t,'E1',m,y)),1));
 
 * ProductionAnnual is only per fuel. We need a variable which is indexed
 * by technology, e.g. RateOfProductionByTechnologyByMode.
 rep_elec_tot('%scen%',r,y) = sum((f,t,m,l)$ftm_elec(f,t,m),
-    RateOfProductionByTechnologyByMode.l(r,l,t,m,'E2',y)*YearSplit(l,y));
+    RateOfProductionByTechnologyByMode.l(r,l,t,m,'E1',y)*YearSplit(l,y));
 *rep_elec_tot('%scen%',r,y)$(rep_elec_tot('%scen%',r,y)<EPS) = 1e-9;
 
 *------------------------------------------------------------------------	
 *    - share of electricity production by primary energy source [%]       
 *------------------------------------------------------------------------
 rep_elec_share('%scen%',r,f,y)$primary_fuel(f) = 100.*sum((t,m,l)$ftm_elec(f,t,m),
-    RateOfProductionByTechnologyByMode.l(r,l,t,m,'E2',y)*YearSplit(l,y));
+    RateOfProductionByTechnologyByMode.l(r,l,t,m,'E1',y)*YearSplit(l,y));
 */rep_elec_tot('%scen%',r,y);
 
 *------------------------------------------------------------------------	

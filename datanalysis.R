@@ -4,9 +4,9 @@ require(gdxtools)
 require(witchtools)
 require(ggpubr)
 
-file_directory <- "Italy"
+file_directory <- "C:/Users/ghesi/Documents/GitHub/climate-change/Italy"
 complete_directory <- here::here()
-# complete_directory = "C:/Users/ghesi/Documents/GitHub/climate-change"
+#complete_directory = "C:/Users/ghesi/Documents/GitHub/climate-change"
 all_gdx <- c(Sys.glob(here::here(file_directory,"report_*.gdx")))
 
 igdx('C:/GAMS/42')
