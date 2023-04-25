@@ -91,7 +91,7 @@ set TECHNOLOGY      /
         WSCHPH2 'waste combined heat power'
         WSSTPH1 'waste steam cycle' 
         
-        RIV 'river source of water'
+        RIVER 'river source of water'
 /;
 
 set     TIMESLICE       /
@@ -1714,6 +1714,7 @@ parameter OutputActivityRatio(r,t,f,m,y) /
   ITALY.WS00X00.WS.1.(2015*2060)  1
   ITALY.WSCHPH2.E1.1.(2015*2060)  1
   ITALY.WSSTPH1.E1.1.(2015*2060)  1
+  ITALY.RIVER.HY.1.(2015*2060) 1
 /;
 
 *By default, assume for imported secondary fuels the same efficiency of the internal refineries
