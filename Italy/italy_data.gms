@@ -3771,6 +3771,7 @@ ResidualStorageCapacity(r,s,y) = 999;
 CapacityOfOneTechnologyUnit(r,t,y) = 0;
 
 TotalAnnualMaxCapacity(r,t,y) = 99999;
+TotalAnnualMaxCapacity(r,'WSSTPH1',y) = 10;
 
 TotalAnnualMinCapacity(r,t,y) = 0;
 
