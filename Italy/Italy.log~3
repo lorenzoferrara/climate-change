@@ -1,5 +1,5 @@
 
---- Job osemosys.gms Start 04/23/23 18:23:31 42.3.0 dacf7d8e WEX-WEI x86 64bit/MS Windows
+--- Job osemosys.gms Start 04/25/23 01:55:00 42.3.0 dacf7d8e WEX-WEI x86 64bit/MS Windows
 --- Applying:
     C:\GAMS\42\gmsprmNT.txt
 --- GAMS Parameters defined
@@ -23,7 +23,7 @@ GAMS 42.3.0   Copyright (C) 1987-2023 GAMS Development. All rights reserved
 --- osemosys.gms(27) 2 Mb
 --- . osemosys_dec.gms(784) 2 Mb
 --- osemosys.gms(29) 2 Mb
---- . italy_data.gms(3882) 3 Mb
+--- . italy_data.gms(3897) 3 Mb
 --- osemosys.gms(33) 3 Mb
 --- . osemosys_equ.gms(649) 4 Mb
 --- osemosys.gms(69) 4 Mb
@@ -31,16 +31,16 @@ GAMS 42.3.0   Copyright (C) 1987-2023 GAMS Development. All rights reserved
 --- osemosys.gms(70) 4 Mb
 --- . report.gms(147) 4 Mb
 --- osemosys.gms(71) 4 Mb
---- Starting execution: elapsed 0:00:00.187
---- osemosys.gms(5364) 6 Mb
+--- Starting execution: elapsed 0:00:00.109
+--- osemosys.gms(5379) 6 Mb
 --- Generating MIP model osemosys
---- osemosys.gms(5365) 677 Mb  4 secs
+--- osemosys.gms(5380) 677 Mb  4 secs
 ---   2,246,389 rows  2,228,444 columns  5,684,014 non-zeroes
 --- Range statistics (absolute non-zero finite values)
 --- RHS       [min, max] : [ 7.500E-05, 1.000E+05] - Zero values observed as well
 --- Bound     [min, max] : [ 9.990E+02, 9.990E+02] - Zero values observed as well
 --- Matrix    [min, max] : [ 1.000E-05, 1.792E+04]
---- Executing COPT (Solvelink=2): elapsed 0:00:16.067
+--- Executing COPT (Solvelink=2): elapsed 0:00:19.570
 
 COPT             42.3.0 dacf7d8e Mar 2, 2023           WEI x86 64bit/MS Window
 
@@ -56,7 +56,7 @@ LogToConsole              0
 ReqFarkasRay              1
 Threads                   1
 
-Model fingerprint: ae8fbdbd
+Model fingerprint: 5f32aeeb
 
 Using Cardinal Optimizer v6.0.4 on Windows
 Hardware has 2 cores and 2 threads. Using instruction set X86_NATIVE (1)
@@ -67,77 +67,69 @@ The original problem has:
 The folded problem has:
     408455 rows, 432536 columns and 1188263 non-zero elements
 The presolved problem has:
-    41670 rows, 47317 columns and 261614 non-zero elements
+    41668 rows, 47317 columns and 261584 non-zero elements
 
 Starting the simplex solver using 1 thread
 
 Method   Iteration           Objective  Primal.NInf   Dual.NInf        Time
-Dual             0   -2.3002946620e+07         3505           0       8.53s
-Dual          2878    1.0984903265e+05         3685           0       8.71s
-Dual          5284    1.1170681153e+05         4280           0       8.92s
-Dual          6638    1.1334533930e+05         4592           0       9.32s
-Dual          7205    1.1402233037e+05         4619           0      10.22s
-Dual          8030    1.1715291162e+05         4737           0      10.85s
-Dual          9199    1.2189559071e+05         4831           0      11.11s
-Dual         10864    1.3768391042e+05         5102           0      11.33s
-Dual         11680    1.4249760604e+05         5077           0      11.97s
-Dual         12842    1.4852910253e+05         4819           0      12.34s
-Dual         13874    1.5381616008e+05         4725           0      12.67s
-Dual         14303    1.5803524444e+05         4720           0      13.28s
-Dual         15253    1.6368243530e+05         4793           0      13.51s
-Dual         15663    1.6677283029e+05         4805           0      14.45s
-Dual         16019    1.6820311513e+05         4733           0      15.09s
-Dual         16528    1.7351481068e+05         4583           0      15.70s
-Dual         16976    1.7748968708e+05         4472           0      16.68s
-Dual         17312    1.7903089726e+05         4423           0      17.41s
-Dual         17781    1.8279185314e+05         4393           0      18.36s
-Dual         18418    1.8625305024e+05         4230           0      19.13s
+Dual             0   -2.3040240791e+07         3505           0       8.44s
+Dual          2897    7.2549970567e+04         3673           0       8.56s
+Dual          5538    7.6027030498e+04         4275           0       8.74s
+Dual          6201    7.6332185378e+04         4450           0       9.47s
+Dual          7300    7.8388757569e+04         4600           0       9.83s
+Dual          8113    8.2601594542e+04         4878           0      10.14s
+Dual          9896    9.2720087519e+04         5042           0      10.37s
+Dual         10186    9.4746327747e+04         5066           0      10.59s
+Dual         11646    1.0460335897e+05         5116           0      10.75s
+Dual         12668    1.1171079356e+05         4696           0      10.88s
+Dual         14388    1.2617613556e+05         4605           0      11.16s
+Dual         14719    1.2975757994e+05         4669           0      11.66s
+Dual         15206    1.3333386986e+05         4648           0      12.33s
+Dual         15726    1.4027565943e+05         4567           0      13.32s
+Dual         16208    1.4349664997e+05         4548           0      14.24s
+Dual         17423    1.6669066302e+05         4428           0      14.58s
+Dual         18527    1.9006521947e+05         4144           0      14.90s
+Dual         19468    2.1755905692e+05         4044           0      15.27s
+Dual         20357    2.2011783373e+05         3696           0      15.66s
+Dual         21282    2.2208336450e+05         3202           0      16.15s
 
 Method   Iteration           Objective  Primal.NInf   Dual.NInf        Time
-Dual         18671    1.8864544615e+05         4283           0      19.73s
-Dual         19193    1.9282783062e+05         4268           0      21.03s
-Dual         19687    1.9857056423e+05         4172           0      22.28s
-Dual         20115    2.0338594082e+05         4212           0      23.25s
-Dual         20835    2.0629532812e+05         4126           0      23.60s
-Dual         21190    2.1071543107e+05         4122           0      24.02s
-Dual         21980    2.3462956319e+05         4063           0      24.73s
-Dual         23037    2.4315824206e+05         3896           0      25.25s
-Dual         23366    2.4562581109e+05         4015           0      25.81s
-Dual         23842    2.5026642366e+05         4104           0      26.31s
-Dual         24738    2.5640405340e+05         3931           0      26.99s
-Dual         25693    2.5897032029e+05         3358           0      27.42s
-Dual         26472    2.6604857457e+05         2942           0      27.84s
-Dual         27350    2.6778844837e+05         2526           0      28.61s
-Dual         27719    2.6975122287e+05         2583           0      29.57s
-Dual         28114    2.7853351473e+05         2526           0      30.50s
-Dual         28586    2.7893823136e+05         2465           0      31.50s
-Dual         29294    2.8095278327e+05         2166           0      32.76s
-Dual         29842    2.8190027979e+05         1992           0      33.66s
-Dual         30352    2.8213205623e+05         1701           0      34.42s
-
-Method   Iteration           Objective  Primal.NInf   Dual.NInf        Time
-Dual         30839    2.8227635035e+05         1465           0      35.28s
-Dual         32133    2.8255571819e+05         1529           0      36.08s
-Dual         32788    2.8258534546e+05            0           0      36.74s
-Primal       32788    2.8258552898e+05            0          44      36.77s
-Primal       32826    2.8258526189e+05            0           0      36.80s
+Dual         21656    2.2346060110e+05         3335           0      16.89s
+Dual         22109    2.2450009204e+05         3317           0      17.94s
+Dual         22566    2.2520608614e+05         3193           0      18.95s
+Dual         23095    2.2875437900e+05         3079           0      19.50s
+Dual         23664    2.3186950002e+05         2835           0      20.16s
+Dual         24118    2.3447613701e+05         2801           0      20.82s
+Dual         24851    2.4000082913e+05         2510           0      21.65s
+Dual         25558    2.4106567189e+05         1887           0      22.40s
+Dual         25940    2.4265473756e+05         1806           0      23.14s
+Dual         26468    2.4389820426e+05         1714           0      23.93s
+Dual         27000    2.4470999883e+05         2259           0      24.82s
+Dual         27341    2.4495513451e+05         1271           0      25.45s
+Dual         28091    2.4502775026e+05          811           0      26.24s
+Dual         28921    2.4528736383e+05         1155           0      26.74s
+Dual         29279    2.4529111772e+05            0           0      27.05s
+Primal       29279    2.4529130873e+05            0         356      27.06s
+Primal       29307    2.4529105578e+05            0           0      27.09s
 Dealing with unscaled infeasibility
-Dual         32826    2.8258526189e+05            3           0      36.83s
-Dual         32831    2.8258526189e+05            0           0      36.88s
+Dual         29307    2.4529105578e+05            2           0      27.11s
+Dual         29309    2.4529105578e+05            0           0      27.16s
 Postsolving
-Dual         32831    2.8258526189e+05            0           0      38.09s
+Dual         29309    2.4529105578e+05            0           0      28.32s
 Unfolding
-Dual         39289    2.8258526189e+05            0           0      85.07s
+
+Method   Iteration           Objective  Primal.NInf   Dual.NInf        Time
+Dual         35782    2.4529105578e+05            0           0      73.92s
 
 Solving finished
-Status: Optimal  Objective: 2.8258526189e+05  Iterations: 39289  Time: 85.76s
+Status: Optimal  Objective: 2.4529105578e+05  Iterations: 35782  Time: 74.60s
 --- Reading solution for model osemosys
---- osemosys.gms(5365) 677 Mb  132 secs
---- Executing after solve: elapsed 0:02:28.446
---- osemosys.gms(5587) 677 Mb
+--- osemosys.gms(5380) 677 Mb  128 secs
+--- Executing after solve: elapsed 0:02:23.549
+--- osemosys.gms(5602) 677 Mb
 --- GDX File (execute_unload) C:\Users\lofer\OneDrive\Documenti\GitHub\climate-change\Italy\report_base.gdx
---- osemosys.gms(5601) 677 Mb  3 secs
+--- osemosys.gms(5616) 677 Mb
 --- GDX File (execute_unload) C:\Users\lofer\OneDrive\Documenti\GitHub\climate-change\Italy\results_base.gdx
 --- Putfile ANT C:\Users\lofer\OneDrive\Documenti\GitHub\climate-change\Italy\SelResults.CSV
 *** Status: Normal completion
---- Job osemosys.gms Stop 04/23/23 18:26:03 elapsed 0:02:32.020
+--- Job osemosys.gms Stop 04/25/23 01:57:26 elapsed 0:02:25.881

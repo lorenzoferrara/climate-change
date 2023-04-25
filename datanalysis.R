@@ -5,8 +5,8 @@ require(witchtools)
 require(ggpubr)
 
 file_directory <- "Italy"
-#complete_directory <- here::here()
-complete_directory = "C:/Users/ghesi/Documents/GitHub/climate-change"
+complete_directory <- here::here()
+# complete_directory = "C:/Users/ghesi/Documents/GitHub/climate-change"
 all_gdx <- c(Sys.glob(here::here(file_directory,"report_*.gdx")))
 
 igdx('C:/GAMS/42')
@@ -25,15 +25,19 @@ pes_tot <- batch_extract("rep_pes_tot",all_gdx)[[1]] |> setDT() |> osemosys_sani
 elec_tot <- batch_extract("rep_elec_tot",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
 fen_tot <- batch_extract("rep_fen_tot",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
 
-x11()
-ggplot(s_pes) +
+{
+  # x11()
+  ggplot(s_pes) +
   geom_area(aes(x=as.numeric(y),y=value,fill=f)) +
   facet_wrap(scen~.,) + xlab("year") + ylab("share %") + theme_pubr() 
+}
 
-x11()
-ggplot(s_elec) +
+{
+  x11()
+  ggplot(s_elec) +
   geom_area(aes(x=as.numeric(y),y=value,fill=f)) +
   facet_wrap(scen~.,) + xlab("year") + ylab("share %") + theme_pubr() 
+}
 
 tot_en <- full_join(fen_tot  %>% rename(fen=value), 
                     pes_tot %>% rename(pes=value)) %>%
@@ -49,7 +53,9 @@ ggplot(tot_en %>%
          pivot_longer(c(eff,el_share))) +
   geom_line(aes(x=as.numeric(y),y=value,color=scen,linetype=name), linewidth=2) + theme_pubr() + ylim(c(0,1))
 
-#######################
+############################################################################################
+############################################################################################
+############################################################################################
 
 all_gdx <- c(Sys.glob(here::here(file_directory,"results_*.gdx")))
 all_gdx
@@ -62,13 +68,53 @@ osemosys_sanitize_2 <- function(.x) {
   # .x[, V1 := NULL]
   }
 
-storaged_water <- batch_extract("StorageLevelYearFinish",all_gdx)[[1]] |> setDT() |> osemosys_sanitize_2()
-x11()
-ggplot(storaged_water) +
-  geom_line(aes(x=as.numeric(YEAR),y=value,color=scen))
-
+storaged_water <- batch_extract("STORAGELEVELYEARFINISH",all_gdx)[[1]] |> setDT() |> osemosys_sanitize_2()
 {x11()
-ggplot(storaged_water) +
-  geom_area(aes(x=as.numeric(YEAR),y=value)) +
-  facet_wrap(scen~.,) + xlab("year") + ylab("storaged water") + theme_pubr() 
+  ggplot(storaged_water) +
+    geom_line(aes(x=as.numeric(YEAR),y=value,color=scen))
+}
+
+emissions <- batch_extract("ANNUALEMISSIONS",all_gdx)[[1]] |> setDT() |> osemosys_sanitize_2()
+{
+  # x11()
+  ggplot(emissions[emissions$EMISSION=="CO2"]) +
+    geom_line(aes(x=as.numeric(YEAR),y=value,color=scen))
+}
+
+useannual <- batch_extract("USEANNUAL",all_gdx)[[1]] |> setDT() |> osemosys_sanitize_2()
+{
+  # x11()
+  ggplot(useannual) +
+    geom_area(aes(x=as.numeric(YEAR),y=value,fill=FUEL)) +
+    facet_wrap(scen~.,) + xlab("year") + ylab("QUANTITY") + theme_pubr() 
+}
+
+###################
+
+prod <- batch_extract("PRODUCTIONBYTECHNOLOGYANNUAL",all_gdx)[[1]] |> setDT() |> osemosys_sanitize_2()
+prod = prod[prod$FUEL=="E1"]
+
+temp = prod$TECHNOLOGY
+prod$TECH=temp
+for(i in 1:length(temp)){
+  prod$TECH[i] = substr(temp[i], start=1, stop=2)
+  print(i)
+}
+
+prod2=data.frame(YEAR=c(), TECH=c(), value=c())
+k=1
+for(i in 2015:2060){
+  for(j in unique(prod$TECH)){          
+    prod2$YEAR[k] = i
+    prod2$TECH[k] = j
+    prod2$value[k] = sum(prod[prod$YEAR==i & prod$TECH==j]$value)
+    k=k+1
+  }
+}
+
+{
+  x11()
+  ggplot(prod) +
+    geom_area(aes(x=as.numeric(YEAR),y=value,fill=TECHNOLOGY)) +
+    facet_wrap(scen~.,) + xlab("year") + ylab("QUANTITY") + theme_pubr() 
 }
