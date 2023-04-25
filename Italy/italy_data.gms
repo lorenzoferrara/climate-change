@@ -90,6 +90,8 @@ set TECHNOLOGY      /
         WS00X00 'waste generation'
         WSCHPH2 'waste combined heat power'
         WSSTPH1 'waste steam cycle' 
+        
+        RIV 'river source of water'
 /;
 
 set     TIMESLICE       /
@@ -122,6 +124,7 @@ set     FUEL /
     OI 'Oil'
     UR 'Uranium'
     WS 'Waste'
+    HY 'Water'
 /;
 
 set     EMISSION  /CO2, SO, HO, HY, WI/;   
