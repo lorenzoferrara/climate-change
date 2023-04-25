@@ -1,11 +1,12 @@
 *
 * OSEMOSYS 2011.07.07 conversion to GAMS by Ken Noble, Noble-Soft Systems - August 2012
 * OSEMOSYS 2017.11.08 update by Thorsten Burandt, Konstantin L�ffler and Karlo Hainsch, TU Berlin (Workgroup for Infrastructure Policy) - October 2017
+* OSEMOSYS+OSEMBE 2023 WaterGAMS
 *
 * Files required are:
 * osemosys.gms (this file)
 * osemosys_dec.gms
-* utopia_data.txt
+* italy_data.txt
 * osemosys_equ.gms
 *
 * To run this GAMS version of OSeMOSYS on your PC:
