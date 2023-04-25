@@ -81,15 +81,9 @@ emissions <- batch_extract("ANNUALEMISSIONS",all_gdx)[[1]] |> setDT() |> osemosy
     geom_line(aes(x=as.numeric(YEAR),y=value,color=scen))
 }
 
-useannual <- batch_extract("USEANNUAL",all_gdx)[[1]] |> setDT() |> osemosys_sanitize_2()
-{
-  # x11()
-  ggplot(useannual) +
-    geom_area(aes(x=as.numeric(YEAR),y=value,fill=FUEL)) +
-    facet_wrap(scen~.,) + xlab("year") + ylab("QUANTITY") + theme_pubr() 
-}
 
-###################
+############################################################################
+# PRODUCTIONBYTECHNOLOGYANNUAL
 
 prod <- batch_extract("PRODUCTIONBYTECHNOLOGYANNUAL",all_gdx)[[1]] |> setDT() |> osemosys_sanitize_2()
 prod = prod[prod$FUEL=="E1"]
@@ -101,20 +95,24 @@ for(i in 1:length(temp)){
   print(i)
 }
 
-prod2=data.frame(YEAR=c(), TECH=c(), value=c())
+prod2=matrix(0,(60-15+1)*length(unique(prod$TECH)),3)
 k=1
 for(i in 2015:2060){
   for(j in unique(prod$TECH)){          
-    prod2$YEAR[k] = i
-    prod2$TECH[k] = j
-    prod2$value[k] = sum(prod[prod$YEAR==i & prod$TECH==j]$value)
+    prod2[k,1] = i
+    prod2[k,2] = j
+    prod2[k,3] = sum(prod[prod$YEAR==i & prod$TECH==j,5])
     k=k+1
   }
 }
-
+prod2=as.data.frame(prod2)
+colnames(prod2)=c('YEAR', 'TECH', 'value')
+prod2$value = as.numeric(prod2$value)
 {
   x11()
-  ggplot(prod) +
-    geom_area(aes(x=as.numeric(YEAR),y=value,fill=TECHNOLOGY)) +
-    facet_wrap(scen~.,) + xlab("year") + ylab("QUANTITY") + theme_pubr() 
+  ggplot(prod2[prod2$value!=0,]) +
+  # ggplot(prod2) +
+    geom_area(aes(x=as.numeric(YEAR),y=value,fill=TECH)) +
+    # facet_wrap(scen~.,) + 
+    xlab("year") + ylab("QUANTITY") + theme_pubr() 
 }
