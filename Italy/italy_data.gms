@@ -22,6 +22,23 @@ $offlisting
 *#
 *#****************************************
 
+$onText
+"AnnualEmissionLimit":'kton',
+"AvailabilityFactor":'none',
+"CapitalCost":'M$/GW',
+"DiscountRate":'none',
+'Efficiency':'none',
+"EmissionActivityRatio":'kt/PJ',
+"FixedCost":'M$/GW',
+"OperationalLife":'yr',
+"ResidualCapacity":'GW',
+"SpecifiedAnnualDemand":'PJ',
+"TotalAnnualMaxCapacityInvestment":'GW',
+"TotalTechnologyAnnualActivityLowerLimit":'PJ',
+"TotalTechnologyAnnualActivityUpperLimit":'PJ',
+"VariableCost":'M$/PJ'}
+$offText
+
 
 *------------------------------------------------------------------------	
 * Sets       
@@ -3774,16 +3791,45 @@ ResidualStorageCapacity(r,s,y) = 999;
 CapacityOfOneTechnologyUnit(r,t,y) = 0;
 
 TotalAnnualMaxCapacity(r,t,y) = 99999;
-TotalAnnualMaxCapacity(r,'WSSTPH1',y) = 10;
+TotalAnnualMaxCapacity(r,'WSSTPH1',y) = 0.46711;
 
 TotalAnnualMinCapacity(r,t,y) = 0;
 
 parameter TotalAnnualMaxCapacityInvestment(r,t,y) /
-    ITALY.SODIFH1.(2015*2060) 5 
-    ITALY.SOUTPH2.(2015*2060) 5 
-    ITALY.WIOFPN2.(2015*2060) 5 
-    ITALY.WIONPN3.(2015*2060) 5 /;
+    ITALY.SODIFH1.2015 0.09 
+    ITALY.SODIFH1.2016 0.09 
+    ITALY.SODIFH1.2017 0.22 
+    ITALY.SODIFH1.2018 0.43
+    ITALY.SODIFH1.2019 0.76 
+    ITALY.SODIFH1.2020 0.8 
+    ITALY.SODIFH1.2021 0.94
+    ITALY.SODIFH1.2022 1.6
+    ITALY.SODIFH1.(2023*2060) 4.6
     
+    ITALY.SOUTPH2.2015 0.09 
+    ITALY.SOUTPH2.2016 0.09 
+    ITALY.SOUTPH2.2017 0.22 
+    ITALY.SOUTPH2.2018 0.43
+    ITALY.SOUTPH2.2019 0.76 
+    ITALY.SOUTPH2.2020 0.8 
+    ITALY.SOUTPH2.2021 0.94
+    ITALY.SOUTPH2.2022 1.6
+    ITALY.SOUTPH2.(2023*2060) 4.6 
+    
+    ITALY.WIOFPN2.(2015*2017) 0.4  
+    ITALY.WIOFPN2.2018 0.5
+    ITALY.WIOFPN2.2019 0.4
+    ITALY.WIOFPN2.2020 0.4
+    ITALY.WIOFPN2.(2021*2060) 0.5
+    
+    ITALY.WIONPN3.(2015*2017) 0.4  
+    ITALY.WIONPN3.2018 0.5
+    ITALY.WIONPN3.2019 0.4
+    ITALY.WIONPN3.2020 0.4
+    ITALY.WIONPN3.(2021*2060) 0.5
+/;
+    
+TotalAnnualMaxCapacityInvestment(r,t,y)$(TotalAnnualMaxCapacityInvestment(r,t,y) = 0 AND power_plants(t) ) = 5;
 TotalAnnualMaxCapacityInvestment(r,t,y)$(TotalAnnualMaxCapacityInvestment(r,t,y) = 0) = 99999;
 *TotalAnnualMaxCapacityInvestment(r,'ELMTPH1',y) = 0;   DA CONTROLLARE, SONO TRANSBORDER ENERGY
 *TotalAnnualMaxCapacityInvestment(r,'ELSIPH1',y) = 0;
