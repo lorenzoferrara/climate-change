@@ -61,6 +61,12 @@ CapitalCost(r,t,y)$t_res(t) = %cost_res%/100 * CapitalCost(r,t,y);
 $setglobal scen "lowcost"
 $endif.scen
 
+$ifthen.scen set no_atom 
+AvailabilityFactor(r,'NUG3PH3',y) = 0;
+AvailabilityFactor(r,'UR00I00',y) = 0;
+$setglobal scen "noatom"
+$endif.scen
+
 * solve the model
 model osemosys /all/;
 option limrow=0, limcol=0, solprint=on;
