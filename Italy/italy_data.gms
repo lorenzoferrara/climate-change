@@ -1791,6 +1791,7 @@ parameter OutputActivityRatio(r,t,f,m,y) /
   ITALY.WSCHPH2.E1.1.(2015*2060)  1
   ITALY.WSSTPH1.E1.1.(2015*2060)  1
   ITALY.RIVER.HY.1.(2015*2060) 1
+  ITALY.UR00I00.UR.1.(2015*2060) 1
 /;
 
 *By default, assume for imported secondary fuels the same efficiency of the internal refineries
@@ -3003,6 +3004,8 @@ ITALY.OI00X00.1.(2030*2060)  14.93105603
 
 ITALY.WSCHPH2.1.(2015*2060)  0.007038
 ITALY.WSSTPH1.1.(2015*2060)  0.00357
+
+ITALY.UR00I00.1.(2015*2060)  1.301920122
 /;
 VariableCost(r,t,m,y)$(VariableCost(r,t,m,y) = 0) = 1e-5;
 
