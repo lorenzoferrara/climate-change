@@ -4016,29 +4016,25 @@ REMinProductionTarget(r,y) = 0;
 *------------------------------------------------------------------------   
 * Parameters - Emissions       
 *------------------------------------------------------------------------
-
+*Measured in Mton/PJ
 parameter EmissionActivityRatio(r,t,e,m,y) /
 ITALY.CO00I00.CO2.1.(2015*2060) 90.5355
-
 ITALY.CO00X00.CO2.1.(2015*2060)  90.5355
-
 ITALY.HF00I00.CO2.1.(2015*2060)  70.0778
-
 ITALY.NG00I00.CO2.1.(2015*2060)  50.29118
-    
 ITALY.NG00X00.CO2.1.(2015*2060)  50.29118
-    
 ITALY.OI00I00.CO2.1.(2015*2060)  70.0778
-    
 ITALY.OI00X00.CO2.1.(2015*2060)  70.0778
+
+*dato un po' incerto 
+ITALY.WS00X00.CO2.1.(2015*2060)  1.693
+
+*biomass considered net zero
+
 *carbon capture
-
 ITALY.BMCSPN2.CO2.1.(2015*2060)  -205.1944046
-
 ITALY.COCSPN2.CO2.1.(2015*2060)  -283.3775418
-
 ITALY.NGCSPN2.CO2.1.(2015*2060)  -89.76521937
-
 *Fake emissioni per hydro,solar e wind avevano tutti 1
 /;
 
@@ -4046,7 +4042,47 @@ EmissionsPenalty(r,e,y) = 0;
 
 AnnualExogenousEmission(r,e,y) = 0;
 
-AnnualEmissionLimit(r,e,y) = 9999;
+parameter AnnualEmissionLimit(r,e,y) /
+ITALY.CO2.2015            136
+ITALY.CO2.2016          133.5
+ITALY.CO2.2017          130.4
+ITALY.CO2.2018            128
+ITALY.CO2.2019            125
+ITALY.CO2.2020          122.5
+ITALY.CO2.2021            120
+ITALY.CO2.2022          117.5
+ITALY.CO2.2023            115
+ITALY.CO2.2024          112.5
+ITALY.CO2.2025            110
+ITALY.CO2.2026          107.2
+ITALY.CO2.2027            104
+ITALY.CO2.2028          100.5
+ITALY.CO2.2029           96.5
+ITALY.CO2.2030          91.941
+ITALY.CO2.2031            87.5
+ITALY.CO2.2032             83
+ITALY.CO2.2033         78.000
+ITALY.CO2.2034          73.412
+ITALY.CO2.2035          68.824
+ITALY.CO2.2036          64.235
+ITALY.CO2.2037          59.647
+ITALY.CO2.2038          55.059
+ITALY.CO2.2039          50.471
+ITALY.CO2.2040          45.882
+ITALY.CO2.2041          41.294
+ITALY.CO2.2042          36.706
+ITALY.CO2.2043          32.118
+ITALY.CO2.2044          27.529
+ITALY.CO2.2045          22.941
+ITALY.CO2.2046          18.353
+ITALY.CO2.2047          13.765
+ITALY.CO2.2048           9.176
+ITALY.CO2.2049           4.588
+ITALY.CO2.2050             0
+/;
+
+*se sono Mt CO2eq =161,3 nel 2005, da diminuire di 43% entro il 2030
+*AnnualEmissionLimit(r,'CO2','2050') = 0;
 
 ModelPeriodExogenousEmission(r,e) = 0;
 
