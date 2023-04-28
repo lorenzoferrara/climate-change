@@ -24,7 +24,7 @@
 * declarations for sets, parameters, variables
 $eolcom #
 $offlisting
-$if not set scen $setglobal scen base
+*$if not set scen $setglobal scen base
 $include osemosys_dec.gms
 * specify Model data
 $include italy_data.gms
@@ -32,6 +32,7 @@ $include italy_data.gms
 * define model equations
 $offlisting
 $include osemosys_equ.gms
+
 
 * some scenario flags
 $ifthen.scen set ren_target
@@ -46,7 +47,7 @@ EmissionsPenalty(r,'CO2',y) = %ctax%;
 $setglobal scen "ctax%ctax%"
 $endif.scen
 
-$ifthen.scen set emicap 
+$ifthen.scen '%scen%'=='emission' 
 AnnualEmissionLimit(r,'CO2',y)$(ord(y) ge 10) = %emicap%;
 $setglobal scen "emicap%emicap%"
 $endif.scen
@@ -61,11 +62,18 @@ CapitalCost(r,t,y)$t_res(t) = %cost_res%/100 * CapitalCost(r,t,y);
 $setglobal scen "lowcost"
 $endif.scen
 
-$ifthen.scen set no_atom 
-AvailabilityFactor(r,'NUG3PH3',y) = 0;
-AvailabilityFactor(r,'UR00I00',y) = 0;
+$ifthen.scen '%scen%'=='noatom'
+TotalAnnualMaxCapacity(r,'NUG3PH3',y) = 3;
+TotalAnnualMaxCapacity(r,'UR00I00',y) = 3;
 $setglobal scen "noatom"
 $endif.scen
+
+$ifthen.scen '%scen%'=='nogeo'
+TotalAnnualMaxCapacity(r,'GO00X00',y) = 3;
+TotalAnnualMaxCapacity(r,'GOCVPH2',y) = 3;
+$setglobal scen "nogeo"
+$endif.scen
+
 
 * solve the model
 model osemosys /all/;
