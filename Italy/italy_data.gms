@@ -3992,24 +3992,24 @@ parameter TotalAnnualMaxCapacity(r,t,y) /
         ITALY.COCHPH3.(2025*2050) EPS
         ITALY.COSTPH1.(2025*2050) EPS
         ITALY.COSTPH3.(2025*2050) EPS
-/
+/;
 TotalAnnualMaxCapacity(r,t,y)$(TotalAnnualMaxCapacity(r,t,y) = 0) = 99999;
 
-TotalAnnualMaxCapacity(r,'NUG2PH3',2015) = 0;
-TotalAnnualMaxCapacity(r,'NUG2PH3',2016) = 0;
-TotalAnnualMaxCapacity(r,'NUG2PH3',2017) = 0;
-TotalAnnualMaxCapacity(r,'NUG2PH3',2018) = 0;
-TotalAnnualMaxCapacity(r,'NUG2PH3',2019) = 0;
-TotalAnnualMaxCapacity(r,'NUG2PH3',2020) = 0;
-TotalAnnualMaxCapacity(r,'NUG2PH3',2021) = 0;
+*TotalAnnualMaxCapacity(r,'NUG2PH3','2015') = 0;
+*TotalAnnualMaxCapacity(r,'NUG2PH3','2016') = 0;
+*TotalAnnualMaxCapacity(r,'NUG2PH3','2017') = 0;
+*TotalAnnualMaxCapacity(r,'NUG2PH3','2018') = 0;
+*TotalAnnualMaxCapacity(r,'NUG2PH3','2019') = 0;
+*TotalAnnualMaxCapacity(r,'NUG2PH3','2020') = 0;
+*TotalAnnualMaxCapacity(r,'NUG2PH3','2021') = 0;
 
-TotalAnnualMaxCapacity(r,'NUG3PH3',2015) = 0;
-TotalAnnualMaxCapacity(r,'NUG3PH3',2016) = 0;
-TotalAnnualMaxCapacity(r,'NUG3PH3',2017) = 0;
-TotalAnnualMaxCapacity(r,'NUG3PH3',2018) = 0;
-TotalAnnualMaxCapacity(r,'NUG3PH3',2019) = 0;
-TotalAnnualMaxCapacity(r,'NUG3PH3',2020) = 0;
-TotalAnnualMaxCapacity(r,'NUG3PH3',2021) = 0;
+TotalAnnualMaxCapacity(r,'NUG3PH3','2015') = 0;
+TotalAnnualMaxCapacity(r,'NUG3PH3','2016') = 0;
+TotalAnnualMaxCapacity(r,'NUG3PH3','2017') = 0;
+TotalAnnualMaxCapacity(r,'NUG3PH3','2018') = 0;
+TotalAnnualMaxCapacity(r,'NUG3PH3','2019') = 0;
+TotalAnnualMaxCapacity(r,'NUG3PH3','2020') = 0;
+TotalAnnualMaxCapacity(r,'NUG3PH3','2021') = 0;
 
 TotalAnnualMinCapacity(r,t,y) = 0;
 
