@@ -3,7 +3,7 @@ $offlisting
 * Change of UTOPIA_DATA.GMS - specify Utopia Model data in format required by GAMS
 *
 * OSEMOSYS 2011.07.07 conversion to GAMS by Ken Noble.Noble-Soft Systems - August 2012
-* OSEMOSYS 2016.08.01 update by Thorsten Burandt, Konstantin L�ffler and Karlo Hainsch, TU Berlin (Workgroup for Infrastructure Policy) - October 2017
+* OSEMOSYS 2016.08.01 update by Thorsten Burandt, Konstantin L?ffler and Karlo Hainsch, TU Berlin (Workgroup for Infrastructure Policy) - October 2017
 * OSEMOSYS 2020.04.13 reformatting by Giacomo Marangoni
 * OSEMOSYS 2020.04.15 change yearsplit by Giacomo Marangoni
 * OSEMOSYS 2023 Italy by WaterGAMS
@@ -4075,6 +4075,57 @@ parameter EmissionActivityRatio(r,t,e,m,y) /
 /;
 
 EmissionsPenalty(r,e,y) = 0;
+*parameter EmissionsPenalty(r,e,y) /
+*    ITALY.CO2.2015  7.724
+*    ITALY.CO2.2016  5.25
+*    ITALY.CO2.2017  6.354
+*    ITALY.CO2.2018  18.109
+*    ITALY.CO2.2019  25.8508
+*    ITALY.CO2.2020  25.665
+*    ITALY.CO2.2021  55.365
+*    ITALY.CO2.2022  81.345
+*    ITALY.CO2.2023  91.39
+*    ITALY.CO2.2024  106.525
+*    ITALY.CO2.2025  121.66
+*    ITALY.CO2.2026  136.795
+*    ITALY.CO2.2027  151.93
+*    ITALY.CO2.2028  167.065
+*    ITALY.CO2.2029  182.2
+*    ITALY.CO2.2030  197.335
+*    ITALY.CO2.2031  212.47
+*    ITALY.CO2.2032  227.605
+*    ITALY.CO2.2033  242.74
+*    ITALY.CO2.2034  257.875
+*    ITALY.CO2.2035  273.01
+*    ITALY.CO2.2036  288.145
+*    ITALY.CO2.2037  303.28
+*    ITALY.CO2.2038  318.415
+*    ITALY.CO2.2039  333.55
+*    ITALY.CO2.2040  348.685
+*    ITALY.CO2.2041  363.82
+*    ITALY.CO2.2042  378.955
+*    ITALY.CO2.2043  394.09
+*    ITALY.CO2.2044  409.225
+*    ITALY.CO2.2045  424.36
+*    ITALY.CO2.2046  439.495
+*    ITALY.CO2.2047  454.63
+*    ITALY.CO2.2048  469.765
+*    ITALY.CO2.2049  484.9
+*    ITALY.CO2.2050  500
+*    ITALY.CO2.2051  530
+*    ITALY.CO2.2052  560
+*    ITALY.CO2.2053  590
+*    ITALY.CO2.2054  620
+*    ITALY.CO2.2055  650
+*    ITALY.CO2.2056  680
+*    ITALY.CO2.2057  710
+*    ITALY.CO2.2058  740
+*    ITALY.CO2.2059  770
+*    ITALY.CO2.2060  800
+*
+*/;
+
+
 
 AnnualExogenousEmission(r,e,y) = 0;
 
