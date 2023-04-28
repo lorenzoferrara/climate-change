@@ -3945,8 +3945,46 @@ ResidualStorageCapacity(r,s,y) = 999;
 
 CapacityOfOneTechnologyUnit(r,t,y) = 0;
 
-TotalAnnualMaxCapacity(r,t,y) = 99999;
-TotalAnnualMaxCapacity(r,'WSSTPH1',y) = 0.46711;
+parameter TotalAnnualMaxCapacity(r,t,y) /
+        ITALY.WSCHPH2.(2015*2021) 0.5
+        ITALY.WSSTPH1.(2015*2021) 0.5
+        ITALY.GOCVPH2.(2015*2021) 1
+        ITALY.HYDMPH0.(2015*2021) 1
+        ITALY.HYDMPH1.(2015*2021) 3
+        ITALY.HYDMPH2.(2015*2021) 21
+        ITALY.WIONPH3.2015 19
+        ITALY.WIONPH3.2016 19.5
+        ITALY.WIONPH3.2017 20
+        ITALY.WIONPH3.2018 20.5
+        ITALY.WIONPH3.2019 21
+        ITALY.WIONPH3.2020 22
+        ITALY.WIONPH3.2021 23
+        ITALY.WSSTPH1.(2015*2060) 0.5
+        ITALY.WSCHPH2.(2015*2060) 0.5
+        ITALY.BMCCPH1.(2015*2021) 1.5
+        ITALY.BMCHPH3.(2015*2021) 1.5
+        ITALY.BMSTPH3.(2015*2021) 1.5
+        ITALY.COCHPH3.(2025*2050) EPS
+        ITALY.COSTPH1.(2025*2050) EPS
+        ITALY.COSTPH3.(2025*2050) EPS
+/
+TotalAnnualMaxCapacity(r,t,y)$(TotalAnnualMaxCapacity(r,t,y) = 0) = 99999;
+
+TotalAnnualMaxCapacity(r,'NUG2PH3',2015) = 0;
+TotalAnnualMaxCapacity(r,'NUG2PH3',2016) = 0;
+TotalAnnualMaxCapacity(r,'NUG2PH3',2017) = 0;
+TotalAnnualMaxCapacity(r,'NUG2PH3',2018) = 0;
+TotalAnnualMaxCapacity(r,'NUG2PH3',2019) = 0;
+TotalAnnualMaxCapacity(r,'NUG2PH3',2020) = 0;
+TotalAnnualMaxCapacity(r,'NUG2PH3',2021) = 0;
+
+TotalAnnualMaxCapacity(r,'NUG3PH3',2015) = 0;
+TotalAnnualMaxCapacity(r,'NUG3PH3',2016) = 0;
+TotalAnnualMaxCapacity(r,'NUG3PH3',2017) = 0;
+TotalAnnualMaxCapacity(r,'NUG3PH3',2018) = 0;
+TotalAnnualMaxCapacity(r,'NUG3PH3',2019) = 0;
+TotalAnnualMaxCapacity(r,'NUG3PH3',2020) = 0;
+TotalAnnualMaxCapacity(r,'NUG3PH3',2021) = 0;
 
 TotalAnnualMinCapacity(r,t,y) = 0;
 
