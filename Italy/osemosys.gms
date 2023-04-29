@@ -24,7 +24,7 @@
 * declarations for sets, parameters, variables
 $eolcom #
 $offlisting
-*$if not set scen $setglobal scen base
+$if not set scen $setglobal scen base
 $include osemosys_dec.gms
 * specify Model data
 $include italy_data.gms
