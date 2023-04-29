@@ -4136,7 +4136,7 @@ parameter TotalAnnualMaxCapacityInvestment(r,t,y) /
     ITALY.WIOFPN2.2018 0.5
     ITALY.WIOFPN2.2019 0.4
     ITALY.WIOFPN2.2020 0.4
-    ITALY.WIOFPN2.(2021*2060) 0.5
+    ITALY.WIOFPN3.(2021*2060) 0.5
     
     ITALY.WIONPN3.(2015*2017) 0.4  
     ITALY.WIONPN3.2018 0.5
@@ -4152,7 +4152,7 @@ TotalAnnualMaxCapacityInvestment(r,t,y)$(TotalAnnualMaxCapacityInvestment(r,t,y)
 TotalAnnualMaxCapacityInvestment(r,'HFGCPH3',y) = 0;
 TotalAnnualMaxCapacityInvestment(r,'NGCHPH3',y) = 0;
 TotalAnnualMaxCapacityInvestment(r,'NGGCPH2',y) = 0;
-TotalAnnualMaxCapacityInvestment(r,'WIOFPN3',y) = 0;
+
 TotalAnnualMaxCapacityInvestment(r,'WIONPH3',y) = 0;
 
 TotalAnnualMinCapacityInvestment(r,t,y) = 0;
