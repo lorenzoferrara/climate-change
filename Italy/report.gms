@@ -45,13 +45,13 @@ rep_fen_tot('%scen%',r,y) = sum(final_demand(f), AccumulatedAnnualDemand(r,f,y) 
 * we consider energy sources that can be used as fuels for transport,
 * heating or to produce electricity, i.e. the primary_fuel set.
 
-rep_pes_tot('%scen%',r,y) = sum(primary_fuel(f), ProductionAnnual.L(r,f,y));
+rep_pes_tot('%scen%',r,y) = sum(primary_fuel(f), PRODUCTIONANNUAL.L(r,f,y));
 
 *------------------------------------------------------------------------	
 *    - share of primary energy sources [%]       
 *------------------------------------------------------------------------
 
-rep_pes_share('%scen%',r,f,y)$(primary_fuel(f) and rep_pes_tot('%scen%',r,y) ) = 100.*ProductionAnnual.L(r,f,y)/rep_pes_tot('%scen%',r,y);
+rep_pes_share('%scen%',r,f,y)$(primary_fuel(f) and rep_pes_tot('%scen%',r,y) ) = 100.*PRODUCTIONANNUAL.L(r,f,y)/rep_pes_tot('%scen%',r,y);
 
 *------------------------------------------------------------------------	
 *    - total electricity production [PJ/yr]       
@@ -66,14 +66,14 @@ ftm_elec(f,t,m) = yes$(sum((r,y)$(primary_fuel(f) and InputActivityRatio(r,t,f,m
 * ProductionAnnual is only per fuel. We need a variable which is indexed
 * by technology, e.g. RateOfProductionByTechnologyByMode.
 rep_elec_tot('%scen%',r,y) = sum((f,t,m,l)$ftm_elec(f,t,m),
-    RateOfProductionByTechnologyByMode.l(r,l,t,m,'E1',y)*YearSplit(l,y));
+    RATEOFPRODUCTIONBYTECHNOLOGYBYMODE.l(r,l,t,m,'E1',y)*YearSplit(l,y));
 *rep_elec_tot('%scen%',r,y)$(rep_elec_tot('%scen%',r,y)<EPS) = 1e-9;
 
 *------------------------------------------------------------------------	
 *    - share of electricity production by primary energy source [%]       
 *------------------------------------------------------------------------
 rep_elec_share('%scen%',r,f,y)$primary_fuel(f) = 100.*sum((t,m,l)$ftm_elec(f,t,m),
-    RateOfProductionByTechnologyByMode.l(r,l,t,m,'E1',y)*YearSplit(l,y));
+    RATEOFPRODUCTIONBYTECHNOLOGYBYMODE.l(r,l,t,m,'E1',y)*YearSplit(l,y));
 */rep_elec_tot('%scen%',r,y);
 
 *------------------------------------------------------------------------	
@@ -81,21 +81,21 @@ rep_elec_share('%scen%',r,f,y)$primary_fuel(f) = 100.*sum((t,m,l)$ftm_elec(f,t,m
 *------------------------------------------------------------------------
 
 * Having power_plants, it is just a matter of summing TotalCapacityAnnual over power_plants
-rep_capacity_elec_tot('%scen%',r,y) = sum(power_plants(t), TotalCapacityAnnual.l(r,t,y));
+rep_capacity_elec_tot('%scen%',r,y) = sum(power_plants(t), TOTALCAPACITYANNUAL.l(r,t,y));
 
 
 *------------------------------------------------------------------------	
 *    - share of capacity for electricity production by technology       
 *------------------------------------------------------------------------
 
-rep_capacity_elec_share('%scen%',r,t,y)$power_plants(t) = 100.*TotalCapacityAnnual.l(r,t,y)/rep_capacity_elec_tot('%scen%',r,y);
+rep_capacity_elec_share('%scen%',r,t,y)$power_plants(t) = 100.*TOTALCAPACITYANNUAL.l(r,t,y)/rep_capacity_elec_tot('%scen%',r,y);
 
 *------------------------------------------------------------------------	
 *    - total investments in capacity for electricity production [M$]       
 *------------------------------------------------------------------------
 
 * Like capacity, with the variable used for investment accounting.
-rep_investment_elec_tot('%scen%',r,y) = sum(t$power_plants(t), CapitalInvestment.l(r,t,y));
+rep_investment_elec_tot('%scen%',r,y) = sum(t$power_plants(t), CAPITALINVESTMENT.l(r,t,y));
 
 
 *------------------------------------------------------------------------	
@@ -104,14 +104,14 @@ rep_investment_elec_tot('%scen%',r,y) = sum(t$power_plants(t), CapitalInvestment
 
 * We condition also on rep_investmenpower_plants_tot to avoid division by 0 if no
 * investments are done in certain years.
-rep_investment_elec_share('%scen%',r,t,y)$(power_plants(t) and rep_investment_elec_tot('%scen%',r,y)) = 100.*CapitalInvestment.l(r,t,y)/rep_investment_elec_tot('%scen%',r,y);
+rep_investment_elec_share('%scen%',r,t,y)$(power_plants(t) and rep_investment_elec_tot('%scen%',r,y)) = 100.*CAPITALINVESTMENT.l(r,t,y)/rep_investment_elec_tot('%scen%',r,y);
 
 
 *------------------------------------------------------------------------	
 *    - total CO2 emissions [GtonCO2]       
 *------------------------------------------------------------------------
 
-rep_co2emiss_tot('%scen%',r,y) = AnnualEmissions.l(r,'co2',y) + AnnualExogenousEmission(r,'co2',y);
+rep_co2emiss_tot('%scen%',r,y) = ANNUALEMISSIONS.l(r,'co2',y) + AnnualExogenousEmission(r,'co2',y);
 
 *------------------------------------------------------------------------	
 *    - share of CO2 emissions by final energy end use and primary energy [%]       
@@ -122,13 +122,13 @@ rep_co2emiss_tot('%scen%',r,y) = AnnualEmissions.l(r,'co2',y) + AnnualExogenousE
 * level of IMP* technologies (i.e. boxes representing import of primary
 * fuels).
 
-rep_co2emiss_by_fuel('%scen%',r,f,y) = sum((t,m)$(OutputActivityRatio(r,t,f,m,y) and EmissionActivityRatio(r,t,'co2',m,y)), EmissionActivityRatio(r,t,'co2',m,y)*ProductionByTechnologyAnnual.l(r,t,f,y));
+rep_co2emiss_by_fuel('%scen%',r,f,y) = sum((t,m)$(OutputActivityRatio(r,t,f,m,y) and EmissionActivityRatio(r,t,'co2',m,y)), EmissionActivityRatio(r,t,'co2',m,y)*PRODUCTIONBYTECHNOLOGYANNUAL.l(r,t,f,y));
 
 *------------------------------------------------------------------------	
 *   - cost wrt base case
 *------------------------------------------------------------------------
 
-$if not %scen%=="base" rep_cost_wrt_base('%scen%',r) = 100*(ModelPeriodCostByRegion.l(r)/cost_base.l(r)-1);
+$if not %scen%=="base" rep_cost_wrt_base('%scen%',r) = 100*(MODELPERIODCOSTBYREGION.l(r)/cost_base.l(r)-1);
 
 
 execute_unload 'report_%scen%.gdx',
