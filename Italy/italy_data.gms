@@ -662,7 +662,7 @@ parameter AvailabilityFactor(r,t,y) /
     AvailabilityFactor(r,'NGHPFH1',y) = .97;
     AvailabilityFactor(r,'NGHPPH2',y) = .97;
     AvailabilityFactor(r,'NGSTPH2',y) = .8;
-*AvailabilityFactor(r,'NUG3PH3',y) = .81;
+    AvailabilityFactor(r,'NUG3PH3',y) = .81;
     AvailabilityFactor(r,'WSCHPH2',y) = .8;
     AvailabilityFactor(r,'WSSTPH1',y) = .7;
     AvailabilityFactor(r,'BMCSPN2',y) = .85;
@@ -670,7 +670,7 @@ parameter AvailabilityFactor(r,t,y) /
     AvailabilityFactor(r,'NGCSPN2',y) = .85;
 
     AvailabilityFactor(r,t,y)$(AvailabilityFactor(r,t,y) = 0) = 1;
-    AvailabilityFactor(r,'NUG3PH3',y)$(AvailabilityFactor(r,'NUG3PH3',y) = 1) = 0;
+*AvailabilityFactor(r,'NUG3PH3',y)$(AvailabilityFactor(r,'NUG3PH3',y) = 1) = 0;
 
 parameter OperationalLife(r,t) /
 
@@ -4115,6 +4115,20 @@ TotalAnnualMaxCapacity(r,'NUG3PH3','2018') = 0;
 TotalAnnualMaxCapacity(r,'NUG3PH3','2019') = 0;
 TotalAnnualMaxCapacity(r,'NUG3PH3','2020') = 0;
 TotalAnnualMaxCapacity(r,'NUG3PH3','2021') = 0;
+TotalAnnualMaxCapacity(r,'NUG3PH3','2022') = 0;
+TotalAnnualMaxCapacity(r,'NUG3PH3','2023') = 0;
+TotalAnnualMaxCapacity(r,'NUG3PH3','2024') = 0;
+TotalAnnualMaxCapacity(r,'NUG3PH3','2025') = 0;
+TotalAnnualMaxCapacity(r,'NUG3PH3','2026') = 0;
+TotalAnnualMaxCapacity(r,'NUG3PH3','2027') = 0;
+TotalAnnualMaxCapacity(r,'NUG3PH3','2028') = 0;
+TotalAnnualMaxCapacity(r,'NUG3PH3','2029') = 0;
+TotalAnnualMaxCapacity(r,'NUG3PH3','2030') = 0;
+TotalAnnualMaxCapacity(r,'NUG3PH3','2031') = 0;
+TotalAnnualMaxCapacity(r,'NUG3PH3','2032') = 0;
+TotalAnnualMaxCapacity(r,'NUG3PH3','2033') = 0;
+TotalAnnualMaxCapacity(r,'NUG3PH3','2034') = 0;
+TotalAnnualMaxCapacity(r,'NUG3PH3','2035') = 0;
 
 TotalAnnualMinCapacity(r,t,y) = 0;
 
@@ -4154,6 +4168,23 @@ parameter TotalAnnualMaxCapacityInvestment(r,t,y) /
     ITALY.WIONPN3.2020 0.4
     ITALY.WIONPN3.(2021*2060) 0.5
     
+*test in limiting some tech investment dati da trovare!
+
+    ITALY.BFHPFH1.(2015*2060) 0.1
+    ITALY.BMCCPH1.(2015*2060) 0.1
+    ITALY.BMCHPH3.(2015*2060) 0.1
+    ITALY.BMSTPH3.(2015*2060) 0.1
+
+    ITALY.HYDMPH0.(2015*2060) 0.05
+    ITALY.HYDMPH1.(2015*2060) 0.5
+    ITALY.HYDMPH2.(2015*2060) 0.1
+    ITALY.HYDMPH3.(2015*2060) 0.05
+    ITALY.HYDSPH2.(2015*2060) 1
+    ITALY.HYDSPH3.(2015*2060) 1
+    
+    ITALY.WSCHPH2.(2015*2021) 0.5
+    ITALY.WSSTPH1.(2015*2021) 0.5
+
 
 /;
 
