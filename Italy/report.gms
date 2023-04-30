@@ -11,10 +11,10 @@ parameter rep_capacity_elec_tot(*,r,y) 'GW';
 parameter rep_capacity_elec_share(*,r,t,y) '%';
 parameter rep_investment_elec_tot(*,r,y) 'M$';
 parameter rep_investment_elec_share(*,r,t,y) '%';
-parameter rep_co2emiss_tot(*,r,y) 'GtonCO2';
-parameter rep_co2emiss_by_fuel(*,r,f,y) 'GtonCO2';
+parameter rep_co2emiss_tot(*,r,y) 'MtonCO2';
+parameter rep_co2emiss_by_fuel(*,r,f,y) 'MtonCO2';
 parameter rep_sen_by_fen(*,r,ff,f,y) 'Amount of fuel ff used to feed f [PJ/yr]';
-parameter rep_co2emiss_by_fen(*,r,f,y) 'GtonCO2';
+parameter rep_co2emiss_by_fen(*,r,f,y) 'MtonCO2';
 parameter rep_co2emiss_share_fen(*,r,f,y) '%';
 parameter rep_cost_wrt_base(*,r) '%';
 
