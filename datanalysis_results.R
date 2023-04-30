@@ -8,7 +8,6 @@ file_directory <- "Italy"
 complete_directory <- here::here()
 #complete_directory = "C:/Users/ghesi/Documents/GitHub/climate-change"
 all_gdx <- c(Sys.glob(here::here(file_directory,"results_*.gdx")))
-all_gdx
 
 osemosys_sanitize_2 <- function(.x) {
   .x[, scen := basename(gdx)]
@@ -18,17 +17,19 @@ osemosys_sanitize_2 <- function(.x) {
   # .x[, V1 := NULL]
   }
 
-storaged_water <- batch_extract("STORAGELEVELYEARFINISH",all_gdx)[[1]] |> setDT() |> osemosys_sanitize_2()
-{x11()
-  ggplot(storaged_water) +
-    geom_line(aes(x=as.numeric(YEAR),y=value,color=scen))
-}
+# storaged_water <- batch_extract("STORAGELEVELYEARFINISH",all_gdx)[[1]] |> setDT() |> osemosys_sanitize_2()
+# {x11()
+#   ggplot(storaged_water) +
+#     geom_line(aes(x=as.numeric(YEAR),y=value,color=scen))
+# }
 
 emissions <- batch_extract("ANNUALEMISSIONS",all_gdx)[[1]] |> setDT() |> osemosys_sanitize_2()
 {
-  # x11()
-  ggplot(emissions[emissions$EMISSION=="CO2"]) +
-    geom_line(aes(x=as.numeric(YEAR),y=value,color=scen))
+  x11()
+  ggplot(emissions |> filter(EMISSION=="CO2")) +
+    geom_line(aes(x=as.numeric(YEAR),y=value,color=scen))+ 
+    labs(title = "Emissions", x = "year", y = "Emission [MtonCo2]") +
+    theme_bw()
 }
 
 
@@ -38,35 +39,21 @@ emissions <- batch_extract("ANNUALEMISSIONS",all_gdx)[[1]] |> setDT() |> osemosy
 prod <- batch_extract("PRODUCTIONBYTECHNOLOGYANNUAL",all_gdx)[[1]] |> setDT() |> osemosys_sanitize_2()
 prod = prod[prod$FUEL=="E1"]
 
-temp = prod$TECHNOLOGY
-prod$TECH=temp
-
-for(i in unique(temp)){
-  
+prod$TECH=prod$TECHNOLOGY
+for(i in unique(prod$TECHNOLOGY)){
   prod$TECH[prod$TECH==i] = substr(i, start=1, stop=2)
-  print(i)
 }
 
-prod2=matrix(0,(60-15+1)*length(unique(prod$TECH))*length(unique(prod$scen)),4)
-k=1
-for(year in 2015:2060){
-  for(technology in unique(prod$TECH)){
-    for(scenario in unique(prod$scen)){
-      prod2[k,1] = year
-      prod2[k,2] = technology
-      prod2[k,3] = sum(prod[prod$YEAR==year & prod$TECH==technology & prod$scen==scenario,5])
-      prod2[k,4] = scenario
-      k=k+1
-    }
-  }
-}
-prod2=as.data.frame(prod2)
-colnames(prod2)=c('YEAR', 'TECH', 'value', 'scen')
-prod2$value = round(as.numeric(prod2$value),2)
+prod3 = prod |> 
+  group_by(scen,TECH,YEAR) |>
+  summarise(value = sum(value))
+prod3$value = round(as.numeric(prod3$value),2)
+
+
 {
   x11()
-  ggplot(prod2[prod2$value!=0,]) +
-  # ggplot(prod2) +
+  ggplot(prod3[prod3$value!=0,]) +
+    # ggplot(prod2) +
     geom_area(aes(x=as.numeric(YEAR),y=value,fill=TECH)) +
     facet_wrap(scen~.,) +
     xlab("year") + ylab("POWER [GW]") + theme_pubr() 
@@ -84,25 +71,14 @@ cap$TECH=temp
 
 for(i in unique(temp)){
   cap$TECH[cap$TECH==i] = substr(i, start=1, stop=2)
-  print(i)
 }
 
-cap2=matrix(0,(60-15+1)*length(unique(cap$TECH))*length(unique(cap$scen)),4)
-k=1
-for(year in 2015:2060){
-  for(technology in unique(cap$TECH)){
-    for(scenario in unique(cap$scen)){
-      cap2[k,1] = year
-      cap2[k,2] = technology
-      cap2[k,3] = sum(cap[cap$YEAR==year & cap$TECH==technology & cap$scen==scenario,]$value)
-      cap2[k,4] = scenario
-      k=k+1
-    }
-  }
-}
-cap2=as.data.frame(cap2)
-colnames(cap2)=c('YEAR', 'TECH', 'value', 'scen')
-cap2$value = round(as.numeric(cap2$value),2)
+cap2 = cap |> 
+  group_by(scen,TECH,YEAR) |>
+  summarise(value = sum(value))
+cap2$value = round(as.numeric(cap3$value),2)
+
+
 {
   x11()
   ggplot(cap2[cap2$value!=0,]) +
@@ -111,4 +87,3 @@ cap2$value = round(as.numeric(cap2$value),2)
     facet_wrap(scen~.,) +
     xlab("year") + ylab("POWER [GW]") + theme_pubr() 
 }
-

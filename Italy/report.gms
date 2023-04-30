@@ -67,14 +67,12 @@ ftm_elec(f,t,m) = yes$(sum((r,y)$(primary_fuel(f) and InputActivityRatio(r,t,f,m
 * by technology, e.g. RateOfProductionByTechnologyByMode.
 rep_elec_tot('%scen%',r,y) = sum((f,t,m,l)$ftm_elec(f,t,m),
     RATEOFPRODUCTIONBYTECHNOLOGYBYMODE.l(r,l,t,m,'E1',y)*YearSplit(l,y));
-*rep_elec_tot('%scen%',r,y)$(rep_elec_tot('%scen%',r,y)<EPS) = 1e-9;
 
 *------------------------------------------------------------------------	
 *    - share of electricity production by primary energy source [%]       
 *------------------------------------------------------------------------
 rep_elec_share('%scen%',r,f,y)$primary_fuel(f) = 100.*sum((t,m,l)$ftm_elec(f,t,m),
-    RATEOFPRODUCTIONBYTECHNOLOGYBYMODE.l(r,l,t,m,'E1',y)*YearSplit(l,y));
-*/rep_elec_tot('%scen%',r,y);
+    RATEOFPRODUCTIONBYTECHNOLOGYBYMODE.l(r,l,t,m,'E1',y)*YearSplit(l,y))/rep_elec_tot('%scen%',r,y);
 
 *------------------------------------------------------------------------	
 *    - total capacity for electricity production [GW]       
