@@ -4,18 +4,21 @@ require(gdxtools)
 require(witchtools)
 require(ggpubr)
 
-file_directory <- "Italy"
+file_directory <- "~/GitHub/climate-change/Italy"
 complete_directory <- here::here()
-#complete_directory = "C:/Users/ghesi/Documents/GitHub/climate-change"
 all_gdx <- c(Sys.glob(here::here(file_directory,"results_*.gdx")))
 
-osemosys_sanitize_2 <- function(.x) {
+igdx('C:/GAMS/42')
+
+osemosys_sanitize <- function(.x) {
   .x[, scen := basename(gdx)]
   .x[, scen := str_replace(scen,"results_","")]
   .x[, scen := str_replace(scen,".gdx","")]
-  .x[, gdx := NULL]
-  # .x[, V1 := NULL]
-  }
+  .x[, gdx := NULL]}
+
+################################################################################
+########### PLOT SHARE OF FUEL USED ############################################
+################################################################################
 
 # storaged_water <- batch_extract("STORAGELEVELYEARFINISH",all_gdx)[[1]] |> setDT() |> osemosys_sanitize_2()
 # {x11()
@@ -23,18 +26,22 @@ osemosys_sanitize_2 <- function(.x) {
 #     geom_line(aes(x=as.numeric(YEAR),y=value,color=scen))
 # }
 
+################################################################################
+########### PLOT EMISSIONS #####################################################
+################################################################################
+
 emissions <- batch_extract("ANNUALEMISSIONS",all_gdx)[[1]] |> setDT() |> osemosys_sanitize_2()
 {
   x11()
   ggplot(emissions |> filter(EMISSION=="CO2")) +
     geom_line(aes(x=as.numeric(YEAR),y=value,color=scen))+ 
-    labs(title = "Emissions", x = "year", y = "Emission [MtonCo2]") +
+    labs(title = "Emissions [Mton/yr]",subtitle = "Only emissions of CO2", x = "year", y = "Emission [MtonCo2]") +
     theme_bw()
 }
 
-
-############################################################################
-# PRODUCTIONBYTECHNOLOGYANNUAL
+################################################################################
+########### PLOT PRODUCTION BY TECHNOLOGY ######################################
+################################################################################
 
 prod <- batch_extract("PRODUCTIONBYTECHNOLOGYANNUAL",all_gdx)[[1]] |> setDT() |> osemosys_sanitize_2()
 prod = prod[prod$FUEL=="E1"]
@@ -53,15 +60,15 @@ prod3$value = round(as.numeric(prod3$value),2)
 {
   x11()
   ggplot(prod3[prod3$value!=0,]) +
-    # ggplot(prod2) +
     geom_area(aes(x=as.numeric(YEAR),y=value,fill=TECH)) +
+    labs(title = "Production by Technology [GW/yr]", subtitle = "Energy production by set of technology using the same fuel") +
     facet_wrap(scen~.,) +
-    xlab("year") + ylab("POWER [GW]") + theme_pubr() 
+    xlab("year") + ylab("Power [GW]") + theme_pubr() 
 }
 
-################################################################################################
-#ACCUMULATED CAPACITY
-
+################################################################################
+########### PLOT ACCUMULATED CAPACITY ##########################################
+################################################################################
 
 cap <- batch_extract("ACCUMULATEDNEWCAPACITY",all_gdx)[[1]] |> setDT() |> osemosys_sanitize_2()
 cap = cap[cap$value!=99999]
@@ -78,12 +85,16 @@ cap2 = cap |>
   summarise(value = sum(value))
 cap2$value = round(as.numeric(cap3$value),2)
 
-
 {
   x11()
   ggplot(cap2[cap2$value!=0,]) +
-    # ggplot(cap2) +
     geom_area(aes(x=as.numeric(YEAR),y=value,fill=TECH)) +
     facet_wrap(scen~.,) +
     xlab("year") + ylab("POWER [GW]") + theme_pubr() 
 }
+
+############################################################################################
+############################################################################################
+############################################################################################
+
+# Last modified: Matteo Ghesini, 30/04/2023
