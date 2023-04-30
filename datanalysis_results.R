@@ -1,3 +1,4 @@
+
 require(data.table)
 require(tidyverse)
 require(gdxtools)
@@ -51,15 +52,15 @@ for(i in unique(prod$TECHNOLOGY)){
   prod$TECH[prod$TECH==i] = substr(i, start=1, stop=2)
 }
 
-prod3 = prod |> 
+prod2 = prod |> 
   group_by(scen,TECH,YEAR) |>
   summarise(value = sum(value))
-prod3$value = round(as.numeric(prod3$value),2)
+prod2$value = round(as.numeric(prod2$value),2)
 
 
 {
   x11()
-  ggplot(prod3[prod3$value!=0,]) +
+  ggplot(prod2[prod2$value!=0,]) +
     geom_area(aes(x=as.numeric(YEAR),y=value,fill=TECH)) +
     labs(title = "Production by Technology [GW/yr]", subtitle = "Energy production by set of technology using the same fuel") +
     facet_wrap(scen~.,) +
@@ -83,7 +84,7 @@ for(i in unique(temp)){
 cap2 = cap |> 
   group_by(scen,TECH,YEAR) |>
   summarise(value = sum(value))
-cap2$value = round(as.numeric(cap3$value),2)
+cap2$value = round(as.numeric(cap2$value),2)
 
 {
   x11()

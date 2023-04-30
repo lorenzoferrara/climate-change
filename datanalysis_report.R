@@ -58,7 +58,18 @@ tot_en <- full_join(fen_tot  %>% rename(final_energy=value),
   x11()
   ggplot(tot_en %>% pivot_longer(c(fuel_supply,elec_prod,final_energy))) + 
     labs(title = "Amount of energy [PJ/yr]", subtitle = "total final energy, total primary energy supply, total electricity production") + 
-    geom_line(aes(x=as.numeric(y),y=value,color=name)) + xlab("year") + ylab("value [PJ]")
+    geom_line(aes(x=as.numeric(y),y=value,color=name)) + 
+    xlab("year") + ylab("value [PJ]") + 
+    facet_wrap(scen~.,)
+}
+
+{
+  x11()
+  ggplot(tot_en %>% pivot_longer(c(fuel_supply,elec_prod,final_energy))) + 
+    labs(title = "Amount of energy [PJ/yr]", subtitle = "total final energy, total primary energy supply, total electricity production") + 
+    geom_line(aes(x=as.numeric(y),y=value,color=scen)) + 
+    xlab("year") + ylab("value [PJ]") + 
+    facet_wrap(name~.,)
 }
 
 ################################################################################
@@ -68,11 +79,13 @@ tot_en <- full_join(fen_tot  %>% rename(final_energy=value),
 {
   x11()
   ggplot(tot_en %>% 
-           mutate(efficency=final_energy/fuel_supply,elec_share=elec_prod/fuel_supply) %>% 
-           pivot_longer(c(efficency,elec_share))) +
+           mutate(efficiency=final_energy/fuel_supply,elec_share=elec_prod/fuel_supply) %>% 
+           pivot_longer(c(efficiency,elec_share))) +
     labs(title = "Miscellanious [%]", subtitle = "Efficency, Fuel used for electricity") +
-    geom_line(aes(x=as.numeric(y),y=value,color=scen,linetype=name), linewidth=2) + theme_pubr() + ylim(c(0,1))  + 
-    xlab("year") + ylab("value [%]")
+    geom_line(aes(x=as.numeric(y),y=value,color=scen), linewidth=1.5) + theme_bw() + 
+    # ylim(c(0,1))  + 
+    xlab("year") + ylab("value [%]") + 
+    facet_wrap(name~.,)
 }
 
 ############################################################################################
