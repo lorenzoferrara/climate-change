@@ -291,16 +291,8 @@ DepreciationMethod(r) = 1;
 *------------------------------------------------------------------------
 * Parameters - Demands
 *------------------------------------------------------------------------
-*Sintassi okay, dati da aggiornare
+
 parameter SpecifiedAnnualDemand(r,f,y) /
-*dati vecchi di OSeMBE
-*ITALY.E2.2015   1058.76
-*ITALY.E2.2016   1066.09
-*ITALY.E2.2017   1073.43
-*ITALY.E2.2018   1080.76
-*ITALY.E2.2019   1088.1
-*ITALY.E2.2020   1095.43 ehh non potevano immaginare cosa sarebbe successo nel 2020
-*ITALY.E2.2021   1096.88
 *dati reali
     ITALY.E2.2015   1140.83
     ITALY.E2.2016   1131.34
@@ -349,45 +341,10 @@ parameter SpecifiedAnnualDemand(r,f,y) /
     ITALY.E2.2058    1766.88
     ITALY.E2.2059    1776.24
     ITALY.E2.2060    1785.6
-*ITALY.E2.2023   1099.78
-*ITALY.E2.2024   1101.23
-*ITALY.E2.2025   1102.68
-*ITALY.E2.2026   1108.04
-*ITALY.E2.2027   1113.4
-*ITALY.E2.2028   1118.75
-*ITALY.E2.2029   1124.11
-*ITALY.E2.2030   1129.47
-*ITALY.E2.2031   1145.35
-*ITALY.E2.2032   1161.23
-*ITALY.E2.2033   1177.1
-*ITALY.E2.2034   1192.98
-*ITALY.E2.2035   1208.85
-*ITALY.E2.2036   1225.71
-*ITALY.E2.2037   1242.57
-*ITALY.E2.2038   1259.42
-*ITALY.E2.2039   1276.28
-*ITALY.E2.2040   1293.14
-*ITALY.E2.2041   1306.33
-*ITALY.E2.2042   1319.53
-*ITALY.E2.2043   1332.73
-*ITALY.E2.2044   1345.92
-*ITALY.E2.2045   1359.12
-*ITALY.E2.2046   1371.61
-*ITALY.E2.2047   1384.11
-*ITALY.E2.2048   1396.6
-*ITALY.E2.2049   1409.09
-*ITALY.E2.2050   1421.59
-*ITALY.E2.2051   1430.12
-*ITALY.E2.2052   1438.7
-*ITALY.E2.2053   1447.33
-*ITALY.E2.2054   1456.01
-*ITALY.E2.2055   1464.75
-*ITALY.E2.2056   1473.54
-*ITALY.E2.2057   1482.38
-*ITALY.E2.2058   1491.27
-*ITALY.E2.2059   1500.22
-*ITALY.E2.2060   1509.22
+
 /;
+
+SpecifiedAnnualDemand(r,f,y)*0.87=SpecifiedAnnualDemand(r,f,y);
 
 parameter SpecifiedDemandProfile(r,f,l,y) /
     ITALY.E2.S01B1.(2015*2060) 0.031735813
@@ -415,7 +372,8 @@ AccumulatedAnnualDemand(r,f,y)=0;
 * Parameters - Performance
 *------------------------------------------------------------------------
 
-*Tech which had 31536 in OSeMBE were put in power_plants
+*Tech which had 31.536 in OSeMBE were put in power_plants
+*PJ produced by a 1GW plant in one year
 CapacityToActivityUnit(r,t)$power_plants(t) = 31.536;
 CapacityToActivityUnit(r,t)$(CapacityToActivityUnit(r,t) = 0) = 1;
 
@@ -4263,7 +4221,7 @@ parameter EmissionActivityRatio(r,t,e,m,y) /
     ITALY.OI00I00.CO2.1.(2015*2060)  0.0700778
     ITALY.OI00X00.CO2.1.(2015*2060)  0.0700778
 
-*dato un po' incerto
+*dato strano, da rivedere!
     ITALY.WS00X00.CO2.1.(2015*2060)  0.131
 
 *biomass considered net zero
