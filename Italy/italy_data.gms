@@ -4088,6 +4088,12 @@ TotalAnnualMaxCapacity(r,'NUG3PH3','2034') = 0;
 TotalAnnualMaxCapacity(r,'NUG3PH3','2035') = 0;
 
 TotalAnnualMinCapacity(r,t,y) = 0;
+*PNIEC 2030
+TotalAnnualMinCapacity(r,'SOUTPH2','2030') = 51;
+TotalAnnualMinCapacity(r,'WIOFPN2','2030') = 2;
+TotalAnnualMinCapacity(r,'WIOFPN3','2030') = 1;
+TotalAnnualMinCapacity(r,'WIONPN3','2030') = 10;
+
 
 parameter TotalAnnualMaxCapacityInvestment(r,t,y) /
 *ITALY.NUG3PH3.(2015*2060) 3
@@ -4123,7 +4129,10 @@ parameter TotalAnnualMaxCapacityInvestment(r,t,y) /
     ITALY.WIONPN3.2018 0.5
     ITALY.WIONPN3.2019 0.4
     ITALY.WIONPN3.2020 0.4
-    ITALY.WIONPN3.(2021*2060) 0.5
+*ITALY.WIONPN3.(2021*2060) 0.5
+    ITALY.WIONPN3.(2021*2060) 2
+*per rendere risolvibile applicando le proiezioni del PNIEC!!!!!    
+
     
 *test in limiting some tech investment dati da trovare!
 

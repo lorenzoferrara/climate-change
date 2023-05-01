@@ -11,7 +11,7 @@ all_gdx <- c(Sys.glob(here::here(file_directory,"results_*.gdx")))
 
 igdx('C:/GAMS/42')
 
-osemosys_sanitize <- function(.x) {
+osemosys_sanitize_2 <- function(.x) {
   .x[, scen := basename(gdx)]
   .x[, scen := str_replace(scen,"results_","")]
   .x[, scen := str_replace(scen,".gdx","")]
