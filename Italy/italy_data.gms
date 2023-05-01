@@ -4056,13 +4056,10 @@ parameter TotalAnnualMaxCapacity(r,t,y) /
         ITALY.WIONPN3.(2015*2021) 0.5
         ITALY.WSCHPH2.(2015*2021) 0.5
         ITALY.WSSTPH1.(2015*2021) 0.5
-
-        ITALY.COCHPH3.(2026*2050) EPS
-        ITALY.COSTPH1.(2026*2050) EPS
-        ITALY.COSTPH3.(2026*2050) EPS
+        
         ITALY.GOCVPH2.(2022*2060) 1.5
 /;
-TotalAnnualMaxCapacity(r,t,y)$(TotalAnnualMaxCapacity(r,t,y) = 0) = 99999;
+TotalAnnualMaxCapacity(r,t,y)$(TotalAnnualMaxCapacity(r,t,y) = 0 ) = 99999;
 *TotalAnnualMaxCapacity(r,t,y) = 99999;
 
 TotalAnnualMaxCapacity(r,'NUG3PH3','2015') = 0;
@@ -4087,12 +4084,14 @@ TotalAnnualMaxCapacity(r,'NUG3PH3','2033') = 0;
 TotalAnnualMaxCapacity(r,'NUG3PH3','2034') = 0;
 TotalAnnualMaxCapacity(r,'NUG3PH3','2035') = 0;
 
+
+
 TotalAnnualMinCapacity(r,t,y) = 0;
 *PNIEC 2030
 TotalAnnualMinCapacity(r,'SOUTPH2','2030') = 51;
-TotalAnnualMinCapacity(r,'WIOFPN2','2030') = 2;
-TotalAnnualMinCapacity(r,'WIOFPN3','2030') = 1;
-TotalAnnualMinCapacity(r,'WIONPN3','2030') = 10;
+TotalAnnualMinCapacity(r,'WIOFPN2','2030') = 5;
+TotalAnnualMinCapacity(r,'WIOFPN3','2030') = 3;
+TotalAnnualMinCapacity(r,'WIONPN3','2030') = 6;
 
 
 parameter TotalAnnualMaxCapacityInvestment(r,t,y) /
@@ -4130,7 +4129,7 @@ parameter TotalAnnualMaxCapacityInvestment(r,t,y) /
     ITALY.WIONPN3.2019 0.4
     ITALY.WIONPN3.2020 0.4
 *ITALY.WIONPN3.(2021*2060) 0.5
-    ITALY.WIONPN3.(2021*2060) 2
+    ITALY.WIONPN3.(2021*2060) 1
 *per rendere risolvibile applicando le proiezioni del PNIEC!!!!!    
 
     
@@ -4147,10 +4146,6 @@ parameter TotalAnnualMaxCapacityInvestment(r,t,y) /
     ITALY.HYDMPH3.(2015*2060) 0.05
     ITALY.HYDSPH2.(2015*2060) 1
     ITALY.HYDSPH3.(2015*2060) 1
-    
-    ITALY.WSCHPH2.(2015*2021) 0.5
-    ITALY.WSSTPH1.(2015*2021) 0.5
-
 
 /;
 
@@ -4159,8 +4154,17 @@ TotalAnnualMaxCapacityInvestment(r,t,y)$(TotalAnnualMaxCapacityInvestment(r,t,y)
 *TotalAnnualMaxCapacityInvestment(r,'ELMTPH1',y) = 0;   DA CONTROLLARE, SONO TRANSBORDER ENERGY
 *TotalAnnualMaxCapacityInvestment(r,'ELSIPH1',y) = 0;
 TotalAnnualMaxCapacityInvestment(r,'HFGCPH3',y) = 0;
+
+TotalAnnualMaxCapacityInvestment(r,'COCHPH3',y) = 0;
+TotalAnnualMaxCapacityInvestment(r,'COSTPH1',y) = 0;
+TotalAnnualMaxCapacityInvestment(r,'COSTPH3',y) = 0;
+
+
 TotalAnnualMaxCapacityInvestment(r,'NGCHPH3',y) = 0;
 TotalAnnualMaxCapacityInvestment(r,'NGGCPH2',y) = 0;
+
+TotalAnnualMaxCapacityInvestment(r,'WSCHPH2',y) = 0;
+TotalAnnualMaxCapacityInvestment(r,'WSSTPH1',y) = 0;
 
 TotalAnnualMaxCapacityInvestment(r,'WIONPH3',y) = 0;
 
