@@ -21,7 +21,7 @@ osemosys_sanitize_2 <- function(.x) {
 ########### PLOT SHARE OF FUEL USED ############################################
 ################################################################################
 
-# storaged_water <- batch_extract("STORAGELEVELYEARFINISH",all_gdx)[[1]] |> setDT() |> osemosys_sanitize_2()
+# storaged_water <- batch_extract("STORAGELEVELYEARFINISH",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
 # {x11()
 #   ggplot(storaged_water) +
 #     geom_line(aes(x=as.numeric(YEAR),y=value,color=scen))
@@ -31,7 +31,7 @@ osemosys_sanitize_2 <- function(.x) {
 ########### PLOT EMISSIONS #####################################################
 ################################################################################
 
-emissions <- batch_extract("ANNUALEMISSIONS",all_gdx)[[1]] |> setDT() |> osemosys_sanitize_2()
+emissions <- batch_extract("ANNUALEMISSIONS",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
 {
   x11()
   ggplot(emissions |> filter(EMISSION=="CO2")) +
@@ -44,7 +44,7 @@ emissions <- batch_extract("ANNUALEMISSIONS",all_gdx)[[1]] |> setDT() |> osemosy
 ########### PLOT PRODUCTION BY TECHNOLOGY ######################################
 ################################################################################
 
-prod <- batch_extract("PRODUCTIONBYTECHNOLOGYANNUAL",all_gdx)[[1]] |> setDT() |> osemosys_sanitize_2()
+prod <- batch_extract("PRODUCTIONBYTECHNOLOGYANNUAL",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
 prod = prod[prod$FUEL=="E1"]
 
 prod$TECH=prod$TECHNOLOGY
@@ -71,7 +71,7 @@ prod2$value = round(as.numeric(prod2$value),2)
 ########### PLOT ACCUMULATED CAPACITY ##########################################
 ################################################################################
 
-cap <- batch_extract("ACCUMULATEDNEWCAPACITY",all_gdx)[[1]] |> setDT() |> osemosys_sanitize_2()
+cap <- batch_extract("ACCUMULATEDNEWCAPACITY",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
 cap = cap[cap$value!=99999]
 
 temp = cap$TECHNOLOGY
@@ -94,8 +94,37 @@ cap2$value = round(as.numeric(cap2$value),2)
     xlab("year") + ylab("POWER [GW]") + theme_pubr() 
 }
 
-############################################################################################
-############################################################################################
-############################################################################################
+################################################################################
+########### PLOT AMOUNT OF ENERGY PER FUEL #####################################
+################################################################################
+
+prod <- batch_extract("PRODUCTIONBYTECHNOLOGY",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
+
+temp = prod$TECHNOLOGY
+prod$TECH=temp
+
+for(i in unique(temp)){
+  prod$TECH[prod$TECH==i] = substr(i, start=1, stop=2)
+}
+
+prod2 = prod |> 
+  group_by(scen,TECH,YEAR) |>
+  summarise(value = sum(value))
+prod2$value = round(as.numeric(prod2$value),2)
+
+{
+  x11()
+  ggplot(prod2[prod2$value!=0,]) +
+    geom_line(aes(x=as.numeric(YEAR),y=value,color=TECH)) +
+    facet_wrap(scen~.,) + 
+    labs(title = "Production of energy by technology") +
+  xlab("year") + ylab("Production [GW]") + theme_pubr() 
+}
+
+################################################################################
+################################################################################
+################################################################################
 
 # Last modified: Matteo Ghesini, 30/04/2023
+
+

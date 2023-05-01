@@ -36,7 +36,7 @@ fen_tot <- batch_extract("rep_fen_tot",all_gdx)[[1]] |> setDT() |> osemosys_sani
 }
 
 ################################################################################
-########### PLOT SHARE OF ELECTRICITY PRODUCED BYFUEL ##########################
+########### PLOT SHARE OF ELECTRICITY PRODUCED BY FUEL #########################
 ################################################################################
 
 {
@@ -93,3 +93,5 @@ tot_en <- full_join(fen_tot  %>% rename(final_energy=value),
 ############################################################################################
 
 # Last modified: Matteo Ghesini, 30/04/2023
+
+
