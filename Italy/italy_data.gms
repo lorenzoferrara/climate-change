@@ -56,7 +56,7 @@ set TECHNOLOGY      /
         BM00I00 'biomass import'
         BM00X00 'biomass extraction'
         BMCCPH1 'biomass combined cycle size1'
-        BMCHPH3 'biomass combined cycle size3'
+        BMCHPH3 'biomass combined steam size3'
         BMCSPN2 'biomass carbon capture'
         BMSTPH3 'biomass steam cycle'
         CO00I00 'coal import'
@@ -93,7 +93,7 @@ set TECHNOLOGY      /
         NGGCPH2 'natural gas gas cycle, old'
         NGGCPN2 'natural gas gas cycle, new'
         NGHPFH1 'natural gas ICE Heat and Power unit, final use, holding'
-        NGHPPH2 'heavy fuel oil ICE Heat and Power unity, production, holding'
+        NGHPPH2 'natural gas ICE Heat and Power unity, production, holding'
         NGSTPH2 'natural gas steam cycle'
         NUG3PH3 'Nuclear Generation 3'
         OCWVPH1 'ocean wave power production'
@@ -110,8 +110,19 @@ set TECHNOLOGY      /
         WS00X00 'waste generation'
         WSCHPH2 'waste combined heat power'
         WSSTPH1 'waste steam cycle'
+        
+*Plants cooled by sea water
+        BMSTPH3S 'biomass steam cycle size3, SEA WATER'
+        BMCSPN2S 'biomass carbon capture, SEA WATER'
+        HFCCPH2S 'heavy fuel oil combined cycle,SEA WATER'
+        NGCCPH2S 'natural gas combined cycle, SEA WATER'
+        NGCSPN2S 'natural gas carbon capture and storage'
+        NUG3PH3S 'Nuclear Generation 3, SEA WATER'
+        WSSTPH1S 'waste steam cycle, SEA WATER'
 
+*Water technologies
         RIVER 'river source of water'
+        SEA   'sea source of water'
 /;
 
 set     TIMESLICE       /
@@ -145,6 +156,7 @@ set     FUEL /
         UR 'Uranium'
         WS 'Waste'
         HY 'Water'
+        SE 'Sea Water'
 /;
 
 set     EMISSION  /CO2/;
@@ -155,11 +167,11 @@ set     DAYTYPE / 1/;
 set     DAILYTIMEBRACKET / 1, 2, 3 /;
 set     STORAGE / DAM /;
 
-# characterize technologies
+*Characterize technologies
 
 set power_plants(TECHNOLOGY) /BFHPFH1, BMCCPH1, BMCHPH3, BMSTPH3, BMCSPN2, COCSPN2, COCHPH3, COSTPH1, COSTPH3, GOCVPH2, HFCCPH2, HFCHPH3, HFGCPH3, HFGCPN3, HFSTPH2, HFSTPH3, HFHPFH1, HFHPPH2,
                                 HYDMPH0, HYDMPH1, HYDMPH2, HYDMPH3, HYDSPH2, HYDSPH3, NGCCPH2, NGCHPH3, NGCHPN3, NGCSPN2, NGFCFH1, NGGCPH2, NGGCPN2, NGHPFH1, NGHPPH2, NUG3PH3, OCWVPH1, SOUTPH2,
-                                SODIFH1, WIOFPN2, WIOFPN3, WIONPH3, WIONPN3, WSCHPH2, WSSTPH1/;
+                                SODIFH1, WIOFPN2, WIOFPN3, WIONPH3, WIONPN3, WSCHPH2, WSSTPH1,    BMSTPH3S, BMCSPN2S, HFCCPH2S, NGCCPH2S, NGCSPN2S, NUG3PH3S, WSSTPH1S/;
 set storage_plants(TECHNOLOGY) / HYDSPH2, HYDSPH3/;
 set fuel_transformation(TECHNOLOGY) / OIRFPH0/;
 set appliances(TECHNOLOGY) ;
@@ -168,27 +180,26 @@ set primary_imports(TECHNOLOGY) /BM00I00, CO00I00,  OI00I00, NG00I00/;
 set secondary_imports(TECHNOLOGY) /BF00I00, HF00I00/;
 
 set fuel_production(TECHNOLOGY) /BF00X00, BM00X00, CO00X00, GO00X00, NG00X00, WS00X00, OI00X00, UR00I00/;
-*su WS00X00 non sono sicurissima perchè la produzione di waste non è proprio ricercata
+
 set fuel_production_fict(TECHNOLOGY);
 */RIV, SUN, WIN/
 set secondary_production(TECHNOLOGY) /BFHPFH1, BMCCPH1, BMCHPH3, BMSTPH3, BMCSPN2, COCSPN2, COCHPH3, COSTPH1, COSTPH3, GOCVPH2, HFCCPH2, HFCHPH3, HFGCPH3, HFGCPN3, HFSTPH2, HFSTPH3, HFHPFH1, HFHPPH2,
                                 HYDMPH0, HYDMPH1, HYDMPH2, HYDMPH3, HYDSPH2, HYDSPH3, NGCCPH2, NGCHPH3, NGCHPN3, NGCSPN2, NGFCFH1, NGGCPH2, NGGCPN2, NGHPFH1, NGHPPH2, NUG3PH3, OCWVPH1, SOUTPH2,
-                                SODIFH1, WIOFPN2, WIOFPN3, WIONPH3, WIONPN3, WSCHPH2, WSSTPH1, OIRFPH0/;
+                                SODIFH1, WIOFPN2, WIOFPN3, WIONPH3, WIONPN3, WSCHPH2, WSSTPH1, OIRFPH0, BMSTPH3S, BMCSPN2S, HFCCPH2S, NGCCPH2S, NGCSPN2S, NUG3PH3S, WSSTPH1S/;
 
 
-#Characterize fuels
+*Characterize fuels
 
 set primary_fuel(FUEL) /BF, BM, CO, GO, HF, NG, OI, UR, WS/;
 set secondary_carrier(FUEL) / E1/;
 set final_demand(FUEL) /E2 /;
 *non sono sicura, ma sembra siano inutili
 
-
 *------------------------------------------------------------------------
 * Parameters - Global
 *------------------------------------------------------------------------
 
-parameter YearSplit(l,y) /
+parameter YearSplit(l,y)/
     S01B1.(2015*2060)  0.043835616
     S01B2.(2015*2060)  0.109589041
     S01B3.(2015*2060)  0.021917808
@@ -226,7 +237,6 @@ parameter DaySplit(y,lh,ls) /
     (2015*2060).2.5 0.001755618
     (2015*2060).3.5 0.000351124
 /;
-
 
 parameter Conversionls(l,ls) /
     S01B1.1 1
@@ -283,9 +293,7 @@ parameter Conversionlh(l,lh) /
 /;
 
 DaysInDayType(y,ls,ld) = 7;
-
 TradeRoute(r,rr,f,y) = 0;
-
 DepreciationMethod(r) = 1;
 
 *------------------------------------------------------------------------
@@ -341,7 +349,6 @@ parameter SpecifiedAnnualDemand(r,f,y) /
     ITALY.E2.2058    1766.88
     ITALY.E2.2059    1776.24
     ITALY.E2.2060    1785.6
-
 /;
 
 SpecifiedAnnualDemand(r,f,y)=SpecifiedAnnualDemand(r,f,y)*0.87;
@@ -366,7 +373,6 @@ parameter SpecifiedDemandProfile(r,f,l,y) /
 
 *" because it is defined for demands that do not depend on temporal slices, but here we only have E2."
 AccumulatedAnnualDemand(r,f,y)=0;
-
 
 *------------------------------------------------------------------------
 * Parameters - Performance
@@ -464,7 +470,6 @@ CapacityToActivityUnit(r,t)$(CapacityToActivityUnit(r,t) = 0) = 1;
     CapacityFactor(r,'WIONPN3','S05B3',y) = 0.217316319;
 
     CapacityFactor(r,t,l,y)$(CapacityFactor(r,t,l,y) = 0) = 1;
-
 
 parameter AvailabilityFactor(r,t,y) /
     ITALY.BFHPFH1.2015 .6
@@ -587,17 +592,18 @@ parameter AvailabilityFactor(r,t,y) /
     ITALY.OCWVPH1.2058 .384
     ITALY.OCWVPH1.2059 .387
     ITALY.OCWVPH1.2060 .39
-
-    ITALY.NUG3PH3.(2036*2060) .81
+    
 /;
 
     AvailabilityFactor(r,'BMCCPH1',y) = .7;
     AvailabilityFactor(r,'BMSTPH3',y) = .7;
+    AvailabilityFactor(r,'BMSTPH3S',y) = .7;
     AvailabilityFactor(r,'COCHPH3',y) = 0.85;
     AvailabilityFactor(r,'COSTPH1',y) = 0.8;
     AvailabilityFactor(r,'COSTPH3',y) = .8;
     AvailabilityFactor(r,'GOCVPH2',y) = .95;
     AvailabilityFactor(r,'HFCCPH2',y) = .85;
+    AvailabilityFactor(r,'HFCCPH2S',y) = .85;
     AvailabilityFactor(r,'HFCHPH3',y) = .91;
     AvailabilityFactor(r,'HFGCPH3',y) = .15;
     AvailabilityFactor(r,'HFGCPN3',y) = .15;
@@ -611,7 +617,10 @@ parameter AvailabilityFactor(r,t,y) /
     AvailabilityFactor(r,'HYDMPH3',y) = 0.35;
     AvailabilityFactor(r,'HYDSPH2',y) = 0.4;
     AvailabilityFactor(r,'HYDSPH3',y) = 0.35;
+    AvailabilityFactor(r,'NUG3PH3',y) = .81;
+    AvailabilityFactor(r,'NUG3PH3S',y) = .81;
     AvailabilityFactor(r,'NGCCPH2',y) = 0.85;
+    AvailabilityFactor(r,'NGCCPH2S',y) = 0.85;
     AvailabilityFactor(r,'NGCHPH3',y) = .89;
     AvailabilityFactor(r,'NGCHPN3',y) = .86;
     AvailabilityFactor(r,'NGFCFH1',y) = .98;
@@ -620,21 +629,27 @@ parameter AvailabilityFactor(r,t,y) /
     AvailabilityFactor(r,'NGHPFH1',y) = .97;
     AvailabilityFactor(r,'NGHPPH2',y) = .97;
     AvailabilityFactor(r,'NGSTPH2',y) = .8;
-    AvailabilityFactor(r,'NUG3PH3',y) = .81;
     AvailabilityFactor(r,'WSCHPH2',y) = .8;
     AvailabilityFactor(r,'WSSTPH1',y) = .7;
+    AvailabilityFactor(r,'WSSTPH1S',y) = .7;
     AvailabilityFactor(r,'BMCSPN2',y) = .85;
+    AvailabilityFactor(r,'BMCSPN2S',y) = .85;
     AvailabilityFactor(r,'COCSPN2',y) = .85;
     AvailabilityFactor(r,'NGCSPN2',y) = .85;
+    AvailabilityFactor(r,'NGCSPN2S',y) = .85;
 
     AvailabilityFactor(r,t,y)$(AvailabilityFactor(r,t,y) = 0) = 1;
+*Se mettessimo dentro alla dichiarazione precedente (2036*2060) per nucleare, il resto 0 così
 *AvailabilityFactor(r,'NUG3PH3',y)$(AvailabilityFactor(r,'NUG3PH3',y) = 1) = 0;
+*AvailabilityFactor(r,'NUG3PH3',y)$(AvailabilityFactor(r,'NUG3PH3S',y) = 1) = 0;
 
 parameter OperationalLife(r,t) /
 
     ITALY.COCSPN2 40
     ITALY.NGCSPN2 30
+    ITALY.NGCSPN2S 30
     ITALY.BMCSPN2 35
+    ITALY.BMCSPN2S 35
     ITALY.UR00I00 1
 
     ITALY.BF00I00 1
@@ -645,18 +660,18 @@ parameter OperationalLife(r,t) /
     ITALY.BMCCPH1 30
     ITALY.BMCHPH3 25
     ITALY.BMSTPH3 30
+    ITALY.BMSTPH3S 30
     ITALY.CO00I00 1
     ITALY.CO00X00 1
     ITALY.COCHPH3 25
     ITALY.COSTPH1 30
     ITALY.COSTPH3 30
     ITALY.EL00TD0 1
-*ITALY.ELMTPH1 1 DA CONTROLLARE, SONO TRANSBORDER ENERGY
-*ITALY.ELSIPH1 1
     ITALY.GO00X00 1
     ITALY.GOCVPH2 40
     ITALY.HF00I00 1
     ITALY.HFCCPH2 30
+    ITALY.HFCCPH2S 30
     ITALY.HFCHPH3 25
     ITALY.HFGCPH3 25
     ITALY.HFGCPN3 25
@@ -673,6 +688,7 @@ parameter OperationalLife(r,t) /
     ITALY.NG00I00 1
     ITALY.NG00X00 1
     ITALY.NGCCPH2 30
+    ITALY.NGCCPH2S 30
     ITALY.NGCHPH3 25
     ITALY.NGCHPN3 25
     ITALY.NGFCFH1 5
@@ -682,6 +698,7 @@ parameter OperationalLife(r,t) /
     ITALY.NGHPPH2 20
     ITALY.NGSTPH2 30
     ITALY.NUG3PH3 60
+    ITALY.NUG3PH3S 60
     ITALY.OCWVPH1 25
     ITALY.OI00I00 1
     ITALY.OI00X00 1
@@ -695,6 +712,7 @@ parameter OperationalLife(r,t) /
     ITALY.WS00X00 1
     ITALY.WSCHPH2 25
     ITALY.WSSTPH1 30
+    ITALY.WSSTPH1S 30
 /;
 OperationalLife(r,t)$(OperationalLife(r,t) = 0) = 1;
 
@@ -759,16 +777,6 @@ parameter ResidualCapacity(r,t,y) /
     ITALY.COSTPH3.(2023*2025)    2.061
     ITALY.COSTPH3.(2026*2060)    0
 
-*ITALY.ELMTPH1.2015    0.198 DA CONTROLLARE, SONO TRANSBORDER ENERGY
-*ITALY.ELMTPH1.2016    0.201
-*ITALY.ELMTPH1.2017    0.198
-*ITALY.ELMTPH1.2018    0.198
-*ITALY.ELMTPH1.(2019*2060)    0.2
-
-*ITALY.ELSIPH1.2015    1.314
-*ITALY.ELSIPH1.2016    1.454
-*ITALY.ELSIPH1.2017    1.414
-*ITALY.ELSIPH1.(2018*2060)    1.73
 
     ITALY.GOCVPH2.(2015*2020)    0.9464
     ITALY.GOCVPH2.2021    0.9384
@@ -830,12 +838,27 @@ parameter ResidualCapacity(r,t,y) /
     ITALY.HFHPPH2.2031    0.004
     ITALY.HFHPPH2.(2032*2060)    0
 
-    ITALY.HFSTPH2.(2015*2019)    11.502835
-    ITALY.HFSTPH2.2020    11.129335
-    ITALY.HFSTPH2.2021    7.997485
-    ITALY.HFSTPH2.2022    2.55666
-    ITALY.HFSTPH2.(2023*2029)    0.0375
+*In 2021 coastal plants were 1.83GW, 23% (reduced HFSTPH2, 77%)
+*ITALY.HFSTPH2.(2015*2019)    11.502835
+*ITALY.HFSTPH2.2020    11.129335
+*ITALY.HFSTPH2.2021    7.997485
+*ITALY.HFSTPH2.2022    2.55666
+*ITALY.HFSTPH2.(2023*2029)    0.0375
+*ITALY.HFSTPH2.(2030*2060)    0
+
+    ITALY.HFSTPH2.(2015*2019)    8.857
+    ITALY.HFSTPH2.2020    8.570
+    ITALY.HFSTPH2.2021    6.158
+    ITALY.HFSTPH2.2022    1.969
+    ITALY.HFSTPH2.(2023*2029)    0.02888
     ITALY.HFSTPH2.(2030*2060)    0
+    
+    ITALY.HFCCPH2S.(2015*2019)    2.646
+    ITALY.HFCCPH2S.2020    2.560
+    ITALY.HFCCPH2S.2021    0.2288
+    ITALY.HFCCPH2S.2022    0.5880
+    ITALY.HFCCPH2S.(2023*2029)    0.008625
+    ITALY.HFCCPH2S.(2030*2060)    0
 
     ITALY.HYDMPH1.2015    3.096405
     ITALY.HYDMPH1.2016    2.917688
@@ -965,27 +988,72 @@ parameter ResidualCapacity(r,t,y) /
     ITALY.HYDSPH3.2059    3.905
     ITALY.HYDSPH3.2060    3.78
 
-    ITALY.NGCCPH2.(2015*2022)    23.50937
-    ITALY.NGCCPH2.2023    23.08783
-    ITALY.NGCCPH2.2024    22.96433
-    ITALY.NGCCPH2.2025    22.80048
-    ITALY.NGCCPH2.2026    21.94748
-    ITALY.NGCCPH2.2027    21.1642
-    ITALY.NGCCPH2.2028    20.4582
-    ITALY.NGCCPH2.2029    19.9402
-    ITALY.NGCCPH2.2030    18.5182
-    ITALY.NGCCPH2.2031    18.1392
-    ITALY.NGCCPH2.2032    16.8032
-    ITALY.NGCCPH2.2033    15.5282
-    ITALY.NGCCPH2.2034    12.3147
-    ITALY.NGCCPH2.2035    9.6647
-    ITALY.NGCCPH2.2036    7.7352
-    ITALY.NGCCPH2.2037    5.5046
-    ITALY.NGCCPH2.2038    3.072
-    ITALY.NGCCPH2.2039    2.71
-    ITALY.NGCCPH2.2040    1.56
-    ITALY.NGCCPH2.2041    0.52
-    ITALY.NGCCPH2.(2042*2060)    0
+*Helf of residual capacity of NG combined cycle is made of seaside plants
+*   ITALY.NGCCPH2.(2015*2022)    23.50937
+*   ITALY.NGCCPH2.2023    23.08783
+*   ITALY.NGCCPH2.2024    22.96433
+*   ITALY.NGCCPH2.2025    22.80048
+*   ITALY.NGCCPH2.2026    21.94748
+*   ITALY.NGCCPH2.2027    21.1642
+*   ITALY.NGCCPH2.2028    20.4582
+*   ITALY.NGCCPH2.2029    19.9402
+*   ITALY.NGCCPH2.2030    18.5182
+*   ITALY.NGCCPH2.2031    18.1392
+*   ITALY.NGCCPH2.2032    16.8032
+*   ITALY.NGCCPH2.2033    15.5282
+*   ITALY.NGCCPH2.2034    12.3147
+*   ITALY.NGCCPH2.2035    9.6647
+*   ITALY.NGCCPH2.2036    7.7352
+*   ITALY.NGCCPH2.2037    5.5046
+*   ITALY.NGCCPH2.2038    3.072
+*   ITALY.NGCCPH2.2039    2.71
+*   ITALY.NGCCPH2.2040    1.56
+*   ITALY.NGCCPH2.2041    0.52
+*   ITALY.NGCCPH2.(2042*2060)    0
+ITALY.NGCCPH2.(2015*2022)  11.754685
+ITALY.NGCCPH2.2023        11.543915
+ITALY.NGCCPH2.2024        11.482165
+ITALY.NGCCPH2.2025        11.40024
+ITALY.NGCCPH2.2026        10.97374
+ITALY.NGCCPH2.2027        10.5821
+ITALY.NGCCPH2.2028        10.2291
+ITALY.NGCCPH2.2029        9.9701
+ITALY.NGCCPH2.2030        9.2591
+ITALY.NGCCPH2.2031        9.0696
+ITALY.NGCCPH2.2032        8.4016
+ITALY.NGCCPH2.2033        7.7641
+ITALY.NGCCPH2.2034        6.15735
+ITALY.NGCCPH2.2035        4.83235
+ITALY.NGCCPH2.2036        3.8676
+ITALY.NGCCPH2.2037        2.7523
+ITALY.NGCCPH2.2038        1.536
+ITALY.NGCCPH2.2039        1.355
+ITALY.NGCCPH2.2040        0.78
+ITALY.NGCCPH2.2041        0.26
+ITALY.NGCCPH2.(2042*2060) 0
+
+*Sea water cooled plant
+ITALY.NGCCPH2S.(2015*2022)  11.754685
+ITALY.NGCCPH2S.2023        11.543915
+ITALY.NGCCPH2S.2024        11.482165
+ITALY.NGCCPH2S.2025        11.40024
+ITALY.NGCCPH2S.2026        10.97374
+ITALY.NGCCPH2S.2027        10.5821
+ITALY.NGCCPH2S.2028        10.2291
+ITALY.NGCCPH2S.2029        9.9701
+ITALY.NGCCPH2S.2030        9.2591
+ITALY.NGCCPH2S.2031        9.0696
+ITALY.NGCCPH2S.2032        8.4016
+ITALY.NGCCPH2S.2033        7.7641
+ITALY.NGCCPH2S.2034        6.15735
+ITALY.NGCCPH2S.2035        4.83235
+ITALY.NGCCPH2S.2036        3.8676
+ITALY.NGCCPH2S.2037        2.7523
+ITALY.NGCCPH2S.2038        1.536
+ITALY.NGCCPH2S.2039        1.355
+ITALY.NGCCPH2S.2040        0.78
+ITALY.NGCCPH2S.2041        0.26
+ITALY.NGCCPH2S.(2042*2060) 0
 
     ITALY.NGCHPH3.(2015*2018)    10.144444
     ITALY.NGCHPH3.2019    10.142764
@@ -1136,24 +1204,60 @@ parameter ResidualCapacity(r,t,y) /
     ITALY.WSCHPH2.(2035*2037)    0.0825
     ITALY.WSCHPH2.(2038*2060)    0
 
-    ITALY.WSSTPH1.(2015*2020)    0.46711
-    ITALY.WSSTPH1.(2021*2023)    0.46611
-    ITALY.WSSTPH1.(2024*2026)    0.45711
-    ITALY.WSSTPH1.2027    0.45361
-    ITALY.WSSTPH1.2028    0.45146
-    ITALY.WSSTPH1.2029    0.36821
-    ITALY.WSSTPH1.2030    0.32736
-    ITALY.WSSTPH1.2031    0.30601
-    ITALY.WSSTPH1.2032    0.25438
-    ITALY.WSSTPH1.2033    0.2318
-    ITALY.WSSTPH1.2034    0.2289
-    ITALY.WSSTPH1.2035    0.2012
-    ITALY.WSSTPH1.2036    0.1872
-    ITALY.WSSTPH1.2037    0.1682
-    ITALY.WSSTPH1.2038    0.1598
-    ITALY.WSSTPH1.2039    0.0548
+*Coastal plants were 0.0262 in 2022, I take 6% of total capacity
+*ITALY.WSSTPH1.(2015*2020)    0.46711
+*ITALY.WSSTPH1.(2021*2023)    0.46611
+*ITALY.WSSTPH1.(2024*2026)    0.45711
+*ITALY.WSSTPH1.2027    0.45361
+*ITALY.WSSTPH1.2028    0.45146
+*ITALY.WSSTPH1.2029    0.36821
+*ITALY.WSSTPH1.2030    0.32736
+*ITALY.WSSTPH1.2031    0.30601
+*ITALY.WSSTPH1.2032    0.25438
+*ITALY.WSSTPH1.2033    0.2318
+*ITALY.WSSTPH1.2034    0.2289
+*ITALY.WSSTPH1.2035    0.2012
+*ITALY.WSSTPH1.2036    0.1872
+*ITALY.WSSTPH1.2037    0.1682
+*ITALY.WSSTPH1.2038    0.1598
+*ITALY.WSSTPH1.2039    0.0548
+*ITALY.WSSTPH1.(2040*2060)    0
+    
+    ITALY.WSSTPH1.(2015*2020)    0.43908
+    ITALY.WSSTPH1.(2021*2023)    0.43814
+    ITALY.WSSTPH1.(2024*2026)    0.42968
+    ITALY.WSSTPH1.2027           0.42639
+    ITALY.WSSTPH1.2028           0.42437
+    ITALY.WSSTPH1.2029           0.34612
+    ITALY.WSSTPH1.2030           0.30772
+    ITALY.WSSTPH1.2031           0.28765
+    ITALY.WSSTPH1.2032           0.23912
+    ITALY.WSSTPH1.2033           0.21789
+    ITALY.WSSTPH1.2034           0.21517
+    ITALY.WSSTPH1.2035           0.18913
+    ITALY.WSSTPH1.2036           0.17597
+    ITALY.WSSTPH1.2037           0.15811
+    ITALY.WSSTPH1.2038           0.15021
+    ITALY.WSSTPH1.2039           0.05151
     ITALY.WSSTPH1.(2040*2060)    0
-
+    
+    ITALY.WSSTPH1S.(2015*2020) 0.0280266
+    ITALY.WSSTPH1S.(2021*2023) 0.0279666
+    ITALY.WSSTPH1S.(2024*2026) 0.0274266
+    ITALY.WSSTPH1S.2027        0.0272166
+    ITALY.WSSTPH1S.2028        0.0270876
+    ITALY.WSSTPH1S.2029        0.0220926
+    ITALY.WSSTPH1S.2030        0.0196416
+    ITALY.WSSTPH1S.2031        0.0183606
+    ITALY.WSSTPH1S.2032        0.0152628
+    ITALY.WSSTPH1S.2033        0.013908
+    ITALY.WSSTPH1S.2034        0.013734
+    ITALY.WSSTPH1S.2035        0.012072
+    ITALY.WSSTPH1S.2036        0.011232
+    ITALY.WSSTPH1S.2037        0.010092
+    ITALY.WSSTPH1S.2038        0.009588
+    ITALY.WSSTPH1S.2039        0.003288
+    ITALY.WSSTPH1S.(2040*2060) 0
 /;
 
 parameter InputActivityRatio(r,t,f,m,y) /
@@ -1211,7 +1315,6 @@ parameter InputActivityRatio(r,t,f,m,y) /
     ITALY.BMCCPH1.BM.1.2060   2.062593087
 
     ITALY.BMCHPH3.BM.1.(2015*2060) 3.333333333
-    ITALY.BMSTPH3.BM.1.(2015*2060) 3.333333333
 
     ITALY.COCHPH3.CO.1.2015   2.564102564
     ITALY.COCHPH3.CO.1.2016   2.539086929
@@ -1335,10 +1438,6 @@ parameter InputActivityRatio(r,t,f,m,y) /
     ITALY.COSTPH3.CO.1.(2040*2060)    2.030632633
 
     ITALY.EL00TD0.E1.1.(2015*2060)    1
-*  ITALY.ELMTPH1.MTE1.2.(2015*2060)  1  DA CONTROLLARE, SONO TRANSBORDER ENERGY
-*  ITALY.ELMTPH1.E1.1.(2015*2060)    1
-*  ITALY.ELSIPH1.E1.1.(2015*2060)    1
-*  ITALY.ELSIPH1.SIE1.2.(2015*2060)  1
 
     ITALY.GOCVPH2.GO.1.2015   4.347826087
     ITALY.GOCVPH2.GO.1.2016 4.329324699
@@ -1433,6 +1532,53 @@ parameter InputActivityRatio(r,t,f,m,y) /
     ITALY.HFCCPH2.HF.1.2058 1.587301587
     ITALY.HFCCPH2.HF.1.2059 1.587301587
     ITALY.HFCCPH2.HF.1.2060 1.587301587
+    
+    ITALY.HFCCPH2S.HF.1.2015 1.724137931
+    ITALY.HFCCPH2S.HF.1.2016 1.712643678
+    ITALY.HFCCPH2S.HF.1.2017 1.701149425
+    ITALY.HFCCPH2S.HF.1.2018 1.689655172
+    ITALY.HFCCPH2S.HF.1.2019 1.67816092
+    ITALY.HFCCPH2S.HF.1.2020 1.666666667
+    ITALY.HFCCPH2S.HF.1.2021 1.661290323
+    ITALY.HFCCPH2S.HF.1.2022 1.655913978
+    ITALY.HFCCPH2S.HF.1.2023 1.650537634
+    ITALY.HFCCPH2S.HF.1.2024 1.64516129
+    ITALY.HFCCPH2S.HF.1.2025 1.639784946
+    ITALY.HFCCPH2S.HF.1.2026 1.634408602
+    ITALY.HFCCPH2S.HF.1.2027 1.629032258
+    ITALY.HFCCPH2S.HF.1.2028 1.623655914
+    ITALY.HFCCPH2S.HF.1.2029 1.61827957
+    ITALY.HFCCPH2S.HF.1.2030 1.612903226
+    ITALY.HFCCPH2S.HF.1.2031 1.612903226
+    ITALY.HFCCPH2S.HF.1.2032 1.612903226
+    ITALY.HFCCPH2S.HF.1.2033 1.612903226
+    ITALY.HFCCPH2S.HF.1.2034 1.612903226
+    ITALY.HFCCPH2S.HF.1.2035 1.612903226
+    ITALY.HFCCPH2S.HF.1.2036 1.612903226
+    ITALY.HFCCPH2S.HF.1.2037 1.612903226
+    ITALY.HFCCPH2S.HF.1.2038 1.612903226
+    ITALY.HFCCPH2S.HF.1.2039 1.612903226
+    ITALY.HFCCPH2S.HF.1.2040 1.612903226
+    ITALY.HFCCPH2S.HF.1.2041 1.610343062
+    ITALY.HFCCPH2S.HF.1.2042 1.607782898
+    ITALY.HFCCPH2S.HF.1.2043 1.605222734
+    ITALY.HFCCPH2S.HF.1.2044 1.60266257
+    ITALY.HFCCPH2S.HF.1.2045 1.600102407
+    ITALY.HFCCPH2S.HF.1.2046 1.597542243
+    ITALY.HFCCPH2S.HF.1.2047 1.594982079
+    ITALY.HFCCPH2S.HF.1.2048 1.592421915
+    ITALY.HFCCPH2S.HF.1.2049 1.589861751
+    ITALY.HFCCPH2S.HF.1.2050 1.587301587
+    ITALY.HFCCPH2S.HF.1.2051 1.587301587
+    ITALY.HFCCPH2S.HF.1.2052 1.587301587
+    ITALY.HFCCPH2S.HF.1.2053 1.587301587
+    ITALY.HFCCPH2S.HF.1.2054 1.587301587
+    ITALY.HFCCPH2S.HF.1.2055 1.587301587
+    ITALY.HFCCPH2S.HF.1.2056 1.587301587
+    ITALY.HFCCPH2S.HF.1.2057 1.587301587
+    ITALY.HFCCPH2S.HF.1.2058 1.587301587
+    ITALY.HFCCPH2S.HF.1.2059 1.587301587
+    ITALY.HFCCPH2S.HF.1.2060 1.587301587
 
     ITALY.HFCHPH3.HF.1.(2015*2060) 13.67989056
     ITALY.HFGCPH3.HF.1.(2015*2060) 2.631578947
@@ -1538,6 +1684,43 @@ parameter InputActivityRatio(r,t,f,m,y) /
     ITALY.NGCCPH2.NG.1.2048 1.592421915
     ITALY.NGCCPH2.NG.1.2049 1.589861751
     ITALY.NGCCPH2.NG.1.(2050*2060)  1.587301587
+    
+    ITALY.NGCCPH2S.NG.1.2015 1.724137931
+    ITALY.NGCCPH2S.NG.1.2016 1.712643678
+    ITALY.NGCCPH2S.NG.1.2017 1.701149425
+    ITALY.NGCCPH2S.NG.1.2018 1.689655172
+    ITALY.NGCCPH2S.NG.1.2019 1.67816092
+    ITALY.NGCCPH2S.NG.1.2020 1.666666667
+    ITALY.NGCCPH2S.NG.1.2021 1.661290323
+    ITALY.NGCCPH2S.NG.1.2022 1.655913978
+    ITALY.NGCCPH2S.NG.1.2023 1.650537634
+    ITALY.NGCCPH2S.NG.1.2024 1.64516129
+    ITALY.NGCCPH2S.NG.1.2025 1.639784946
+    ITALY.NGCCPH2S.NG.1.2026 1.634408602
+    ITALY.NGCCPH2S.NG.1.2027 1.629032258
+    ITALY.NGCCPH2S.NG.1.2028 1.623655914
+    ITALY.NGCCPH2S.NG.1.2029 1.61827957
+    ITALY.NGCCPH2S.NG.1.2030 1.612903226
+    ITALY.NGCCPH2S.NG.1.2031 1.612903226
+    ITALY.NGCCPH2S.NG.1.2032 1.612903226
+    ITALY.NGCCPH2S.NG.1.2033 1.612903226
+    ITALY.NGCCPH2S.NG.1.2034 1.612903226
+    ITALY.NGCCPH2S.NG.1.2035 1.612903226
+    ITALY.NGCCPH2S.NG.1.2036 1.612903226
+    ITALY.NGCCPH2S.NG.1.2037 1.612903226
+    ITALY.NGCCPH2S.NG.1.2038 1.612903226
+    ITALY.NGCCPH2S.NG.1.2039 1.612903226
+    ITALY.NGCCPH2S.NG.1.2040 1.612903226
+    ITALY.NGCCPH2S.NG.1.2041 1.610343062
+    ITALY.NGCCPH2S.NG.1.2042 1.607782898
+    ITALY.NGCCPH2S.NG.1.2043 1.605222734
+    ITALY.NGCCPH2S.NG.1.2044 1.60266257
+    ITALY.NGCCPH2S.NG.1.2045 1.600102407
+    ITALY.NGCCPH2S.NG.1.2046 1.597542243
+    ITALY.NGCCPH2S.NG.1.2047 1.594982079
+    ITALY.NGCCPH2S.NG.1.2048 1.592421915
+    ITALY.NGCCPH2S.NG.1.2049 1.589861751
+    ITALY.NGCCPH2S.NG.1.(2050*2060)  1.587301587
 
     ITALY.NGCHPH3.NG.1.(2015*2060) 2.380952381
 
@@ -1630,7 +1813,9 @@ parameter InputActivityRatio(r,t,f,m,y) /
 *ITALY.NUG3PH3.UR.1.(2030*2060)  2.631578947
     ITALY.NUG3PH3.UR.1.(2015*2035)  0
     ITALY.NUG3PH3.UR.1.(2036*2060)  2.631578947
-
+    
+    ITALY.NUG3PH3S.UR.1.(2015*2035)  0
+    ITALY.NUG3PH3S.UR.1.(2036*2060)  2.631578947
 
     ITALY.OIRFPH0.OI.1.(2015*2060) 1
 
@@ -1697,6 +1882,33 @@ parameter InputActivityRatio(r,t,f,m,y) /
     ITALY.WSSTPH1.WS.1.2038 2.660818713
     ITALY.WSSTPH1.WS.1.2039 2.64619883
     ITALY.WSSTPH1.WS.1.(2040*2060)  2.631578947
+    
+    ITALY.WSSTPH1S.WS.1.2015 2.941176471
+    ITALY.WSSTPH1S.WS.1.2016 2.924369748
+    ITALY.WSSTPH1S.WS.1.2017 2.907563025
+    ITALY.WSSTPH1S.WS.1.2018 2.890756303
+    ITALY.WSSTPH1S.WS.1.2019 2.87394958
+    ITALY.WSSTPH1S.WS.1.2020 2.857142857
+    ITALY.WSSTPH1S.WS.1.2021 2.849206349
+    ITALY.WSSTPH1S.WS.1.2022 2.841269841
+    ITALY.WSSTPH1S.WS.1.2023 2.833333333
+    ITALY.WSSTPH1S.WS.1.2024 2.825396825
+    ITALY.WSSTPH1S.WS.1.2025 2.817460317
+    ITALY.WSSTPH1S.WS.1.2026 2.80952381
+    ITALY.WSSTPH1S.WS.1.2027 2.801587302
+    ITALY.WSSTPH1S.WS.1.2028 2.793650794
+    ITALY.WSSTPH1S.WS.1.2029 2.785714286
+    ITALY.WSSTPH1S.WS.1.2030 2.777777778
+    ITALY.WSSTPH1S.WS.1.2031 2.763157895
+    ITALY.WSSTPH1S.WS.1.2032 2.748538012
+    ITALY.WSSTPH1S.WS.1.2033 2.733918129
+    ITALY.WSSTPH1S.WS.1.2034 2.719298246
+    ITALY.WSSTPH1S.WS.1.2035 2.704678363
+    ITALY.WSSTPH1S.WS.1.2036 2.69005848
+    ITALY.WSSTPH1S.WS.1.2037 2.675438596
+    ITALY.WSSTPH1S.WS.1.2038 2.660818713
+    ITALY.WSSTPH1S.WS.1.2039 2.64619883
+    ITALY.WSSTPH1S.WS.1.(2040*2060)  2.631578947
 
 *carbon capture plants
 ITALY.COCSPN2.CO.1.2015  4.347826087
@@ -1742,6 +1954,23 @@ ITALY.COCSPN2.CO.1.(2040*2060)   3.571428571
   ITALY.NGCSPN2.NG.1.2028  2.121212
   ITALY.NGCSPN2.NG.1.2029  2.102273
   ITALY.NGCSPN2.NG.1.(2030*2060)  2.083333
+  
+  ITALY.NGCSPN2S.NG.1.2015  2.380952
+  ITALY.NGCSPN2S.NG.1.2016  2.359307
+  ITALY.NGCSPN2S.NG.1.2017  2.337662
+  ITALY.NGCSPN2S.NG.1.2018  2.316017
+  ITALY.NGCSPN2S.NG.1.2019  2.294372
+  ITALY.NGCSPN2S.NG.1.2020  2.272727
+  ITALY.NGCSPN2S.NG.1.2021  2.253788
+  ITALY.NGCSPN2S.NG.1.2022  2.234848
+  ITALY.NGCSPN2S.NG.1.2023  2.215909
+  ITALY.NGCSPN2S.NG.1.2024  2.196970
+  ITALY.NGCSPN2S.NG.1.2025  2.178030
+  ITALY.NGCSPN2S.NG.1.2026  2.159091
+  ITALY.NGCSPN2S.NG.1.2027  2.140152
+  ITALY.NGCSPN2S.NG.1.2028  2.121212
+  ITALY.NGCSPN2S.NG.1.2029  2.102273
+  ITALY.NGCSPN2S.NG.1.(2030*2060)  2.083333
 
 ITALY.BMCSPN2.BM.1.2015     4
 ITALY.BMCSPN2.BM.1.2016     3.914285714
@@ -1788,6 +2017,54 @@ ITALY.BMCSPN2.BM.1.2056     2.566117126
 ITALY.BMCSPN2.BM.1.2057     2.561528144
 ITALY.BMCSPN2.BM.1.2058     2.557862868
 ITALY.BMCSPN2.BM.1.2059     2.554934423
+ITALY.BMCSPN2.BM.1.2060     2.554934423
+
+ITALY.BMCSPN2S.BM.1.2015     4
+ITALY.BMCSPN2S.BM.1.2016     3.914285714
+ITALY.BMCSPN2S.BM.1.2017     3.828571429
+ITALY.BMCSPN2S.BM.1.2018     3.742857143
+ITALY.BMCSPN2S.BM.1.2019     3.657142857
+ITALY.BMCSPN2S.BM.1.2020     3.571428571
+ITALY.BMCSPN2S.BM.1.2021     3.508403361
+ITALY.BMCSPN2S.BM.1.2022     3.445378151
+ITALY.BMCSPN2S.BM.1.2023     3.382352941
+ITALY.BMCSPN2S.BM.1.2024     3.319327731
+ITALY.BMCSPN2S.BM.1.2025     3.256302521
+ITALY.BMCSPN2S.BM.1.2026     3.193277311
+ITALY.BMCSPN2S.BM.1.2027     3.130252101
+ITALY.BMCSPN2S.BM.1.2028     3.067226891
+ITALY.BMCSPN2S.BM.1.2029     3.004201681
+ITALY.BMCSPN2S.BM.1.2030     2.941176471
+ITALY.BMCSPN2S.BM.1.2031     2.932773109
+ITALY.BMCSPN2S.BM.1.2032     2.924369748
+ITALY.BMCSPN2S.BM.1.2033     2.915966387
+ITALY.BMCSPN2S.BM.1.2034     2.907563025
+ITALY.BMCSPN2S.BM.1.2035     2.899159664
+ITALY.BMCSPN2S.BM.1.2036     2.890756303
+ITALY.BMCSPN2S.BM.1.2037     2.882352941
+ITALY.BMCSPN2S.BM.1.2038     2.87394958
+ITALY.BMCSPN2S.BM.1.2039     2.865546218
+ITALY.BMCSPN2S.BM.1.2040     2.857142857
+ITALY.BMCSPN2S.BM.1.2041     2.834586466
+ITALY.BMCSPN2S.BM.1.2042     2.812030075
+ITALY.BMCSPN2S.BM.1.2043     2.789473684
+ITALY.BMCSPN2S.BM.1.2044     2.766917293
+ITALY.BMCSPN2S.BM.1.2045     2.744360902
+ITALY.BMCSPN2S.BM.1.2046     2.721804511
+ITALY.BMCSPN2S.BM.1.2047     2.69924812
+ITALY.BMCSPN2S.BM.1.2048     2.676691729
+ITALY.BMCSPN2S.BM.1.2049     2.654135338
+ITALY.BMCSPN2S.BM.1.2050     2.631578947
+ITALY.BMCSPN2S.BM.1.2051     2.613671935
+ITALY.BMCSPN2S.BM.1.2052     2.599434098
+ITALY.BMCSPN2S.BM.1.2053     2.588099692
+ITALY.BMCSPN2S.BM.1.2054     2.579067761
+ITALY.BMCSPN2S.BM.1.2055     2.571864915
+ITALY.BMCSPN2S.BM.1.2056     2.566117126
+ITALY.BMCSPN2S.BM.1.2057     2.561528144
+ITALY.BMCSPN2S.BM.1.2058     2.557862868
+ITALY.BMCSPN2S.BM.1.2059     2.554934423
+ITALY.BMCSPN2S.BM.1.2060     2.554934423
 /;
 
 parameter OutputActivityRatio(r,t,f,m,y) /
@@ -1800,20 +2077,19 @@ parameter OutputActivityRatio(r,t,f,m,y) /
 
     ITALY.BMCHPH3.E1.1.(2015*2060)  1
     ITALY.BMSTPH3.E1.1.(2015*2060)  1
+    ITALY.BMSTPH3S.E1.1.(2015*2060)  1
     ITALY.CO00I00.CO.1.(2015*2060)  1
     ITALY.CO00X00.CO.1.(2015*2060)  1
     ITALY.COCHPH3.E1.1.(2015*2060)  1
     ITALY.COSTPH1.E1.1.(2015*2060)  1
     ITALY.COSTPH3.E1.1.(2015*2060)  1
     ITALY.EL00TD0.E2.1.(2015*2060)  0.95
-*ITALY.ELMTPH1.E1.2.(2015*2060)  0.95  DA CONTROLLARE, SONO TRANSBORDER ENERGY
-*ITALY.ELMTPH1.MTE1.1.(2015*2060)  0.95
-*ITALY.ELSIPH1.E1.2.(2015*2060)  0.95
-*ITALY.ELSIPH1.SIE1.1.(2015*2060)  0.95
+    
     ITALY.GO00X00.GO.1.(2015*2060)  1
     ITALY.GOCVPH2.E1.1.(2015*2060)  1
     ITALY.HF00I00.HF.1.(2015*2060)  1
     ITALY.HFCCPH2.E1.1.(2015*2060)  1
+    ITALY.HFCCPH2S.E1.1.(2015*2060)  1
     ITALY.HFCHPH3.E1.1.(2015*2060)  1
     ITALY.HFGCPH3.E1.1.(2015*2060)  1
     ITALY.HFGCPN3.E1.1.(2015*2060)  1
@@ -1829,7 +2105,7 @@ parameter OutputActivityRatio(r,t,f,m,y) /
     ITALY.HYDSPH3.E1.1.(2015*2060)  1
     ITALY.NG00I00.NG.1.(2015*2060)  1
     ITALY.NG00X00.NG.1.(2015*2060)  1
-    ITALY.NGCCPH2.E1.1.(2015*2060)  1
+    ITALY.NGCCPH2S.E1.1.(2015*2060)  1
     ITALY.NGCHPH3.E1.1.(2015*2060)  1
     ITALY.NGCHPN3.E1.1.(2015*2060)  1
     ITALY.NGFCFH1.E2.1.(2015*2060)  1
@@ -1839,6 +2115,7 @@ parameter OutputActivityRatio(r,t,f,m,y) /
     ITALY.NGHPPH2.E1.1.(2015*2060)  1
     ITALY.NGSTPH2.E1.1.(2015*2060)  1
     ITALY.NUG3PH3.E1.1.(2015*2060)  1
+    ITALY.NUG3PH3S.E1.1.(2015*2060)  1
     ITALY.OCWVPH1.E1.1.(2015*2060)  1
     ITALY.OI00I00.OI.1.(2015*2060)  1
     ITALY.OI00X00.OI.1.(2015*2060)  1
@@ -1852,13 +2129,17 @@ parameter OutputActivityRatio(r,t,f,m,y) /
     ITALY.WS00X00.WS.1.(2015*2060)  1
     ITALY.WSCHPH2.E1.1.(2015*2060)  1
     ITALY.WSSTPH1.E1.1.(2015*2060)  1
+    ITALY.WSSTPH1S.E1.1.(2015*2060)  1
 
     ITALY.BMCSPN2.E1.1.(2015*2060)  1
+    ITALY.BMCSPN2S.E1.1.(2015*2060)  1
     ITALY.COCSPN2.E1.1.(2015*2060)  1
     ITALY.NGCSPN2.E1.1.(2015*2060)  1
+    ITALY.NGCSPN2S.E1.1.(2015*2060)  1
 
     ITALY.RIVER.HY.1.(2015*2060) 1
     ITALY.UR00I00.UR.1.(2015*2060) 1
+    ITALY.SEA.SE.1.(2015*2060) 1
 /;
 
 *By default, assume for imported secondary fuels the same efficiency of the internal refineries
@@ -1867,7 +2148,7 @@ InputActivityRatio(r,'OI00I00','OI',m,y)$(not OutputActivityRatio(r,'OIRFPH0','H
 *------------------------------------------------------------------------
 * Parameters - Technology costs
 *------------------------------------------------------------------------
-
+*Sistemare SEA power plants
 parameter CapitalCost /
     ITALY.COCSPN2.2015    2916.813095
     ITALY.COCSPN2.2016    2858.476833
@@ -2754,10 +3035,18 @@ parameter CapitalCost /
     ITALY.WSSTPH1.2059    1706.928512
     ITALY.WSSTPH1.2060    1685.928512
 
+*Seaside plants: da aggiungere dati sensati, per ora li metto altissimi giusto per non avere 0 e generare errori
+ITALY.BMSTPH3S.(2015*2060) 99999
+ITALY.BMCSPN2S.(2015*2060) 99999
+ITALY.HFCCPH2S.(2015*2060) 99999
+ITALY.NGCCPH2S.(2015*2060) 99999
+ITALY.NGCSPN2S.(2015*2060) 99999
+ITALY.NUG3PH3S.(2015*2060) 99999
+ITALY.WSSTPH1S.(2015*2060) 99999
 /;
 
 *################################################################################################
-
+*Sistemare SEA power plants
 parameter VariableCost(r,t,m,y) /
     ITALY.BF00I00.1.2015 27.51234251
     ITALY.BF00I00.1.2016  27.43873938
@@ -2878,9 +3167,9 @@ parameter VariableCost(r,t,m,y) /
     ITALY.CO00I00.1.2029  3.720111271
     ITALY.CO00I00.1.(2030*2060)  3.797368069
 
-    ITALY.CO00X00.1.2015  2.353058766
     ITALY.CO00X00.1.2016  2.426911027
     ITALY.CO00X00.1.2017  2.500763289
+    ITALY.CO00X00.1.2015  2.353058766
     ITALY.CO00X00.1.2018  2.574615551
     ITALY.CO00X00.1.2019  2.648467813
     ITALY.CO00X00.1.2020  2.722320074
@@ -3072,12 +3361,21 @@ parameter VariableCost(r,t,m,y) /
     ITALY.WSSTPH1.1.(2015*2060)  0.00357
 
     ITALY.UR00I00.1.(2015*2060)  1.301920122
+
+*Seaside plants: da aggiungere dati sensati, per ora li metto altissimi giusto per non avere 0 e generare errori
+ITALY.BMSTPH3S.1.(2015*2060) 999
+ITALY.BMCSPN2S.1.(2015*2060) 999
+ITALY.HFCCPH2S.1.(2015*2060) 999
+ITALY.NGCCPH2S.1.(2015*2060) 999
+ITALY.NGCSPN2S.1.(2015*2060) 999
+ITALY.NUG3PH3S.1.(2015*2060) 999
+ITALY.WSSTPH1S.1.(2015*2060) 999
 /;
 
 VariableCost(r,t,m,y)$(VariableCost(r,t,m,y) = 0) = 1e-5;
 
 *################################################################################################
-
+*Sistenare SEA power plants
 parameter FixedCost /
     ITALY.COCSPN2.2015    72.92032738
     ITALY.COCSPN2.2016    71.46192083
@@ -3971,6 +4269,14 @@ parameter FixedCost /
     ITALY.WSSTPH1.2059    47.63803408
     ITALY.WSSTPH1.2060    47.13803408
 
+*Seaside plants: da aggiungere dati sensati, per ora li metto altissimi giusto per non avere 0 e generare errori
+ITALY.BMSTPH3S.(2015*2060) 9999
+ITALY.BMCSPN2S.(2015*2060) 9999
+ITALY.HFCCPH2S.(2015*2060) 9999
+ITALY.NGCCPH2S.(2015*2060) 9999
+ITALY.NGCSPN2S.(2015*2060) 9999
+ITALY.NUG3PH3S.(2015*2060) 9999
+ITALY.WSSTPH1S.(2015*2060) 9999
 /;
 
 
@@ -4007,13 +4313,12 @@ CapitalCostStorage(r,s,y) = 0;
 ResidualStorageCapacity(r,s,y) = 999;
 
 
-
 *------------------------------------------------------------------------
 * Parameters - Capacity and investment constraints
 *------------------------------------------------------------------------
 
 CapacityOfOneTechnologyUnit(r,t,y) = 0;
-
+*AGGIUNGERE SEA
 parameter TotalAnnualMaxCapacity(r,t,y) /
         ITALY.BFHPFH1.(2015*2021) 1
         ITALY.BMCCPH1.(2015*2021) 1
@@ -4058,6 +4363,14 @@ parameter TotalAnnualMaxCapacity(r,t,y) /
         ITALY.WSSTPH1.(2015*2021) 0.5
         
         ITALY.GOCVPH2.(2022*2060) 1.5
+*Seaside plants: dati momentanei, messi un po' a caso (alti per provare a farlo andare)
+ITALY.BMSTPH3S.(2015*2060) 50
+ITALY.BMCSPN2S.(2030*2060) 50
+ITALY.HFCCPH2S.(2015*2060) 50
+ITALY.NGCCPH2S.(2015*2060) 50
+ITALY.NGCSPN2S.(2030*2060) 50
+ITALY.NUG3PH3S.(2035*2060) 50
+ITALY.WSSTPH1S.(2015*2060) 50
 /;
 TotalAnnualMaxCapacity(r,t,y)$(TotalAnnualMaxCapacity(r,t,y) = 0 ) = 99999;
 *TotalAnnualMaxCapacity(r,t,y) = 99999;
@@ -4084,7 +4397,62 @@ TotalAnnualMaxCapacity(r,'NUG3PH3','2033') = 0;
 TotalAnnualMaxCapacity(r,'NUG3PH3','2034') = 0;
 TotalAnnualMaxCapacity(r,'NUG3PH3','2035') = 0;
 
+*Seaside plants, dati temporanei
+TotalAnnualMaxCapacity(r,'BMCSPN2S','2015') = 0;
+TotalAnnualMaxCapacity(r,'BMCSPN2S','2016') = 0;
+TotalAnnualMaxCapacity(r,'BMCSPN2S','2017') = 0;
+TotalAnnualMaxCapacity(r,'BMCSPN2S','2018') = 0;
+TotalAnnualMaxCapacity(r,'BMCSPN2S','2019') = 0;
+TotalAnnualMaxCapacity(r,'BMCSPN2S','2020') = 0;
+TotalAnnualMaxCapacity(r,'BMCSPN2S','2021') = 0;
+TotalAnnualMaxCapacity(r,'BMCSPN2S','2022') = 0;
+TotalAnnualMaxCapacity(r,'BMCSPN2S','2023') = 0;
+TotalAnnualMaxCapacity(r,'BMCSPN2S','2024') = 0;
+TotalAnnualMaxCapacity(r,'BMCSPN2S','2025') = 0;
+TotalAnnualMaxCapacity(r,'BMCSPN2S','2026') = 0;
+TotalAnnualMaxCapacity(r,'BMCSPN2S','2027') = 0;
+TotalAnnualMaxCapacity(r,'BMCSPN2S','2028') = 0;
+TotalAnnualMaxCapacity(r,'BMCSPN2S','2029') = 0;
+TotalAnnualMaxCapacity(r,'BMCSPN2S','2030') = 0;
 
+TotalAnnualMaxCapacity(r,'NGCSPN2S','2015') = 0;
+TotalAnnualMaxCapacity(r,'NGCSPN2S','2016') = 0;
+TotalAnnualMaxCapacity(r,'NGCSPN2S','2017') = 0;
+TotalAnnualMaxCapacity(r,'NGCSPN2S','2018') = 0;
+TotalAnnualMaxCapacity(r,'NGCSPN2S','2019') = 0;
+TotalAnnualMaxCapacity(r,'NGCSPN2S','2020') = 0;
+TotalAnnualMaxCapacity(r,'NGCSPN2S','2021') = 0;
+TotalAnnualMaxCapacity(r,'NGCSPN2S','2022') = 0;
+TotalAnnualMaxCapacity(r,'NGCSPN2S','2023') = 0;
+TotalAnnualMaxCapacity(r,'NGCSPN2S','2024') = 0;
+TotalAnnualMaxCapacity(r,'NGCSPN2S','2025') = 0;
+TotalAnnualMaxCapacity(r,'NGCSPN2S','2026') = 0;
+TotalAnnualMaxCapacity(r,'NGCSPN2S','2027') = 0;
+TotalAnnualMaxCapacity(r,'NGCSPN2S','2028') = 0;
+TotalAnnualMaxCapacity(r,'NGCSPN2S','2029') = 0;
+TotalAnnualMaxCapacity(r,'NGCSPN2S','2030') = 0;
+
+TotalAnnualMaxCapacity(r,'NUG3PH3S','2015') = 0;
+TotalAnnualMaxCapacity(r,'NUG3PH3S','2016') = 0;
+TotalAnnualMaxCapacity(r,'NUG3PH3S','2017') = 0;
+TotalAnnualMaxCapacity(r,'NUG3PH3S','2018') = 0;
+TotalAnnualMaxCapacity(r,'NUG3PH3S','2019') = 0;
+TotalAnnualMaxCapacity(r,'NUG3PH3S','2020') = 0;
+TotalAnnualMaxCapacity(r,'NUG3PH3S','2021') = 0;
+TotalAnnualMaxCapacity(r,'NUG3PH3S','2022') = 0;
+TotalAnnualMaxCapacity(r,'NUG3PH3S','2023') = 0;
+TotalAnnualMaxCapacity(r,'NUG3PH3S','2024') = 0;
+TotalAnnualMaxCapacity(r,'NUG3PH3S','2025') = 0;
+TotalAnnualMaxCapacity(r,'NUG3PH3S','2026') = 0;
+TotalAnnualMaxCapacity(r,'NUG3PH3S','2027') = 0;
+TotalAnnualMaxCapacity(r,'NUG3PH3S','2028') = 0;
+TotalAnnualMaxCapacity(r,'NUG3PH3S','2029') = 0;
+TotalAnnualMaxCapacity(r,'NUG3PH3S','2030') = 0;
+TotalAnnualMaxCapacity(r,'NUG3PH3S','2031') = 0;
+TotalAnnualMaxCapacity(r,'NUG3PH3S','2032') = 0;
+TotalAnnualMaxCapacity(r,'NUG3PH3S','2033') = 0;
+TotalAnnualMaxCapacity(r,'NUG3PH3S','2034') = 0;
+TotalAnnualMaxCapacity(r,'NUG3PH3S','2035') = 0;
 
 TotalAnnualMinCapacity(r,t,y) = 0;
 *PNIEC 2030
@@ -4147,12 +4515,21 @@ parameter TotalAnnualMaxCapacityInvestment(r,t,y) /
     ITALY.HYDSPH2.(2015*2060) 1
     ITALY.HYDSPH3.(2015*2060) 1
 
+    ITALY.WSCHPH2.(2015*2021) 0.5
+    ITALY.WSSTPH1.(2015*2021) 0.5
+
+*Seaside plants: dati momentanei, messi un po' a caso (alti per provare a falo andare)
+ITALY.BMSTPH3S.(2015*2060) 10
+ITALY.BMCSPN2S.(2030*2060) 10
+ITALY.NGCCPH2S.(2015*2060) 10
+ITALY.NGCSPN2S.(2030*2060) 10
+ITALY.NUG3PH3S.(2035*2060) 10
+ITALY.WSSTPH1S.(2015*2060) 10
 /;
 
 TotalAnnualMaxCapacityInvestment(r,t,y)$(TotalAnnualMaxCapacityInvestment(r,t,y) = 0 AND power_plants(t) ) = 5;
 TotalAnnualMaxCapacityInvestment(r,t,y)$(TotalAnnualMaxCapacityInvestment(r,t,y) = 0) = 99999;
-*TotalAnnualMaxCapacityInvestment(r,'ELMTPH1',y) = 0;   DA CONTROLLARE, SONO TRANSBORDER ENERGY
-*TotalAnnualMaxCapacityInvestment(r,'ELSIPH1',y) = 0;
+
 TotalAnnualMaxCapacityInvestment(r,'HFGCPH3',y) = 0;
 
 TotalAnnualMaxCapacityInvestment(r,'COCHPH3',y) = 0;
@@ -4167,6 +4544,66 @@ TotalAnnualMaxCapacityInvestment(r,'WSCHPH2',y) = 0;
 TotalAnnualMaxCapacityInvestment(r,'WSSTPH1',y) = 0;
 
 TotalAnnualMaxCapacityInvestment(r,'WIONPH3',y) = 0;
+
+*Seaside plants: dati temporanei
+TotalAnnualMaxCapacityInvestment(r,'BMCSPN2S','2015') = 0;
+TotalAnnualMaxCapacityInvestment(r,'BMCSPN2S','2016') = 0;
+TotalAnnualMaxCapacityInvestment(r,'BMCSPN2S','2017') = 0;
+TotalAnnualMaxCapacityInvestment(r,'BMCSPN2S','2018') = 0;
+TotalAnnualMaxCapacityInvestment(r,'BMCSPN2S','2019') = 0;
+TotalAnnualMaxCapacityInvestment(r,'BMCSPN2S','2020') = 0;
+TotalAnnualMaxCapacityInvestment(r,'BMCSPN2S','2021') = 0;
+TotalAnnualMaxCapacityInvestment(r,'BMCSPN2S','2022') = 0;
+TotalAnnualMaxCapacityInvestment(r,'BMCSPN2S','2023') = 0;
+TotalAnnualMaxCapacityInvestment(r,'BMCSPN2S','2024') = 0;
+TotalAnnualMaxCapacityInvestment(r,'BMCSPN2S','2025') = 0;
+TotalAnnualMaxCapacityInvestment(r,'BMCSPN2S','2026') = 0;
+TotalAnnualMaxCapacityInvestment(r,'BMCSPN2S','2027') = 0;
+TotalAnnualMaxCapacityInvestment(r,'BMCSPN2S','2028') = 0;
+TotalAnnualMaxCapacityInvestment(r,'BMCSPN2S','2029') = 0;
+TotalAnnualMaxCapacityInvestment(r,'BMCSPN2S','2030') = 0;
+
+TotalAnnualMaxCapacityInvestment(r,'NGCSPN2S','2015') = 0;
+TotalAnnualMaxCapacityInvestment(r,'NGCSPN2S','2016') = 0;
+TotalAnnualMaxCapacityInvestment(r,'NGCSPN2S','2017') = 0;
+TotalAnnualMaxCapacityInvestment(r,'NGCSPN2S','2018') = 0;
+TotalAnnualMaxCapacityInvestment(r,'NGCSPN2S','2019') = 0;
+TotalAnnualMaxCapacityInvestment(r,'NGCSPN2S','2020') = 0;
+TotalAnnualMaxCapacityInvestment(r,'NGCSPN2S','2021') = 0;
+TotalAnnualMaxCapacityInvestment(r,'NGCSPN2S','2022') = 0;
+TotalAnnualMaxCapacityInvestment(r,'NGCSPN2S','2023') = 0;
+TotalAnnualMaxCapacityInvestment(r,'NGCSPN2S','2024') = 0;
+TotalAnnualMaxCapacityInvestment(r,'NGCSPN2S','2025') = 0;
+TotalAnnualMaxCapacityInvestment(r,'NGCSPN2S','2026') = 0;
+TotalAnnualMaxCapacityInvestment(r,'NGCSPN2S','2027') = 0;
+TotalAnnualMaxCapacityInvestment(r,'NGCSPN2S','2028') = 0;
+TotalAnnualMaxCapacityInvestment(r,'NGCSPN2S','2029') = 0;
+TotalAnnualMaxCapacityInvestment(r,'NGCSPN2S','2030') = 0;
+
+TotalAnnualMaxCapacityInvestment(r,'NUG3PH3S','2015') = 0;
+TotalAnnualMaxCapacityInvestment(r,'NUG3PH3S','2016') = 0;
+TotalAnnualMaxCapacityInvestment(r,'NUG3PH3S','2017') = 0;
+TotalAnnualMaxCapacityInvestment(r,'NUG3PH3S','2018') = 0;
+TotalAnnualMaxCapacityInvestment(r,'NUG3PH3S','2019') = 0;
+TotalAnnualMaxCapacityInvestment(r,'NUG3PH3S','2020') = 0;
+TotalAnnualMaxCapacityInvestment(r,'NUG3PH3S','2021') = 0;
+TotalAnnualMaxCapacityInvestment(r,'NUG3PH3S','2022') = 0;
+TotalAnnualMaxCapacityInvestment(r,'NUG3PH3S','2023') = 0;
+TotalAnnualMaxCapacityInvestment(r,'NUG3PH3S','2024') = 0;
+TotalAnnualMaxCapacityInvestment(r,'NUG3PH3S','2025') = 0;
+TotalAnnualMaxCapacityInvestment(r,'NUG3PH3S','2026') = 0;
+TotalAnnualMaxCapacityInvestment(r,'NUG3PH3S','2027') = 0;
+TotalAnnualMaxCapacityInvestment(r,'NUG3PH3S','2028') = 0;
+TotalAnnualMaxCapacityInvestment(r,'NUG3PH3S','2029') = 0;
+TotalAnnualMaxCapacityInvestment(r,'NUG3PH3S','2030') = 0;
+TotalAnnualMaxCapacityInvestment(r,'NUG3PH3S','2031') = 0;
+TotalAnnualMaxCapacityInvestment(r,'NUG3PH3S','2032') = 0;
+TotalAnnualMaxCapacityInvestment(r,'NUG3PH3S','2033') = 0;
+TotalAnnualMaxCapacityInvestment(r,'NUG3PH3S','2034') = 0;
+
+TotalAnnualMaxCapacityInvestment(r,'HFCCPH2S',y) = 0;
+
+
 
 TotalAnnualMinCapacityInvestment(r,t,y) = 0;
 
@@ -4242,6 +4679,8 @@ parameter EmissionActivityRatio(r,t,e,m,y) /
     ITALY.BMCSPN2.CO2.1.(2015*2060)  -0.2051944046
     ITALY.COCSPN2.CO2.1.(2015*2060)  -0.2833775418
     ITALY.NGCSPN2.CO2.1.(2015*2060)  -0.08976521937
+    ITALY.BMCSPN2S.CO2.1.(2015*2060)  -0.2051944046
+    ITALY.NGCSPN2S.CO2.1.(2015*2060)  -0.08976521937
 *Fake emissioni per hydro,solar e wind avevano tutti 1
 /;
 
@@ -4293,6 +4732,6 @@ parameter AnnualEmissionLimit(r,e,y) /
 
 ModelPeriodExogenousEmission(r,e) = 0;
 
-ModelPeriodEmissionLimit(r,e) = 9999;
 
+ModelPeriodEmissionLimit(r,e) = 99999;
 

@@ -134,6 +134,7 @@ $endif.scen
 
 $ifthen.scen set noatom 
     TotalAnnualMaxCapacity(r,'NUG3PH3',y) = .5;
+    TotalAnnualMaxCapacity(r,'NUG3PH3S',y) = .5;
     TotalAnnualMaxCapacity(r,'UR00I00',y) = .5;
 $setglobal scen "noatom"
 $endif.scen
@@ -142,7 +143,6 @@ $ifthen.scen set cost_res
 CapitalCost(r,t,y)$t_res(t) = %cost_res%/100 * CapitalCost(r,t,y);
 $setglobal scen "lowcost"
 $endif.scen
-
 
 
 * solve the model
