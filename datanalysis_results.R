@@ -45,7 +45,8 @@ emissions <- batch_extract("ANNUALEMISSIONS",all_gdx)[[1]] |> setDT() |> osemosy
 ################################################################################
 
 prod <- batch_extract("PRODUCTIONBYTECHNOLOGYANNUAL",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
-prod = prod[prod$FUEL=="E1"]
+prod = prod[prod$FUEL=="E1" | prod$FUEL=='E2',]
+prod = prod[ prod$TECHNOLOGY  != "EL00TD0",]
 
 prod$TECH=prod$TECHNOLOGY
 for(i in unique(prod$TECHNOLOGY)){
@@ -57,15 +58,18 @@ prod2 = prod |>
   summarise(value = sum(value))
 prod2$value = round(as.numeric(prod2$value),2)
 
+demand <- batch_extract("SpecifiedAnnualDemand",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
 
 {
   x11()
   ggplot(prod2[prod2$value!=0,]) +
     geom_area(aes(x=as.numeric(YEAR),y=value,fill=TECH)) +
+    geom_line(data=demand, aes(x=as.numeric(YEAR),y=value), linewidth=1.2) +
     labs(title = "Production by Technology [PJ/yr]", subtitle = "Energy production by set of technology using the same fuel") +
     facet_wrap(scen~.,) +
     xlab("year") + ylab("Energy [PJ]") + theme_pubr() 
 }
+
 
 ################################################################################
 ########### PLOT ACCUMULATED CAPACITY ##########################################
@@ -98,33 +102,34 @@ cap2$value = round(as.numeric(cap2$value),2)
 ########### PLOT AMOUNT OF ENERGY PER FUEL #####################################
 ################################################################################
 
-prod <- batch_extract("PRODUCTIONBYTECHNOLOGY",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
-
-temp = prod$TECHNOLOGY
-prod$TECH=temp
-
-for(i in unique(temp)){
-  prod$TECH[prod$TECH==i] = substr(i, start=1, stop=2)
+prod3=prod2
+for(i in unique(prod3$TECH)){
+  if( sum(prod3[prod3$TECH==i,]$value == 0) ==0 ){
+    prod3 = prod3[prod3$TECH!=i,]
+  }
 }
-
-prod2 = prod |> 
-  group_by(scen,TECH,YEAR) |>
-  summarise(value = sum(value))
-prod2$value = round(as.numeric(prod2$value),2)
 
 {
   x11()
-  ggplot(prod2[prod2$value!=0,]) +
-    geom_line(aes(x=as.numeric(YEAR),y=value,color=TECH)) +
+  ggplot(prod3) +
+    geom_line(aes(x=as.numeric(YEAR),y=value,color=TECH), linewidth=1.2) +
     facet_wrap(scen~.,) + 
     labs(title = "Production of energy by technology") +
-  xlab("year") + ylab("Production [GW]") + theme_pubr() 
+    xlab("year") + ylab("Production [GW]") + theme_pubr()  
 }
 
+
 ################################################################################
-################################################################################
+########### PLOT WATER USAGE ###################################################
 ################################################################################
 
-# Last modified: Matteo Ghesini, 30/04/2023
+water <- batch_extract("USEANNUAL",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
+water = water[water$FUEL=='SE' | water$FUEL=='HY']
 
-
+{
+  x11()
+  ggplot(water) +
+    geom_line(aes(x=as.numeric(YEAR),y=value,color=FUEL), linewidth=1.5) +
+    facet_wrap(scen~.,) +
+    xlab("year") + ylab("Water used [ML]") + theme_pubr() 
+}

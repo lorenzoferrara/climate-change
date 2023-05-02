@@ -106,7 +106,7 @@ $ifthen.scen set ctax
     EmissionsPenalty('ITALY','CO2','2058') = 740;
     EmissionsPenalty('ITALY','CO2','2059') = 770;
     EmissionsPenalty('ITALY','CO2','2060') = 800;
-$setglobal scen "ctax%ctax%"
+$setglobal scen "ctax"
 $endif.scen
 
 $ifthen.scen set nocoal 
