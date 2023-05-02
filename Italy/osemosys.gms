@@ -28,6 +28,7 @@ $if not set scen $setglobal scen base
 $include osemosys_dec.gms
 * specify Model data
 $include italy_data.gms
+$include water_data2.gms
 *$include renewables_data.gms
 * define model equations
 $offlisting
