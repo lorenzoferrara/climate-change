@@ -4515,7 +4515,7 @@ parameter TotalAnnualMaxCapacityInvestment(r,t,y) /
     ITALY.WIONPN3.2019 0.4
     ITALY.WIONPN3.2020 0.8
     ITALY.WIONPN3.(2021*2030) 1.2
-    ITALY.WIONPN3.(2031*2060) 0.5 
+    ITALY.WIONPN3.(2031*2060) 1.5 
 
     
 *test in limiting some tech investment dati da trovare!

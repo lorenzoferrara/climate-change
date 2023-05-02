@@ -133,9 +133,9 @@ $setglobal scen "nogas"
 $endif.scen
 
 $ifthen.scen set noatom 
-    TotalAnnualMaxCapacity(r,'NUG3PH3',y) = .5;
-    TotalAnnualMaxCapacity(r,'NUG3PH3S',y) = .5;
-    TotalAnnualMaxCapacity(r,'UR00I00',y) = .5;
+    TotalAnnualMaxCapacity(r,'NUG3PH3',y) = 0;
+    TotalAnnualMaxCapacity(r,'NUG3PH3S',y) = 0;
+    TotalAnnualMaxCapacity(r,'UR00I00',y) = 0;
 $setglobal scen "noatom"
 $endif.scen
 
