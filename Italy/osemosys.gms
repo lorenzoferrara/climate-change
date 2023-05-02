@@ -150,6 +150,11 @@ $ifthen.scen set brumbrum
 $setglobal scen "brumbrum"
 $endif.scen
 
+$ifthen.scen set thirsty
+    TotalAnnualMaxCapacity(r,'RIVER',y) = %thirsty%;
+$setglobal scen "thirsty_%thirsty%"
+$endif.scen
+
 
 * solve the model
 model osemosys /all/;
