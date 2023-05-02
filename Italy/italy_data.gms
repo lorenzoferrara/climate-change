@@ -4414,6 +4414,28 @@ TotalAnnualMaxCapacity(r,'NUG3PH3','2033') = 0;
 TotalAnnualMaxCapacity(r,'NUG3PH3','2034') = 0;
 TotalAnnualMaxCapacity(r,'NUG3PH3','2035') = 0;
 
+TotalAnnualMaxCapacity(r,'NUG3PH3S','2015') = 0;
+TotalAnnualMaxCapacity(r,'NUG3PH3S','2016') = 0;
+TotalAnnualMaxCapacity(r,'NUG3PH3S','2017') = 0;
+TotalAnnualMaxCapacity(r,'NUG3PH3S','2018') = 0;
+TotalAnnualMaxCapacity(r,'NUG3PH3S','2019') = 0;
+TotalAnnualMaxCapacity(r,'NUG3PH3S','2020') = 0;
+TotalAnnualMaxCapacity(r,'NUG3PH3S','2021') = 0;
+TotalAnnualMaxCapacity(r,'NUG3PH3S','2022') = 0;
+TotalAnnualMaxCapacity(r,'NUG3PH3S','2023') = 0;
+TotalAnnualMaxCapacity(r,'NUG3PH3S','2024') = 0;
+TotalAnnualMaxCapacity(r,'NUG3PH3S','2025') = 0;
+TotalAnnualMaxCapacity(r,'NUG3PH3S','2026') = 0;
+TotalAnnualMaxCapacity(r,'NUG3PH3S','2027') = 0;
+TotalAnnualMaxCapacity(r,'NUG3PH3S','2028') = 0;
+TotalAnnualMaxCapacity(r,'NUG3PH3S','2029') = 0;
+TotalAnnualMaxCapacity(r,'NUG3PH3S','2030') = 0;
+TotalAnnualMaxCapacity(r,'NUG3PH3S','2031') = 0;
+TotalAnnualMaxCapacity(r,'NUG3PH3S','2032') = 0;
+TotalAnnualMaxCapacity(r,'NUG3PH3S','2033') = 0;
+TotalAnnualMaxCapacity(r,'NUG3PH3S','2034') = 0;
+TotalAnnualMaxCapacity(r,'NUG3PH3S','2035') = 0;
+
 *Seaside plants, dati temporanei
 TotalAnnualMaxCapacity(r,'BMCSPN2S','2015') = 0;
 TotalAnnualMaxCapacity(r,'BMCSPN2S','2016') = 0;
@@ -4448,28 +4470,6 @@ TotalAnnualMaxCapacity(r,'NGCSPN2S','2027') = 0;
 TotalAnnualMaxCapacity(r,'NGCSPN2S','2028') = 0;
 TotalAnnualMaxCapacity(r,'NGCSPN2S','2029') = 0;
 TotalAnnualMaxCapacity(r,'NGCSPN2S','2030') = 0;
-
-TotalAnnualMaxCapacity(r,'NUG3PH3S','2015') = 0;
-TotalAnnualMaxCapacity(r,'NUG3PH3S','2016') = 0;
-TotalAnnualMaxCapacity(r,'NUG3PH3S','2017') = 0;
-TotalAnnualMaxCapacity(r,'NUG3PH3S','2018') = 0;
-TotalAnnualMaxCapacity(r,'NUG3PH3S','2019') = 0;
-TotalAnnualMaxCapacity(r,'NUG3PH3S','2020') = 0;
-TotalAnnualMaxCapacity(r,'NUG3PH3S','2021') = 0;
-TotalAnnualMaxCapacity(r,'NUG3PH3S','2022') = 0;
-TotalAnnualMaxCapacity(r,'NUG3PH3S','2023') = 0;
-TotalAnnualMaxCapacity(r,'NUG3PH3S','2024') = 0;
-TotalAnnualMaxCapacity(r,'NUG3PH3S','2025') = 0;
-TotalAnnualMaxCapacity(r,'NUG3PH3S','2026') = 0;
-TotalAnnualMaxCapacity(r,'NUG3PH3S','2027') = 0;
-TotalAnnualMaxCapacity(r,'NUG3PH3S','2028') = 0;
-TotalAnnualMaxCapacity(r,'NUG3PH3S','2029') = 0;
-TotalAnnualMaxCapacity(r,'NUG3PH3S','2030') = 0;
-TotalAnnualMaxCapacity(r,'NUG3PH3S','2031') = 0;
-TotalAnnualMaxCapacity(r,'NUG3PH3S','2032') = 0;
-TotalAnnualMaxCapacity(r,'NUG3PH3S','2033') = 0;
-TotalAnnualMaxCapacity(r,'NUG3PH3S','2034') = 0;
-TotalAnnualMaxCapacity(r,'NUG3PH3S','2035') = 0;
 
 TotalAnnualMaxCapacity(r,'CO00X00',y) = 0;
 
@@ -4563,42 +4563,6 @@ TotalAnnualMaxCapacityInvestment(r,'WSCHPH2',y) = 0;
 TotalAnnualMaxCapacityInvestment(r,'WSSTPH1',y) = 0;
 
 TotalAnnualMaxCapacityInvestment(r,'WIONPH3',y) = 0;
-
-*Seaside plants: dati temporanei
-
-TotalAnnualMaxCapacityInvestment(r,'BMCSPN2S','2015') = 0;
-TotalAnnualMaxCapacityInvestment(r,'BMCSPN2S','2016') = 0;
-TotalAnnualMaxCapacityInvestment(r,'BMCSPN2S','2017') = 0;
-TotalAnnualMaxCapacityInvestment(r,'BMCSPN2S','2018') = 0;
-TotalAnnualMaxCapacityInvestment(r,'BMCSPN2S','2019') = 0;
-TotalAnnualMaxCapacityInvestment(r,'BMCSPN2S','2020') = 0;
-TotalAnnualMaxCapacityInvestment(r,'BMCSPN2S','2021') = 0;
-TotalAnnualMaxCapacityInvestment(r,'BMCSPN2S','2022') = 0;
-TotalAnnualMaxCapacityInvestment(r,'BMCSPN2S','2023') = 0;
-TotalAnnualMaxCapacityInvestment(r,'BMCSPN2S','2024') = 0;
-TotalAnnualMaxCapacityInvestment(r,'BMCSPN2S','2025') = 0;
-TotalAnnualMaxCapacityInvestment(r,'BMCSPN2S','2026') = 0;
-TotalAnnualMaxCapacityInvestment(r,'BMCSPN2S','2027') = 0;
-TotalAnnualMaxCapacityInvestment(r,'BMCSPN2S','2028') = 0;
-TotalAnnualMaxCapacityInvestment(r,'BMCSPN2S','2029') = 0;
-TotalAnnualMaxCapacityInvestment(r,'BMCSPN2S','2030') = 0;
-
-TotalAnnualMaxCapacityInvestment(r,'NGCSPN2S','2015') = 0;
-TotalAnnualMaxCapacityInvestment(r,'NGCSPN2S','2016') = 0;
-TotalAnnualMaxCapacityInvestment(r,'NGCSPN2S','2017') = 0;
-TotalAnnualMaxCapacityInvestment(r,'NGCSPN2S','2018') = 0;
-TotalAnnualMaxCapacityInvestment(r,'NGCSPN2S','2019') = 0;
-TotalAnnualMaxCapacityInvestment(r,'NGCSPN2S','2020') = 0;
-TotalAnnualMaxCapacityInvestment(r,'NGCSPN2S','2021') = 0;
-TotalAnnualMaxCapacityInvestment(r,'NGCSPN2S','2022') = 0;
-TotalAnnualMaxCapacityInvestment(r,'NGCSPN2S','2023') = 0;
-TotalAnnualMaxCapacityInvestment(r,'NGCSPN2S','2024') = 0;
-TotalAnnualMaxCapacityInvestment(r,'NGCSPN2S','2025') = 0;
-TotalAnnualMaxCapacityInvestment(r,'NGCSPN2S','2026') = 0;
-TotalAnnualMaxCapacityInvestment(r,'NGCSPN2S','2027') = 0;
-TotalAnnualMaxCapacityInvestment(r,'NGCSPN2S','2028') = 0;
-TotalAnnualMaxCapacityInvestment(r,'NGCSPN2S','2029') = 0;
-TotalAnnualMaxCapacityInvestment(r,'NGCSPN2S','2030') = 0;
 
 TotalAnnualMaxCapacityInvestment(r,'NUG3PH3S','2015') = 0;
 TotalAnnualMaxCapacityInvestment(r,'NUG3PH3S','2016') = 0;
