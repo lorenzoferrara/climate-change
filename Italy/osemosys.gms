@@ -145,6 +145,11 @@ CapitalCost(r,t,y)$t_res(t) = %cost_res%/100 * CapitalCost(r,t,y);
 $setglobal scen "lowcost"
 $endif.scen
 
+$ifthen.scen set brumbrum 
+    AnnualEmissionLimit(r,'CO2',y)=999999;
+$setglobal scen "brumbrum"
+$endif.scen
+
 
 * solve the model
 model osemosys /all/;
