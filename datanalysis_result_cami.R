@@ -1,21 +1,25 @@
-
-require(data.table)
-require(tidyverse)
-require(gdxtools)
+#File analisi dati di Lorenzo
+setwd("/Users/cami/Documents/GitHub/climate-change/Italy")
+library(data.table)
 require(witchtools)
 require(ggpubr)
+library(tidyverse)
+library(gdxtools)
 
-file_directory <- "~/GitHub/climate-change/Italy"
+igdx('/Library/Frameworks/GAMS.framework/Versions/42/Resources')
+file_directory <- "Italy"
 complete_directory <- here::here()
+#"/Users/cami/Documents/GitHub/climate-change"
 all_gdx <- c(Sys.glob(here::here(file_directory,"results_*.gdx")))
-
-igdx('C:/GAMS/42')
+all_gdx
 
 osemosys_sanitize <- function(.x) {
   .x[, scen := basename(gdx)]
   .x[, scen := str_replace(scen,"results_","")]
   .x[, scen := str_replace(scen,".gdx","")]
-  .x[, gdx := NULL]}
+  .x[, gdx := NULL]
+  # .x[, V1 := NULL]
+}
 
 ################################################################################
 ########### PLOT SHARE OF FUEL USED ############################################
@@ -33,7 +37,7 @@ osemosys_sanitize <- function(.x) {
 
 emissions <- batch_extract("ANNUALEMISSIONS",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
 {
-  x11()
+  quartz()
   ggplot(emissions |> filter(EMISSION=="CO2")) +
     geom_line(aes(x=as.numeric(YEAR),y=value,color=scen))+ 
     labs(title = "Emissions [Mton/yr]",subtitle = "Only emissions of CO2", x = "year", y = "Emission [MtonCo2]") +
@@ -59,7 +63,7 @@ prod2$value = round(as.numeric(prod2$value),2)
 
 
 {
-  x11()
+  quartz()
   ggplot(prod2[prod2$value!=0,]) +
     geom_area(aes(x=as.numeric(YEAR),y=value,fill=TECH)) +
     labs(title = "Production by Technology [PJ/yr]", subtitle = "Energy production by set of technology using the same fuel") +
@@ -87,9 +91,10 @@ cap2 = cap |>
 cap2$value = round(as.numeric(cap2$value),2)
 
 {
-  x11()
+  quartz()
   ggplot(cap2[cap2$value!=0,]) +
     geom_area(aes(x=as.numeric(YEAR),y=value,fill=TECH)) +
+    labs(title = "Accumulated capacity [GW]", subtitle = "Accumulated installed capacity by technology") +
     facet_wrap(scen~.,) +
     xlab("year") + ylab("POWER [GW]") + theme_pubr() 
 }
@@ -113,12 +118,12 @@ prod2 = prod |>
 prod2$value = round(as.numeric(prod2$value),2)
 
 {
-  x11()
+  quartz()
   ggplot(prod2[prod2$value!=0,]) +
     geom_line(aes(x=as.numeric(YEAR),y=value,color=TECH)) +
     facet_wrap(scen~.,) + 
     labs(title = "Production of energy by technology") +
-  xlab("year") + ylab("Production [GW]") + theme_pubr() 
+    xlab("year") + ylab("Production [GW]") + theme_pubr() 
 }
 
 ################################################################################
@@ -126,5 +131,3 @@ prod2$value = round(as.numeric(prod2$value),2)
 ################################################################################
 
 # Last modified: Matteo Ghesini, 30/04/2023
-
-
