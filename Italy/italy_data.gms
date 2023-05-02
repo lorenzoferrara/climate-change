@@ -4342,14 +4342,16 @@ parameter TotalAnnualMaxCapacity(r,t,y) /
         ITALY.HFCHPH3.(2015*2021) 2
         ITALY.HFGCPH3.(2015*2021) 1
         ITALY.HFHPPH2.(2015*2021) 1
-        ITALY.HFSTPH2.(2015*2021) 12
+        ITALY.HFSTPH2.(2015*2021) 9
+        ITALY.HFCCPH2S.(2015*2021) 3
         ITALY.HYDMPH0.(2015*2021) 1
         ITALY.HYDMPH1.(2015*2021) 4
         ITALY.HYDMPH2.(2015*2021) 11
         ITALY.HYDMPH3.(2015*2021) 3
         ITALY.HYDSPH2.(2015*2021) 2
         ITALY.HYDSPH3.(2015*2021) 5
-        ITALY.NGCCPH2.(2015*2021) 24
+        ITALY.NGCCPH2.(2015*2021) 12
+        ITALY.NGCCPH2S.(2015*2021) 12
         ITALY.NGCHPH3.(2015*2021) 11
         ITALY.NGFCFH1.(2015*2021) 0.0002
         ITALY.NGGCPH2.(2015*2021) 2.5
@@ -4372,10 +4374,12 @@ parameter TotalAnnualMaxCapacity(r,t,y) /
         ITALY.WIONPH3.2021 11.5
         ITALY.WIONPN3.(2015*2021) 0.5
         ITALY.WSCHPH2.(2015*2021) 0.5
-        ITALY.WSSTPH1.(2015*2021) 0.5
+        ITALY.WSSTPH1.(2015*2021) 0.45
+        ITALY.WSSTPH1S.(2015*2021) 0.03
         
         ITALY.GOCVPH2.(2022*2060) 1.5
 *Seaside plants: dati momentanei, messi un po' a caso (alti per provare a farlo andare)
+$ontext
     ITALY.BMSTPH3S.(2015*2060) 50
     ITALY.BMCSPN2S.(2030*2060) 50
     ITALY.HFCCPH2S.(2015*2060) 50
@@ -4383,6 +4387,7 @@ parameter TotalAnnualMaxCapacity(r,t,y) /
     ITALY.NGCSPN2S.(2030*2060) 50
     ITALY.NUG3PH3S.(2035*2060) 50
     ITALY.WSSTPH1S.(2015*2060) 50
+$offtext
 /;
 TotalAnnualMaxCapacity(r,t,y)$(TotalAnnualMaxCapacity(r,t,y) = 0 ) = 99999;
 *TotalAnnualMaxCapacity(r,t,y) = 99999;
