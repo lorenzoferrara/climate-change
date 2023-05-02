@@ -4454,6 +4454,8 @@ TotalAnnualMaxCapacity(r,'NUG3PH3S','2033') = 0;
 TotalAnnualMaxCapacity(r,'NUG3PH3S','2034') = 0;
 TotalAnnualMaxCapacity(r,'NUG3PH3S','2035') = 0;
 
+TotalAnnualMaxCapacity(r,'CO00X00',y) = 0;
+
 TotalAnnualMinCapacity(r,t,y) = 0;
 *PNIEC 2030
 TotalAnnualMinCapacity(r,'SOUTPH2','2030') = 51;
@@ -4603,7 +4605,7 @@ TotalAnnualMaxCapacityInvestment(r,'NUG3PH3S','2034') = 0;
 
 TotalAnnualMaxCapacityInvestment(r,'HFCCPH2S',y) = 0;
 
-
+TotalAnnualMaxCapacityInvestment(r,'CO00X00',y) = 0;
 
 TotalAnnualMinCapacityInvestment(r,t,y) = 0;
 
