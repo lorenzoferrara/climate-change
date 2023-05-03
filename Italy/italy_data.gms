@@ -4498,7 +4498,9 @@ TotalAnnualMinCapacity(r,'SOUTPH2','2030') = 51;
 TotalAnnualMinCapacity(r,'WIOFPN3','2030') = 1.950;
 TotalAnnualMinCapacity(r,'WIONPN3','2030') = 10.6;
 
-*Mesured in GW
+
+*GW/year
+
 parameter TotalAnnualMaxCapacityInvestment(r,t,y) /
 *ITALY.NUG3PH3.(2015*2060) 3
     ITALY.NUG3PH3.(2036*2060) 3
@@ -4674,8 +4676,8 @@ parameter EmissionActivityRatio(r,t,e,m,y) /
     ITALY.OI00I00.CO2.1.(2015*2060)  0.0700778
     ITALY.OI00X00.CO2.1.(2015*2060)  0.0700778
 
-*dato strano, da rivedere!
-    ITALY.WS00X00.CO2.1.(2015*2060)  0.131
+*dato ancora un po' incerto,ma ha più senso (solo emissioni fossili, esclusi i rifiuti biogenici)
+    ITALY.WS00X00.CO2.1.(2015*2060)  0.00005
 
 *biomass considered net zero
 

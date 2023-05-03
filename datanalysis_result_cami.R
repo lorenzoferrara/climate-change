@@ -9,6 +9,7 @@ library(gdxtools)
 igdx('/Library/Frameworks/GAMS.framework/Versions/42/Resources')
 file_directory <- "Italy"
 complete_directory <- here::here()
+complete_directory
 #"/Users/cami/Documents/GitHub/climate-change"
 all_gdx <- c(Sys.glob(here::here(file_directory,"results_*.gdx")))
 all_gdx
@@ -47,9 +48,10 @@ emissions <- batch_extract("ANNUALEMISSIONS",all_gdx)[[1]] |> setDT() |> osemosy
 ################################################################################
 ########### PLOT PRODUCTION BY TECHNOLOGY ######################################
 ################################################################################
-
 prod <- batch_extract("PRODUCTIONBYTECHNOLOGYANNUAL",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
-prod = prod[prod$FUEL=="E1"]
+prod = prod[prod$FUEL=="E1" | prod$FUEL=='E2',]
+prod = prod[ prod$TECHNOLOGY  != "EL00TD0",]
+prod[prod$FUEL=="E1",]=0.95*prod[prod$FUEL=="E1",]
 
 prod$TECH=prod$TECHNOLOGY
 for(i in unique(prod$TECHNOLOGY)){
@@ -61,11 +63,13 @@ prod2 = prod |>
   summarise(value = sum(value))
 prod2$value = round(as.numeric(prod2$value),2)
 
+demand <- batch_extract("SpecifiedAnnualDemand",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
 
 {
   quartz()
   ggplot(prod2[prod2$value!=0,]) +
     geom_area(aes(x=as.numeric(YEAR),y=value,fill=TECH)) +
+    geom_line(data=demand, aes(x=as.numeric(YEAR),y=value), linewidth=1.2) +
     labs(title = "Production by Technology [PJ/yr]", subtitle = "Energy production by set of technology using the same fuel") +
     facet_wrap(scen~.,) +
     xlab("year") + ylab("Energy [PJ]") + theme_pubr() 
@@ -102,7 +106,6 @@ cap2$value = round(as.numeric(cap2$value),2)
 ################################################################################
 ########### PLOT AMOUNT OF ENERGY PER FUEL #####################################
 ################################################################################
-
 prod <- batch_extract("PRODUCTIONBYTECHNOLOGY",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
 
 temp = prod$TECHNOLOGY
