@@ -133,3 +133,18 @@ water = water[water$FUEL=='SE' | water$FUEL=='HY']
     facet_wrap(scen~.,) +
     xlab("year") + ylab("Water used [ML]") + theme_pubr() 
 }
+
+################################################################################
+########### PLOT STORAGE USAGE ###################################################
+################################################################################
+
+storage <- batch_extract("STORAGELEVELSEASONSTART",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
+storage = storage[storage$STORAGE=='DAM' | storage$STORAGE=='H2' | storage$STORAGE=='BAT']
+
+{
+  x11()
+  ggplot(storage) +
+    geom_line(aes(x=as.numeric(YEAR),y=value,color=STORAGE), linewidth=0.5) +
+    facet_wrap(scen~.,) +
+    xlab("year") + ylab("storage capacity [PJ]") + theme_pubr() 
+}
