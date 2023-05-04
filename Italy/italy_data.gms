@@ -4449,8 +4449,8 @@ parameter TotalAnnualMaxCapacity(r,t,y) /
     ITALY.HYDMPH1.(2022*2060) 4
     ITALY.HYDMPH2.(2022*2060) 11
     ITALY.HYDMPH3.(2022*2060) 3
-*    ITALY.HYDSPH2.(2022*2060) 2
-*    ITALY.HYDSPH3.(2022*2060) 5
+    ITALY.HYDSPH2.(2022*2060) 2
+    ITALY.HYDSPH3.(2022*2060) 5
 
 *Seaside plants: dati momentanei, messi un po' a caso (alti per provare a farlo andare)
 $ontext

@@ -138,7 +138,7 @@ water = water[water$FUEL=='SE' | water$FUEL=='HY']
 ########### PLOT STORAGE USAGE ###################################################
 ################################################################################
 
-storage <- batch_extract("STORAGELEVELSEASONSTART",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
+storage <- batch_extract("STORAGELEVELDAYTYPESTART",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
 storage = storage[storage$STORAGE=='DAM' | storage$STORAGE=='H2' | storage$STORAGE=='BAT']
 
 {
