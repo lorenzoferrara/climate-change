@@ -4337,27 +4337,25 @@ parameter TechnologyFromStorage(r,m,t,s) /
 
 *PJ
 Parameter StorageLevelStart(r,s)    /
-    ITALY.DAM 14.4
+    ITALY.DAM 8.64
     ITALY.BAT 0
     ITALY.H2 0
 /;
-*gennaio 2015 era 4000GWh
 
 *PJ/anno
 Parameter StorageMaxChargeRate(r,s) /
-    ITALY.DAM 20
-    ITALY.BAT  2
-    ITALY.H2 3
+    ITALY.DAM 90
+    ITALY.BAT 5
+    ITALY.H2 5
 /;
-*2021 7,5 GW
 
-*PJ7anno
+*PJ/anno
 Parameter StorageMaxDischargeRate(r,s) /
-    ITALY.DAM 20
-    ITALY.BAT 2
-    ITALY.H2 3
+    ITALY.DAM 90
+    ITALY.BAT 5
+    ITALY.H2 5
 /;
-*2021 7,5 GW
+
 *PJ
 MinStorageCharge(r,s,y) = 0;
 
@@ -4372,7 +4370,7 @@ CapitalCostStorage(r,s,y) = 0;
 
 *PJ
 Parameter ResidualStorageCapacity(r,s,y) /
-    ITALY.DAM.(2015*2021) 14.4
+    ITALY.DAM.(2015*2021) 90
     ITALY.BAT.(2015*2018) 0
     ITALY.BAT.2019 0.000604
     ITALY.BAT.2020 0.000963
@@ -4621,7 +4619,9 @@ parameter TotalAnnualMaxCapacityInvestment(r,t,y) /
     ITALY.NGCSPN2S.(2015*2060) 1
     ITALY.NUG3PH3S.(2015*2060) 1
     ITALY.WSSTPH1S.(2015*2060) 1
-
+    
+    ITALY.BATCHG.(2022*2060) 0.8
+    ITALY.H2CELL.(2035*2060) 1
 /;
 
 TotalAnnualMaxCapacityInvestment(r,t,y)$(TotalAnnualMaxCapacityInvestment(r,t,y) = 0 AND power_plants(t) ) = 5;
