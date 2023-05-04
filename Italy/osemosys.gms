@@ -155,6 +155,20 @@ $ifthen.scen set thirsty
 $setglobal scen "thirsty_%thirsty%"
 $endif.scen
 
+$ifthen.scen set drought
+    Parameter rate;
+    rate = %drought%/100;
+    
+    Parameter MaxUseWater;
+    loop(y, MaxUseWater(y) = 600*((1-rate)**(ord(y)-1)) )
+    
+    Equation EQ_MaxProdWater(REGION,FUEL,YEAR);
+    EQ_MaxUseWater(r,'HY',y)..
+    USEANNUAL(r,'HY',y) =l= MaxUseWater(y);
+*$setglobal scen "thirsty_%thirsty%"
+$setglobal scen "drought%drought%%"
+$endif.scen
+
 
 * solve the model
 model osemosys /all/;

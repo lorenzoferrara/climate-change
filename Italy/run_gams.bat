@@ -1,6 +1,3 @@
-set mypath=%cd%
-echo %mypath% 
-
-gams osemosys.gms
+gams osemosys.gms --drought=30
 
 pause
