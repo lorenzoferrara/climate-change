@@ -1,3 +1,3 @@
-gams osemosys.gms --drought=30
+gams osemosys.gms --drought=10
 
 pause
