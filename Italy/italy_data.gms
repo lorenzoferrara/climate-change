@@ -4534,8 +4534,8 @@ TotalAnnualMinCapacity(r,'WIONPN3','2030') = 10.6;
 
 *GW/year
 parameter TotalAnnualMaxCapacityInvestment(r,t,y) /
-    ITALY.NUG3PH3.(2036*2060) 3
-    ITALY.NUG3PH3S.(2036*2060) 3
+    ITALY.NUG3PH3.(2036*2060) 1
+    ITALY.NUG3PH3S.(2036*2060) 1
 
     ITALY.SODIFH1.2015 0.09
     ITALY.SODIFH1.2016 0.09
@@ -4609,9 +4609,6 @@ TotalAnnualMaxCapacityInvestment(r,'COSTPH3',y) = 0;
 
 TotalAnnualMaxCapacityInvestment(r,'NGCHPH3',y) = 0;
 TotalAnnualMaxCapacityInvestment(r,'NGGCPH2',y) = 0;
-
-*TotalAnnualMaxCapacityInvestment(r,'WSCHPH2',y) = 0;
-*TotalAnnualMaxCapacityInvestment(r,'WSSTPH1',y) = 0;
 
 TotalAnnualMaxCapacityInvestment(r,'WIONPH3',y) = 0;
 
