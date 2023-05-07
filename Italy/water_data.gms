@@ -1,3 +1,4 @@
+*Outdated
 InputActivityRatio(r,'BF00X00','HY',m,y) = 0.10150;
 InputActivityRatio(r,'BFHPFH1','HY',m,y) = 0.04351;
 InputActivityRatio(r,'BM00X00','HY',m,y) = 0.10150;
