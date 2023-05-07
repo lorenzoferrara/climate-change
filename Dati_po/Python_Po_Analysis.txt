@@ -3,45 +3,59 @@ import numpy as np
 import matplotlib.pyplot as plt
 from datetime import datetime
 
-#Import csv datas 
-data1_castelmassa = pd.read_csv('Castelmassa.csv',sep=';',low_memory=False)
-#Remove undesired columns
-data1_castelmassa.drop('Selettiva', axis=1, inplace=True)
-#Change weird column names
-data1_castelmassa.rename(columns={'Castelmassa SIAP - Livello Idrometrico - 15968 (m)': 'Level'}, inplace=True)
-#Remove lines containing NAN
-data1_castelmassa.dropna(inplace=True)
-data1_castelmassa = data1_castelmassa.reset_index(drop=True)
-#Have an idea of the dataset statistical characteristics
-statistics=data1_castelmassa.describe()
-#In case it gives error because of non numerical data
-data1_castelmassa['Level'] = pd.to_numeric(data1_castelmassa['Level'], errors='coerce')
-#Remove outliers
-mean=np.mean(data1_castelmassa['Level'])
-sigma = np.std(data1_castelmassa['Level'])
+#Stazioni di rilevazione:
+#1) San Sebastiano (Torino)
+#2) Isola S.Antonio PO (Alessandria)
+#3) Spessa (Pavia)
+#4) Boretto (Reggio-Emilia)
+#5) Castelmassa (Rovigo)
+#6) Polesella (Rovigo)
 
+#Setting the color scheme for seasons
+colors=['cyan','cyan','plum','plum','limegreen','limegreen','limegreen','limegreen','limegreen','orange','orange','lightblue']*15
+colors.append('cyan')
+colors.append('cyan')
+colors.append('plum')
+colors.append('plum')
+#Range for boxplot visualization
+date_range =['2008-1','2009-1','2010-1','2011-1','2012-1','2013-1','2014-1','2015-1','2016-1','2017-1','2018-1','2019-1','2020-1','2021-1','2022-1','2023-1']
+
+
+#1) SAN SEBASTIANO 
+#Import csv datas 
+data1_ssebastiano = pd.read_csv('SSebastiano.csv',sep=';',low_memory=False)
+#Remove undesired columns
+data1_ssebastiano.drop('Selettiva', axis=1, inplace=True)
+#Change weird column names
+data1_ssebastiano.rename(columns={'San Sebastiano Po - Livello Idrometrico - 35580 (m)': 'Level'}, inplace=True)
+#Remove lines containing NAN
+data1_ssebastiano.dropna(inplace=True)
+data1_ssebastiano = data1_ssebastiano.reset_index(drop=True)
+#Have an idea of the dataset statistical characteristics
+statistics=data1_ssebastiano.describe()
+#In case it gives error because of non numerical data
+data1_ssebastiano['Level'] = pd.to_numeric(data1_ssebastiano['Level'], errors='coerce')
+
+#Remove outliers
+mean=np.mean(data1_ssebastiano['Level'])
+sigma = np.std(data1_ssebastiano['Level'])
 #Remove rows with z-score greater than 3
-data1_castelmassa = data1_castelmassa[ data1_castelmassa['Level']< mean+3*sigma]
-#2121 vales are removed for castelmassa (original 131301)
+data1_ssebastiano = data1_ssebastiano[ data1_ssebastiano['Level']< mean+2.5*sigma]
 #Now for smaller extremes
-data1_castelmassa = data1_castelmassa[ data1_castelmassa['Level']> mean-3*sigma]
-#no extremes removed for castelmassa
+data1_ssebastiano = data1_ssebastiano[ data1_ssebastiano['Level']> mean-2.5*sigma]
 
 #Obtain the delta Level-Mean
-data1_castelmassa['Delta'] = data1_castelmassa['Level']-mean
-De=data1_castelmassa['Delta']
+data1_ssebastiano['Delta'] = data1_ssebastiano['Level']-mean
+De=data1_ssebastiano['Delta']
 De = De.reset_index(drop=True)
 
 #Rename the time
-data1_castelmassa['Orario'] = pd.to_datetime(data1_castelmassa['Orario'])
-# Add a new column with the year extracted from the 'date' column
-data1_castelmassa['Year'] = data1_castelmassa['Orario'].dt.year
+data1_ssebastiano['Orario'] = pd.to_datetime(data1_ssebastiano['Orario'])
 
 #Plot result
-
 plt.subplots(figsize=(25, 5))
-plt.plot(data1_castelmassa['Orario'],De,color='blue', linewidth=1)
-plt.title('Variation of Po River Level @Castelmassa ')
+plt.plot(data1_ssebastiano['Orario'],De,color='blue', linewidth=1)
+plt.title('Variation of Po River Level @San Sebastiano(1) ')
 plt.xlabel('time')
 plt.ylabel('Level variation [m]')
 
@@ -52,13 +66,316 @@ plt.minorticks_on()
 plt.grid(axis='x',which='minor', linestyle='--', linewidth=0.5)
 
 
-
 #Make a monthly avarage
-monthly_avg = data1_castelmassa.groupby(pd.Grouper(key='Orario', freq='M')).mean(numeric_only=True)
+monthly_avg1 = data1_ssebastiano.groupby(pd.Grouper(key='Orario', freq='M')).mean(numeric_only=True)
 
 plt.subplots(figsize=(20, 5))
-plt.plot(monthly_avg['Delta'])
-plt.title('Monthly variation of Po River Level @Castelmassa ')
+plt.plot(monthly_avg1['Delta'])
+plt.title('Monthly variation of Po River Level @San Sebastiano(1)')
+plt.xlabel('Time')
+plt.ylabel('Level variation [m]')
+
+plt.axhline(y=0, color='red', linestyle='--')
+plt.grid(axis='x', which='both',color='gray', linestyle='--', linewidth=0.5)
+
+plt.minorticks_on()
+plt.grid(axis='x',which='minor', linestyle='--', linewidth=0.5)
+
+monthly_avg1['Date']=['{}-{}'.format(i.year,i.month) for i in monthly_avg1.index.tolist()]
+
+#Actually plotting the barplot
+plt.subplots(figsize=(20, 5))
+plt.bar(monthly_avg1['Date'],monthly_avg1['Delta'], color=colors)
+plt.title('Monthly variation of Po River Level @San Sebastiano(1) ')
+plt.xlabel('Time')
+plt.ylabel('Level variation [m]')
+
+plt.axhline(y=0, color='red', linestyle='--')
+plt.grid(axis='x',color='gray', linestyle='--', linewidth=0.5)
+
+plt.xticks(date_range)
+
+
+#2) SANT'ANTONIO ---------------------------
+#Import csv datas 
+data2_santonio = pd.read_csv('SAntonio.csv',sep=';',low_memory=False)
+#Remove undesired columns
+data2_santonio.drop('Selettiva', axis=1, inplace=True)
+#Change weird column names
+data2_santonio.rename(columns={'Isola S.Antonio PO - Livello Idrometrico - 11331 (m)':'Level'}, inplace=True)
+#Remove lines containing NAN
+data2_santonio.dropna(inplace=True)
+data2_santonio = data2_santonio.reset_index(drop=True)
+#Have an idea of the dataset statistical characteristics
+statistics=data2_santonio.describe()
+#In case it gives error because of non numerical data
+data2_santonio['Level'] = pd.to_numeric(data2_santonio['Level'], errors='coerce')
+
+#Remove outliers
+mean=np.mean(data2_santonio['Level'])
+sigma = np.std(data2_santonio['Level'])
+#Remove rows with z-score greater than 3
+data2_santonio = data2_santonio[ data2_santonio['Level']< mean+3*sigma]
+#Now for smaller extremes
+data2_santonio = data2_santonio[ data2_santonio['Level']> mean-3*sigma]
+
+
+#Obtain the delta Level-Mean
+data2_santonio['Delta'] = data2_santonio['Level']-mean
+De=data2_santonio['Delta']
+De = De.reset_index(drop=True)
+
+#Rename the time
+data2_santonio['Orario'] = pd.to_datetime(data2_santonio['Orario'])
+
+#Plot result
+plt.subplots(figsize=(25, 5))
+plt.plot(data2_santonio['Orario'],De,color='blue', linewidth=1)
+plt.title('Variation of Po River Level @SantAntonio(2)')
+plt.xlabel('time')
+plt.ylabel('Level variation [m]')
+
+plt.axhline(y=0, color='red', linestyle='--')
+plt.grid(axis='x', which='both',color='gray', linestyle='--', linewidth=0.5)
+
+plt.minorticks_on()
+plt.grid(axis='x',which='minor', linestyle='--', linewidth=0.5)
+
+
+#Make a monthly avarage
+monthly_avg2 = data2_santonio.groupby(pd.Grouper(key='Orario', freq='M')).mean(numeric_only=True)
+
+plt.subplots(figsize=(20, 5))
+plt.plot(monthly_avg2['Delta'])
+plt.title('Monthly variation of Po River Level @SantAntonio(2)')
+plt.xlabel('Time')
+plt.ylabel('Level variation [m]')
+
+plt.axhline(y=0, color='red', linestyle='--')
+plt.grid(axis='x', which='both',color='gray', linestyle='--', linewidth=0.5)
+
+plt.minorticks_on()
+plt.grid(axis='x',which='minor', linestyle='--', linewidth=0.5)
+
+monthly_avg2['Date']=['{}-{}'.format(i.year,i.month) for i in monthly_avg2.index.tolist()]
+
+#Actually plotting the barplot
+plt.subplots(figsize=(20, 5))
+plt.bar(monthly_avg2['Date'],monthly_avg2['Delta'], color=colors)
+plt.title('Monthly variation of Po River Level @SantAntonio(2) ')
+plt.xlabel('Time')
+plt.ylabel('Level variation [m]')
+
+plt.axhline(y=0, color='red', linestyle='--')
+plt.grid(axis='x',color='gray', linestyle='--', linewidth=0.5)
+
+plt.xticks(date_range)
+
+#3) SPESSA ------------------------------
+#Import csv datas 
+data3_spessa = pd.read_csv('Spessa.csv',sep=';',low_memory=False)
+#Remove undesired columns
+data3_spessa.drop('Selettiva', axis=1, inplace=True)
+#Change weird column names
+data3_spessa.rename(columns={'Spessa Po - Livello Idrometrico - 13943 (m)': 'Level'}, inplace=True)
+#Remove lines containing NAN
+data3_spessa.dropna(inplace=True)
+data3_spessa = data3_spessa.reset_index(drop=True)
+#Have an idea of the dataset statistical characteristics
+statistics=data3_spessa.describe()
+#In case it gives error because of non numerical data
+data3_spessa['Level'] = pd.to_numeric(data3_spessa['Level'], errors='coerce')
+
+#Remove outliers
+mean=np.mean(data3_spessa['Level'])
+sigma = np.std(data3_spessa['Level'])
+#Remove rows with z-score greater than 3
+data3_spessa = data3_spessa[ data3_spessa['Level']< mean+3*sigma]
+#Now for smaller extremes
+data3_spessa = data3_spessa[ data3_spessa['Level']> mean-3*sigma]
+
+#Obtain the delta Level-Mean
+data3_spessa['Delta'] = data3_spessa['Level']-mean
+De=data3_spessa['Delta']
+De = De.reset_index(drop=True)
+
+#Rename the time
+data3_spessa['Orario'] = pd.to_datetime(data3_spessa['Orario'])
+
+#Plot result
+plt.subplots(figsize=(25, 5))
+plt.plot(data3_spessa['Orario'],De,color='blue', linewidth=1)
+plt.title('Variation of Po River Level @Spessa(3)')
+plt.xlabel('time')
+plt.ylabel('Level variation [m]')
+
+plt.axhline(y=0, color='red', linestyle='--')
+plt.grid(axis='x', which='both',color='gray', linestyle='--', linewidth=0.5)
+
+plt.minorticks_on()
+plt.grid(axis='x',which='minor', linestyle='--', linewidth=0.5)
+
+
+#Make a monthly avarage
+monthly_avg3= data3_spessa.groupby(pd.Grouper(key='Orario', freq='M')).mean(numeric_only=True)
+
+plt.subplots(figsize=(20, 5))
+plt.plot(monthly_avg1['Delta'])
+plt.title('Monthly variation of Po River Level @Spessa(3)')
+plt.xlabel('Time')
+plt.ylabel('Level variation [m]')
+
+plt.axhline(y=0, color='red', linestyle='--')
+plt.grid(axis='x', which='both',color='gray', linestyle='--', linewidth=0.5)
+
+plt.minorticks_on()
+plt.grid(axis='x',which='minor', linestyle='--', linewidth=0.5)
+
+monthly_avg1['Date']=['{}-{}'.format(i.year,i.month) for i in monthly_avg1.index.tolist()]
+
+#Actually plotting the barplot
+plt.subplots(figsize=(20, 5))
+plt.bar(monthly_avg1['Date'],monthly_avg1['Delta'], color=colors)
+plt.title('Monthly variation of Po River Level @Spessa(3) ')
+plt.xlabel('Time')
+plt.ylabel('Level variation [m]')
+
+plt.axhline(y=0, color='red', linestyle='--')
+plt.grid(axis='x',color='gray', linestyle='--', linewidth=0.5)
+
+plt.xticks(date_range)
+
+#4) BORETTO ------------------------
+#Import csv datas 
+data4_boretto = pd.read_csv('boretto.csv',sep=';',low_memory=False)
+#Remove undesired columns
+data4_boretto.drop('Selettiva', axis=1, inplace=True)
+#Change weird column names
+data4_boretto.rename(columns={'Boretto - Livello Idrometrico - 14017 (m)': 'Level'}, inplace=True)
+#Remove lines containing NAN
+data4_boretto.dropna(inplace=True)
+data4_boretto = data4_boretto.reset_index(drop=True)
+#Have an idea of the dataset statistical characteristics
+statistics=data4_boretto.describe()
+#In case it gives error because of non numerical data
+data4_boretto['Level'] = pd.to_numeric(data4_boretto['Level'], errors='coerce')
+
+#There is a weird data, completely out of scale
+data4_boretto = data4_boretto[ data4_boretto['Level']< 5000]
+
+#Remove outliers
+mean=np.mean(data4_boretto['Level'])
+sigma = np.std(data4_boretto['Level'])
+#Remove rows with z-score greater than 3
+data4_boretto = data4_boretto[ data4_boretto['Level']< mean+3*sigma]
+#Now for smaller extremes
+data4_boretto = data4_boretto[ data4_boretto['Level']> mean-3*sigma]
+
+#Obtain the delta Level-Mean
+data4_boretto['Delta'] = data4_boretto['Level']-mean
+De=data4_boretto['Delta']
+De = De.reset_index(drop=True)
+
+#Rename the time
+data4_boretto['Orario'] = pd.to_datetime(data4_boretto['Orario'])
+
+#Plot result
+plt.subplots(figsize=(25, 5))
+plt.plot(data4_boretto['Orario'],De,color='blue', linewidth=1)
+plt.title('Variation of Po River Level @Boretto(4)')
+plt.xlabel('time')
+plt.ylabel('Level variation [m]')
+
+plt.axhline(y=0, color='red', linestyle='--')
+plt.grid(axis='x', which='both',color='gray', linestyle='--', linewidth=0.5)
+
+plt.minorticks_on()
+plt.grid(axis='x',which='minor', linestyle='--', linewidth=0.5)
+
+
+#Make a monthly avarage
+monthly_avg4= data4_boretto.groupby(pd.Grouper(key='Orario', freq='M')).mean(numeric_only=True)
+
+plt.subplots(figsize=(20, 5))
+plt.plot(monthly_avg1['Delta'])
+plt.title('Monthly variation of Po River Level @Boretto(4)')
+plt.xlabel('Time')
+plt.ylabel('Level variation [m]')
+
+plt.axhline(y=0, color='red', linestyle='--')
+plt.grid(axis='x', which='both',color='gray', linestyle='--', linewidth=0.5)
+
+plt.minorticks_on()
+plt.grid(axis='x',which='minor', linestyle='--', linewidth=0.5)
+
+monthly_avg1['Date']=['{}-{}'.format(i.year,i.month) for i in monthly_avg1.index.tolist()]
+
+#Actually plotting the barplot
+plt.subplots(figsize=(20, 5))
+plt.bar(monthly_avg1['Date'],monthly_avg1['Delta'], color=colors)
+plt.title('Monthly variation of Po River Level @Boretto(4)')
+plt.xlabel('Time')
+plt.ylabel('Level variation [m]')
+
+plt.axhline(y=0, color='red', linestyle='--')
+plt.grid(axis='x',color='gray', linestyle='--', linewidth=0.5)
+
+plt.xticks(date_range)
+
+#5) CASTELMASSA ---------------------
+#Import csv datas 
+data5_castelmassa = pd.read_csv('Castelmassa.csv',sep=';',low_memory=False)
+#Remove undesired columns
+data5_castelmassa.drop('Selettiva', axis=1, inplace=True)
+#Change weird column names
+data5_castelmassa.rename(columns={'Castelmassa SIAP - Livello Idrometrico - 15968 (m)': 'Level'}, inplace=True)
+#Remove lines containing NAN
+data5_castelmassa.dropna(inplace=True)
+data5_castelmassa = data5_castelmassa.reset_index(drop=True)
+#Have an idea of the dataset statistical characteristics
+statistics=data5_castelmassa.describe()
+#In case it gives error because of non numerical data
+data5_castelmassa['Level'] = pd.to_numeric(data5_castelmassa['Level'], errors='coerce')
+
+#Remove outliers
+mean=np.mean(data5_castelmassa['Level'])
+sigma = np.std(data5_castelmassa['Level'])
+#Remove rows with z-score greater than 3
+data5_castelmassa = data5_castelmassa[ data5_castelmassa['Level']< mean+3*sigma]
+#2121 vales are removed for castelmassa (original 131301)
+#Now for smaller extremes
+data5_castelmassa = data5_castelmassa[ data5_castelmassa['Level']> mean-3*sigma]
+#no lower extremes removed for castelmassa
+
+#Obtain the delta Level-Mean
+data5_castelmassa['Delta'] = data5_castelmassa['Level']-mean
+De=data5_castelmassa['Delta']
+De = De.reset_index(drop=True)
+
+#Rename the time
+data5_castelmassa['Orario'] = pd.to_datetime(data5_castelmassa['Orario'])
+
+#Plot result
+
+plt.subplots(figsize=(25, 5))
+plt.plot(data5_castelmassa['Orario'],De,color='blue', linewidth=1)
+plt.title('Variation of Po River Level @Castelmassa(5) ')
+plt.xlabel('time')
+plt.ylabel('Level variation [m]')
+
+plt.axhline(y=0, color='red', linestyle='--')
+plt.grid(axis='x', which='both',color='gray', linestyle='--', linewidth=0.5)
+
+plt.minorticks_on()
+plt.grid(axis='x',which='minor', linestyle='--', linewidth=0.5)
+
+
+#Make a monthly avarage
+monthly_avg5 = data5_castelmassa.groupby(pd.Grouper(key='Orario', freq='M')).mean(numeric_only=True)
+
+plt.subplots(figsize=(20, 5))
+plt.plot(monthly_avg5['Delta'])
+plt.title('Monthly variation of Po River Level @Castelmassa(5) ')
 plt.xlabel('Time')
 plt.ylabel('Level variation [m]')
 
@@ -69,25 +386,93 @@ plt.minorticks_on()
 plt.grid(axis='x',which='minor', linestyle='--', linewidth=0.5)
 
 #BARPLOT
-#Setting the color scheme according to our 5 seasons
-colors=['cyan','cyan','plum','plum','limegreen','limegreen','limegreen','limegreen','limegreen','orange','orange','lightblue']*15
-colors.append('cyan')
-colors.append('cyan')
-colors.append('plum')
-colors.append('plum')
 
-monthly_avg['Date']=['{}-{}'.format(i.year,i.month) for i in monthly_avg.index.tolist()]
+monthly_avg5['Date']=['{}-{}'.format(i.year,i.month) for i in monthly_avg5.index.tolist()]
 
 #Actually plotting the barplot
 plt.subplots(figsize=(20, 5))
-plt.bar(monthly_avg['Date'],monthly_avg['Delta'], color=colors)
-plt.title('Monthly variation of Po River Level @Castelmassa ')
+plt.bar(monthly_avg5['Date'],monthly_avg5['Delta'], color=colors)
+plt.title('Monthly variation of Po River Level @Castelmassa(5) ')
 plt.xlabel('Time')
 plt.ylabel('Level variation [m]')
 
 plt.axhline(y=0, color='red', linestyle='--')
 plt.grid(axis='x',color='gray', linestyle='--', linewidth=0.5)
 
-#Dividing the years
-date_range =['2008-1','2009-1','2010-1','2011-1','2012-1','2013-1','2014-1','2015-1','2016-1','2017-1','2018-1','2019-1','2020-1','2021-1','2022-1','2023-1']
+plt.xticks(date_range)
+
+
+#6) POLESELLA ---------------
+#Import csv datas 
+data6_polesella = pd.read_csv('polesella.csv',sep=';',low_memory=False)
+#Remove undesired columns
+data6_polesella.drop('Selettiva', axis=1, inplace=True)
+#Change weird column names
+data6_polesella.rename(columns={'Polesella SIAP - Livello Idrometrico - 15980 (m)': 'Level'}, inplace=True)
+#Remove lines containing NAN
+data6_polesella.dropna(inplace=True)
+data6_polesella = data6_polesella.reset_index(drop=True)
+#Have an idea of the dataset statistical characteristics
+statistics=data6_polesella.describe()
+#In case it gives error because of non numerical data
+data6_polesella['Level'] = pd.to_numeric(data6_polesella['Level'], errors='coerce')
+
+
+#Remove outliers
+mean=np.mean(data6_polesella['Level'])
+sigma = np.std(data6_polesella['Level'])
+#Remove rows with z-score greater than 3
+data6_polesella = data6_polesella[ data6_polesella['Level']< mean+3*sigma]
+#Now for smaller extremes
+data6_polesella = data6_polesella[ data6_polesella['Level']> mean-3*sigma]
+
+#Obtain the delta Level-Mean
+data6_polesella['Delta'] = data6_polesella['Level']-mean
+De=data6_polesella['Delta']
+De = De.reset_index(drop=True)
+
+#Rename the time
+data6_polesella['Orario'] = pd.to_datetime(data6_polesella['Orario'])
+
+#Plot result
+plt.subplots(figsize=(25, 5))
+plt.plot(data6_polesella['Orario'],De,color='blue', linewidth=1)
+plt.title('Variation of Po River Level @Polesella(6)')
+plt.xlabel('time')
+plt.ylabel('Level variation [m]')
+
+plt.axhline(y=0, color='red', linestyle='--')
+plt.grid(axis='x', which='both',color='gray', linestyle='--', linewidth=0.5)
+
+plt.minorticks_on()
+plt.grid(axis='x',which='minor', linestyle='--', linewidth=0.5)
+
+
+#Make a monthly avarage
+monthly_avg6= data6_polesella.groupby(pd.Grouper(key='Orario', freq='M')).mean(numeric_only=True)
+
+plt.subplots(figsize=(20, 5))
+plt.plot(monthly_avg1['Delta'])
+plt.title('Monthly variation of Po River Level @Polesella(6)')
+plt.xlabel('Time')
+plt.ylabel('Level variation [m]')
+
+plt.axhline(y=0, color='red', linestyle='--')
+plt.grid(axis='x', which='both',color='gray', linestyle='--', linewidth=0.5)
+
+plt.minorticks_on()
+plt.grid(axis='x',which='minor', linestyle='--', linewidth=0.5)
+
+monthly_avg1['Date']=['{}-{}'.format(i.year,i.month) for i in monthly_avg1.index.tolist()]
+
+#Actually plotting the barplot
+plt.subplots(figsize=(20, 5))
+plt.bar(monthly_avg1['Date'],monthly_avg1['Delta'], color=colors)
+plt.title('Monthly variation of Po River Level @Polesella(6)')
+plt.xlabel('Time')
+plt.ylabel('Level variation [m]')
+
+plt.axhline(y=0, color='red', linestyle='--')
+plt.grid(axis='x',color='gray', linestyle='--', linewidth=0.5)
+
 plt.xticks(date_range)
