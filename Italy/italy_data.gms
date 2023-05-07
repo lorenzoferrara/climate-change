@@ -121,7 +121,6 @@ set TECHNOLOGY      /
         WSSTPH1S 'waste steam cycle, SEA WATER'
         
 *Storage tech
-        H2CELL 'combustion cell for H2'
         BATCHG 'battery sistem of control'      
 
 *Water technologies
@@ -169,14 +168,14 @@ set     REGION  / ITALY /;
 set     SEASON /1, 2, 3, 4, 5 /;
 set     DAYTYPE / 1/;
 set     DAILYTIMEBRACKET / 1, 2, 3 /;
-set     STORAGE / DAM, BAT, H2 /;
+set     STORAGE / DAM, BAT/;
 
 *Characterize technologies
 
 set power_plants(TECHNOLOGY) /BFHPFH1, BMCCPH1, BMCHPH3, BMSTPH3, BMCSPN2, COCSPN2, COCHPH3, COSTPH1, COSTPH3, GOCVPH2, HFCCPH2, HFCHPH3, HFGCPH3, HFGCPN3, HFSTPH2, HFSTPH3, HFHPFH1, HFHPPH2,
                                 HYDMPH0, HYDMPH1, HYDMPH2, HYDMPH3, HYDSPH2, HYDSPH3, NGCCPH2, NGCHPH3, NGCHPN3, NGCSPN2, NGFCFH1, NGGCPH2, NGGCPN2, NGHPFH1, NGHPPH2, NUG3PH3, OCWVPH1, SOUTPH2,
-                                SODIFH1, WIOFPN2, WIOFPN3, WIONPH3, WIONPN3, WSCHPH2, WSSTPH1, BMSTPH3S, BMCSPN2S, HFCCPH2S, NGCCPH2S, NGCSPN2S, NUG3PH3S, WSSTPH1S, H2CELL, BATCHG /;
-set storage_plants(TECHNOLOGY) / HYDSPH2, HYDSPH3, H2CELL, BATCHG/;
+                                SODIFH1, WIOFPN2, WIOFPN3, WIONPH3, WIONPN3, WSCHPH2, WSSTPH1, BMSTPH3S, BMCSPN2S, HFCCPH2S, NGCCPH2S, NGCSPN2S, NUG3PH3S, WSSTPH1S, BATCHG /;
+set storage_plants(TECHNOLOGY) / HYDSPH2, HYDSPH3, BATCHG/;
 set fuel_transformation(TECHNOLOGY) / OIRFPH0/;
 set appliances(TECHNOLOGY) ;
 set unmet_demand(TECHNOLOGY);
@@ -189,7 +188,7 @@ set fuel_production_fict(TECHNOLOGY)/RIVER/;
 
 set secondary_production(TECHNOLOGY) /BFHPFH1, BMCCPH1, BMCHPH3, BMSTPH3, BMCSPN2, COCSPN2, COCHPH3, COSTPH1, COSTPH3, GOCVPH2, HFCCPH2, HFCHPH3, HFGCPH3, HFGCPN3, HFSTPH2, HFSTPH3, HFHPFH1, HFHPPH2,
                                 HYDMPH0, HYDMPH1, HYDMPH2, HYDMPH3, HYDSPH2, HYDSPH3, NGCCPH2, NGCHPH3, NGCHPN3, NGCSPN2, NGFCFH1, NGGCPH2, NGGCPN2, NGHPFH1, NGHPPH2, NUG3PH3, OCWVPH1, SOUTPH2,
-                                SODIFH1, WIOFPN2, WIOFPN3, WIONPH3, WIONPN3, WSCHPH2, WSSTPH1, OIRFPH0, BMSTPH3S, BMCSPN2S, HFCCPH2S, NGCCPH2S, NGCSPN2S, NUG3PH3S, WSSTPH1S, H2CELL, BATCHG/;
+                                SODIFH1, WIOFPN2, WIOFPN3, WIONPH3, WIONPN3, WSCHPH2, WSSTPH1, OIRFPH0, BMSTPH3S, BMCSPN2S, HFCCPH2S, NGCCPH2S, NGCSPN2S, NUG3PH3S, WSSTPH1S, BATCHG/;
 *Characterize fuels
 
 set primary_fuel(FUEL) /BF, BM, CO, GO, HF, NG, OI, UR, WS/;
@@ -716,7 +715,6 @@ parameter OperationalLife(r,t) /
     ITALY.WSSTPH1S 30
     
     ITALY.BATCHG 20
-    ITALY.H2CELL 10
 /;
 OperationalLife(r,t)$(OperationalLife(r,t) = 0) = 1;
 
@@ -2088,7 +2086,6 @@ parameter InputActivityRatio(r,t,f,m,y) /
     ITALY.BMCSPN2S.BM.1.2059     2.554934423
     ITALY.BMCSPN2S.BM.1.2060     2.554934423
     
-    ITALY.H2CELL.E2.2.(2015*2060) 1.85
     ITALY.BATCHG.E2.2.(2015*2060) 1.10
 /;
 
@@ -2166,8 +2163,7 @@ parameter OutputActivityRatio(r,t,f,m,y) /
     ITALY.RIVER.HY.1.(2015*2060) 1
     ITALY.UR00I00.UR.1.(2015*2060) 1
     ITALY.SEA.SE.1.(2015*2060) 1
-    
-    ITALY.H2CELL.E1.1.(2015*2060) 1
+
     ITALY.BATCHG.E1.1.(2015*2060) 1
 /;
 
@@ -3072,9 +3068,7 @@ parameter CapitalCost /
     ITALY.NGCSPN2S.(2015*2060) 1680
     ITALY.NUG3PH3S.(2015*2060) 4400
     ITALY.WSSTPH1S.(2015*2060) 3000
-    
-    ITALY.H2CELL.(2015*2030) 1320
-    ITALY.H2CELL.(2031*2060) 1210
+
     ITALY.BATCHG.(2015*2060) 1100
 /;
 
@@ -3402,10 +3396,7 @@ parameter VariableCost(r,t,m,y) /
     ITALY.NGCCPH2S.1.(2015*2060) 99
     ITALY.NGCSPN2S.1.(2015*2060) 99
     ITALY.NUG3PH3S.1.(2015*2060) 99
-    ITALY.WSSTPH1S.1.(2015*2060) 99
-    
-    ITALY.H2CELL.1.(2015*2030) 19.92
-    ITALY.H2CELL.1.(2031*2060) 13.28  
+    ITALY.WSSTPH1S.1.(2015*2060) 99 
 /;
 
 VariableCost(r,t,m,y)$(VariableCost(r,t,m,y) = 0) = 1e-5;
@@ -4323,7 +4314,6 @@ parameter FixedCost /
 parameter TechnologyToStorage(r,m,t,s) /
     ITALY.2.HYDSPH2.DAM  1
     ITALY.2.HYDSPH3.DAM  1
-    ITALY.2.H2CELL.H2  1
     ITALY.2.BATCHG.BAT  1
 
 /;
@@ -4331,7 +4321,6 @@ parameter TechnologyToStorage(r,m,t,s) /
 parameter TechnologyFromStorage(r,m,t,s) /
     ITALY.1.HYDSPH2.DAM  1
     ITALY.1.HYDSPH3.DAM  1
-    ITALY.1.H2CELL.H2  1
     ITALY.1.BATCHG.BAT  1
 /;
 
@@ -4339,22 +4328,13 @@ parameter TechnologyFromStorage(r,m,t,s) /
 Parameter StorageLevelStart(r,s)    /
     ITALY.DAM 8.64
     ITALY.BAT 0
-    ITALY.H2 0
 /;
 
 *PJ/anno
-Parameter StorageMaxChargeRate(r,s) /
-    ITALY.DAM 90
-    ITALY.BAT 5
-    ITALY.H2 5
-/;
+StorageMaxChargeRate(r,s) 999;
 
 *PJ/anno
-Parameter StorageMaxDischargeRate(r,s) /
-    ITALY.DAM 90
-    ITALY.BAT 5
-    ITALY.H2 5
-/;
+StorageMaxDischargeRate(r,s) 999;
 
 *PJ
 MinStorageCharge(r,s,y) = 0;
@@ -4363,7 +4343,6 @@ MinStorageCharge(r,s,y) = 0;
 Parameter OperationalLifeStorage(r,s) /
     ITALY.DAM 40
     ITALY.BAT 20
-    ITALY.H2 10
 /;
 
 CapitalCostStorage(r,s,y) = 0;
@@ -4383,7 +4362,7 @@ Parameter ResidualStorageCapacity(r,s,y) /
 *------------------------------------------------------------------------
 
 CapacityOfOneTechnologyUnit(r,t,y) = 0;
-*Mesured in GW (o equivalenti, per acqua in km3/s)
+*Mesured in GW (o equivalenti, per acqua in km3/anno)
 parameter TotalAnnualMaxCapacity(r,t,y) /
     ITALY.BFHPFH1.(2015*2021) 1
     ITALY.BMCCPH1.(2015*2021) 1
@@ -4621,7 +4600,6 @@ parameter TotalAnnualMaxCapacityInvestment(r,t,y) /
     ITALY.WSSTPH1S.(2015*2060) 1
     
     ITALY.BATCHG.(2022*2060) 0.8
-    ITALY.H2CELL.(2035*2060) 1
 /;
 
 TotalAnnualMaxCapacityInvestment(r,t,y)$(TotalAnnualMaxCapacityInvestment(r,t,y) = 0 AND power_plants(t) ) = 5;
