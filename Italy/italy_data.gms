@@ -4364,7 +4364,7 @@ parameter TotalAnnualMaxCapacity(r,t,y) /
     ITALY.BMSTPH3.(2015*2021) 1
     ITALY.COCHPH3.(2015*2021) 1
     ITALY.COSTPH3.(2015*2021) 9
-    ITALY.GOCVPH2.(2015*2021) 1
+    ITALY.GOCVPH2.(2015*2021) 0.95
     ITALY.HFCHPH3.(2015*2021) 2
     ITALY.HFGCPH3.(2015*2021) 1
     ITALY.HFHPPH2.(2015*2021) 1
@@ -4418,7 +4418,8 @@ parameter TotalAnnualMaxCapacity(r,t,y) /
     ITALY.NG00X00.(2026*2060) 7.688
 
 *dati futuri    
-    ITALY.GOCVPH2.(2022*2060) 1.5
+    ITALY.GOCVPH2.(2022*2030) 1.1
+    ITALY.GOCVPH2.(2031*2060) 3.5
 
     ITALY.HYDMPH0.(2022*2060) 1
     ITALY.HYDMPH1.(2022*2060) 4
@@ -4427,7 +4428,7 @@ parameter TotalAnnualMaxCapacity(r,t,y) /
     ITALY.HYDSPH2.(2022*2060) 2
     ITALY.HYDSPH3.(2022*2060) 5
     
-    ITALY.WSCHPH2.(2022*2060) 0.6
+    ITALY.WSCHPH2.(2022*2060) 0.55
     ITALY.WSSTPH1.(2022*2060) 0.5
     ITALY.WSSTPH1S.(2022*2060) 0.5
 *Seaside plants: dati momentanei, messi un po' a caso (alti per provare a farlo andare)
@@ -4532,6 +4533,7 @@ TotalAnnualMinCapacity(r,'SOUTPH2','2030') = 51;
 TotalAnnualMinCapacity(r,'WIOFPN3','2030') = 1.950;
 TotalAnnualMinCapacity(r,'WIONPN3','2030') = 10.6;
 
+
 *GW/year
 parameter TotalAnnualMaxCapacityInvestment(r,t,y) /
     ITALY.NUG3PH3.(2036*2060) 1
@@ -4568,7 +4570,10 @@ parameter TotalAnnualMaxCapacityInvestment(r,t,y) /
     ITALY.WIONPN3.2019 0.4
     ITALY.WIONPN3.2020 0.8
     ITALY.WIONPN3.(2021*2030) 1.2
-    ITALY.WIONPN3.(2031*2060) 1.5 
+    ITALY.WIONPN3.(2031*2060) 1.5
+    
+    ITALY.GOCVPH2.(2022*2030) 0.03
+    ITALY.GOCVPH2.(2031*2060) 0.08
     
 *test in limiting some tech investment dati da trovare!
 
