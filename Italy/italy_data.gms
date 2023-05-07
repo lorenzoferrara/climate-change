@@ -351,7 +351,7 @@ parameter SpecifiedAnnualDemand(r,f,y) /
     ITALY.E2.2060    1785.6
 /;
 
-SpecifiedAnnualDemand(r,f,y)=SpecifiedAnnualDemand(r,f,y)*0.87;
+SpecifiedAnnualDemand(r,'E2',y)=SpecifiedAnnualDemand(r,'E2',y)*0.87;
 
 parameter SpecifiedDemandProfile(r,f,l,y) /
     ITALY.E2.S01B1.(2015*2060) 0.031735813
