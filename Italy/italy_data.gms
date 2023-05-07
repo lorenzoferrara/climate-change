@@ -2173,7 +2173,6 @@ InputActivityRatio(r,'OI00I00','OI',m,y)$(not OutputActivityRatio(r,'OIRFPH0','H
 *------------------------------------------------------------------------
 * Parameters - Technology costs
 *------------------------------------------------------------------------
-*Sistemare SEA power plants
 parameter CapitalCost /
     ITALY.COCSPN2.2015    2916.813095
     ITALY.COCSPN2.2016    2858.476833
@@ -3060,20 +3059,17 @@ parameter CapitalCost /
     ITALY.WSSTPH1.2059    1706.928512
     ITALY.WSSTPH1.2060    1685.928512
 
-*Seaside plants: da aggiungere dati sensati, +10% rispetto tradizionali
-    ITALY.BMSTPH3S.(2015*2060) 2200
-    ITALY.BMCSPN2S.(2015*2060) 3000
-    ITALY.HFCCPH2S.(2015*2060) 900
-    ITALY.NGCCPH2S.(2015*2060) 900
-    ITALY.NGCSPN2S.(2015*2060) 1680
-    ITALY.NUG3PH3S.(2015*2060) 4400
-    ITALY.WSSTPH1S.(2015*2060) 3000
-
     ITALY.BATCHG.(2015*2060) 1100
 /;
 
+CapitalCost(r,'BMCSPN2S',y)=CapitalCost(r,'BMCSPN2',y)*1.1;
+CapitalCost(r,'HFCCPH2S',y)=CapitalCost(r,'HFCCPH2',y)*1.1;
+CapitalCost(r,'NGCCPH2S',y)=CapitalCost(r,'NGCCPH2',y)*1.1;
+CapitalCost(r,'NGCSPN2S',y)=CapitalCost(r,'NGCSPN2',y)*1.1;
+CapitalCost(r,'NUG3PH3S',y)=CapitalCost(r,'NUG3PH3',y)*1.1;
+CapitalCost(r,'WSSTPH1S',y)=CapitalCost(r,'WSSTPH1',y)*1.1;
+
 *################################################################################################
-*Sistemare SEA power plants
 parameter VariableCost(r,t,m,y) /
     ITALY.BF00I00.1.2015 27.51234251
     ITALY.BF00I00.1.2016  27.43873938
@@ -3388,21 +3384,21 @@ parameter VariableCost(r,t,m,y) /
     ITALY.WSSTPH1.1.(2015*2060)  0.00357
 
     ITALY.UR00I00.1.(2015*2060)  1.301920122
-
-*Seaside plants: da aggiungere dati sensati, per ora li metto altissimi giusto per non avere 0 e generare errori
-    ITALY.BMSTPH3S.1.(2015*2060) 99
-    ITALY.BMCSPN2S.1.(2015*2060) 99
-    ITALY.HFCCPH2S.1.(2015*2060) 99
-    ITALY.NGCCPH2S.1.(2015*2060) 99
-    ITALY.NGCSPN2S.1.(2015*2060) 99
-    ITALY.NUG3PH3S.1.(2015*2060) 99
-    ITALY.WSSTPH1S.1.(2015*2060) 99 
 /;
 
 VariableCost(r,t,m,y)$(VariableCost(r,t,m,y) = 0) = 1e-5;
 
+VariableCost(r,'BMCSPN2S',m,y)=VariableCost(r,'BMCSPN2',m,y)*1.1;
+VariableCost(r,'HFCCPH2S',m,y)=VariableCost(r,'HFCCPH2',m,y)*1.1;
+VariableCost(r,'NGCCPH2S',m,y)=VariableCost(r,'NGCCPH2',m,y)*1.1;
+VariableCost(r,'NGCSPN2S',m,y)=VariableCost(r,'NGCSPN2',m,y)*1.1;
+VariableCost(r,'NUG3PH3S',m,y)=VariableCost(r,'NUG3PH3',m,y)*1.1;
+VariableCost(r,'WSSTPH1S',m,y)=VariableCost(r,'WSSTPH1',m,y)*1.1;
+                
+
+
 *################################################################################################
-*Sistenare SEA power plants
+
 parameter FixedCost /
     ITALY.COCSPN2.2015    72.92032738
     ITALY.COCSPN2.2016    71.46192083
@@ -4296,16 +4292,14 @@ parameter FixedCost /
     ITALY.WSSTPH1.2059    47.63803408
     ITALY.WSSTPH1.2060    47.13803408
 
-*Seaside plants: da aggiungere dati sensati, +10% rispetto a impianti tradizionali
-    ITALY.BMSTPH3S.(2015*2060) 82
-    ITALY.BMCSPN2S.(2015*2060) 100
-    ITALY.HFCCPH2S.(2015*2060) 22
-    ITALY.NGCCPH2S.(2015*2060) 22
-    ITALY.NGCSPN2S.(2015*2060) 42
-    ITALY.NUG3PH3S.(2015*2060) 110
-    ITALY.WSSTPH1S.(2015*2060) 77
-    
 /;
+
+FixedCost(r,'BMCSPN2S',y)=FixedCost(r,'BMCSPN2',y)*1.1;
+FixedCost(r,'HFCCPH2S',y)=FixedCost(r,'HFCCPH2',y)*1.1;
+FixedCost(r,'NGCCPH2S',y)=FixedCost(r,'NGCCPH2',y)*1.1;
+FixedCost(r,'NGCSPN2S',y)=FixedCost(r,'NGCSPN2',y)*1.1;
+FixedCost(r,'NUG3PH3S',y)=FixedCost(r,'NUG3PH3',y)*1.1;
+FixedCost(r,'WSSTPH1S',y)=FixedCost(r,'WSSTPH1',y)*1.1;
 
 *------------------------------------------------------------------------
 * Parameters - Storage
@@ -4409,6 +4403,7 @@ parameter TotalAnnualMaxCapacity(r,t,y) /
     ITALY.WSSTPH1.(2015*2021) 0.45
     ITALY.WSSTPH1S.(2015*2021) 0.03
     
+*dati produzione Gas
     ITALY.NG00X00.2015 7.570
     ITALY.NG00X00.2016 6.505
     ITALY.NG00X00.2017 6.269
@@ -4421,16 +4416,20 @@ parameter TotalAnnualMaxCapacity(r,t,y) /
     ITALY.NG00X00.2024 5.914
     ITALY.NG00X00.2025 7.097
     ITALY.NG00X00.(2026*2060) 7.688
-    
+
+*dati futuri    
     ITALY.GOCVPH2.(2022*2060) 1.5
-    
+
     ITALY.HYDMPH0.(2022*2060) 1
     ITALY.HYDMPH1.(2022*2060) 4
     ITALY.HYDMPH2.(2022*2060) 11
     ITALY.HYDMPH3.(2022*2060) 3
     ITALY.HYDSPH2.(2022*2060) 2
     ITALY.HYDSPH3.(2022*2060) 5
-
+    
+    ITALY.WSCHPH2.(2022*2060) 0.6
+    ITALY.WSSTPH1.(2022*2060) 0.5
+    ITALY.WSSTPH1S.(2022*2060) 0.5
 *Seaside plants: dati momentanei, messi un po' a caso (alti per provare a farlo andare)
 $ontext
     ITALY.BMSTPH3S.(2015*2060) 50
@@ -4489,7 +4488,6 @@ TotalAnnualMaxCapacity(r,'NUG3PH3S','2033') = 0;
 TotalAnnualMaxCapacity(r,'NUG3PH3S','2034') = 0;
 TotalAnnualMaxCapacity(r,'NUG3PH3S','2035') = 0;
 
-*Seaside plants, dati temporanei
 TotalAnnualMaxCapacity(r,'BMCSPN2S','2015') = 0;
 TotalAnnualMaxCapacity(r,'BMCSPN2S','2016') = 0;
 TotalAnnualMaxCapacity(r,'BMCSPN2S','2017') = 0;
@@ -4501,11 +4499,18 @@ TotalAnnualMaxCapacity(r,'BMCSPN2S','2022') = 0;
 TotalAnnualMaxCapacity(r,'BMCSPN2S','2023') = 0;
 TotalAnnualMaxCapacity(r,'BMCSPN2S','2024') = 0;
 TotalAnnualMaxCapacity(r,'BMCSPN2S','2025') = 0;
-TotalAnnualMaxCapacity(r,'BMCSPN2S','2026') = 0;
-TotalAnnualMaxCapacity(r,'BMCSPN2S','2027') = 0;
-TotalAnnualMaxCapacity(r,'BMCSPN2S','2028') = 0;
-TotalAnnualMaxCapacity(r,'BMCSPN2S','2029') = 0;
-TotalAnnualMaxCapacity(r,'BMCSPN2S','2030') = 0;
+
+TotalAnnualMaxCapacity(r,'BMSTPH3S','2015') = 0;
+TotalAnnualMaxCapacity(r,'BMSTPH3S','2016') = 0;
+TotalAnnualMaxCapacity(r,'BMSTPH3S','2017') = 0;
+TotalAnnualMaxCapacity(r,'BMSTPH3S','2018') = 0;
+TotalAnnualMaxCapacity(r,'BMSTPH3S','2019') = 0;
+TotalAnnualMaxCapacity(r,'BMSTPH3S','2020') = 0;
+TotalAnnualMaxCapacity(r,'BMSTPH3S','2021') = 0;
+TotalAnnualMaxCapacity(r,'BMSTPH3S','2022') = 0;
+TotalAnnualMaxCapacity(r,'BMSTPH3S','2023') = 0;
+TotalAnnualMaxCapacity(r,'BMSTPH3S','2024') = 0;
+TotalAnnualMaxCapacity(r,'BMSTPH3S','2025') = 0;
 
 TotalAnnualMaxCapacity(r,'NGCSPN2S','2015') = 0;
 TotalAnnualMaxCapacity(r,'NGCSPN2S','2016') = 0;
@@ -4518,11 +4523,6 @@ TotalAnnualMaxCapacity(r,'NGCSPN2S','2022') = 0;
 TotalAnnualMaxCapacity(r,'NGCSPN2S','2023') = 0;
 TotalAnnualMaxCapacity(r,'NGCSPN2S','2024') = 0;
 TotalAnnualMaxCapacity(r,'NGCSPN2S','2025') = 0;
-TotalAnnualMaxCapacity(r,'NGCSPN2S','2026') = 0;
-TotalAnnualMaxCapacity(r,'NGCSPN2S','2027') = 0;
-TotalAnnualMaxCapacity(r,'NGCSPN2S','2028') = 0;
-TotalAnnualMaxCapacity(r,'NGCSPN2S','2029') = 0;
-TotalAnnualMaxCapacity(r,'NGCSPN2S','2030') = 0;
 
 TotalAnnualMaxCapacity(r,'CO00X00',y) = 0;
 
@@ -4532,11 +4532,10 @@ TotalAnnualMinCapacity(r,'SOUTPH2','2030') = 51;
 TotalAnnualMinCapacity(r,'WIOFPN3','2030') = 1.950;
 TotalAnnualMinCapacity(r,'WIONPN3','2030') = 10.6;
 
-
 *GW/year
 parameter TotalAnnualMaxCapacityInvestment(r,t,y) /
-*ITALY.NUG3PH3.(2015*2060) 3
-    ITALY.NUG3PH3.(2036*2060) 3
+    ITALY.NUG3PH3.(2036*2060) 1
+    ITALY.NUG3PH3S.(2036*2060) 1
 
     ITALY.SODIFH1.2015 0.09
     ITALY.SODIFH1.2016 0.09
@@ -4570,7 +4569,6 @@ parameter TotalAnnualMaxCapacityInvestment(r,t,y) /
     ITALY.WIONPN3.2020 0.8
     ITALY.WIONPN3.(2021*2030) 1.2
     ITALY.WIONPN3.(2031*2060) 1.5 
-
     
 *test in limiting some tech investment dati da trovare!
 
@@ -4587,17 +4585,15 @@ parameter TotalAnnualMaxCapacityInvestment(r,t,y) /
 *    ITALY.HYDSPH2.(2015*2060) 1
 *    ITALY.HYDSPH3.(2015*2060) 1
 
-*    ITALY.WSCHPH2.(2015*2021) 0.5
-*    ITALY.WSSTPH1.(2015*2021) 0.5
+*    ITALY.WSCHPH2.(2015*2060) 0.5
+*    ITALY.WSSTPH1.(2015*2060) 0.5
 
 *Seaside plants: dati momentanei, messi un po' a caso (alti per provare a falo andare)
 
-    ITALY.BMSTPH3S.(2015*2060) 1
-    ITALY.BMCSPN2S.(2015*2060) 1
-    ITALY.NGCCPH2S.(2015*2060) 1
-    ITALY.NGCSPN2S.(2015*2060) 1
-    ITALY.NUG3PH3S.(2015*2060) 1
-    ITALY.WSSTPH1S.(2015*2060) 1
+    ITALY.BMSTPH3S.(2022*2060) 0.1
+    ITALY.BMCSPN2S.(2022*2060) 0.1
+    ITALY.NGCCPH2S.(2022*2060) 0.5
+    ITALY.NGCSPN2S.(2022*2060) 0.5
     
     ITALY.BATCHG.(2022*2060) 0.8
 /;
@@ -4611,42 +4607,16 @@ TotalAnnualMaxCapacityInvestment(r,'COCHPH3',y) = 0;
 TotalAnnualMaxCapacityInvestment(r,'COSTPH1',y) = 0;
 TotalAnnualMaxCapacityInvestment(r,'COSTPH3',y) = 0;
 
-
 TotalAnnualMaxCapacityInvestment(r,'NGCHPH3',y) = 0;
 TotalAnnualMaxCapacityInvestment(r,'NGGCPH2',y) = 0;
 
-TotalAnnualMaxCapacityInvestment(r,'WSCHPH2',y) = 0;
-TotalAnnualMaxCapacityInvestment(r,'WSSTPH1',y) = 0;
-
 TotalAnnualMaxCapacityInvestment(r,'WIONPH3',y) = 0;
-
-TotalAnnualMaxCapacityInvestment(r,'NUG3PH3S','2015') = 0;
-TotalAnnualMaxCapacityInvestment(r,'NUG3PH3S','2016') = 0;
-TotalAnnualMaxCapacityInvestment(r,'NUG3PH3S','2017') = 0;
-TotalAnnualMaxCapacityInvestment(r,'NUG3PH3S','2018') = 0;
-TotalAnnualMaxCapacityInvestment(r,'NUG3PH3S','2019') = 0;
-TotalAnnualMaxCapacityInvestment(r,'NUG3PH3S','2020') = 0;
-TotalAnnualMaxCapacityInvestment(r,'NUG3PH3S','2021') = 0;
-TotalAnnualMaxCapacityInvestment(r,'NUG3PH3S','2022') = 0;
-TotalAnnualMaxCapacityInvestment(r,'NUG3PH3S','2023') = 0;
-TotalAnnualMaxCapacityInvestment(r,'NUG3PH3S','2024') = 0;
-TotalAnnualMaxCapacityInvestment(r,'NUG3PH3S','2025') = 0;
-TotalAnnualMaxCapacityInvestment(r,'NUG3PH3S','2026') = 0;
-TotalAnnualMaxCapacityInvestment(r,'NUG3PH3S','2027') = 0;
-TotalAnnualMaxCapacityInvestment(r,'NUG3PH3S','2028') = 0;
-TotalAnnualMaxCapacityInvestment(r,'NUG3PH3S','2029') = 0;
-TotalAnnualMaxCapacityInvestment(r,'NUG3PH3S','2030') = 0;
-TotalAnnualMaxCapacityInvestment(r,'NUG3PH3S','2031') = 0;
-TotalAnnualMaxCapacityInvestment(r,'NUG3PH3S','2032') = 0;
-TotalAnnualMaxCapacityInvestment(r,'NUG3PH3S','2033') = 0;
-TotalAnnualMaxCapacityInvestment(r,'NUG3PH3S','2034') = 0;
 
 TotalAnnualMaxCapacityInvestment(r,'HFCCPH2S',y) = 0;
 
 TotalAnnualMaxCapacityInvestment(r,'CO00X00',y) = 0;
 
 TotalAnnualMinCapacityInvestment(r,t,y) = 0;
-
 
 *------------------------------------------------------------------------
 * Parameters - Activity constraints
@@ -4660,7 +4630,6 @@ TotalTechnologyModelPeriodActivityUpperLimit(r,t) = 99999;
 
 TotalTechnologyModelPeriodActivityLowerLimit(r,t) = 0;
 
-
 *------------------------------------------------------------------------
 * Parameters - Reserve margin
 *-----------------------------------------------------------------------
@@ -4668,23 +4637,6 @@ TotalTechnologyModelPeriodActivityLowerLimit(r,t) = 0;
 ReserveMarginTagTechnology(r,t,y) = 0;
 ReserveMarginTagFuel(r,f,y) = 0;
 ReserveMargin(r,y) = 1.2;
-
-*ReserveMarginTagTechnology(r,t,y) = 1;
-*  UTOPIA.E01.(1990*2010)  1
-*  UTOPIA.E21.(1990*2010)  1
-*  UTOPIA.E31.(1990*2010)  1
-*  UTOPIA.E51.(1990*2010)  1
-*  UTOPIA.E70.(1990*2010)  1
-*/;
-
-*parameter ReserveMarginTagFuel(r,f,y) /
-*  UTOPIA.ELC.(1990*2010)  1
-*/;
-
-*parameter ReserveMargin(r,y) /
-*  UTOPIA.(1990*2010)  1.18
-*/;
-
 
 *------------------------------------------------------------------------
 * Parameters - RE Generation Target
@@ -4695,7 +4647,6 @@ RETagTechnology(r,t,y) = 0;
 RETagFuel(r,f,y) = 0;
 
 REMinProductionTarget(r,y) = 0;
-
 
 *------------------------------------------------------------------------
 * Parameters - Emissions
@@ -4774,6 +4725,4 @@ parameter AnnualEmissionLimit(r,e,y) /
 
 ModelPeriodExogenousEmission(r,e) = 0;
 
-
 ModelPeriodEmissionLimit(r,e) = 9999;
-
