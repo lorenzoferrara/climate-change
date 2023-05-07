@@ -155,6 +155,22 @@ $ifthen.scen set thirsty
 $setglobal scen "thirsty_%thirsty%"
 $endif.scen
 
+$ifthen.scen set WaterDemand
+$ifthen.cond %WaterDemand%==0
+$include WaterDemandLow.gms;
+$endif.cond
+    
+$ifthen.cond %WaterDemand%==10
+$include "WaterDemandMedium.gms";
+$endif.cond
+    
+$ifthen.cond %WaterDemand%==100
+$include WaterDemandHigh.gms;
+$endif.cond
+
+$setglobal scen "WaterDemand_%WaterDemand%"
+$endif.scen
+
 $ifthen.scen set drought
     Parameter rate;
     rate = %drought%/100;

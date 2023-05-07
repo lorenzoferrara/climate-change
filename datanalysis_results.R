@@ -32,11 +32,47 @@ emissions <- batch_extract("ANNUALEMISSIONS",all_gdx)[[1]] |> setDT() |> osemosy
 }
 
 ################################################################################
+########### Verify Prod satisfy demand #########################################
+################################################################################
+
+prod <- batch_extract("PRODUCTIONBYTECHNOLOGYANNUAL",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
+prod = prod[prod$FUEL=='E2',]
+
+prod$TECH=prod$TECHNOLOGY
+for(i in unique(prod$TECHNOLOGY)){
+  prod$TECH[prod$TECH==i] = substr(i, start=1, stop=2)
+}
+
+prod2 = prod |> 
+  group_by(scen,TECH,YEAR) |>
+  summarise(value = sum(value))
+prod2$value = round(as.numeric(prod2$value),2)
+#prod2$value = as.numeric(prod2$value)
+
+demand <- batch_extract("SpecifiedAnnualDemand",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
+demand = demand[demand$FUEL=="E2",]
+
+use <- batch_extract("USEANNUAL",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
+use = use[use$FUEL=='E2',]
+demand$value = demand$value + use$value
+
+{
+  x11()
+  ggplot(prod2[prod2$value!=0,]) +
+    geom_area(aes(x=as.numeric(YEAR),y=value,fill=TECH)) +
+    geom_line(data=demand, aes(x=as.numeric(YEAR),y=value), linewidth=1.2) +
+    labs(title = "Production by Technology [PJ/yr]", subtitle = "Energy production by set of technology using the same fuel") +
+    facet_wrap(scen~.,) +
+    xlab("year") + ylab("Energy [PJ]") + theme_pubr() 
+}
+
+################################################################################
 ########### PLOT PRODUCTION BY TECHNOLOGY ######################################
 ################################################################################
 
 prod <- batch_extract("PRODUCTIONBYTECHNOLOGYANNUAL",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
 prod = prod[prod$FUEL=="E1" | prod$FUEL=='E2',]
+#prod = prod[prod$FUEL=='E2',]
 prod = prod[ prod$TECHNOLOGY  != "EL00TD0",]
 prod[prod$FUEL=="E1",]$value = 0.95*prod[prod$FUEL=="E1",]$value
 
@@ -49,8 +85,14 @@ prod2 = prod |>
   group_by(scen,TECH,YEAR) |>
   summarise(value = sum(value))
 prod2$value = round(as.numeric(prod2$value),2)
+#prod2$value = as.numeric(prod2$value)
 
 demand <- batch_extract("SpecifiedAnnualDemand",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
+demand = demand[demand$FUEL=="E2",]
+
+use <- batch_extract("USEANNUAL",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
+use = use[use$FUEL=='E2',]
+demand$value = demand$value + use$value
 
 {
   x11()
