@@ -1,3 +1,4 @@
+
 require(data.table)
 require(tidyverse)
 require(gdxtools)
@@ -169,7 +170,6 @@ water2$value = round(as.numeric(water2$value),2)
 ########### PLOT COMPARE WATER USAGE & HYDROELECTRICAL POWER ###################
 ################################################################################
 
-# Chi è questo water ??
 {
   x11()
   ggplot(water[water$FUEL=='HY',]) +
@@ -177,13 +177,51 @@ water2$value = round(as.numeric(water2$value),2)
     facet_wrap(scen~.,) +
     xlab("year") + ylab("Water used [ML]") + theme_pubr() 
 }
-# Chi è questo water ??
 
 ################################################################################
 ########### PLOT STORAGE USAGE ###################################################
 ################################################################################
 
-storage <- batch_extract("STORAGELEVELDAYTYPESTART",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
+storage2 <- batch_extract("RATEOFSTORAGECHARGE",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
+# storage = storage[storage$STORAGE=='DAM' | storage$STORAGE=='H2' | storage$STORAGE=='BAT']
+
+storage2 = storage2 |> 
+  group_by(scen,SEASON, DAILYTIMEBRACKET,YEAR) |>
+  summarise(value = sum(value))
+# storage2$value = round(as.numeric(water2$value),2)
+
+storage2 = storage2[storage2$scen=="base",]
+{
+  x11()
+  ggplot(storage2) +
+    geom_line(aes(x=as.numeric(YEAR),y=value,color=DAILYTIMEBRACKET), linewidth=1.5) +
+    facet_wrap(SEASON~.,) +
+    xlab("year") + ylab("storage capacity [PJ]") + theme_pubr() 
+}
+
+
+storage3 <- batch_extract("RATEOFSTORAGEDISCHARGE",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
+# storage = storage[storage$STORAGE=='DAM' | storage$STORAGE=='H2' | storage$STORAGE=='BAT']
+
+storage3 = storage3 |> 
+  group_by(scen,SEASON, DAILYTIMEBRACKET,YEAR) |>
+  summarise(value = sum(value))
+# storage3$value = round(as.numeric(water2$value),2)
+
+storage3 = storage3[storage3$scen=="base",]
+{
+  x11()
+  ggplot(storage3) +
+    geom_line(aes(x=as.numeric(YEAR),y=value,color=DAILYTIMEBRACKET), linewidth=1.5) +
+    facet_wrap(SEASON~.,) +
+    xlab("year") + ylab("storage capacity [PJ]") + theme_pubr() 
+}
+
+################################################################################
+########### PLOT STORAGE USAGE ###################################################
+################################################################################
+
+storage <- batch_extract("STORAGELEVELSEASONSTART",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
 storage = storage[storage$STORAGE=='DAM' | storage$STORAGE=='H2' | storage$STORAGE=='BAT']
 
 {
@@ -193,6 +231,8 @@ storage = storage[storage$STORAGE=='DAM' | storage$STORAGE=='H2' | storage$STORA
     facet_wrap(scen~.,) +
     xlab("year") + ylab("storage capacity [PJ]") + theme_pubr() 
 }
+
+# =======
 
 totcap3=totcap2[totcap2$TECH=='HY',]
 {
@@ -204,27 +244,7 @@ totcap3=totcap2[totcap2$TECH=='HY',]
 }
 
 ################################################################################
-########### PLOT WATER AVAILABILITY ############################################
-################################################################################
-
-#TOTAL USAGE OF WATER
-ok <- batch_extract("PRODUCTIONBYTECHNOLOGYANNUAL",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
-ok = ok[ok$FUEL=="HY"]
-ok = ok[ok$TECHNOLOGY=='RIVER']
-# ok=ok[ok$scen %in% c('drought0', 'drought10%', 'drought20%'),]
-
-{
-  x11()
-  ggplot(ok) +
-    geom_line(aes(x=as.numeric(YEAR),y=value,color=scen), linewidth=1.3) +
-    labs(title = "Water given by RIVER") +
-    # facet_wrap(scen~.,) +
-    xlab("year") + ylab("Water [ML]") + theme_pubr() 
-}
-
-
-################################################################################
-########### PLOT TOTAL WATER USAGE  ############################################
+########### PLOT     ############################################
 ################################################################################
 
 use2 <- batch_extract("USEANNUAL",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
@@ -238,52 +258,3 @@ use2 = use2[use2$FUEL=="HY",]
     # facet_wrap(scen~.,) +
     xlab("year") + ylab("Water [ML]") + theme_pubr() 
 }
-
-################################################################################
-########### PLOT ALL SECTORS WATER #############################################
-################################################################################
-
-#WATER USED BY TECH
-water2 <- batch_extract("USEBYTECHNOLOGYANNUAL",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
-water2 = water2[water2$FUEL=='HY']
-
-water2$TECH=water2$TECHNOLOGY
-for(i in unique(water2$TECHNOLOGY)){
-  water2$TECH[water2$TECH==i] = substr(i, start=1, stop=2)
-}
-
-water2 = water2 |> 
-  group_by(scen,TECH,YEAR) |>
-  summarise(value = sum(value))
-water2$value = round(as.numeric(water2$value),2)
-
-library(readxl)
-# install.packages("pracma")
-library(pracma)
-Population <- read_excel("Acqua_Matteo.xlsx", range = "D8:D53", col_names = "population")
-
-Water_human <- read_excel("Acqua_Matteo.xlsx", 
-                          range = "F8:H53", col_names = c("water_h_scen1","water_h_scen2","water_h_scen3"))
-
-Water_agricolture <- read_excel("Acqua_Matteo.xlsx", 
-                                range = "L8:L53", col_names = "water_a")
-
-g = t(repmat(t(Water_agricolture$water_a),1,93));
-all_water <- water2
-all_water$value = all_water$value*1000
-all_water$agricolture <- g/1000
-
-{
-  x11()
-  ggplot(all_water[all_water$value!=0 & all_water$TECH!='HY',]) +
-    geom_area(aes(x=as.numeric(YEAR),y=value,fill=TECH)) +
-    facet_wrap(scen~.,) +
-    labs(title = "Use of water") +
-    xlab("year") + ylab("Water used [ML]") + theme_pubr() 
-}
-
-################################################################################
-################################################################################
-################################################################################
-
-

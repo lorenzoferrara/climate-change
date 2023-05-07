@@ -162,7 +162,7 @@ $ifthen.scen set drought
     Parameter MaxUseWater;
     loop(y, MaxUseWater(y) = 600*((1-rate)**(ord(y)-1)) )
     
-    Equation EQ_MaxProdWater(REGION,FUEL,YEAR);
+    Equation EQ_MaxUseWater(REGION,FUEL,YEAR);
     EQ_MaxUseWater(r,'HY',y)..
     USEANNUAL(r,'HY',y) =l= MaxUseWater(y);
 *$setglobal scen "thirsty_%thirsty%"
