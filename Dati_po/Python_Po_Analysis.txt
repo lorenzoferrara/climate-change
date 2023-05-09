@@ -452,7 +452,7 @@ plt.grid(axis='x',which='minor', linestyle='--', linewidth=0.5)
 monthly_avg6= data6_polesella.groupby(pd.Grouper(key='Orario', freq='M')).mean(numeric_only=True)
 
 plt.subplots(figsize=(20, 5))
-plt.plot(monthly_avg1['Delta'])
+plt.plot(monthly_avg6['Delta'])
 plt.title('Monthly variation of Po River Level @Polesella(6)')
 plt.xlabel('Time')
 plt.ylabel('Level variation [m]')
@@ -463,11 +463,11 @@ plt.grid(axis='x', which='both',color='gray', linestyle='--', linewidth=0.5)
 plt.minorticks_on()
 plt.grid(axis='x',which='minor', linestyle='--', linewidth=0.5)
 
-monthly_avg1['Date']=['{}-{}'.format(i.year,i.month) for i in monthly_avg1.index.tolist()]
+monthly_avg6['Date']=['{}-{}'.format(i.year,i.month) for i in monthly_avg6.index.tolist()]
 
 #Actually plotting the barplot
 plt.subplots(figsize=(20, 5))
-plt.bar(monthly_avg1['Date'],monthly_avg1['Delta'], color=colors)
+plt.bar(monthly_avg6['Date'],monthly_avg6['Delta'], color=colors)
 plt.title('Monthly variation of Po River Level @Polesella(6)')
 plt.xlabel('Time')
 plt.ylabel('Level variation [m]')
