@@ -94,6 +94,11 @@ use <- batch_extract("USEANNUAL",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
 use = use[use$FUEL=='E2',]
 demand$value = demand$value + use$value
 
+for (i in 2051:2060){
+  prod2=prod2[prod2$YEAR!=i,]
+  demand=demand[demand$YEAR!=i,]
+}
+  
 {
   x11()
   ggplot(prod2[prod2$value!=0,]) +
@@ -372,7 +377,7 @@ prod4[prod4$FUEL=="E1",]$value = 0.95*prod4[prod4$FUEL=="E1",]$value
   x11()
   ggplot(prod4[prod4$value!=0,]) +
     geom_area(aes(x=as.numeric(YEAR),y=value,fill=TECHNOLOGY)) +
-    labs(title = "prod4uction by Technology [PJ/yr]", subtitle = "Energy prod4uction by set of technology using the same fuel") +
+    labs(title = "prod4uction by Technology [PJ/yr]", subtitle = "Energy production by set of technology using the same fuel") +
     facet_wrap(scen~.,) +
     xlab("year") + ylab("Energy [PJ]") + theme_pubr() 
 }

@@ -190,21 +190,33 @@ $ifthen.scen set drought
     
     Parameter MaxCapRiv;
 *valore che si vorrebbe all'inizio
-    Scalar TotalRiverCapacity /550/;
-    TotalRiverCapacity = TotalRiverCapacity / 824*100;
-    loop(y, MaxCapRiv(y) = TotalRiverCapacity*( 8.2446 + (ord(y)-1)*(3.4909-8.2446)/(2060-2008)); );
+* DA SCEGLIERE, NON 550
+    Scalar TotalRiverCapacity /150/;
+    TotalRiverCapacity = TotalRiverCapacity / 7.559;
+    loop(y, MaxCapRiv(y) = TotalRiverCapacity*( 7.559 + (ord(y)-1)*(3.53-7.559)/(2059-2015)); );
     
     TotalAnnualMaxCapacity(r,'RIVER',y) = MaxCapRiv(y);
     
-    CapacityFactor(r,'RIVER','S01B1',y) = 1.0000563558;
-    CapacityFactor(r,'RIVER','S01B2',y) = 1.173036406;
-    CapacityFactor(r,'RIVER','S02B1',y) = 1.004242173;
-    CapacityFactor(r,'RIVER','S02B2',y) = 1.250816839;
-    CapacityFactor(r,'RIVER','S03B1',y) = 1.00316014;
-    CapacityFactor(r,'RIVER','S03B2',y) = 1.291570421;
-    CapacityFactor(r,'RIVER','S04B1',y) = 1.0000690295;
-    CapacityFactor(r,'RIVER','S04B2',y) = 1.176523404;
-    CapacityFactor(r,'RIVER','S05B2',y) = 1.127762552;
+* CIRCA: GENNAIO-FEBBRAIO
+    CapacityFactor(r,'RIVER','S01B1',y) = 0.7;
+    CapacityFactor(r,'RIVER','S01B2',y) = 0.7;
+    CapacityFactor(r,'RIVER','S01B3',y) = 0.7;
+* CIRCA: MARZO-APRILE
+    CapacityFactor(r,'RIVER','S02B1',y) = 1.1;
+    CapacityFactor(r,'RIVER','S02B2',y) = 1.1;
+    CapacityFactor(r,'RIVER','S02B3',y) = 1.1;
+* CIRCA: MAGGIO-GIUGNO-LUGLIO-AGOSTO
+    CapacityFactor(r,'RIVER','S03B1',y) = 0.5;
+    CapacityFactor(r,'RIVER','S03B2',y) = 0.5;
+    CapacityFactor(r,'RIVER','S03B3',y) = 0.5;
+* CIRCA: SETTEMBRE-OTTOBRE
+    CapacityFactor(r,'RIVER','S04B1',y) = 0.7;
+    CapacityFactor(r,'RIVER','S04B2',y) = 0.7;
+    CapacityFactor(r,'RIVER','S04B3',y) = 0.7;
+* CIRCA: NOVEMBRE-DICEMBRE
+    CapacityFactor(r,'RIVER','S05B1',y) = 0.9;
+    CapacityFactor(r,'RIVER','S05B2',y) = 0.9;
+    CapacityFactor(r,'RIVER','S05B3',y) = 0.9;
     
 $setglobal scen "drought"
 $endif.scen
