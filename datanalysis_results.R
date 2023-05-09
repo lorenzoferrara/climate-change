@@ -205,7 +205,7 @@ water2$value = round(as.numeric(water2$value),2)
     geom_area(aes(x=as.numeric(YEAR),y=value,fill=TECH)) +
     facet_wrap(scen~.,) +
     labs(title = "Use of water by technology (excepted hydroelectrical)") +
-    xlab("year") + ylab("Water used [ML]") + theme_pubr() 
+    xlab("year") + ylab("Water used [km3]") + theme_pubr() 
 }
 
 ################################################################################
@@ -298,5 +298,86 @@ use2 = use2[use2$FUEL=="HY",]
     geom_line(aes(x=as.numeric(YEAR),y=value,color=scen), linewidth=1.3) +
     labs(title = "Total Water Usage") +
     # facet_wrap(scen~.,) +
-    xlab("year") + ylab("Water [ML]") + theme_pubr() 
+    xlab("year") + ylab("Water [km3]") + theme_pubr() 
 }
+
+
+################################################################################
+########### PLOT     ############################################
+################################################################################
+
+cost <- batch_extract("OPERATINGCOST",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
+
+cost = cost |> 
+  group_by(scen,YEAR) |>
+  summarise(value = sum(value))
+# storage3$value = round(as.numeric(water2$value),2)
+
+{
+  x11()
+  ggplot(cost) +
+    geom_line(aes(x=as.numeric(YEAR),y=value/1000,color=scen), linewidth=1.3) +
+    labs(title = "Operating cost") +
+    # facet_wrap(scen~.,) +
+    xlab("year") + ylab("Cost [BIllions of $]") + theme_pubr() 
+  }
+
+z <- batch_extract("z",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
+
+##########################################################################
+########### PLOT COSTO ###################################################
+##########################################################################
+
+
+prod <- batch_extract("PRODUCTIONBYTECHNOLOGYANNUAL",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
+prod = prod[prod$FUEL=="E1" | prod$FUEL=='E2',]
+prod = prod[ prod$TECHNOLOGY  != "EL00TD0",]
+prod[prod$FUEL=="E1",]$value = 0.95*prod[prod$FUEL=="E1",]$value
+
+prod$TECH=prod$TECHNOLOGY
+for(i in unique(prod$TECHNOLOGY)){
+  prod$TECH[prod$TECH==i] = substr(i, start=1, stop=2)
+}
+
+prod2 = prod |> 
+  group_by(scen,TECH,YEAR) |>
+  summarise(value = sum(value))
+prod2$value = round(as.numeric(prod2$value),2)
+
+demand <- batch_extract("SpecifiedAnnualDemand",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
+
+{
+  x11()
+  ggplot(prod2[prod2$value!=0,]) +
+    geom_area(aes(x=as.numeric(YEAR),y=value,fill=TECH)) +
+    geom_line(data=demand, aes(x=as.numeric(YEAR),y=value), linewidth=1.2) +
+    labs(title = "Production by Technology [PJ/yr]", subtitle = "Energy production by set of technology using the same fuel") +
+    facet_wrap(scen~.,) +
+    xlab("year") + ylab("Energy [PJ]") + theme_pubr() 
+}
+
+
+
+################################################################################
+########### PLOT CARBON CAPTURE ######################################
+################################################################################
+
+prod4 <- batch_extract("PRODUCTIONBYTECHNOLOGYANNUAL",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
+prod4 = prod4[prod4$TECHNOLOGY=='COCSPN2' | prod4$TECHNOLOGY=='NGCSPN2' | prod4$TECHNOLOGY=='BMCSPN2',]
+prod4 = prod4[prod4$FUEL=='E2' | prod4$FUEL=='E1',]
+prod4[prod4$FUEL=="E1",]$value = 0.95*prod4[prod4$FUEL=="E1",]$value
+
+
+{
+  x11()
+  ggplot(prod4[prod4$value!=0,]) +
+    geom_area(aes(x=as.numeric(YEAR),y=value,fill=TECHNOLOGY)) +
+    labs(title = "prod4uction by Technology [PJ/yr]", subtitle = "Energy prod4uction by set of technology using the same fuel") +
+    facet_wrap(scen~.,) +
+    xlab("year") + ylab("Energy [PJ]") + theme_pubr() 
+}
+
+
+################################################################################
+########### PLOT ACCUMULATED CAPACITY ##########################################
+################################################################################

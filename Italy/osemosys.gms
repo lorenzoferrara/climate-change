@@ -171,6 +171,7 @@ $endif.cond
 $setglobal scen "WaterDemand_%WaterDemand%"
 $endif.scen
 
+$onText
 $ifthen.scen set drought
     Parameter rate;
     rate = %drought%/100;
@@ -181,8 +182,31 @@ $ifthen.scen set drought
     Equation EQ_MaxUseWater(REGION,FUEL,YEAR);
     EQ_MaxUseWater(r,'HY',y)..
     USEANNUAL(r,'HY',y) =l= MaxUseWater(y);
-*$setglobal scen "thirsty_%thirsty%"
 $setglobal scen "drought%drought%%"
+$endif.scen
+$offText
+
+$ifthen.scen set drought
+    
+    Parameter MaxCapRiv;
+*valore che si vorrebbe all'inizio
+    Scalar TotalRiverCapacity /550/;
+    TotalRiverCapacity = TotalRiverCapacity / 824*100;
+    loop(y, MaxCapRiv(y) = TotalRiverCapacity*( 8.2446 + (ord(y)-1)*(3.4909-8.2446)/(2060-2008)); );
+    
+    TotalAnnualMaxCapacity(r,'RIVER',y) = MaxCapRiv(y);
+    
+    CapacityFactor(r,'RIVER','S01B1',y) = 1.0000563558;
+    CapacityFactor(r,'RIVER','S01B2',y) = 1.173036406;
+    CapacityFactor(r,'RIVER','S02B1',y) = 1.004242173;
+    CapacityFactor(r,'RIVER','S02B2',y) = 1.250816839;
+    CapacityFactor(r,'RIVER','S03B1',y) = 1.00316014;
+    CapacityFactor(r,'RIVER','S03B2',y) = 1.291570421;
+    CapacityFactor(r,'RIVER','S04B1',y) = 1.0000690295;
+    CapacityFactor(r,'RIVER','S04B2',y) = 1.176523404;
+    CapacityFactor(r,'RIVER','S05B2',y) = 1.127762552;
+    
+$setglobal scen "drought"
 $endif.scen
 
 
