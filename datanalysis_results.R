@@ -101,10 +101,11 @@ for (i in 2051:2060){
   
 {
   x11()
-  ggplot(prod2) +
+  ggplot(prod2[prod2$value!=0,]) +
     geom_area(aes(x=as.numeric(YEAR),y=value,fill=TECH)) +
     geom_line(data=demand, aes(x=as.numeric(YEAR),y=value), linewidth=1.2) +
     labs(title = "Production by Technology [PJ/yr]", subtitle = "Energy production by set of technology using the same fuel") +
+    scale_fill_brewer(palette="Paired") +
     facet_wrap(scen~.,) +
     xlab("year") + ylab("Energy [PJ]") + theme_pubr() 
 }
@@ -133,6 +134,7 @@ cap2$value = round(as.numeric(cap2$value),2)
   x11()
   ggplot(cap2[cap2$value!=0,]) +
     geom_area(aes(x=as.numeric(YEAR),y=value,fill=TECH)) +
+    scale_fill_brewer(palette="Paired") +
     facet_wrap(scen~.,) +
     xlab("year") + ylab("POWER [GW]") + theme_pubr() 
 }
@@ -355,9 +357,20 @@ demand <- batch_extract("SpecifiedAnnualDemand",all_gdx)[[1]] |> setDT() |> osem
   x11()
   ggplot(prod2[prod2$value!=0,]) +
     geom_area(aes(x=as.numeric(YEAR),y=value,fill=TECH)) +
+    scale_fill_brewer(palette="Paired") +
     geom_line(data=demand, aes(x=as.numeric(YEAR),y=value), linewidth=1.2) +
     labs(title = "Production by Technology [PJ/yr]", subtitle = "Energy production by set of technology using the same fuel") +
     facet_wrap(scen~.,) +
+    xlab("year") + ylab("Energy [PJ]") + theme_pubr() 
+}
+
+{
+  x11()
+  ggplot(prod2[prod2$TECH=="HY",]) +
+    scale_fill_brewer(palette="Paired") +
+    geom_line(aes(x=as.numeric(YEAR),y=value, color=scen), linewidth=1.2) +
+    labs(title = "Production by Technology [PJ/yr]", subtitle = "Energy production by set of technology using the same fuel") +
+    # facet_wrap(scen~.,) +
     xlab("year") + ylab("Energy [PJ]") + theme_pubr() 
 }
 
@@ -382,7 +395,3 @@ prod4[prod4$FUEL=="E1",]$value = 0.95*prod4[prod4$FUEL=="E1",]$value
     xlab("year") + ylab("Energy [PJ]") + theme_pubr() 
 }
 
-
-################################################################################
-########### PLOT ACCUMULATED CAPACITY ##########################################
-################################################################################

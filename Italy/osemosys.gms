@@ -29,6 +29,7 @@ $include osemosys_dec.gms
 * specify Model data
 $include italy_data.gms
 $include water_data2.gms
+$include WaterDemandHigh.gms
 *$include renewables_data.gms
 * define model equations
 $offlisting
@@ -218,7 +219,7 @@ $include "WaterDemandHigh.gms"
     CapacityFactor(r,'RIVER','S05B2',y) = 8.5/8;
     CapacityFactor(r,'RIVER','S05B3',y) = 8.5/8;
     
-$setglobal scen "drought"
+$setglobal scen "drought_%drought%"
 $endif.scen
 
 
