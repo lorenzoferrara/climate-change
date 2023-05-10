@@ -218,7 +218,7 @@ $ifthen.scen set drought
     CapacityFactor(r,'RIVER','S05B2',y) = 8.5/8;
     CapacityFactor(r,'RIVER','S05B3',y) = 8.5/8;
     
-$setglobal scen "drought"
+$setglobal scen "drought_%drought%"
 $endif.scen
 
 
@@ -226,6 +226,7 @@ $endif.scen
 model osemosys /all/;
 option limrow=0, limcol=0, solprint=on;
 option mip = copt;
+option threads=0;
 solve osemosys minimizing z using mip;
 * create results in file SelResults.CSV
 $include osemosys_res.gms
