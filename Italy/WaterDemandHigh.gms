@@ -1,4 +1,4 @@
-$offlisting
+
 SpecifiedAnnualDemand(r,'HY','2015') =  20.92220;
 SpecifiedAnnualDemand(r,'HY','2016') =  20.87497;
 SpecifiedAnnualDemand(r,'HY','2017') =  20.87361;
