@@ -191,32 +191,32 @@ $ifthen.scen set drought
     Parameter MaxCapRiv;
 *valore che si vorrebbe all'inizio
 * DA SCEGLIERE, NON 550
-    Scalar TotalRiverCapacity /150/;
-    TotalRiverCapacity = TotalRiverCapacity / 7.559;
+    Scalar TotalRiverCapacity ;
+    TotalRiverCapacity = %drought% / 7.559;
     loop(y, MaxCapRiv(y) = TotalRiverCapacity*( 7.559 + (ord(y)-1)*(3.53-7.559)/(2059-2015)); );
     
     TotalAnnualMaxCapacity(r,'RIVER',y) = MaxCapRiv(y);
     
 * CIRCA: GENNAIO-FEBBRAIO
-    CapacityFactor(r,'RIVER','S01B1',y) = 0.7;
-    CapacityFactor(r,'RIVER','S01B2',y) = 0.7;
-    CapacityFactor(r,'RIVER','S01B3',y) = 0.7;
+    CapacityFactor(r,'RIVER','S01B1',y) = 1;
+    CapacityFactor(r,'RIVER','S01B2',y) = 1;
+    CapacityFactor(r,'RIVER','S01B3',y) = 1;
 * CIRCA: MARZO-APRILE
-    CapacityFactor(r,'RIVER','S02B1',y) = 1.1;
-    CapacityFactor(r,'RIVER','S02B2',y) = 1.1;
-    CapacityFactor(r,'RIVER','S02B3',y) = 1.1;
+    CapacityFactor(r,'RIVER','S02B1',y) = 9/8;
+    CapacityFactor(r,'RIVER','S02B2',y) = 9/8;
+    CapacityFactor(r,'RIVER','S02B3',y) = 9/8;
 * CIRCA: MAGGIO-GIUGNO-LUGLIO-AGOSTO
-    CapacityFactor(r,'RIVER','S03B1',y) = 0.5;
-    CapacityFactor(r,'RIVER','S03B2',y) = 0.5;
-    CapacityFactor(r,'RIVER','S03B3',y) = 0.5;
+    CapacityFactor(r,'RIVER','S03B1',y) = 7/8;
+    CapacityFactor(r,'RIVER','S03B2',y) = 7/8;
+    CapacityFactor(r,'RIVER','S03B3',y) = 7/8;
 * CIRCA: SETTEMBRE-OTTOBRE
-    CapacityFactor(r,'RIVER','S04B1',y) = 0.7;
-    CapacityFactor(r,'RIVER','S04B2',y) = 0.7;
-    CapacityFactor(r,'RIVER','S04B3',y) = 0.7;
+    CapacityFactor(r,'RIVER','S04B1',y) = 8.75/8;
+    CapacityFactor(r,'RIVER','S04B2',y) = 8.75/8;
+    CapacityFactor(r,'RIVER','S04B3',y) = 8.75/8;
 * CIRCA: NOVEMBRE-DICEMBRE
-    CapacityFactor(r,'RIVER','S05B1',y) = 0.9;
-    CapacityFactor(r,'RIVER','S05B2',y) = 0.9;
-    CapacityFactor(r,'RIVER','S05B3',y) = 0.9;
+    CapacityFactor(r,'RIVER','S05B1',y) = 8.5/8;
+    CapacityFactor(r,'RIVER','S05B2',y) = 8.5/8;
+    CapacityFactor(r,'RIVER','S05B3',y) = 8.5/8;
     
 $setglobal scen "drought"
 $endif.scen
@@ -231,5 +231,34 @@ solve osemosys minimizing z using mip;
 $include osemosys_res.gms
 $include report.gms
 execute_unload 'results_%scen%.gdx';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
