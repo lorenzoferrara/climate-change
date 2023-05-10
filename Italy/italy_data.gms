@@ -126,9 +126,6 @@ set TECHNOLOGY      /
 *Water technologies
         RIVER 'river source of water'
         SEA   'sea source of water'
-        
-*use by peolpe and agricolture
-        UPA 'use by people and agricolture'
 /;
 
 set     TIMESLICE       /

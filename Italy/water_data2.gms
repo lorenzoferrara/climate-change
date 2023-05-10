@@ -50,8 +50,6 @@ InputActivityRatio(r,'WIONPN3','HY',m,y) = 0.00003;
 InputActivityRatio(r,'WSCHPH2','HY',m,y) = 0.02205;
 InputActivityRatio(r,'WSSTPH1','HY',m,y) = 0.02205;
 
-InputActivityRatio(r,'UPA','HY',m,y) = 1;
-
 *Output activity ratio
 OutputActivityRatio(r,'BFHPFH1','HY',m,y) = 0.04300;
 OutputActivityRatio(r,'BMCCPH1','HY',m,y) = 0.02169;
