@@ -101,7 +101,7 @@ for (i in 2051:2060){
   
 {
   x11()
-  ggplot(prod2[prod2$value!=0,]) +
+  ggplot(prod2) +
     geom_area(aes(x=as.numeric(YEAR),y=value,fill=TECH)) +
     geom_line(data=demand, aes(x=as.numeric(YEAR),y=value), linewidth=1.2) +
     labs(title = "Production by Technology [PJ/yr]", subtitle = "Energy production by set of technology using the same fuel") +
@@ -138,7 +138,7 @@ cap2$value = round(as.numeric(cap2$value),2)
 }
 
 ################################################################################
-########### PLOT TOTAL CAPACITY ##########################################
+########### PLOT TOTAL CAPACITY ################################################
 ################################################################################
 
 totcap <- batch_extract("TOTALCAPACITYANNUAL",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
@@ -171,7 +171,7 @@ totcap2$value = round(as.numeric(totcap2$value),2)
 
 prod3=prod2
 for(i in unique(prod3$TECH)){
-  if( sum(prod3[prod3$TECH==i,]$value == 0) ==0 ){
+  if( sum(prod3[prod3$TECH==i,]$value != 0) ==0 ){
     prod3 = prod3[prod3$TECH!=i,]
   }
 }

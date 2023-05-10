@@ -4361,17 +4361,8 @@ parameter TotalAnnualMaxCapacity(r,t,y) /
     ITALY.WSCHPH2.(2022*2060) 0.55
     ITALY.WSSTPH1.(2022*2060) 0.5
     ITALY.WSSTPH1S.(2022*2060) 0.5
-*Seaside plants: dati momentanei, messi un po' a caso (alti per provare a farlo andare)
-$ontext
-    ITALY.BMSTPH3S.(2015*2060) 50
-    ITALY.BMCSPN2S.(2030*2060) 50
-    ITALY.HFCCPH2S.(2015*2060) 50
-    ITALY.NGCCPH2S.(2015*2060) 50
-    ITALY.NGCSPN2S.(2030*2060) 50
-    ITALY.NUG3PH3S.(2035*2060) 50
-    ITALY.WSSTPH1S.(2015*2060) 50
-$offtext
 /;
+
 TotalAnnualMaxCapacity(r,t,y)$(TotalAnnualMaxCapacity(r,t,y) = 0 ) = 99999;
 *TotalAnnualMaxCapacity(r,t,y) = 99999;
 

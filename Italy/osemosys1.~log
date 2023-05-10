@@ -1,0 +1,275 @@
+
+--- Job osemosys.gms Start 05/10/23 11:14:23 42.3.0 dacf7d8e WEX-WEI x86 64bit/MS Windows
+--- Applying:
+    C:\GAMS\42\gmsprmNT.txt
+--- GAMS Parameters defined
+    Input C:\Users\ghesi\Documents\GitHub\climate-change\Italy\osemosys.gms
+    PageSize 0
+    ScrDir C:\Users\ghesi\Documents\GitHub\climate-change\Italy\225b\
+    SysDir C:\GAMS\42\
+    LogOption 3
+    ErrMsg 1
+    ErrorLog 99
+    IDE 1
+    LstTitleLeftAligned 1
+    --drought 155
+Licensee: Course License                                 S230216|0002AO-GEN
+          Fondazione CMCC, Complesso Ecotekne                       DCE1910
+          C:\Users\ghesi\Documents\GAMS\gamslice.txt
+          License Admin: Massimo Tavoni, massimo.tavoni@polimi.it          
+          Course license for use within the course and related course work
+Processor information: 1 socket(s), 4 core(s), and 8 thread(s) available
+GAMS 42.3.0   Copyright (C) 1987-2023 GAMS Development. All rights reserved
+--- Starting compilation
+--- osemosys.gms(28) 2 Mb
+--- . osemosys_dec.gms(784) 2 Mb
+--- osemosys.gms(30) 2 Mb
+--- . italy_data.gms(4653) 4 Mb
+--- osemosys.gms(31) 4 Mb
+--- . water_data2.gms(120) 4 Mb
+--- osemosys.gms(35) 4 Mb
+--- . osemosys_equ.gms(649) 4 Mb
+--- osemosys.gms(231) 4 Mb
+--- . osemosys_res.gms(92) 4 Mb
+--- osemosys.gms(232) 4 Mb
+--- . report.gms(23) 4 Mb
+--- GDXin=C:\Users\ghesi\Documents\GitHub\climate-change\Italy\results_base.gdx
+--- GDX File ($gdxIn) C:\Users\ghesi\Documents\GitHub\climate-change\Italy\results_base.gdx
+--- . report.gms(147) 4 Mb
+--- osemosys.gms(264) 4 Mb
+--- Starting execution: elapsed 0:00:00.027
+--- osemosys.gms(6326) 7 Mb
+--- Generating MIP model osemosys
+--- osemosys.gms(6327) 949 Mb  3 secs
+---   3,120,683 rows  3,094,597 columns  7,958,298 non-zeroes
+--- Range statistics (absolute non-zero finite values)
+--- RHS       [min, max] : [ 7.500E-05, 1.000E+05] - Zero values observed as well
+--- Bound     [min, max] : [ 8.640E+00, 8.640E+00] - Zero values observed as well
+--- Matrix    [min, max] : [ 3.000E-06, 1.792E+04]
+--- Executing COPT (Solvelink=2): elapsed 0:00:12.097
+
+COPT             42.3.0 dacf7d8e Mar 2, 2023           WEI x86 64bit/MS Window
+
+Passing GAMS variable and equation levels and marginals as LP starting point to COPT.
+
+Cardinal Optimizer v6.0.4. Build date Dec 21 2022
+Copyright Cardinal Operations 2022. All Rights Reserved
+
+Modified COPT parameters:
+TimeLimit                 1e+10
+AbsGap                    0
+LogToConsole              0
+ReqFarkasRay              1
+Threads                   1
+
+Model fingerprint: f5f8bd4f
+
+Using Cardinal Optimizer v6.0.4 on Windows
+Hardware has 4 cores and 8 threads. Using instruction set X86_AVX (9)
+Minimizing an LP problem
+
+The original problem has:
+    3120682 rows, 3094596 columns and 7958251 non-zero elements
+The folded problem has:
+    793157 rows, 822015 columns and 2250609 non-zero elements
+The presolved problem has:
+    57330 rows, 83582 columns and 451010 non-zero elements
+
+Starting the simplex solver using 1 thread
+
+Method   Iteration           Objective  Primal.NInf   Dual.NInf        Time
+Dual             0   -4.5622497330e+06         4123           0       8.21s
+Dual          3334    6.0350747129e+04         7043           0       8.34s
+Dual          5359    6.0354397219e+04         9639           0       8.47s
+Dual          5949    6.0363026212e+04        10626           0       8.60s
+Dual          7641    6.0393159213e+04        12535           0       8.75s
+Dual          8928    6.2454246021e+04        13587           0       8.83s
+Dual          9312    6.2478292403e+04        13613           0       8.91s
+Dual         10210    6.6194336936e+04        14225           0       9.20s
+Dual         12082    7.4794856997e+04        13331           0       9.37s
+Dual         12517    7.7567925994e+04        12991           0       9.47s
+Dual         13473    8.0547991711e+04        13005           0       9.63s
+Dual         15130    8.9597222465e+04        11910           0       9.81s
+Dual         15896    9.5070071126e+04        12092           0      10.04s
+Dual         16547    9.7402657706e+04        12346           0      10.16s
+Dual         16566    9.7405081508e+04        12294           0      10.18s
+Dual         16589    9.7405663884e+04        12299           0      10.21s
+Dual         17746    1.0552018756e+05        12543           0      10.42s
+Dual         18313    1.0825818028e+05        12324           0      10.62s
+Dual         18608    1.1052391097e+05        12748           0      10.69s
+Dual         19308    1.1551018935e+05        11831           0      10.99s
+
+Method   Iteration           Objective  Primal.NInf   Dual.NInf        Time
+Dual         20244    1.2689753153e+05        12113           0      11.37s
+Dual         20986    1.3181653292e+05        11985           0      11.75s
+Dual         22448    1.4507564193e+05        11481           0      11.91s
+Dual         23361    1.5003922795e+05        10759           0      12.12s
+Dual         24311    1.5931371312e+05        10312           0      12.40s
+Dual         24968    1.6346385409e+05        10373           0      12.77s
+Dual         25280    1.6608893742e+05        10742           0      12.92s
+Dual         25359    1.6650849787e+05        10747           0      13.00s
+Dual         25378    1.6666318369e+05        10886           0      13.03s
+Dual         27046    1.7919476585e+05        10508           0      13.31s
+Dual         28151    1.8092832008e+05         9752           0      13.63s
+Dual         29807    1.9132041829e+05         8847           0      13.93s
+Dual         30610    1.9267241327e+05         9501           0      14.24s
+Dual         30904    1.9285520074e+05         9259           0      14.38s
+Dual         31774    1.9494321759e+05         9117           0      14.63s
+Dual         32518    1.9643559468e+05         8573           6      14.92s
+Dual-I       32518   -8.0218556499e-03          457           2      14.93s
+Dual-I       32520    0.0000000000e+00            0           0      14.95s
+Dual         32520    1.9643559213e+05         8457           0      14.96s
+Dual         32943    1.9683001602e+05         8774           0      15.12s
+
+Method   Iteration           Objective  Primal.NInf   Dual.NInf        Time
+Dual         33267    1.9724483741e+05         8836           0      15.25s
+Dual         33410    1.9745723597e+05         9011           0      15.35s
+Dual         33541    1.9764013589e+05         9078           0      15.42s
+Dual         33618    1.9782002108e+05         8995           0      15.48s
+Dual         33687    1.9792807250e+05         8935           0      15.53s
+Dual         33751    1.9800556492e+05         9005           0      15.58s
+Dual         33762    1.9801488895e+05         9033           0      15.61s
+Dual         33932    1.9817925748e+05         8920           0      15.78s
+Dual         34802    2.0178020917e+05         8141           0      16.18s
+Dual         35315    2.0227954530e+05         8297           0      16.66s
+Dual         35702    2.0246198649e+05         8295           0      17.07s
+Dual         35978    2.0258239615e+05         8102           0      17.25s
+Dual         36343    2.0342811565e+05         8691           0      17.50s
+Dual         36797    2.0453196398e+05         8166           0      17.81s
+Dual         37180    2.0526396077e+05         8141           0      18.19s
+Dual         37486    2.0582646492e+05         8437           0      18.61s
+Dual         37884    2.0645240488e+05         8089           0      18.91s
+Dual         38255    2.0741142920e+05         7990           0      19.33s
+Dual         38614    2.0822382169e+05         8194           0      19.82s
+Dual         39017    2.0891898495e+05         8776           0      20.21s
+
+Method   Iteration           Objective  Primal.NInf   Dual.NInf        Time
+Dual         39490    2.1105711780e+05         8241           0      20.63s
+Dual         39601    2.1154690048e+05         8374           0      20.75s
+Dual         40072    2.1221788313e+05         8689           0      21.28s
+Dual         40260    2.1261682760e+05         8635           0      21.57s
+Dual         40731    2.1346061651e+05         8858           0      22.28s
+Dual         41482    2.1572636392e+05         7781           0      22.84s
+Dual         41944    2.1665739587e+05         7446           0      23.19s
+Dual         42322    2.1758351371e+05         7236           0      23.62s
+Dual         42748    2.1856221485e+05         7649           0      24.00s
+Dual         42960    2.1895480584e+05         7687           0      24.26s
+Dual         43291    2.1992428478e+05         8401           0      24.81s
+Dual         43521    2.2063326389e+05         9258           0      25.30s
+Dual         43983    2.2143447778e+05         8083           0      25.93s
+Dual         44272    2.2200216084e+05         8388           0      26.30s
+Dual         44377    2.2221920764e+05         8110           0      26.46s
+Dual         45264    2.2456608611e+05         8273           0      26.88s
+Dual         45596    2.2531852279e+05         8623           0      27.22s
+Dual         46089    2.2618352030e+05         8076           0      27.72s
+Dual         46346    2.2698875145e+05         7773           0      27.98s
+Dual         46581    2.2737679906e+05         7129           0      28.23s
+
+Method   Iteration           Objective  Primal.NInf   Dual.NInf        Time
+Dual         46738    2.2777798902e+05         7403           0      28.43s
+Dual         47126    2.2868649079e+05         7238          14      28.81s
+Dual-I       47126   -7.0139634454e-03          215           6      28.82s
+Dual-I       47138   -2.2846438020e-05           96           7      28.85s
+Dual-I       47143    0.0000000000e+00            0           0      28.88s
+Dual         47143    2.1783967240e+05         7715           0      28.89s
+Dual         47183    2.2761552814e+05         7245           0      28.93s
+Dual         47796    2.3056086832e+05         7866           0      29.29s
+Dual         47879    2.3059773270e+05         8194           0      29.37s
+Dual         48634    2.3430526166e+05         6918           0      29.70s
+Dual         48769    2.3459803170e+05         7086           0      29.87s
+Dual         49167    2.3502174115e+05         7587           0      30.35s
+Dual         49470    2.3523879984e+05         7319           0      30.77s
+Dual         49879    2.3618239818e+05         6498           0      31.21s
+Dual         49895    2.3620499691e+05         6978           0      31.26s
+Dual         49905    2.3620499825e+05         7037           0      31.29s
+Dual         50006    2.3640899475e+05         6836           0      31.44s
+Dual         50067    2.3650877124e+05         7137           0      31.52s
+Dual         50635    2.3766208026e+05         6962           0      31.98s
+Dual         51627    2.4155060291e+05         5874           0      32.40s
+
+Method   Iteration           Objective  Primal.NInf   Dual.NInf        Time
+Dual         52092    2.4184574320e+05         5631           0      32.88s
+Dual         52337    2.4208345594e+05         5296           0      33.19s
+Dual         52892    2.4256325208e+05         5550           0      33.71s
+Dual         53147    2.4265963990e+05         5214           0      34.19s
+Dual         53736    2.4329360741e+05         5577           0      34.74s
+Dual         54244    2.4434906877e+05         4761           0      35.18s
+Dual         55104    2.4578179202e+05         4537           0      35.69s
+Dual         55633    2.4676796276e+05         4009           0      36.27s
+Dual         55725    2.4678489367e+05         3815           0      36.46s
+Dual         55755    2.4678541476e+05         3800           0      36.54s
+Dual         55855    2.4679168335e+05         4241           0      36.83s
+Dual         56105    2.4681262594e+05         4373           0      37.35s
+Dual         56242    2.4685254394e+05         3884           0      37.62s
+Dual         56404    2.4687057836e+05         4621           0      37.98s
+Dual         56676    2.4691789239e+05         4471           0      38.54s
+Dual         56896    2.4722775560e+05         3367           0      38.88s
+Dual         57272    2.4729351812e+05         3369           0      39.69s
+Dual         57579    2.4729735308e+05         3819           0      40.06s
+Dual         58684    2.4815275345e+05         2986           0      40.55s
+Dual         59070    2.4820617160e+05         2506           0      41.15s
+
+Method   Iteration           Objective  Primal.NInf   Dual.NInf        Time
+Dual         59408    2.4821742054e+05         2110           0      41.87s
+Dual         59646    2.4822367312e+05         2103           0      42.32s
+Dual         59834    2.4823068951e+05         2387           0      42.71s
+Dual         60690    2.4871153027e+05         1632           0      43.43s
+Dual         60852    2.4872188626e+05         1151           0      43.73s
+Dual         61420    2.4880878845e+05          944           0      44.49s
+Dual         61496    2.4880969539e+05          881           0      44.71s
+Dual         62115    2.4883264302e+05          675           0      45.43s
+Dual         62472    2.4884142816e+05          424           0      45.91s
+Dual         62838    2.4885494912e+05          152           0      46.44s
+Dual         63341    2.4895531620e+05         1387           0      46.98s
+Dual         63369    2.4895548224e+05         1010           0      47.02s
+Dual         63855    2.4898080381e+05          597           0      47.76s
+Dual         64148    2.4902934622e+05          348           0      48.15s
+Dual         64510    2.4904511474e+05          113           0      48.83s
+Dual         64856    2.4973019645e+05         1954           0      49.58s
+Dual         64866    2.4974576599e+05         2382           0      49.63s
+Dual         65297    2.4993179686e+05         1263           0      50.05s
+Dual         65338    2.4993640664e+05         1340           0      50.11s
+Dual         65378    2.4994213734e+05         1285           0      50.18s
+
+Method   Iteration           Objective  Primal.NInf   Dual.NInf        Time
+Dual         65784    2.4998115104e+05         1017           0      50.67s
+Dual         66193    2.5001279862e+05         1286           0      51.26s
+Dual         66622    2.5002444763e+05          412           0      52.07s
+Dual         66757    2.5003056268e+05          577           0      52.32s
+Dual         67200    2.5003800341e+05          516           0      53.09s
+Dual         67621    2.5004321178e+05          103           0      53.96s
+Dual         67779    2.5004363485e+05            0           0      54.31s
+Primal       67779    2.5004362999e+05            0          46      54.32s
+Primal       67810    2.5004362999e+05            0           0      54.35s
+Postsolving
+Dual         67810    2.5004362999e+05           22           0      55.53s
+Dual         67812    2.5004363000e+05           29           0      56.03s
+Repairing singular basis (1)
+Dual         67818    2.5023947776e+05          217       10356      56.89s
+Dual-I       67818   -7.5500560418e+08       120591       10356      57.02s
+Dual-I       68167   -2.8595827745e+00        28212          86      60.51s
+Dual-I       68532   -1.1760413600e-04        20960           4      65.54s
+Dual-I       68586    0.0000000000e+00            0           0      66.58s
+Dual         68586   -2.9308359334e+05        20880           0      66.69s
+Dual         68675   -4.9470651650e+04        32910           0      68.30s
+Dual         68759   -4.1657452252e+04        30956           0      70.97s
+Dual         68984    1.4654046149e+03        22889           0      75.61s
+
+Method   Iteration           Objective  Primal.NInf   Dual.NInf        Time
+Dual         69360    7.9114492271e+04        26150           0      85.67s
+Dual         69425    9.0254267682e+04        29987           0      87.39s
+Dual         69426    9.0257954571e+04        30018           0      87.86s
+Dual         69496    1.4409379417e+05        28458           0      89.26s
+Dual         69524    1.4743959570e+05        22256           0      90.28s
+Dual         70026    1.6896891494e+05        19677           0      94.42s
+Dual         70295    1.8098527458e+05        20079           0      97.43s
+Dual         70333    1.8314015722e+05        16914           0      98.59s
+Dual         70582    2.0196734967e+05        22787           0     104.24s
+Dual         70697    2.0610529283e+05        18623           0     107.00s
+Dual         70742    2.0847010783e+05        20322           0     108.39s
+Dual         70805    2.0899716253e+05        23568           0     110.03s
+Dual         71183    2.1357716545e+05        19674           0     117.96s
+Dual         71686    2.3279554702e+05        15254           0     128.32s
+Dual         71696    2.3280497830e+05        15116           0     128.96s
+Dual         71731    2.3305728143e+05        15024           0     130.05s
+Dual         71851    2.3682451918e+05        15428           0     132.03s
