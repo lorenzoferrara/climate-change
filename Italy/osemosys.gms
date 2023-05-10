@@ -30,7 +30,7 @@ $include osemosys_dec.gms
 $include italy_data.gms
 $include water_data2.gms
 $include WaterDemandHigh.gms
-*$include renewables_data.gms
+
 * define model equations
 $offlisting
 $include osemosys_equ.gms
