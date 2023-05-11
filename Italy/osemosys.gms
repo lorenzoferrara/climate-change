@@ -29,7 +29,6 @@ $include osemosys_dec.gms
 * specify Model data
 $include italy_data.gms
 $include water_data2.gms
-$include WaterDemandHigh.gms
 
 * define model equations
 $offlisting
