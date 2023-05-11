@@ -40,13 +40,13 @@ option threads=0;
 *
 $ifthen.scen '%scen%'=='emission' 
 AnnualEmissionLimit(r,'CO2',y)$(ord(y) ge 10) = %emicap%;
-$setglobal scen "emicap%emicap%"
+$if not set scen $setglobal scen "emicap%emicap%"
 $endif.scen
 
 $ifthen.scen '%scen%'=='nogeo'
 TotalAnnualMaxCapacity(r,'GO00X00',y) = 3;
 TotalAnnualMaxCapacity(r,'GOCVPH2',y) = 3;
-$setglobal scen "nogeo"
+$if not set scen $setglobal scen "nogeo"
 $endif.scen
 
 *
@@ -56,7 +56,7 @@ $ifthen.scen set ren_target
 equation my_RE4_EnergyConstraint(REGION,YEAR);
 my_RE4_EnergyConstraint(r,y)..
     %ren_target%/100*(sum(f, AccumulatedAnnualDemand(r,f,y) + SpecifiedAnnualDemand(r,f,y))) =l= TotalREProductionAnnual(r,y);
-$setglobal scen "rentarget%ren_target%"
+$if not set scen $setglobal scen "rentarget%ren_target%"
 $endif.scen
 
 $ifthen.scen set ctax 
@@ -106,7 +106,7 @@ $ifthen.scen set ctax
     EmissionsPenalty('ITALY','CO2','2058') = 740;
     EmissionsPenalty('ITALY','CO2','2059') = 770;
     EmissionsPenalty('ITALY','CO2','2060') = 800;
-$setglobal scen "ctax"
+$if not set scen $setglobal scen "ctax"
 $endif.scen
 
 $ifthen.scen set nocoal 
@@ -116,7 +116,7 @@ $ifthen.scen set nocoal
     TotalAnnualMaxCapacity(r,'COSTPH3',y) = .5;
     TotalAnnualMaxCapacity(r,'CO00I00',y) = .5;
     TotalAnnualMaxCapacity(r,'CO00X00',y) = .5;
-$setglobal scen "nocoal"
+$if not set scen $setglobal scen "nocoal"
 $endif.scen
 
 $ifthen.scen set nogas
@@ -130,29 +130,29 @@ $ifthen.scen set nogas
     TotalAnnualMaxCapacity(r,'NGGCPH2',y) = .5;
     TotalAnnualMaxCapacity(r,'NGGCPN2',y) = .5;
     TotalAnnualMaxCapacity(r,'NGHPFH1',y) = .5;
-$setglobal scen "nogas"
+$if not set scen $setglobal scen "nogas"
 $endif.scen
 
 $ifthen.scen set noatom 
     TotalAnnualMaxCapacity(r,'NUG3PH3',y) = 0;
     TotalAnnualMaxCapacity(r,'NUG3PH3S',y) = 0;
     TotalAnnualMaxCapacity(r,'UR00I00',y) = 0;
-$setglobal scen "noatom"
+$if not set scen $setglobal scen "noatom"
 $endif.scen
 
 $ifthen.scen set cost_res 
 CapitalCost(r,t,y)$t_res(t) = %cost_res%/100 * CapitalCost(r,t,y);
-$setglobal scen "lowcost"
+$if not set scen $setglobal scen "lowcost"
 $endif.scen
 
 $ifthen.scen set brumbrum 
     AnnualEmissionLimit(r,'CO2',y)=999999;
-$setglobal scen "brumbrum"
+$if not set scen $setglobal scen "brumbrum"
 $endif.scen
 
 $ifthen.scen set thirsty
     TotalAnnualMaxCapacity(r,'RIVER',y) = %thirsty%;
-$setglobal scen "thirsty_%thirsty%"
+$if not set scen $setglobal scen "thirsty_%thirsty%"
 $endif.scen
 
 $ifthen.scen set WaterDemand
@@ -168,7 +168,7 @@ $ifthen.cond %WaterDemand%==100
 $include "WaterDemandHigh.gms";
 $endif.cond
 
-$setglobal scen "WaterDemand_%WaterDemand%"
+$if not set scen $setglobal scen "WaterDemand_%WaterDemand%"
 $endif.scen
 
 $onText
@@ -218,7 +218,7 @@ $include "WaterDemandHigh.gms"
     CapacityFactor(r,'RIVER','S05B2',y) = 8.5/8;
     CapacityFactor(r,'RIVER','S05B3',y) = 8.5/8;
     
-$setglobal scen "drought_%drought%"
+$if not set scen $setglobal scen "drought_%drought%"
 $endif.scen
 
 
