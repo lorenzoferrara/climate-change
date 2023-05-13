@@ -51,17 +51,17 @@ $endif.scen
 $setglobal string_demand "_"
 $ifthen.scen set WaterDemand
     $$ifthen.cond %WaterDemand%==0
-        $$include "WaterDemands\WaterDemandLow.gms";
+        $$include "WaterDemands/WaterDemandLow.gms";
         $$setglobal string_demand "L"
     $$endif.cond
         
     $$ifthen.cond %WaterDemand%==10
-        $$include "WaterDemands\WaterDemandMedium.gms";
+        $$include "WaterDemands/WaterDemandMedium.gms";
         $$setglobal string_demand "M"
     $$endif.cond
         
     $$ifthen.cond %WaterDemand%==100
-        $$include "WaterDemands\WaterDemandHigh.gms";
+        $$include "WaterDemands/WaterDemandHigh.gms";
         $$setglobal string_demand "H"
     $$endif.cond
 $endif.scen
@@ -69,17 +69,17 @@ $endif.scen
 $setglobal string_rcp "_"
 $ifthen.scen set RCP
     $$ifthen.cond %RCP%==26
-        $$include "RCP\Rcp_26.gms";
+        $$include "RCP/Rcp_26.gms";
         $$setglobal string_rcp "26"
     $$endif.cond
           
     $$ifthen.cond %RCP%==45
-        $$include "RCP\Rcp_45.gms";
+        $$include "RCP/Rcp_45.gms";
         $$setglobal string_rcp "45"
     $$endif.cond
             
     $$ifthen.cond %RCP%==85
-        $$include "RCP\Rcp_85.gms";
+        $$include "RCP/Rcp_85.gms";
         $$setglobal string_rcp "85"
     $$endif.cond
 $endif.scen
