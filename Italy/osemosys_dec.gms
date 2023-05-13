@@ -781,12 +781,14 @@ positive variable ANNUALEMISSIONS(REGION,EMISSION,YEAR);
 * user defined ModelPeriodExogenousEmission. [Quantity of emission]
 positive variable MODELPERIODEMISSIONS(EMISSION,REGION);
 
-*****************************************************************************************
-* DA IMBELLIRE
+*------------------------------------------------------------------------   
+* * Water Equations    
+*------------------------------------------------------------------------
+
 parameter Precipitations(REGION,YEAR);
 *Km3
 parameter EvaTrasp (REGION,YEAR);
-*evapotranspiration from Turks empirical formula Km3
+*evapotranspiration from Turk's empirical formula Km3
 parameter Temp (REGION,YEAR);
 *temperature of the set region °C
 parameter Cap0(REGION);

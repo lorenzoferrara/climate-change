@@ -648,8 +648,14 @@ equation E9_ModelPeriodEmissionsLimit(EMISSION,REGION);
 E9_ModelPeriodEmissionsLimit(e,r)..
     MODELPERIODEMISSIONS(e,r) =l= ModelPeriodEmissionLimit(r,e);
 
-*****************************************************************************
-* DA IMBELLIRE
+*------------------------------------------------------------------------   
+* Water availability
+*------------------------------------------------------------------------
+
+* Calculates the annual and model period water capacity for RIVER
+* considering precipitations and evaporation of water
+* it set the upper limit to River max capacity
+
 equation CapacityEQ(REGION,YEAR);
 CapacityEQ(r,y+1)..
     CAP(r,y+1) =e= CAP(r,y) - PRODUCTIONBYTECHNOLOGYANNUAL(r,'RIVER', 'HY',y) + Precipitations(r,y+1) - EvaTrasp(r,y+1);
