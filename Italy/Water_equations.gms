@@ -11,8 +11,8 @@ parameter elle(REGION,YEAR);
 positive variable CAP(REGION,YEAR);
 *Km3/year
 
-Precipitations(r,y) = 99;
-Cap0(r) = 900;
+Precipitations(r,y) = 300;
+Cap0(r) = 1033.132986;
 
 Temp(r,y) = 20;
 elle(r,y)= 300 + 0.25*Temp(r,y)+0.05*Temp(r,y)**2;
