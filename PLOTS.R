@@ -151,7 +151,8 @@ totcap2$value = round(as.numeric(totcap2$value),2)
   ggplot(totcap2[totcap2$value!=0,]) +
     geom_area(aes(x=as.numeric(YEAR),y=value,fill=TECH)) +
     facet_wrap(scen~.,) +
-    xlab("year") + ylab("POWER [GW]") + theme_pubr() 
+    xlab("year") + ylab("POWER [GW]") + theme_pubr() +
+    scale_fill_brewer(palette="Paired")
 }
 
 ################################################################################
@@ -235,12 +236,33 @@ cost = cost |>
     theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5))
   }
 
-cost2 = cost
+cost$value_cum = cost$value
+for(year in unique(cost$YEAR)){
+  for(scenario in unique(cost$scen)){
+    cost[cost$YEAR==year & cost$scen==scenario,]$value_cum = sum( cost[cost$YEAR<=year & cost$scen==scenario ,]$value )
+  }
+}
+
+
+#COSTS
 {
   x11()
   ggplot(cost) +
     geom_line(aes(x=as.numeric(YEAR),y=value/1000,color=scen), linewidth=1.3) +
-    labs(title = "Operating cost") +
+    labs(title = "Operating Cost") +
+    # facet_wrap(scen~.,) +
+    xlab("year") + ylab("Cost [BIllions of $]") + theme_pubr() +
+    theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5))
+}
+
+#CUMULATIVE COSTS
+{
+  x11()
+  ggplot(cost) +
+    geom_line(aes(x=as.numeric(YEAR),y=value_cum,color=scen), linewidth=1.3) +
+    labs(title = "Cumulative Operating Cost") +
+    # scale_y_continuous(trans='log2') +
+    # scale_x_continuous(trans='log2') +
     # facet_wrap(scen~.,) +
     xlab("year") + ylab("Cost [BIllions of $]") + theme_pubr() +
     theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5))
