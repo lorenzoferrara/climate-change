@@ -12,7 +12,7 @@ positive variable CAP(REGION,YEAR);
 *Km3/year
 
 Precipitations(r,y) = 99;
-Cap0(r) = 150;
+Cap0(r) = 900;
 
 Temp(r,y) = 20;
 elle(r,y)= 300 + 0.25*Temp(r,y)+0.05*Temp(r,y)**2;
