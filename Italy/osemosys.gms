@@ -40,12 +40,12 @@ option threads=0;
 ******** SCENARIOS *********
 ****************************
 
-$setglobal string_atom "B"
+$setglobal string_atom "N"
 $ifthen.scen set noatom 
     TotalAnnualMaxCapacity(r,'NUG3PH3',y) = 0;
     TotalAnnualMaxCapacity(r,'NUG3PH3S',y) = 0;
     TotalAnnualMaxCapacity(r,'UR00I00',y) = 0;
-$setglobal string_atom "N"
+$setglobal string_atom "B"
 $endif.scen
 
 $setglobal string_demand "_"
