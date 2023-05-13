@@ -20,7 +20,7 @@ parameter rep_cost_wrt_base(*,r) '%';
 
 $ifthen.scen not %scen%=="base" 
 variable cost_base(r);
-$gdxin results_base.gdx
+$gdxin Results\results_base.gdx
 $loaddc cost_base=ModelPeriodCostByRegion
 $gdxin
 $endif.scen
@@ -129,7 +129,7 @@ rep_co2emiss_by_fuel('%scen%',r,f,y) = sum((t,m)$(OutputActivityRatio(r,t,f,m,y)
 $if not %scen%=="base" rep_cost_wrt_base('%scen%',r) = 100*(MODELPERIODCOSTBYREGION.l(r)/cost_base.l(r)-1);
 
 
-execute_unload 'report_%scen%.gdx',
+execute_unload 'Reports\report_%scen%.gdx',
 rep_fen_tot
 rep_pes_tot
 rep_pes_share

@@ -133,12 +133,7 @@ $ifthen.scen set nogas
 $if not set scen $setglobal scen "nogas"
 $endif.scen
 
-$ifthen.scen set noatom 
-    TotalAnnualMaxCapacity(r,'NUG3PH3',y) = 0;
-    TotalAnnualMaxCapacity(r,'NUG3PH3S',y) = 0;
-    TotalAnnualMaxCapacity(r,'UR00I00',y) = 0;
-$if not set scen $setglobal scen "noatom"
-$endif.scen
+
 
 $ifthen.scen set cost_res 
 CapitalCost(r,t,y)$t_res(t) = %cost_res%/100 * CapitalCost(r,t,y);
@@ -155,21 +150,7 @@ $ifthen.scen set thirsty
 $if not set scen $setglobal scen "thirsty_%thirsty%"
 $endif.scen
 
-$ifthen.scen set WaterDemand
-$ifthen.cond %WaterDemand%==0
-$include "WaterDemandLow.gms";
-$endif.cond
-    
-$ifthen.cond %WaterDemand%==10
-$include "WaterDemandMedium.gms";
-$endif.cond
-    
-$ifthen.cond %WaterDemand%==100
-$include "WaterDemandHigh.gms";
-$endif.cond
 
-$if not set scen $setglobal scen "WaterDemand_%WaterDemand%"
-$endif.scen
 
 $onText
 $ifthen.scen set drought
@@ -186,48 +167,87 @@ $setglobal scen "drought%drought%%"
 $endif.scen
 $offText
 
-$ifthen.scen set drought
-$include "WaterDemandHigh.gms"
-    Parameter MaxCapRiv;
-*valore che si vorrebbe all'inizio
-* DA SCEGLIERE, NON 550
-    Scalar TotalRiverCapacity ;
-    TotalRiverCapacity = %drought% / 7.559;
-    loop(y, MaxCapRiv(y) = TotalRiverCapacity*( 7.559 + (ord(y)-1)*(3.53-7.559)/(2059-2015)); );
+*$ifthen.scen set drought
+*$include "WaterDemandHigh.gms"
+*    Parameter MaxCapRiv;
+**valore che si vorrebbe all'inizio
+** DA SCEGLIERE, NON 550
+*    Scalar TotalRiverCapacity ;
+*    TotalRiverCapacity = %drought% / 7.559;
+*    loop(y, MaxCapRiv(y) = TotalRiverCapacity*( 7.559 + (ord(y)-1)*(3.53-7.559)/(2059-2015)); );
+*    
+*    TotalAnnualMaxCapacity(r,'RIVER',y) = MaxCapRiv(y);
+*    
+** CIRCA: GENNAIO-FEBBRAIO
+*    CapacityFactor(r,'RIVER','S01B1',y) = 1;
+*    CapacityFactor(r,'RIVER','S01B2',y) = 1;
+*    CapacityFactor(r,'RIVER','S01B3',y) = 1;
+** CIRCA: MARZO-APRILE
+*    CapacityFactor(r,'RIVER','S02B1',y) = 9/8;
+*    CapacityFactor(r,'RIVER','S02B2',y) = 9/8;
+*    CapacityFactor(r,'RIVER','S02B3',y) = 9/8;
+** CIRCA: MAGGIO-GIUGNO-LUGLIO-AGOSTO
+*    CapacityFactor(r,'RIVER','S03B1',y) = 7/8;
+*    CapacityFactor(r,'RIVER','S03B2',y) = 7/8;
+*    CapacityFactor(r,'RIVER','S03B3',y) = 7/8;
+** CIRCA: SETTEMBRE-OTTOBRE
+*    CapacityFactor(r,'RIVER','S04B1',y) = 8.75/8;
+*    CapacityFactor(r,'RIVER','S04B2',y) = 8.75/8;
+*    CapacityFactor(r,'RIVER','S04B3',y) = 8.75/8;
+** CIRCA: NOVEMBRE-DICEMBRE
+*    CapacityFactor(r,'RIVER','S05B1',y) = 8.5/8;
+*    CapacityFactor(r,'RIVER','S05B2',y) = 8.5/8;
+*    CapacityFactor(r,'RIVER','S05B3',y) = 8.5/8;
+*    
+*$if not set scen $setglobal scen "drought_%drought%"
+*$endif.scen
+
+$ifthen.scen set noatom 
+    TotalAnnualMaxCapacity(r,'NUG3PH3',y) = 0;
+    TotalAnnualMaxCapacity(r,'NUG3PH3S',y) = 0;
+    TotalAnnualMaxCapacity(r,'UR00I00',y) = 0;
+$if not set scen $setglobal scen "noatom"
+$endif.scen
+
+$ifthen.scen set WaterDemand
+    $$ifthen.cond %WaterDemand%==0
+        $$include "WaterDemands\WaterDemandLow.gms";
+    $$endif.cond
+        
+    $$ifthen.cond %WaterDemand%==10
+        $$include "WaterDemands\WaterDemandMedium.gms";
+    $$endif.cond
+        
+    $$ifthen.cond %WaterDemand%==100
+        $$include "WaterDemands\WaterDemandHigh.gms";
+    $$endif.cond
     
-    TotalAnnualMaxCapacity(r,'RIVER',y) = MaxCapRiv(y);
-    
-* CIRCA: GENNAIO-FEBBRAIO
-    CapacityFactor(r,'RIVER','S01B1',y) = 1;
-    CapacityFactor(r,'RIVER','S01B2',y) = 1;
-    CapacityFactor(r,'RIVER','S01B3',y) = 1;
-* CIRCA: MARZO-APRILE
-    CapacityFactor(r,'RIVER','S02B1',y) = 9/8;
-    CapacityFactor(r,'RIVER','S02B2',y) = 9/8;
-    CapacityFactor(r,'RIVER','S02B3',y) = 9/8;
-* CIRCA: MAGGIO-GIUGNO-LUGLIO-AGOSTO
-    CapacityFactor(r,'RIVER','S03B1',y) = 7/8;
-    CapacityFactor(r,'RIVER','S03B2',y) = 7/8;
-    CapacityFactor(r,'RIVER','S03B3',y) = 7/8;
-* CIRCA: SETTEMBRE-OTTOBRE
-    CapacityFactor(r,'RIVER','S04B1',y) = 8.75/8;
-    CapacityFactor(r,'RIVER','S04B2',y) = 8.75/8;
-    CapacityFactor(r,'RIVER','S04B3',y) = 8.75/8;
-* CIRCA: NOVEMBRE-DICEMBRE
-    CapacityFactor(r,'RIVER','S05B1',y) = 8.5/8;
-    CapacityFactor(r,'RIVER','S05B2',y) = 8.5/8;
-    CapacityFactor(r,'RIVER','S05B3',y) = 8.5/8;
-    
-$if not set scen $setglobal scen "drought_%drought%"
+    $$if not set scen $setglobal scen "WaterDemand_%WaterDemand%"
 $endif.scen
 
 
-$ifthen.scen set drought_Matteo
-$include "WaterDemandHigh.gms"
-$include "Po_level.gms"
-$if not set scen $setglobal scen "drought_Matteo_%drought%"
+$ifthen.scen set WaterLevel
+    $$ifthen.cond %WaterLevel%==0
+        $$include "WaterProjection\Po_level_WeakDecrease.gms";
+    $$endif.cond
+          
+    $$ifthen.cond %WaterLevel%==10
+        $$include "WaterProjection\Po_level_MediumDecrease.gms";
+    $$endif.cond
+            
+    $$ifthen.cond %WaterLevel%==100
+        $$include "WaterProjection\Po_level_StrongDecrease.gms";
+    $$endif.cond
+        
+    $$if not set scen $setglobal scen "WaterLevel_%WaterLevel%"
 $endif.scen
 
+*$ifthen.scen set droughtMatteo
+*
+*$include "Po_level_WeakDecrease.gms";
+*        
+*$if not set scen $setglobal scen "drought_Matteo_%drought_Matteo%"
+*$endif.scen
 
 * solve the model
 model osemosys /all/;
@@ -238,7 +258,7 @@ solve osemosys minimizing z using mip;
 * create results in file SelResults.CSV
 $include osemosys_res.gms
 $include report.gms
-execute_unload 'results_%scen%.gdx';
+execute_unload 'Results\results_%scen%.gdx';
 
 
 

@@ -5,7 +5,7 @@ require(gdxtools)
 require(witchtools)
 require(ggpubr)
 
-file_directory <- "~/GitHub/climate-change/Italy"
+file_directory <- "~/GitHub/climate-change/Italy/Results"
 complete_directory <- here::here()
 all_gdx <- c(Sys.glob(here::here(file_directory,"results_*.gdx")))
 
@@ -99,9 +99,16 @@ for (i in 2051:2060){
   demand=demand[demand$YEAR!=i,]
 }
   
+prod3=prod2
+for(i in unique(prod3$TECH)){
+  if( sum(prod3[prod3$TECH==i,]$value != 0) ==0 ){
+    prod3 = prod3[prod3$TECH!=i,]
+  }
+}
+
 {
   x11()
-  ggplot(prod2[prod2$value!=0,]) +
+  ggplot(prod3) +
     geom_area(aes(x=as.numeric(YEAR),y=value,fill=TECH)) +
     geom_line(data=demand, aes(x=as.numeric(YEAR),y=value), linewidth=1.2) +
     labs(title = "Production by Technology [PJ/yr]", subtitle = "Energy production by set of technology using the same fuel") +
@@ -153,6 +160,7 @@ demand$value =  use$value
 
 cap <- batch_extract("ACCUMULATEDNEWCAPACITY",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
 cap = cap[cap$value!=99999]
+cap = cap[cap$TECHNOLOGY != 'RIVER']
 
 temp = cap$TECHNOLOGY
 cap$TECH=temp
@@ -166,9 +174,16 @@ cap2 = cap |>
   summarise(value = sum(value))
 cap2$value = round(as.numeric(cap2$value),2)
 
+cap3=cap2
+for(i in unique(cap3$TECH)){
+  if( sum(cap3[cap3$TECH==i,]$value != 0) ==0 ){
+    cap3 = cap3[cap3$TECH!=i,]
+  }
+}
+
 {
   x11()
-  ggplot(cap2[cap2$value!=0,]) +
+  ggplot(cap3) +
     geom_area(aes(x=as.numeric(YEAR),y=value,fill=TECH)) +
     scale_fill_brewer(palette="Paired") +
     facet_wrap(scen~.,) +

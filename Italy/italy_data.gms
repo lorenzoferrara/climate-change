@@ -399,26 +399,42 @@ AccumulatedAnnualDemand(r,f,y)=0;
 CapacityToActivityUnit(r,t)$power_plants(t) = 31.536;
 CapacityToActivityUnit(r,t)$(CapacityToActivityUnit(r,t) = 0) = 1;
 
+CapacityFactor(r,t,l,y) = 0;
+CapacityFactor(r,t,l,y)$(CapacityFactor(r,t,l,y) = 0) = 1;
+
 *Solar capacity
     CapacityFactor(r,'SODIFH1','S01B1',y) = 0.0000563558;
     CapacityFactor(r,'SODIFH1','S01B2',y) = 0.173036406;
+    CapacityFactor(r,'SODIFH1','S01B3',y) = 0;
     CapacityFactor(r,'SODIFH1','S02B1',y) = 0.004242173;
     CapacityFactor(r,'SODIFH1','S02B2',y) = 0.250816839;
+    CapacityFactor(r,'SODIFH1','S02B3',y) = 0;
     CapacityFactor(r,'SODIFH1','S03B1',y) = 0.00316014;
     CapacityFactor(r,'SODIFH1','S03B2',y) = 0.291570421;
+    CapacityFactor(r,'SODIFH1','S03B3',y) = 0;
     CapacityFactor(r,'SODIFH1','S04B1',y) = 0.0000690295;
     CapacityFactor(r,'SODIFH1','S04B2',y) = 0.176523404;
+    CapacityFactor(r,'SODIFH1','S04B3',y) = 0;
+    CapacityFactor(r,'SODIFH1','S05B1',y) = 0;
     CapacityFactor(r,'SODIFH1','S05B2',y) = 0.127762552;
+    CapacityFactor(r,'SODIFH1','S05B3',y) = 0;
+
 
     CapacityFactor(r,'SOUTPH2','S01B1',y) = 0.0000563558;
     CapacityFactor(r,'SOUTPH2','S01B2',y) = 0.173036406;
+    CapacityFactor(r,'SOUTPH2','S01B3',y) = 0;
     CapacityFactor(r,'SOUTPH2','S02B1',y) = 0.004242173;
     CapacityFactor(r,'SOUTPH2','S02B2',y) = 0.250816839;
+    CapacityFactor(r,'SOUTPH2','S02B3',y) = 0;
     CapacityFactor(r,'SOUTPH2','S03B1',y) = 0.00316014;
     CapacityFactor(r,'SOUTPH2','S03B2',y) = 0.291570421;
+    CapacityFactor(r,'SOUTPH2','S03B3',y) = 0;
     CapacityFactor(r,'SOUTPH2','S04B1',y) = 0.0000690295;
     CapacityFactor(r,'SOUTPH2','S04B2',y) = 0.176523404;
+    CapacityFactor(r,'SOUTPH2','S04B3',y) = 0;
+    CapacityFactor(r,'SOUTPH2','S05B1',y) = 0;
     CapacityFactor(r,'SOUTPH2','S05B2',y) = 0.127762552;
+    CapacityFactor(r,'SOUTPH2','S05B3',y) = 0;
 
 *Wind capacity
     CapacityFactor(r,'WIOFPN2','S01B1',y) = 0.271624523;
@@ -485,7 +501,6 @@ CapacityToActivityUnit(r,t)$(CapacityToActivityUnit(r,t) = 0) = 1;
     CapacityFactor(r,'WIONPN3','S05B2',y) = 0.224300426;
     CapacityFactor(r,'WIONPN3','S05B3',y) = 0.217316319;
 
-    CapacityFactor(r,t,l,y)$(CapacityFactor(r,t,l,y) = 0) = 1;
 
 parameter AvailabilityFactor(r,t,y) /
     ITALY.BFHPFH1.2015 .6
@@ -608,7 +623,6 @@ parameter AvailabilityFactor(r,t,y) /
     ITALY.OCWVPH1.2058 .384
     ITALY.OCWVPH1.2059 .387
     ITALY.OCWVPH1.2060 .39
-    
 /;
 
     AvailabilityFactor(r,'BMCCPH1',y) = .7;
