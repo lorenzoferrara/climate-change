@@ -79,6 +79,7 @@ for(year in unique(prod3$YEAR)){
     theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5))
 }
 
+prod3 = prod3[prod3$scen != 'base',]
 {
   x11()
   ggplot(prod3) +
@@ -287,3 +288,49 @@ prod4[prod4$FUEL=="E1",]$value = 0.95*prod4[prod4$FUEL=="E1",]$value
     xlab("year") + ylab("Energy [PJ]") + theme_pubr() 
 }
 
+################################################################################
+########### WATER PRESENCE #####################################################
+################################################################################
+
+cap <- batch_extract("CAP",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
+
+prod <- batch_extract("PRODUCTIONBYTECHNOLOGYANNUAL",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
+
+prod = prod[prod$FUEL == 'HY',]
+prod = prod[prod$TECHNOLOGY == 'RIVER',]
+
+cap = cap[cap$scen == 'uBL45',]
+prod = prod[prod$scen == 'uBL45',]
+{
+  x11()
+  ggplot(cap) +
+    geom_line(aes(x=as.numeric(YEAR),y=value),color='red', linewidth=1.3) +
+    geom_line(data=prod, aes(x=as.numeric(YEAR),y=value),color='blue', linewidth=1.3) +
+    labs(title = "prod4uction by Technology [PJ/yr]", subtitle = "Energy production by set of technology using the same fuel") +
+    facet_wrap(scen~.,) +
+    xlab("year") + ylab("Energy [PJ]") + theme_pubr() 
+}
+
+################################################################################
+########### HYDRO Vs SEA #######################################################
+################################################################################
+
+prod <- batch_extract("PRODUCTIONBYTECHNOLOGYANNUAL",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
+
+prod = prod[prod$FUEL=="E1" | prod$FUEL=='E2',]
+prod = prod[ prod$TECHNOLOGY  != "EL00TD0",]
+prod[prod$FUEL=="E1",]$value = 0.95*prod[prod$FUEL=="E1",]$value
+
+for(i in unique(prod$TECHNOLOGY)){
+  prod$final[prod$TECHNOLOGY==i] = substr(i, start=nchar(i), stop=nchar(i))
+}
+prod$final[prod$final!='S'] = 'R'
+
+{
+  x11()
+  ggplot(prod[prod$value!=0,]) +
+    geom_area(aes(x=as.numeric(YEAR),y=value, fill=final)) +
+    labs(title = "prod4uction by Technology [PJ/yr]", subtitle = "Energy production by set of technology using the same fuel") +
+    facet_wrap(scen~.,) +
+    xlab("year") + ylab("Energy [PJ]") + theme_pubr() 
+}

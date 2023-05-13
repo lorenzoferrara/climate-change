@@ -403,21 +403,21 @@ CapacityFactor(r,t,l,y) = 0;
 CapacityFactor(r,t,l,y)$(CapacityFactor(r,t,l,y) = 0) = 1;
 
 *river capacity
-    CapacityFactor(r,'RIVER','S01B1',y) =0.047977755;
-    CapacityFactor(r,'RIVER','S01B2',y) =0.119944388;
-    CapacityFactor(r,'RIVER','S01B3',y) =0.023988877;
-    CapacityFactor(r,'RIVER','S02B1',y) =0.051145783;
-    CapacityFactor(r,'RIVER','S02B2',y) =0.136388753;
-    CapacityFactor(r,'RIVER','S02B3',y) =0.017048595;
-    CapacityFactor(r,'RIVER','S03B1',y) =0.037010798;
-    CapacityFactor(r,'RIVER','S03B2',y) =0.118434553;
-    CapacityFactor(r,'RIVER','S03B3',y) =0.022206479;
-    CapacityFactor(r,'RIVER','S04B1',y) =0.055006628;
-    CapacityFactor(r,'RIVER','S04B2',y) =0.137516568;
-    CapacityFactor(r,'RIVER','S04B3',y) =0.027503314;
-    CapacityFactor(r,'RIVER','S05B1',y) =0.05145688;
-    CapacityFactor(r,'RIVER','S05B2',y) =0.128642201;
-    CapacityFactor(r,'RIVER','S05B3',y) =0.02572844;
+*CapacityFactor(r,'RIVER','S01B1',y) =0.047977755;
+*CapacityFactor(r,'RIVER','S01B2',y) =0.119944388;
+*CapacityFactor(r,'RIVER','S01B3',y) =0.023988877;
+*CapacityFactor(r,'RIVER','S02B1',y) =0.051145783;
+*CapacityFactor(r,'RIVER','S02B2',y) =0.136388753;
+*CapacityFactor(r,'RIVER','S02B3',y) =0.017048595;
+*CapacityFactor(r,'RIVER','S03B1',y) =0.037010798;
+*CapacityFactor(r,'RIVER','S03B2',y) =0.118434553;
+*CapacityFactor(r,'RIVER','S03B3',y) =0.022206479;
+*CapacityFactor(r,'RIVER','S04B1',y) =0.055006628;
+*CapacityFactor(r,'RIVER','S04B2',y) =0.137516568;
+*CapacityFactor(r,'RIVER','S04B3',y) =0.027503314;
+*CapacityFactor(r,'RIVER','S05B1',y) =0.05145688;
+*CapacityFactor(r,'RIVER','S05B2',y) =0.128642201;
+*CapacityFactor(r,'RIVER','S05B3',y) =0.02572844;
 
     
 *Solar capacity
