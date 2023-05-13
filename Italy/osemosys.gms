@@ -222,6 +222,13 @@ $if not set scen $setglobal scen "drought_%drought%"
 $endif.scen
 
 
+$ifthen.scen set drought_Matteo
+$include "WaterDemandHigh.gms"
+$include "Po_level.gms"
+$if not set scen $setglobal scen "drought_Matteo_%drought%"
+$endif.scen
+
+
 * solve the model
 model osemosys /all/;
 option limrow=0, limcol=0, solprint=on;
