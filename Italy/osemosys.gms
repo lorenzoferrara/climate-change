@@ -36,73 +36,58 @@ $include osemosys_equ.gms
 $include Water_equations.gms
 option threads=0;
 
-*
-* Scnearios flags
-*
-$ifthen.scen set ren_target
-equation my_RE4_EnergyConstraint(REGION,YEAR);
-my_RE4_EnergyConstraint(r,y)..
-    %ren_target%/100*(sum(f, AccumulatedAnnualDemand(r,f,y) + SpecifiedAnnualDemand(r,f,y))) =l= TotalREProductionAnnual(r,y);
-$if not set scen $setglobal scen "rentarget%ren_target%"
-$endif.scen
+****************************
+******** SCENARIOS *********
+****************************
 
-$ifthen.scen set noco2cap 
-    AnnualEmissionLimit(r,'CO2',y)=999999;
-$if not set scen $setglobal scen "brumbrum"
-$endif.scen
-
-$ifthen.scen set thirsty
-    TotalAnnualMaxCapacity(r,'RIVER',y) = %thirsty%;
-$if not set scen $setglobal scen "thirsty_%thirsty%"
-$endif.scen
-
+$setglobal string_atom "B"
 $ifthen.scen set noatom 
     TotalAnnualMaxCapacity(r,'NUG3PH3',y) = 0;
     TotalAnnualMaxCapacity(r,'NUG3PH3S',y) = 0;
     TotalAnnualMaxCapacity(r,'UR00I00',y) = 0;
-$if not set scen $setglobal scen "noatom"
+$setglobal string_atom "N"
 $endif.scen
 
+$setglobal string_demand "_"
 $ifthen.scen set WaterDemand
     $$ifthen.cond %WaterDemand%==0
         $$include "WaterDemands\WaterDemandLow.gms";
+        $$setglobal string_demand "L"
     $$endif.cond
         
     $$ifthen.cond %WaterDemand%==10
         $$include "WaterDemands\WaterDemandMedium.gms";
+        $$setglobal string_demand "M"
     $$endif.cond
         
     $$ifthen.cond %WaterDemand%==100
         $$include "WaterDemands\WaterDemandHigh.gms";
+        $$setglobal string_demand "H"
     $$endif.cond
-    
-    $$if not set scen $setglobal scen "WaterDemand_%WaterDemand%"
 $endif.scen
 
-$ifthen.scen set WaterLevel
-    $$ifthen.cond %WaterLevel%==0
+$setglobal string_rcp "_"
+$ifthen.scen set RCP
+    $$ifthen.cond %RCP%==26
         $$include "RCP\Rcp_26.gms";
+        $$setglobal string_rcp "26"
     $$endif.cond
           
-    $$ifthen.cond %WaterLevel%==10
+    $$ifthen.cond %RCP%==45
         $$include "RCP\Rcp_45.gms";
+        $$setglobal string_rcp "45"
     $$endif.cond
             
-    $$ifthen.cond %WaterLevel%==100
+    $$ifthen.cond %RCP%==85
         $$include "RCP\Rcp_85.gms";
+        $$setglobal string_rcp "85"
     $$endif.cond
-        
-    $$if not set scen $setglobal scen "WaterLevel_%WaterLevel%"
 $endif.scen
 
-*$ifthen.scen set droughtMatteo
-*
-*$include "Po_level_WeakDecrease.gms";
-*        
-*$if not set scen $setglobal scen "drought_Matteo_%drought_Matteo%"
-*$endif.scen
+$setglobal scen "%string_atom%%string_demand%%string_rcp%"
 
 
+        
 * solve the model
 model osemosys /all/;
 option limrow=0, limcol=0, solprint=on;
