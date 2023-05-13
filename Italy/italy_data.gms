@@ -4273,6 +4273,7 @@ CapacityOfOneTechnologyUnit(r,t,y) = 0;
 *Mesured in GW (o equivalenti, per acqua in km3/anno)
 parameter TotalAnnualMaxCapacity(r,t,y) /
     ITALY.BFHPFH1.(2015*2021) 1
+    ITALY.BM00X00.(2015*2060) 0.95
     ITALY.BMCCPH1.(2015*2021) 1
     ITALY.BMCHPH3.(2015*2021) 1
     ITALY.BMSTPH3.(2015*2021) 1
