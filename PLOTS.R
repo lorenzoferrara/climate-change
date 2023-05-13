@@ -28,7 +28,9 @@ emissions <- batch_extract("ANNUALEMISSIONS",all_gdx)[[1]] |> setDT() |> osemosy
   ggplot(emissions |> filter(EMISSION=="CO2")) +
     geom_line(aes(x=as.numeric(YEAR),y=value,color=scen), linewidth=1)+ 
     labs(title = "Emissions [Mton/yr]",subtitle = "Only emissions of CO2", x = "year", y = "Emission [MtonCo2]") +
-    theme_bw()
+    theme_bw() +
+    theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5))
+  
 }
 
 ################################################################################
@@ -45,24 +47,24 @@ for(i in unique(prod$TECHNOLOGY)){
   prod$TECH[prod$TECH==i] = substr(i, start=1, stop=2)
 }
 
-prod2 = prod |> 
+prod = prod |> 
   group_by(scen,TECH,YEAR) |>
   summarise(value = sum(value))
-prod2$value = round(as.numeric(prod2$value),2)
+prod$value = round(as.numeric(prod$value),2)
 
-# demand <- batch_extract("SpecifiedAnnualDemand",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
-# demand = demand[demand$FUEL=="E2",]
-# use <- batch_extract("USEANNUAL",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
-# use = use[use$FUEL=='E2',]
-# demand$value = demand$value + use$value
-# demand=demand[demand$YEAR<=2050,]
+prod=prod[prod$YEAR<=2050,]
 
-prod2=prod2[prod2$YEAR<=2050,]
-  
-prod3=prod2
+prod3=prod
 for(i in unique(prod3$TECH)){
   if( sum(prod3[prod3$TECH==i,]$value != 0) ==0 ){
     prod3 = prod3[prod3$TECH!=i,]
+  }
+}
+
+prod3$value_perc = prod3$value
+for(year in unique(prod3$YEAR)){
+  for(scenario in unique(prod3$scen)){
+    prod3[prod3$YEAR==year & prod3$scen==scenario,]$value_perc = prod3[prod3$YEAR==year & prod3$scen==scenario,]$value/sum(prod3[prod3$YEAR==year & prod3$scen==scenario,]$value)
   }
 }
 
@@ -70,49 +72,23 @@ for(i in unique(prod3$TECH)){
   x11()
   ggplot(prod3) +
     geom_area(aes(x=as.numeric(YEAR),y=value,fill=TECH)) +
-    # geom_line(data=demand, aes(x=as.numeric(YEAR),y=value), linewidth=1.2) +
     labs(title = "Production by Technology [PJ/yr]", subtitle = "Energy production by set of technology using the same fuel") +
     scale_fill_brewer(palette="Paired") +
     facet_wrap(scen~.,) +
-    xlab("year") + ylab("Energy [PJ]") + theme_pubr() 
+    xlab("year") + ylab("Energy [PJ]") + theme_pubr() + 
+    theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5))
 }
-
-################################################################################
-########### VERIFY WATER CYCLE  ################################################
-################################################################################
-
-prod <- batch_extract("PRODUCTIONBYTECHNOLOGYANNUAL",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
-prod = prod[prod$FUEL=='HY',]
-
-prod$TECH=prod$TECHNOLOGY
-for(i in unique(prod$TECHNOLOGY)){
-  prod$TECH[prod$TECH==i] = substr(i, start=1, stop=2)
-}
-
-prod2 = prod |> 
-  group_by(scen,TECH,YEAR) |>
-  summarise(value = sum(value))
-#prod2$value = round(as.numeric(prod2$value),2)
-prod2$value = as.numeric(prod2$value)
-
-demand <- batch_extract("SpecifiedAnnualDemand",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
-demand = demand[demand$FUEL=="HY",]
-
-use <- batch_extract("USEANNUAL",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
-use = use[use$FUEL=='HY',]
-use = use[use$scen=='drought',]
-demand$value =  use$value
 
 {
   x11()
-  ggplot(prod2) +
-    geom_area(aes(x=as.numeric(YEAR),y=value,fill=TECH)) +
-    geom_line(data=demand, aes(x=as.numeric(YEAR),y=value), linewidth=1.2) +
+  ggplot(prod3) +
+    geom_area(aes(x=as.numeric(YEAR),y=value_perc,fill=TECH)) +
     labs(title = "Production by Technology [PJ/yr]", subtitle = "Energy production by set of technology using the same fuel") +
+    scale_fill_brewer(palette="Paired") +
     facet_wrap(scen~.,) +
-    xlab("year") + ylab("Energy [PJ]") + theme_pubr() 
+    xlab("year") + ylab("Energy [PJ]") + theme_pubr() + 
+    theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5))
 }
-
 
 ################################################################################
 ########### PLOT ACCUMULATED CAPACITY ##########################################
@@ -206,57 +182,6 @@ water2$value = round(as.numeric(water2$value),2)
 }
 
 ################################################################################
-########### PLOT COMPARE WATER USAGE & HYDROELECTRICAL POWER ###################
-################################################################################
-
-{
-  x11()
-  ggplot(water[water$FUEL=='HY',]) +
-    geom_line(aes(x=as.numeric(YEAR),y=value), linewidth=1.5, color='blue') +
-    facet_wrap(scen~.,) +
-    xlab("year") + ylab("Water used [ML]") + theme_pubr() 
-}
-
-################################################################################
-########### PLOT STORAGE USAGE ###################################################
-################################################################################
-
-storage2 <- batch_extract("RATEOFSTORAGECHARGE",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
-# storage = storage[storage$STORAGE=='DAM' | storage$STORAGE=='H2' | storage$STORAGE=='BAT']
-
-storage2 = storage2 |> 
-  group_by(scen,SEASON, DAILYTIMEBRACKET,YEAR) |>
-  summarise(value = sum(value))
-# storage2$value = round(as.numeric(water2$value),2)
-
-storage2 = storage2[storage2$scen=="base",]
-{
-  x11()
-  ggplot(storage2) +
-    geom_line(aes(x=as.numeric(YEAR),y=value,color=DAILYTIMEBRACKET), linewidth=1.5) +
-    facet_wrap(SEASON~.,) +
-    xlab("year") + ylab("storage capacity [PJ]") + theme_pubr() 
-}
-
-
-storage3 <- batch_extract("RATEOFSTORAGEDISCHARGE",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
-# storage = storage[storage$STORAGE=='DAM' | storage$STORAGE=='H2' | storage$STORAGE=='BAT']
-
-storage3 = storage3 |> 
-  group_by(scen,SEASON, DAILYTIMEBRACKET,YEAR) |>
-  summarise(value = sum(value))
-# storage3$value = round(as.numeric(water2$value),2)
-
-storage3 = storage3[storage3$scen=="base",]
-{
-  x11()
-  ggplot(storage3) +
-    geom_line(aes(x=as.numeric(YEAR),y=value,color=DAILYTIMEBRACKET), linewidth=1.5) +
-    facet_wrap(SEASON~.,) +
-    xlab("year") + ylab("storage capacity [PJ]") + theme_pubr() 
-}
-
-################################################################################
 ########### PLOT STORAGE USAGE ###################################################
 ################################################################################
 
@@ -269,17 +194,6 @@ storage = storage[storage$STORAGE=='DAM' | storage$STORAGE=='H2' | storage$STORA
     geom_line(aes(x=as.numeric(YEAR),y=value,color=STORAGE), linewidth=0.5) +
     facet_wrap(scen~.,) +
     xlab("year") + ylab("storage capacity [PJ]") + theme_pubr() 
-}
-
-# =======
-
-totcap3=totcap2[totcap2$TECH=='HY',]
-{
-  x11()
-  ggplot(totcap3) +
-    geom_line(aes(x=as.numeric(YEAR),y=value), linewidth=1.5, color='red') +
-    facet_wrap(scen~.,) +
-    xlab("year") + ylab("Hydroelectrical capacity installed [GW]") + theme_pubr() 
 }
 
 ################################################################################
@@ -295,12 +209,13 @@ use2 = use2[use2$FUEL=="HY",]
     geom_line(aes(x=as.numeric(YEAR),y=value,color=scen), linewidth=1.3) +
     labs(title = "Total Water Usage") +
     # facet_wrap(scen~.,) +
-    xlab("year") + ylab("Water [km3]") + theme_pubr() 
+    xlab("year") + ylab("Water [km3]") + theme_pubr() +
+    theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5))
 }
 
 
 ################################################################################
-########### PLOT     ############################################
+########### PLOT COST ##########################################################
 ################################################################################
 
 cost <- batch_extract("OPERATINGCOST",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
@@ -316,55 +231,20 @@ cost = cost |>
     geom_line(aes(x=as.numeric(YEAR),y=value/1000,color=scen), linewidth=1.3) +
     labs(title = "Operating cost") +
     # facet_wrap(scen~.,) +
-    xlab("year") + ylab("Cost [BIllions of $]") + theme_pubr() 
+    xlab("year") + ylab("Cost [BIllions of $]") + theme_pubr() +
+    theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5))
   }
 
-z <- batch_extract("z",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
-
-##########################################################################
-########### PLOT COSTO ###################################################
-##########################################################################
-
-
-prod <- batch_extract("PRODUCTIONBYTECHNOLOGYANNUAL",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
-prod = prod[prod$FUEL=="E1" | prod$FUEL=='E2',]
-prod = prod[ prod$TECHNOLOGY  != "EL00TD0",]
-prod[prod$FUEL=="E1",]$value = 0.95*prod[prod$FUEL=="E1",]$value
-
-prod$TECH=prod$TECHNOLOGY
-for(i in unique(prod$TECHNOLOGY)){
-  prod$TECH[prod$TECH==i] = substr(i, start=1, stop=2)
-}
-
-prod2 = prod |> 
-  group_by(scen,TECH,YEAR) |>
-  summarise(value = sum(value))
-prod2$value = round(as.numeric(prod2$value),2)
-
-demand <- batch_extract("SpecifiedAnnualDemand",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
-
+cost2 = cost
 {
   x11()
-  ggplot(prod2[prod2$value!=0,]) +
-    geom_area(aes(x=as.numeric(YEAR),y=value,fill=TECH)) +
-    scale_fill_brewer(palette="Paired") +
-    geom_line(data=demand, aes(x=as.numeric(YEAR),y=value), linewidth=1.2) +
-    labs(title = "Production by Technology [PJ/yr]", subtitle = "Energy production by set of technology using the same fuel") +
-    facet_wrap(scen~.,) +
-    xlab("year") + ylab("Energy [PJ]") + theme_pubr() 
-}
-
-{
-  x11()
-  ggplot(prod2[prod2$TECH=="HY",]) +
-    scale_fill_brewer(palette="Paired") +
-    geom_line(aes(x=as.numeric(YEAR),y=value, color=scen), linewidth=1.2) +
-    labs(title = "Production by Technology [PJ/yr]", subtitle = "Energy production by set of technology using the same fuel") +
+  ggplot(cost) +
+    geom_line(aes(x=as.numeric(YEAR),y=value/1000,color=scen), linewidth=1.3) +
+    labs(title = "Operating cost") +
     # facet_wrap(scen~.,) +
-    xlab("year") + ylab("Energy [PJ]") + theme_pubr() 
+    xlab("year") + ylab("Cost [BIllions of $]") + theme_pubr() +
+    theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5))
 }
-
-
 
 ################################################################################
 ########### PLOT CARBON CAPTURE ######################################
