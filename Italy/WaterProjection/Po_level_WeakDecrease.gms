@@ -1,5 +1,5 @@
 * Rescaling = 3
-TotalAnnualMaxCapacity(r,'RIVER',y) = 1033.132986;
+*TotalAnnualMaxCapacity(r,'RIVER',y) = 1033.132986;
 
 CapacityFactor(r,'RIVER','S01B1','2015') = 0.0623416990107259;
 CapacityFactor(r,'RIVER','S01B2','2015') = 0.155854248948985;
