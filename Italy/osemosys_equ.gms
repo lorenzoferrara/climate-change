@@ -647,3 +647,12 @@ E8_AnnualEmissionsLimit(r,e,y)..
 equation E9_ModelPeriodEmissionsLimit(EMISSION,REGION);
 E9_ModelPeriodEmissionsLimit(e,r)..
     MODELPERIODEMISSIONS(e,r) =l= ModelPeriodEmissionLimit(r,e);
+
+*****************************************************************************
+* DA IMBELLIRE
+equation CapacityEQ(REGION,YEAR);
+CapacityEQ(r,y+1)..
+    CAP(r,y+1) =e= CAP(r,y) - PRODUCTIONBYTECHNOLOGYANNUAL(r,'RIVER', 'HY',y) + Precipitations(r,y+1) - EvaTrasp(r,y+1);
+
+equation RIVERCAP(REGION, YEAR);
+RIVERCAP(r,y).. TOTALCAPACITYANNUAL(r,'RIVER',y) =l= CAP(r,y);

@@ -29,11 +29,11 @@ $include osemosys_dec.gms
 * specify Model data
 $include italy_data.gms
 $include water_data2.gms
-
+Cap0(r) = 1033.132986;
 * define model equations
 $offlisting
 $include osemosys_equ.gms
-$include Water_equations.gms
+*$include Water_equations.gms
 option threads=0;
 
 ****************************
@@ -85,8 +85,6 @@ $ifthen.scen set RCP
 $endif.scen
 
 $setglobal scen "%string_atom%%string_demand%%string_rcp%"
-
-
         
 * solve the model
 model osemosys /all/;
