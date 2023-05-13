@@ -33,6 +33,7 @@ $include water_data2.gms
 * define model equations
 $offlisting
 $include osemosys_equ.gms
+$include Water_equations.gms
 option threads=0;
 
 *
