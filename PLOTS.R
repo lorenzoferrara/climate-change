@@ -299,16 +299,14 @@ prod <- batch_extract("PRODUCTIONBYTECHNOLOGYANNUAL",all_gdx)[[1]] |> setDT() |>
 prod = prod[prod$FUEL == 'HY',]
 prod = prod[prod$TECHNOLOGY == 'RIVER',]
 
-cap = cap[cap$scen == 'uBL45',]
-prod = prod[prod$scen == 'uBL45',]
 {
   x11()
   ggplot(cap) +
     geom_line(aes(x=as.numeric(YEAR),y=value),color='red', linewidth=1.3) +
     geom_line(data=prod, aes(x=as.numeric(YEAR),y=value),color='blue', linewidth=1.3) +
-    labs(title = "prod4uction by Technology [PJ/yr]", subtitle = "Energy production by set of technology using the same fuel") +
+    labs(title = "Water productionand limit", subtitle = "Water use and max") +
     facet_wrap(scen~.,) +
-    xlab("year") + ylab("Energy [PJ]") + theme_pubr() 
+    xlab("year") + ylab("Km3") + theme_pubr() 
 }
 
 ################################################################################
