@@ -4233,8 +4233,7 @@ parameter TechnologyFromStorage(r,m,t,s) /
 
 *PJ
 Parameter StorageLevelStart(r,s)    /
-*    ITALY.DAM 8.64
-    ITALY.DAM 0
+    ITALY.DAM 4.364
     ITALY.BAT 0
 /;
 
@@ -4245,6 +4244,8 @@ StorageMaxChargeRate(r,s) = 999;
 StorageMaxDischargeRate(r,s) = 999;
 
 *PJ
+*Dam: minimum level of storage is 0 scaled to the minimum level of water allowed in the dam
+*Bat: minumum level correspond to zero charge of the batteries
 MinStorageCharge(r,s,y) = 0;
 
 *YEARS
