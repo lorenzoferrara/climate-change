@@ -4233,7 +4233,8 @@ parameter TechnologyFromStorage(r,m,t,s) /
 
 *PJ
 Parameter StorageLevelStart(r,s)    /
-    ITALY.DAM 8.64
+*    ITALY.DAM 8.64
+    ITALY.DAM 0
     ITALY.BAT 0
 /;
 

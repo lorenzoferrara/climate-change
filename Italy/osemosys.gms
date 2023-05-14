@@ -20,6 +20,7 @@
 * gams osemosys.gms
 * 4. You should find that you get an optimal value of 29446.861.
 * 5. Some results are created in file SelResults.CSV that you can view in Excel.
+* 6. Spare time
 *
 * declarations for sets, parameters, variables
 $eolcom #
@@ -29,7 +30,7 @@ $include osemosys_dec.gms
 * specify Model data
 $include italy_data.gms
 $include water_data2.gms
-Cap0(r) = 200;
+Cap0(r) = 300;
 *TotalAnnualMaxCapacity(r,'RIVER',y) = 100;
 * define model equations
 $offlisting

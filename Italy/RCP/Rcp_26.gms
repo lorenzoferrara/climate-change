@@ -1,3 +1,4 @@
+*Precipitations values from RCP26 projections
 Precipitations('ITALY','2015') = 291.386631405908;
 Precipitations('ITALY','2016') = 289.844626935982;
 Precipitations('ITALY','2017') = 287.078402849482;
@@ -45,7 +46,7 @@ Precipitations('ITALY','2058') = 280.341145010399;
 Precipitations('ITALY','2059') = 282.718245654645;
 Precipitations('ITALY','2060') = 280.455421952779;
 
-
+*temperature values from RCP26 projections
 Temp('ITALY','2015') = 13.82;
 Temp('ITALY','2016') = 13.61;
 Temp('ITALY','2017') = 13.48;
@@ -93,7 +94,10 @@ Temp('ITALY','2058') = 13.9;
 Temp('ITALY','2059') = 13.9;
 Temp('ITALY','2060') = 13.9;
 
+*Turk's equation parameteres for evotranspiration
 elle(r,y)= 300 + 0.25*Temp(r,y)+0.05*Temp(r,y)**3;
 EvaTrasp(r,y) = Precipitations(r,y);
 EvaTrasp(r,y)$(Precipitations(r,y)**2/elle(r,y)**2 gt 0.1) = Precipitations(r,y)/sqrt(0.9 + Precipitations(r,y)**2/elle(r,y)**2);
+*Starting value of water Capacity and lower limit for 
 CAP.fx(r,y)$(ord(y) eq 1) = Cap0(r) + Precipitations(r,y)$(ord(y) eq 1) - EvaTrasp(r,y)$(ord(y) eq 1);
+CAP.lo(r,y) = 0.6*Cap0(r);
