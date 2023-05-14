@@ -29,7 +29,7 @@ $include osemosys_dec.gms
 * specify Model data
 $include italy_data.gms
 $include water_data2.gms
-Cap0(r) = 0.1;
+Cap0(r) = 200;
 *TotalAnnualMaxCapacity(r,'RIVER',y) = 100;
 * define model equations
 $offlisting
