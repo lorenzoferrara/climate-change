@@ -20,7 +20,7 @@ parameter rep_cost_wrt_base(*,r) '%';
 
 $ifthen.scen not %scen%=="base" 
 variable cost_base(r);
-$gdxin Results\results_base.gdx
+$gdxin Results/results_base.gdx
 $loaddc cost_base=ModelPeriodCostByRegion
 $gdxin
 $endif.scen

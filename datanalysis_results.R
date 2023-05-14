@@ -201,7 +201,7 @@ water2$value = round(as.numeric(water2$value),2)
   ggplot(water2[water2$value!=0 & water2$TECH!='HY',]) +
     geom_area(aes(x=as.numeric(YEAR),y=value,fill=TECH)) +
     facet_wrap(scen~.,) +
-    labs(title = "Use of water by technology (excepted hydroelectrical)") +
+    labs(title = "Use of water by technology (except hydroelectrical)") +
     xlab("year") + ylab("Water used [km3]") + theme_pubr() 
 }
 
