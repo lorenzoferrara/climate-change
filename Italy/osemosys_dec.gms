@@ -793,6 +793,8 @@ parameter Temp (REGION,YEAR);
 *temperature of the set region °C
 parameter Cap0(REGION);
 *initial value of available capacity y0
+parameter LimCap(REGION);
+*fraction of Cap0 to reserve each year, lower limit of CAP
 parameter elle(REGION,YEAR);
 *capacity of the atmosphere to evaporate water
 positive variable CAP(REGION,YEAR);
