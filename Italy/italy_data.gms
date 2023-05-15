@@ -129,6 +129,7 @@ set TECHNOLOGY      /
 *Water technologies
         RIVER 'river source of water'
         SEA   'sea source of water'
+        DELTA
 /;
 
 set     TIMESLICE       /
@@ -353,6 +354,8 @@ parameter SpecifiedAnnualDemand(r,f,y) /
     ITALY.E2.2058    1766.88
     ITALY.E2.2059    1776.24
     ITALY.E2.2060    1785.6
+    
+    ITALY.SE.(2015*2060)    1200
 /;
 *Exclude imports from abroad (13% of annual demand on avarage)
 SpecifiedAnnualDemand(r,'E2',y)=SpecifiedAnnualDemand(r,'E2',y)*0.87;
@@ -391,6 +394,7 @@ parameter SpecifiedDemandProfile(r,f,l,y) /
     ITALY.HY.S05B3.(2015*2060) 0.0127
 /;
 
+SpecifiedDemandProfile(r,'SE',l,y) = 0.0666;
 
 AccumulatedAnnualDemand(r,f,y)=0;
 
@@ -1996,6 +2000,8 @@ parameter InputActivityRatio(r,t,f,m,y) /
     ITALY.BMCSPN2S.BM.1.2060     2.554934424
     
     ITALY.BATCHG.E2.2.(2015*2060) 1.10
+    
+    ITALY.DELTA.HY.1.(2015*2060) 1
 /;
 
 parameter OutputActivityRatio(r,t,f,m,y) /
@@ -2075,6 +2081,8 @@ parameter OutputActivityRatio(r,t,f,m,y) /
     ITALY.SEA.SE.1.(2015*2060) 1
 
     ITALY.BATCHG.E1.1.(2015*2060) 1
+    
+    ITALY.DELTA.SE.1.(2015*2060) 1
 /;
 
 *By default, assume for imported secondary fuels the same efficiency of the internal refineries
@@ -3245,6 +3253,9 @@ parameter VariableCost(r,t,m,y) /
     ITALY.WSSTPH1.1.(2015*2060)  0.00357
 
     ITALY.UR00I00.1.(2015*2060)  1.301920122
+    
+    ITALY.DELTA.1.(2015*2060)  -1e-5
+    
 /;
 
 VariableCost(r,t,m,y)$(VariableCost(r,t,m,y) = 0) = 1e-5;
@@ -4243,6 +4254,8 @@ parameter TotalAnnualMaxCapacity(r,t,y) /
     ITALY.WSCHPH2.(2022*2060) 0.55
     ITALY.WSSTPH1.(2022*2060) 0.5
     ITALY.WSSTPH1S.(2022*2060) 0.5
+    
+    ITAlY.DELTA.(2015*2060) 30
 /;
 
 TotalAnnualMaxCapacity(r,t,y)$(TotalAnnualMaxCapacity(r,t,y) = 0 ) = 99999;
