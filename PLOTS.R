@@ -17,6 +17,7 @@ osemosys_sanitize <- function(.x) {
   .x[, scen := str_replace(scen,".gdx","")]
   .x[, gdx := NULL]}
 
+directory_graphs = "Italy/Graphs/"
 
 ################################################################################
 ########### PLOT EMISSIONS #####################################################
@@ -28,14 +29,15 @@ emissions = emissions[emissions$scen != 'base']
 
 {
   x11()
-  ggplot(emissions |> filter(EMISSION=="CO2")) +
+  p = ggplot(emissions |> filter(EMISSION=="CO2")) +
     geom_line(aes(x=as.numeric(YEAR),y=value,color=scen), linewidth=1)+ 
     labs(title = "Emissions [Mton/yr]",subtitle = "Only emissions of CO2", x = "year", y = "Emission [MtonCo2]") +
     theme_bw() +
     theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5))
   
+  print(p)
+  ggsave(paste0(directory_graphs,"AnnualEmissions.png"), p)
 }
-
 ################################################################################
 ########### PLOT PRODUCTION BY TECHNOLOGY ######################################
 ################################################################################
@@ -74,24 +76,30 @@ for(year in unique(prod3$YEAR)){
 
 {
   x11()
-  ggplot(prod3) +
+  p = ggplot(prod3) +
     geom_area(aes(x=as.numeric(YEAR),y=value,fill=TECH)) +
     labs(title = "Production by Technology [PJ/yr]", subtitle = "Energy production by set of technology using the same fuel") +
     scale_fill_brewer(palette="Paired") +
     facet_wrap(scen~.,) +
     xlab("year") + ylab("Energy [PJ]") + theme_pubr() + 
     theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5))
+  
+  print(p)
+  ggsave(paste0(directory_graphs,"ProductionByTechnology.png"), p)
 }
 
 {
   x11()
-  ggplot(prod3) +
+  p = ggplot(prod3) +
     geom_area(aes(x=as.numeric(YEAR),y=value_perc,fill=TECH)) +
     labs(title = "Production by Technology [PJ/yr]", subtitle = "Energy production by set of technology using the same fuel") +
     scale_fill_brewer(palette="Paired") +
     facet_wrap(scen~.,) +
     xlab("year") + ylab("Energy [PJ]") + theme_pubr() + 
     theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5))
+  
+  print(p)
+  ggsave(paste0(directory_graphs,"MixProduttivo.png"), p)
 }
 
 ################################################################################
@@ -126,11 +134,15 @@ cap3 = cap3[cap3$scen != 'base',]
 
 {
   x11()
-  ggplot(cap3) +
+  p = ggplot(cap3) +
     geom_area(aes(x=as.numeric(YEAR),y=value,fill=TECH)) +
     scale_fill_brewer(palette="Paired") +
     facet_wrap(scen~.,) +
-    xlab("year") + ylab("POWER [GW]") + theme_pubr() 
+    xlab("year") + ylab("POWER [GW]") + theme_pubr() +
+    theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5))
+  
+  print(p)
+  ggsave(paste0(directory_graphs,"AccumulatedNewCapacity.png"), p)
 }
 
 ################################################################################
@@ -157,10 +169,14 @@ totcap2 = totcap2[totcap2$scen != 'base',]
 
 {
   x11()
-  ggplot(totcap2[totcap2$value!=0,]) +
+  p = ggplot(totcap2[totcap2$value!=0,]) +
     geom_area(aes(x=as.numeric(YEAR),y=value,fill=TECH)) +
     facet_wrap(scen~.,) +
-    xlab("year") + ylab("POWER [GW]") + theme_pubr()
+    xlab("year") + ylab("POWER [GW]") + theme_pubr() +
+    theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5))
+  
+  print(p)
+  ggsave(paste0(directory_graphs,"TotalCapacity.png"), p)
 } # ci son troppe variabili, la palette non ne ha abbastanza
 
 ################################################################################
@@ -185,11 +201,15 @@ water2 = water2[water2$scen != 'base',]
 
 {
   x11()
-  ggplot(water2[water2$value!=0 & water2$TECH!='HY',]) +
+  p = ggplot(water2[water2$value!=0 & water2$TECH!='HY',]) +
     geom_area(aes(x=as.numeric(YEAR),y=value,fill=TECH)) +
     facet_wrap(scen~.,) +
     labs(title = "Use of water by technology (excepted hydroelectrical)") +
-    xlab("year") + ylab("Water used [km3]") + theme_pubr() 
+    xlab("year") + ylab("Water used [km3]") + theme_pubr() +
+    theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5))
+  
+  print(p)
+  ggsave(paste0(directory_graphs,"WaterUsageByTechnology.png"), p)
 }
 
 ################################################################################
@@ -203,10 +223,14 @@ storage = storage[storage$scen != 'base',]
 
 {
   x11()
-  ggplot(storage) +
+  p = ggplot(storage) +
     geom_line(aes(x=as.numeric(YEAR),y=value,color=STORAGE), linewidth=0.5) +
     facet_wrap(scen~.,) +
-    xlab("year") + ylab("storage capacity [PJ]") + theme_pubr() 
+    xlab("year") + ylab("storage capacity [PJ]") + theme_pubr() +
+    theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5))
+
+  print(p)
+  ggsave(paste0(directory_graphs,"StorageUsage.png"), p)
 }
 
 ################################################################################
@@ -220,12 +244,14 @@ use2 = use2[use2$scen!='base',]
 
 {
   x11()
-  ggplot(use2) +
+  p = ggplot(use2) +
     geom_line(aes(x=as.numeric(YEAR),y=value,color=scen), linewidth=1.3) +
     labs(title = "Total Water Usage") +
     # facet_wrap(scen~.,) +
     xlab("year") + ylab("Water [km3]") + theme_pubr() +
     theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5))
+  print(p)
+  ggsave(paste0(directory_graphs,"TotalWaterUsage.png"), p)
 }
 
 
@@ -242,45 +268,53 @@ cost = cost |>
 
 cost = cost[cost$YEAR <=2050,]
 cost = cost[cost$scen != 'base',]
-{
-  x11()
-  ggplot(cost) +
-    geom_line(aes(x=as.numeric(YEAR),y=value/1000,color=scen), linewidth=1.3) +
-    labs(title = "Operating cost") +
-    xlab("year") + ylab("Cost [BIllions of $]") + theme_pubr() +
-    theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5))
-  }
 
-cost$value_cum = cost$value
-for(year in unique(cost$YEAR)){
-  for(scenario in unique(cost$scen)){
-    cost[cost$YEAR==year & cost$scen==scenario,]$value_cum = sum( cost[cost$YEAR<=year & cost$scen==scenario ,]$value )
-  }
-}
 
+cost$NUCLEAR = substr(cost$scen,1,1)
+cost$NUCLEAR[cost$NUCLEAR == 'N']='YES'
+cost$NUCLEAR[cost$NUCLEAR == 'B']='NO'
 
 #COSTS
 {
   x11()
-  ggplot(cost) +
+  p = ggplot(cost) +
     geom_line(aes(x=as.numeric(YEAR),y=value/1000,color=scen), linewidth=1.3) +
-    labs(title = "Operating Cost") +
+    labs(title = "Operating cost") +
     xlab("year") + ylab("Cost [BIllions of $]") + theme_pubr() +
     theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5))
-}
+  print(p)
+  ggsave(paste0(directory_graphs,"OperatingCost.png"), p)
+  }
 
-#CUMULATIVE COSTS
+#COST GROUPED BY NUCLEAR/NO-NUCLEAR
 {
   x11()
-  ggplot(cost) +
-    geom_line(aes(x=as.numeric(YEAR),y=value_cum,color=scen), linewidth=1.3) +
-    labs(title = "Cumulative Operating Cost") +
-    # scale_y_continuous(trans='log2') +
-    # scale_x_continuous(trans='log2') +
+  p = ggplot(cost) +
+    geom_line(aes(x=as.numeric(YEAR),y=value/1000,group=scen, color=NUCLEAR), linewidth=1.1) +
+    labs(title = "Operating Cost") +
     # facet_wrap(scen~.,) +
     xlab("year") + ylab("Cost [BIllions of $]") + theme_pubr() +
     theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5))
+  print(p)
+  ggsave(paste0(directory_graphs,"OperatingCostByNuclear.png"), p)
 }
+
+cost2 = cost |> 
+  group_by(NUCLEAR, YEAR) |>
+  summarise(value = mean(value))
+
+#MEAN COSTS NUCLEAR-NO NUCLEAR
+{
+  x11()
+  p = ggplot(cost2) +
+    geom_line(aes(x=as.numeric(YEAR),y=value/1000,color=NUCLEAR), linewidth=1.3) +
+    labs(title = "Operating Cost with/without nuclear") +
+    # facet_wrap(scen~.,) +
+    xlab("year") + ylab("Cost [BIllions of $]") + theme_pubr() +
+    theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5))
+  print(p)
+  ggsave(paste0(directory_graphs,"OperatingCostMeanByNuclear.png"), p)
+  }
 
 ################################################################################
 ########### PLOT CARBON CAPTURE ######################################
@@ -296,11 +330,15 @@ prod4 = prod4[prod4$scen!='base',]
 
 {
   x11()
-  ggplot(prod4[prod4$value!=0,]) +
+  p = ggplot(prod4[prod4$value!=0,]) +
     geom_area(aes(x=as.numeric(YEAR),y=value,fill=TECHNOLOGY)) +
-    labs(title = "prod4uction by Technology [PJ/yr]", subtitle = "Energy production by set of technology using the same fuel") +
+    labs(title = "Production by Technology [PJ/yr]", subtitle = "Energy production by set of technology using the same fuel") +
     facet_wrap(scen~.,) +
-    xlab("year") + ylab("Energy [PJ]") + theme_pubr() 
+    xlab("year") + ylab("Energy [PJ]") + theme_pubr() +
+    theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5))
+  
+  print(p)
+  ggsave(paste0(directory_graphs,"CarbonCapture.png"), p)
 }
 
 ################################################################################
@@ -322,12 +360,16 @@ prod = prod[prod$scen != 'base',]
 
 {
   x11()
-  ggplot(cap) +
+  p = ggplot(cap) +
     geom_line(aes(x=as.numeric(YEAR),y=value),color='red', linewidth=1.3) +
     geom_line(data=prod, aes(x=as.numeric(YEAR),y=value),color='blue', linewidth=1.3) +
     labs(title = "Water production and limit", subtitle = "Water use and max") +
     facet_wrap(scen~.,) +
-    xlab("year") + ylab("Km3") + theme_pubr() 
+    xlab("year") + ylab("Km3") + theme_pubr() +
+    theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5))
+  
+  print(p)
+  ggsave(paste0(directory_graphs,"WaterProductionVSLimit.png"), p)
 }
 
 ################################################################################
@@ -341,17 +383,28 @@ prod = prod[ prod$TECHNOLOGY  != "EL00TD0",]
 prod[prod$FUEL=="E1",]$value = 0.95*prod[prod$FUEL=="E1",]$value
 
 for(i in unique(prod$TECHNOLOGY)){
-  prod$final[prod$TECHNOLOGY==i] = substr(i, start=nchar(i), stop=nchar(i))
+  prod$type[prod$TECHNOLOGY==i] = substr(i, start=nchar(i), stop=nchar(i))
 }
-prod$final[prod$final!='S'] = 'R'
+prod$type[prod$type!='S'] = 'R'
+
+prod = prod |> 
+  group_by(YEAR, scen, type) |>
+  summarise(value = sum(value))
+
 
 prod = prod[prod$YEAR <= 2050,]
 prod = prod[prod$scen != 'base',]
+
+prod$value = round(as.numeric(prod$value),2)
 {
   x11()
-  ggplot(prod[prod$value!=0,]) +
-    geom_area(aes(x=as.numeric(YEAR),y=value, fill=final)) +
-    labs(title = "prod4uction by Technology [PJ/yr]", subtitle = "Energy production by set of technology using the same fuel") +
+  p = ggplot(prod[prod$value!=0,]) +
+    geom_area(aes(x=as.numeric(YEAR),y=value, fill=type)) +
+    labs(title = "Energy production by watertype used [PJ/yr]", subtitle = "") +
     facet_wrap(scen~.,) +
-    xlab("year") + ylab("Energy [PJ]") + theme_pubr() 
+    xlab("year") + ylab("Energy [PJ]") + theme_pubr() +
+    theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5))
+  
+  print(p)
+  ggsave(paste0(directory_graphs,"RiverVSSeaEnergy.png"), p)
 }
