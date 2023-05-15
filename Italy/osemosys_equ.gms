@@ -660,5 +660,12 @@ equation CapacityEQ(REGION,YEAR);
 CapacityEQ(r,y+1)..
     CAP(r,y+1) =e= CAP(r,y) - PRODUCTIONBYTECHNOLOGYANNUAL(r,'RIVER', 'HY',y) + Precipitations(r,y+1) - EvaTrasp(r,y+1);
 
+*equation CAPCAP(REGION, YEAR);
+*CAPCAP(r,y).. CAP(r,y) =l= 250;
+
+equation CAPCAP(REGION, YEAR);
+CAPCAP(r,y).. PRODUCTIONBYTECHNOLOGYANNUAL(r,'DELTA','SE',y) =g= CAP(r,y) - 200;
+
 equation RIVERCAP(REGION, YEAR);
 RIVERCAP(r,y).. TOTALCAPACITYANNUAL(r,'RIVER',y) =l= CAP(r,y);
+

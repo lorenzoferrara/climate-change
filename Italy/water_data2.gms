@@ -8,10 +8,6 @@ InputActivityRatio(r,'BMCHPH3','HY',m,y) = 0.02205;
 InputActivityRatio(r,'BMCSPN2','HY',m,y) = 0.00111;
 InputActivityRatio(r,'BMSTPH3','HY',m,y) = 0.02205;
 InputActivityRatio(r,'CO00X00','HY',m,y) = 0.00056;
-*InputActivityRatio(r,'COCHPH3','HY',m,y) = 0.02229;
-*InputActivityRatio(r,'COCSPN2','HY',m,y) = 0.00120;
-*InputActivityRatio(r,'COSTPH1','HY',m,y) = 0.02229;
-*InputActivityRatio(r,'COSTPH3','HY',m,y) = 0.02229;
 InputActivityRatio(r,'GOCVPH2','HY',m,y) = 0.00314;
 InputActivityRatio(r,'HFCCPH2','HY',m,y) = 0.07515;
 InputActivityRatio(r,'HFCHPH3','HY',m,y) = 0.07515;
@@ -54,10 +50,6 @@ OutputActivityRatio(r,'BMCHPH3','HY',m,y) = 0.02169;
 OutputActivityRatio(r,'BMCSPN2','HY',m,y) = 0.00059;
 OutputActivityRatio(r,'BMSTPH3','HY',m,y) = 0.02169;
 OutputActivityRatio(r,'CO00X00','HY',m,y) = 0.00039;
-*OutputActivityRatio(r,'COCHPH3','HY',m,y) = 0.02200;
-*OutputActivityRatio(r,'COCSPN2','HY',m,y) = 0.00045;
-*OutputActivityRatio(r,'COSTPH1','HY',m,y) = 0.02200;
-*OutputActivityRatio(r,'COSTPH3','HY',m,y) = 0.02200;
 OutputActivityRatio(r,'GOCVPH2','HY',m,y) = 0.00038;
 OutputActivityRatio(r,'HFCCPH2','HY',m,y) = 0.07501;
 OutputActivityRatio(r,'HFCHPH3','HY',m,y) = 0.07501;
@@ -91,12 +83,10 @@ OutputActivityRatio(r,'WSSTPH1','HY',m,y) = 0.02169;
 *Plants sea water usage
 *Remaining plants are all located on the coast
 InputActivityRatio(r,'COCHPH3','SE',m,y) = 0.02229;
-InputActivityRatio(r,'COCSPN2','SE',m,y) = 0.00120;
 InputActivityRatio(r,'COSTPH1','SE',m,y) = 0.02229;
 InputActivityRatio(r,'COSTPH3','SE',m,y) = 0.02229;
 
 OutputActivityRatio(r,'COCHPH3','SE',m,y) = 0.02200;
-OutputActivityRatio(r,'COCSPN2','SE',m,y) = 0.00045;
 OutputActivityRatio(r,'COSTPH1','SE',m,y) = 0.02200;
 OutputActivityRatio(r,'COSTPH3','SE',m,y) = 0.02200;
 

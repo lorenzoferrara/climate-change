@@ -38,6 +38,7 @@ emissions = emissions[emissions$scen != 'base']
   print(p)
   ggsave(paste0(directory_graphs,"AnnualEmissions.png"), p)
 }
+
 ################################################################################
 ########### PLOT PRODUCTION BY TECHNOLOGY ######################################
 ################################################################################
@@ -350,7 +351,7 @@ cap <- batch_extract("CAP",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
 prod <- batch_extract("PRODUCTIONBYTECHNOLOGYANNUAL",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
 
 prod = prod[prod$FUEL == 'HY',]
-prod = prod[prod$TECHNOLOGY == 'RIVER',]
+prod = prod[prod$TECHNOLOGY == 'RIVER',] 
 
 cap = cap[cap$YEAR <= 2050,]
 cap = cap[cap$scen != 'base',]

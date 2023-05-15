@@ -32,12 +32,21 @@ $include italy_data.gms
 $include water_data2.gms
 Cap0(r) = 119;
 LimCap(r) = 0.35;
+
 *TotalAnnualMaxCapacity(r,'RIVER',y) = 100;
 * define model equations
 $offlisting
 $include osemosys_equ.gms
 *$include Water_equations.gms
 option threads=0;
+
+****************************
+******** SCENARIO BASE *****
+****************************
+
+$ifthen.scen not set WaterDemand
+    $$include "WaterDemandsRefined/WaterDemandHigh85.gms";
+$endif.scen
 
 ****************************
 ******** SCENARIOS *********
@@ -99,43 +108,6 @@ $ifthen.scen set WaterDemand
     $$endif.cond
 $endif.scen
 
-*$setglobal string_demand "_"
-*$ifthen.scen set WaterDemand
-*    $$ifthen.cond %WaterDemand%==0
-*        $$include "WaterDemands/WaterDemandLow.gms";
-*        $$setglobal string_demand "L"
-*    $$endif.cond
-*        
-*    $$ifthen.cond %WaterDemand%==10
-*        $$include "WaterDemands/WaterDemandMedium.gms";
-*        $$setglobal string_demand "M"
-*    $$endif.cond
-*        
-*    $$ifthen.cond %WaterDemand%==100
-*        $$include "WaterDemands/WaterDemandHigh.gms";
-*        $$setglobal string_demand "H"
-*    $$endif.cond
-*$endif.scen
-
-*$setglobal string_rcp "_"
-*$ifthen.scen set RCP
-*    $$ifthen.cond %RCP%==26
-*        $$include "RCP/Rcp_26.gms";
-*        $$setglobal string_rcp "26"
-*    $$endif.cond
-*          
-*    $$ifthen.cond %RCP%==45
-*        $$include "RCP/Rcp_45.gms";
-*        $$setglobal string_rcp "45"
-*    $$endif.cond
-*            
-*    $$ifthen.cond %RCP%==85
-*        $$include "RCP/Rcp_85.gms";
-*        $$setglobal string_rcp "85"
-*    $$endif.cond
-*$endif.scen
-
-*$setglobal scen "%string_atom%%string_demand%%string_rcp%"
 $setglobal scen "%string_atom%%string_demand%"
         
 * solve the model
