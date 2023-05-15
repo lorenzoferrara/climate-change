@@ -147,5 +147,5 @@ elle(r,y)= 300 + 0.25*Temp(r,y)+0.05*Temp(r,y)**3;
 EvaTrasp(r,y) = Precipitations(r,y);
 EvaTrasp(r,y)$(Precipitations(r,y)**2/elle(r,y)**2 gt 0.1) = Precipitations(r,y)/sqrt(0.9 + Precipitations(r,y)**2/elle(r,y)**2);
 *Starting value of water Capacity and lower limit for 
-CAP.fx(r,y)$(ord(y) eq 1) = Cap0(r) + Precipitations(r,y)$(ord(y) eq 1) - EvaTrasp(r,y)$(ord(y) eq 1);
 CAP.lo(r,y) = LimCap(r)*Cap0(r);
+CAP.fx(r,y)$(ord(y) eq 1) = Cap0(r) + Precipitations(r,y)$(ord(y) eq 1) - EvaTrasp(r,y)$(ord(y) eq 1);
