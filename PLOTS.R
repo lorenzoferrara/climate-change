@@ -172,6 +172,7 @@ totcap2 = totcap2[totcap2$scen != 'base',]
   p = ggplot(totcap2[totcap2$value!=0,]) +
     geom_area(aes(x=as.numeric(YEAR),y=value,fill=TECH)) +
     facet_wrap(scen~.,) +
+    scale_fill_brewer(palette="Paired") +
     xlab("year") + ylab("POWER [GW]") + theme_pubr() +
     theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5))
   
@@ -205,6 +206,7 @@ water2 = water2[water2$scen != 'base',]
     geom_area(aes(x=as.numeric(YEAR),y=value,fill=TECH)) +
     facet_wrap(scen~.,) +
     labs(title = "Use of water by technology (excepted hydroelectrical)") +
+    scale_fill_brewer(palette="Paired") +
     xlab("year") + ylab("Water used [km3]") + theme_pubr() +
     theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5))
   
@@ -242,6 +244,7 @@ use2 = use2[use2$FUEL=="HY",]
 use2 = use2[use2$YEAR<=2050,]
 use2 = use2[use2$scen!='base',]
 
+#RIVER WATER
 {
   x11()
   p = ggplot(use2) +
@@ -254,7 +257,23 @@ use2 = use2[use2$scen!='base',]
   ggsave(paste0(directory_graphs,"TotalWaterUsage.png"), p)
 }
 
+use3 <- batch_extract("USEANNUAL",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
+use3 = use3[use3$FUEL=="SE",]
+use3 = use3[use3$YEAR<=2050,]
+use3 = use3[use3$scen!='base',]
 
+#SEA WATER
+{
+  x11()
+  p = ggplot(use3) +
+    geom_line(aes(x=as.numeric(YEAR),y=value,color=scen), linewidth=1.3) +
+    labs(title = "Total Sea Water Usage") +
+    # facet_wrap(scen~.,) +
+    xlab("year") + ylab("Water [km3]") + theme_pubr() +
+    theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5))
+  print(p)
+  ggsave(paste0(directory_graphs,"TotalSeaWaterUsage.png"), p)
+}
 ################################################################################
 ########### PLOT COST ##########################################################
 ################################################################################
@@ -335,6 +354,7 @@ prod4 = prod4[prod4$scen!='base',]
     labs(title = "Production by Technology [PJ/yr]", subtitle = "Energy production by set of technology using the same fuel") +
     facet_wrap(scen~.,) +
     xlab("year") + ylab("Energy [PJ]") + theme_pubr() +
+    scale_fill_brewer(palette="Paired") +
     theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5))
   
   print(p)
@@ -403,6 +423,7 @@ prod$value = round(as.numeric(prod$value),2)
     labs(title = "Energy production by watertype used [PJ/yr]", subtitle = "") +
     facet_wrap(scen~.,) +
     xlab("year") + ylab("Energy [PJ]") + theme_pubr() +
+    scale_fill_brewer(palette="Paired") +
     theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5))
   
   print(p)
