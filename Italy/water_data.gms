@@ -1,4 +1,4 @@
-*Plants running water usage
+*Plants fresh water usage
 *Input activity ratio
 InputActivityRatio(r,'BF00X00','HY',m,y) = 0.10150;
 InputActivityRatio(r,'BFHPFH1','HY',m,y) = 0.04351;
@@ -8,10 +8,6 @@ InputActivityRatio(r,'BMCHPH3','HY',m,y) = 0.02205;
 InputActivityRatio(r,'BMCSPN2','HY',m,y) = 0.00111;
 InputActivityRatio(r,'BMSTPH3','HY',m,y) = 0.02205;
 InputActivityRatio(r,'CO00X00','HY',m,y) = 0.00056;
-*InputActivityRatio(r,'COCHPH3','HY',m,y) = 0.02229;
-*InputActivityRatio(r,'COCSPN2','HY',m,y) = 0.00120;
-*InputActivityRatio(r,'COSTPH1','HY',m,y) = 0.02229;
-*InputActivityRatio(r,'COSTPH3','HY',m,y) = 0.02229;
 InputActivityRatio(r,'GOCVPH2','HY',m,y) = 0.00314;
 InputActivityRatio(r,'HFCCPH2','HY',m,y) = 0.07515;
 InputActivityRatio(r,'HFCHPH3','HY',m,y) = 0.07515;
@@ -54,10 +50,6 @@ OutputActivityRatio(r,'BMCHPH3','HY',m,y) = 0.02169;
 OutputActivityRatio(r,'BMCSPN2','HY',m,y) = 0.00059;
 OutputActivityRatio(r,'BMSTPH3','HY',m,y) = 0.02169;
 OutputActivityRatio(r,'CO00X00','HY',m,y) = 0.00039;
-*OutputActivityRatio(r,'COCHPH3','HY',m,y) = 0.02200;
-*OutputActivityRatio(r,'COCSPN2','HY',m,y) = 0.00045;
-*OutputActivityRatio(r,'COSTPH1','HY',m,y) = 0.02200;
-*OutputActivityRatio(r,'COSTPH3','HY',m,y) = 0.02200;
 OutputActivityRatio(r,'GOCVPH2','HY',m,y) = 0.00038;
 OutputActivityRatio(r,'HFCCPH2','HY',m,y) = 0.07501;
 OutputActivityRatio(r,'HFCHPH3','HY',m,y) = 0.07501;
@@ -89,18 +81,10 @@ OutputActivityRatio(r,'WSSTPH1','HY',m,y) = 0.02169;
 
 *-------------------------------------------------------
 *Plants sea water usage
-*Remaining plants are all located on the coast
+*Input activity ratio
 InputActivityRatio(r,'COCHPH3','SE',m,y) = 0.02229;
-InputActivityRatio(r,'COCSPN2','SE',m,y) = 0.00120;
 InputActivityRatio(r,'COSTPH1','SE',m,y) = 0.02229;
 InputActivityRatio(r,'COSTPH3','SE',m,y) = 0.02229;
-
-OutputActivityRatio(r,'COCHPH3','SE',m,y) = 0.02200;
-OutputActivityRatio(r,'COCSPN2','SE',m,y) = 0.00045;
-OutputActivityRatio(r,'COSTPH1','SE',m,y) = 0.02200;
-OutputActivityRatio(r,'COSTPH3','SE',m,y) = 0.02200;
-
-*New possible plants using sea water
 InputActivityRatio(r,'BMCSPN2S','SE',m,y) = 0.00111;
 InputActivityRatio(r,'BMSTPH3S','SE',m,y) = 0.02205;
 InputActivityRatio(r,'NGCCPH2S','SE',m,y) = 0.01866;
@@ -108,8 +92,29 @@ InputActivityRatio(r,'NGCSPN2S','SE',m,y) = 0.01164;
 InputActivityRatio(r,'NUG3PH3S','SE',m,y) = 0.01576;
 InputActivityRatio(r,'WSSTPH1S','SE',m,y) = 0.02205;
 
+*Output activity ratio
+OutputActivityRatio(r,'COCHPH3','SE',m,y) = 0.02200;
+OutputActivityRatio(r,'COSTPH1','SE',m,y) = 0.02200;
+OutputActivityRatio(r,'COSTPH3','SE',m,y) = 0.02200;
 OutputActivityRatio(r,'BMSTPH3S','SE',m,y) = 0.02169;
 OutputActivityRatio(r,'BMCSPN2S','SE',m,y) = 0.00059;
 OutputActivityRatio(r,'NGCCPH2S','SE',m,y) = 0.01856;
 OutputActivityRatio(r,'NUG3PH3S','SE',m,y) = 0.01176;
 OutputActivityRatio(r,'WSSTPH1S','SE',m,y) = 0.02169;
+
+*-------------------------------------------------------
+*capacity limitation parameters
+Cap0(r) = 119;
+LimloCap(r) = 0.7;
+LimupCap(r) = 200;
+CAP.lo(r,y) = LimloCap(r)*Cap0(r);
+
+*default settings
+Precipitations(r,y) = 300;
+Temp(r,y) = 13;
+*Turk's equation parameteres for evotranspiration
+elle(r,y)= 300 + 0.25*Temp(r,y)+0.05*Temp(r,y)**3;
+EvaTrasp(r,y) = Precipitations(r,y);
+EvaTrasp(r,y)$(Precipitations(r,y)**2/elle(r,y)**2 gt 0.1) = Precipitations(r,y)/sqrt(0.9 + Precipitations(r,y)**2/elle(r,y)**2);
+*Starting value of water Capacity
+CAP.fx(r,y)$(ord(y) eq 1) = Cap0(r) + Precipitations(r,y)$(ord(y) eq 1) - EvaTrasp(r,y)$(ord(y) eq 1);
