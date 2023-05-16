@@ -17,7 +17,7 @@ osemosys_sanitize <- function(.x) {
   .x[, scen := str_replace(scen,".gdx","")]
   .x[, gdx := NULL]}
 
-directory_graphs = "~/GitHub/climate-change/Italy/Graphs/"
+directory_graphs = "Italy/Graphs/"
 
 ################################################################################
 ########### PLOT EMISSIONS #####################################################
@@ -38,6 +38,7 @@ emissions = emissions[emissions$scen != 'base']
   print(p)
   ggsave(paste0(directory_graphs,"AnnualEmissions.png"), p)
 }
+
 ################################################################################
 ########### PLOT PRODUCTION BY TECHNOLOGY ######################################
 ################################################################################
@@ -131,8 +132,6 @@ for(i in unique(cap3$TECH)){
 
 cap3 = cap3[cap3$YEAR <= 2050,]
 cap3 = cap3[cap3$scen != 'base',]
-cap3 = cap3[cap3$TECH != 'SE',]
-
 
 {
   x11()
@@ -152,11 +151,8 @@ cap3 = cap3[cap3$TECH != 'SE',]
 ################################################################################
 
 totcap <- batch_extract("TOTALCAPACITYANNUAL",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
-totcap = totcap[totcap$value<99999,]
-totcap = totcap[totcap$TECHNOLOGY!='RIVER',]
-totcap = totcap[totcap$TECHNOLOGY!='SEA',]
-totcap = totcap[totcap$TECHNOLOGY!='DELTA' & totcap$TECHNOLOGY!='BATCHG' & totcap$TECHNOLOGY!='OI00X00',]
-
+totcap = totcap[totcap$value<99999]
+totcap = totcap[totcap$TECHNOLOGY!='RIVER']
 
 temp = totcap$TECHNOLOGY
 totcap$TECH=temp
@@ -176,15 +172,14 @@ totcap2 = totcap2[totcap2$scen != 'base',]
   x11()
   p = ggplot(totcap2[totcap2$value!=0,]) +
     geom_area(aes(x=as.numeric(YEAR),y=value,fill=TECH)) +
-    facet_wrap(scen~.,) +
     scale_fill_brewer(palette="Paired") +
+    facet_wrap(scen~.,) +
     xlab("year") + ylab("POWER [GW]") + theme_pubr() +
-    labs(title="Total Installed Capacity")
     theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5))
   
   print(p)
   ggsave(paste0(directory_graphs,"TotalCapacity.png"), p)
-}
+} # ci son troppe variabili, la palette non ne ha abbastanza
 
 ################################################################################
 ########### PLOT WATER USAGE ###################################################
@@ -211,8 +206,8 @@ water2 = water2[water2$scen != 'base',]
   p = ggplot(water2[water2$value!=0 & water2$TECH!='HY',]) +
     geom_area(aes(x=as.numeric(YEAR),y=value,fill=TECH)) +
     facet_wrap(scen~.,) +
-    labs(title = "Use of water by technology (excepted hydroelectrical)") +
     scale_fill_brewer(palette="Paired") +
+    labs(title = "Use of water by technology (excepted hydroelectrical)") +
     xlab("year") + ylab("Water used [km3]") + theme_pubr() +
     theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5))
   
@@ -250,7 +245,6 @@ use2 = use2[use2$FUEL=="HY",]
 use2 = use2[use2$YEAR<=2050,]
 use2 = use2[use2$scen!='base',]
 
-#RIVER WATER
 {
   x11()
   p = ggplot(use2) +
@@ -263,23 +257,7 @@ use2 = use2[use2$scen!='base',]
   ggsave(paste0(directory_graphs,"TotalWaterUsage.png"), p)
 }
 
-use3 <- batch_extract("USEANNUAL",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
-use3 = use3[use3$FUEL=="SE",]
-use3 = use3[use3$YEAR<=2050,]
-use3 = use3[use3$scen!='base',]
 
-#SEA WATER
-{
-  x11()
-  p = ggplot(use3) +
-    geom_line(aes(x=as.numeric(YEAR),y=value,color=scen), linewidth=1.3) +
-    labs(title = "Total Sea Water Usage") +
-    # facet_wrap(scen~.,) +
-    xlab("year") + ylab("Water [km3]") + theme_pubr() +
-    theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5))
-  print(p)
-  ggsave(paste0(directory_graphs,"TotalSeaWaterUsage.png"), p)
-}
 ################################################################################
 ########### PLOT COST ##########################################################
 ################################################################################
@@ -359,8 +337,8 @@ prod4 = prod4[prod4$scen!='base',]
     geom_area(aes(x=as.numeric(YEAR),y=value,fill=TECHNOLOGY)) +
     labs(title = "Production by Technology [PJ/yr]", subtitle = "Energy production by set of technology using the same fuel") +
     facet_wrap(scen~.,) +
-    xlab("year") + ylab("Energy [PJ]") + theme_pubr() +
     scale_fill_brewer(palette="Paired") +
+    xlab("year") + ylab("Energy [PJ]") + theme_pubr() +
     theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5))
   
   print(p)
@@ -376,7 +354,7 @@ cap <- batch_extract("CAP",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
 prod <- batch_extract("PRODUCTIONBYTECHNOLOGYANNUAL",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
 
 prod = prod[prod$FUEL == 'HY',]
-prod = prod[prod$TECHNOLOGY == 'RIVER',]
+prod = prod[prod$TECHNOLOGY == 'RIVER',] 
 
 cap = cap[cap$YEAR <= 2050,]
 cap = cap[cap$scen != 'base',]
@@ -428,8 +406,8 @@ prod$value = round(as.numeric(prod$value),2)
     geom_area(aes(x=as.numeric(YEAR),y=value, fill=type)) +
     labs(title = "Energy production by watertype used [PJ/yr]", subtitle = "") +
     facet_wrap(scen~.,) +
-    xlab("year") + ylab("Energy [PJ]") + theme_pubr() +
     scale_fill_brewer(palette="Paired") +
+    xlab("year") + ylab("Energy [PJ]") + theme_pubr() +
     theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5))
   
   print(p)
@@ -437,7 +415,7 @@ prod$value = round(as.numeric(prod$value),2)
 }
 
 ################################################################################
-########### PLOT PIE CHARTS ####################################################
+########### PLOT CARBON CAPTURE ######################################
 ################################################################################
 
 
@@ -510,4 +488,9 @@ prod2015 = prod3[prod3$YEAR==2015 & prod3$scen==prod3[1,]$scen,]
   print(p)
   ggsave(paste0(directory_graphs,"MixProduttivoPie2015.png"), p)
 }
+
+
+
+
+
 
