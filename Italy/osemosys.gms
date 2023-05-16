@@ -6,7 +6,9 @@
 * Files required are:
 * osemosys.gms (this file)
 * osemosys_dec.gms
-* italy_data.txt
+* italy_data.gms
+* water_data.gms
+* 
 * osemosys_equ.gms
 *
 * To run this GAMS version of OSeMOSYS on your PC:
@@ -29,15 +31,11 @@ $if not set scen $setglobal scen base
 $include osemosys_dec.gms
 * specify Model data
 $include italy_data.gms
-$include water_data2.gms
-Cap0(r) = 119;
-LimCap(r) = 0.7;
-*TotalAnnualMaxCapacity(r,'RIVER',y) = 100;
+$include water_data.gms
+
 * define model equations
 $offlisting
 $include osemosys_equ.gms
-*$include Water_equations.gms
-option threads=0;
 
 ****************************
 ******** SCENARIOS *********
@@ -54,88 +52,51 @@ $endif.scen
 $setglobal string_demand "_"
 $ifthen.scen set WaterDemand
     $$ifthen.cond %WaterDemand%==126
-        $$include "WaterDemandsRefined/WaterDemandLow26.gms";
+        $$include "WaterScenarios/WaterDemandLow26.gms";
         $$setglobal string_demand "L26"
     $$endif.cond
     
     $$ifthen.cond %WaterDemand%==145
-        $$include "WaterDemandsRefined/WaterDemandLow45.gms";
+        $$include "WaterScenarios/WaterDemandLow45.gms";
         $$setglobal string_demand "L45"
     $$endif.cond
     
     $$ifthen.cond %WaterDemand%==185
-        $$include "WaterDemandsRefined/WaterDemandLow85.gms";
+        $$include "WaterScenarios/WaterDemandLow85.gms";
         $$setglobal string_demand "L85"
     $$endif.cond
         
     $$ifthen.cond %WaterDemand%==1026
-        $$include "WaterDemandsRefined/WaterDemandMedium26.gms";
+        $$include "WaterScenarios/WaterDemandMedium26.gms";
         $$setglobal string_demand "M26"
     $$endif.cond
     
     $$ifthen.cond %WaterDemand%==1045
-        $$include "WaterDemandsRefined/WaterDemandMedium45.gms";
+        $$include "WaterScenarios/WaterDemandMedium45.gms";
         $$setglobal string_demand "M45"
     $$endif.cond
     
     $$ifthen.cond %WaterDemand%==1085
-        $$include "WaterDemandsRefined/WaterDemandMedium85.gms";
+        $$include "WaterScenarios/WaterDemandMedium85.gms";
         $$setglobal string_demand "M85"
     $$endif.cond
         
     $$ifthen.cond %WaterDemand%==10026
-        $$include "WaterDemandsRefined/WaterDemandHigh26.gms";
+        $$include "WaterScenarios/WaterDemandHigh26.gms";
         $$setglobal string_demand "H26"
     $$endif.cond
     
     $$ifthen.cond %WaterDemand%==10045
-        $$include "WaterDemandsRefined/WaterDemandHigh45.gms";
+        $$include "WaterScenarios/WaterDemandHigh45.gms";
         $$setglobal string_demand "H45"
     $$endif.cond
     
     $$ifthen.cond %WaterDemand%==10085
-        $$include "WaterDemandsRefined/WaterDemandHigh85.gms";
+        $$include "WaterScenarios/WaterDemandHigh85.gms";
         $$setglobal string_demand "H85"
     $$endif.cond
 $endif.scen
 
-*$setglobal string_demand "_"
-*$ifthen.scen set WaterDemand
-*    $$ifthen.cond %WaterDemand%==0
-*        $$include "WaterDemands/WaterDemandLow.gms";
-*        $$setglobal string_demand "L"
-*    $$endif.cond
-*        
-*    $$ifthen.cond %WaterDemand%==10
-*        $$include "WaterDemands/WaterDemandMedium.gms";
-*        $$setglobal string_demand "M"
-*    $$endif.cond
-*        
-*    $$ifthen.cond %WaterDemand%==100
-*        $$include "WaterDemands/WaterDemandHigh.gms";
-*        $$setglobal string_demand "H"
-*    $$endif.cond
-*$endif.scen
-
-*$setglobal string_rcp "_"
-*$ifthen.scen set RCP
-*    $$ifthen.cond %RCP%==26
-*        $$include "RCP/Rcp_26.gms";
-*        $$setglobal string_rcp "26"
-*    $$endif.cond
-*          
-*    $$ifthen.cond %RCP%==45
-*        $$include "RCP/Rcp_45.gms";
-*        $$setglobal string_rcp "45"
-*    $$endif.cond
-*            
-*    $$ifthen.cond %RCP%==85
-*        $$include "RCP/Rcp_85.gms";
-*        $$setglobal string_rcp "85"
-*    $$endif.cond
-*$endif.scen
-
-*$setglobal scen "%string_atom%%string_demand%%string_rcp%"
 $setglobal scen "%string_atom%%string_demand%"
         
 * solve the model

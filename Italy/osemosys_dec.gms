@@ -782,20 +782,22 @@ positive variable ANNUALEMISSIONS(REGION,EMISSION,YEAR);
 positive variable MODELPERIODEMISSIONS(EMISSION,REGION);
 
 *------------------------------------------------------------------------   
-* * Water Equations    
+* * Water - NEW    
 *------------------------------------------------------------------------
 
 parameter Precipitations(REGION,YEAR);
-*Km3
+*Exogenous precipitations of the set region [Km3]
 parameter EvaTrasp (REGION,YEAR);
-*evapotranspiration from Turk's empirical formula Km3
+*evapotranspiration from Turk's empirical formula [Km3]
 parameter Temp (REGION,YEAR);
-*temperature of the set region °C
+*Exogenous temperature of the set region [°C]
 parameter Cap0(REGION);
-*initial value of available capacity y0
-parameter LimCap(REGION);
-*fraction of Cap0 to reserve each year, lower limit of CAP
+*initial value of available capacity at yera zero [Km3]
+parameter LimloCap(REGION);
+*fraction of Cap0 to reserve each year, lower limit of CAP [fraction]
+parameter LimupCap(REGION);
+*maximum value allowable in the system , upper limit of CAP [Km3]
 parameter elle(REGION,YEAR);
 *capacity of the atmosphere to evaporate water
 positive variable CAP(REGION,YEAR);
-*Km3/year
+*Actual capacitty in the system [Km3/year]

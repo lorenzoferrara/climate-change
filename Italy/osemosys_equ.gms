@@ -649,20 +649,20 @@ E9_ModelPeriodEmissionsLimit(e,r)..
     MODELPERIODEMISSIONS(e,r) =l= ModelPeriodEmissionLimit(r,e);
 
 *------------------------------------------------------------------------   
-* Water availability
+* Water availability - NEW
 *------------------------------------------------------------------------
 
 * Calculates the annual and model period water capacity for RIVER
 * considering precipitations and evaporation of water
-* it set the upper limit to River max capacity
+* it set the upper and lower limit to River max capacity
 
 equation CapacityEQ(REGION,YEAR);
 CapacityEQ(r,y+1)..
     CAP(r,y+1) =e= CAP(r,y) - PRODUCTIONBYTECHNOLOGYANNUAL(r,'RIVER', 'HY',y) + Precipitations(r,y+1) - EvaTrasp(r,y+1);
 
-equation CAPCAP (REGION,YEAR);
-CAPCAP(r,y)..
-    PRODUCTIONBYTECHNOLOGYANNUAL(r,'DELTA', 'SE',y) =g= CAP(r,y) - 200;
+equation Capacityuplimit (REGION,YEAR);
+Capacityuplimit(r,y)..
+    PRODUCTIONBYTECHNOLOGYANNUAL(r,'DELTA', 'SE',y) =g= CAP(r,y) - LimupCap(r);
 
 equation RIVERCAP(REGION, YEAR);
 RIVERCAP(r,y).. TOTALCAPACITYANNUAL(r,'RIVER',y) =l= CAP(r,y);
