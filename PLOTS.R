@@ -67,7 +67,7 @@ emi_cap <- batch_extract("AnnualEmissionLimit",all_gdx)[[1]] |> setDT() |> osemo
     theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5))
   
   print(p)
-  ggsave(paste0(directory_graphs,"AnnualEmissions.png"), p)
+  ggsave(paste0(directory_graphs,"AnnualEmissions_WithLine.png"), p)
 }
 
 ################################################################################
@@ -583,11 +583,35 @@ cost2 = cost |>
   ggsave(paste0(directory_graphs,"OperatingCostMeanByNuclear.png"), p)
   }
 
+################
+cost3 = cost2[cost2$NUCLEAR=="YES",]
+
+#MEAN COSTS NUCLEAR-NO NUCLEAR
+{
+  x11()
+  p = ggplot(cost[cost$NUCLEAR=="NO",]) +
+    geom_line(aes(x=as.numeric(YEAR),y=value/1000,color=scen), linewidth=1.3) +
+    geom_line(data=cost3, aes(x=as.numeric(YEAR),y=value/1000), linewidth=1.3) +
+    labs(title = "Operating cost") +
+    xlab("year") + ylab("Cost [BIllions of $]") + theme_pubr() +
+    theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5))
+  print(p)
+  ggsave(paste0(directory_graphs,"OperatingCost.png"), p)
+}
 
 z = cost |> 
-  group_by(NUCLEAR, YEAR) |>
-  summarise(value = mean(value))
+  group_by(scen) |>
+  summarise(value = sum(value))
 
+{
+  x11()
+  p = ggplot(z, aes(x=scen, y=value/1000)) +
+    geom_bar(stat="identity") + 
+    xlab('scenarios') + 
+    ylab('Cost [BIllions of $]') + 
+    ggtitle('Total cost')
+  print(p)
+}
 
 ################################################################################
 ########### PLOT CARBON CAPTURE ######################################
