@@ -17,12 +17,16 @@
 * that exceed 31 characters in length, and GAMS versions prior to 22.7 have
 * a limit of 31 characters on the length of such names.
 * 2. Ensure that your PATH contains the GAMS Home Folder.
-* 3. Place all 4 of the above files in a convenient folder,
+* 3. Place all 5 of the above files in a convenient folder,
 * open a Command Prompt window in this folder, and enter:
 * gams osemosys.gms
-* 4. You should find that you get an optimal value of 29446.861.
 * 5. Some results are created in file SelResults.CSV that you can view in Excel.
-* 6. Spare time
+* 6. To run the scenarios set 'noatom == 1 ' to exclude nuclear power plants, or 0 to include it;
+* for the water parameter 1, 10, 100  represent the demand level (low, Medium, High);
+* for water availability 26, 45, 85 represent the RCP scenarios;
+* concatenate the last two number in 'WaterDemand' to create a scenario ( eg: 126 Low demand + high availability).
+* 7. Default settings are with nuclear energy, no water demand, constant precipitations and temperature.
+* 8. Spare time.
 *
 * declarations for sets, parameters, variables
 $eolcom #
@@ -40,16 +44,21 @@ $include osemosys_equ.gms
 ****************************
 ******** SCENARIOS *********
 ****************************
-
-$setglobal string_atom "N"
-$ifthen.scen set noatom 
-    TotalAnnualMaxCapacity(r,'NUG3PH3',y) = 0;
-    TotalAnnualMaxCapacity(r,'NUG3PH3S',y) = 0;
-    TotalAnnualMaxCapacity(r,'UR00I00',y) = 0;
-$setglobal string_atom "B"
+$$setglobal string_atom "N"
+$ifthen.scen set noatom
+    $$ifthen.cond %noatom%==0
+        $$setglobal string_atom "N"
+    $$endif.cond
+    
+    $$ifthen.cond %noatom%==1
+        TotalAnnualMaxCapacity(r,'NUG3PH3',y) = 0;
+        TotalAnnualMaxCapacity(r,'NUG3PH3S',y) = 0;
+        TotalAnnualMaxCapacity(r,'UR00I00',y) = 0;
+        $$setglobal string_atom "B"
+    $$endif.cond
+    $$setglobal scen "%string_atom%_"
 $endif.scen
 
-$setglobal string_demand "_"
 $ifthen.scen set WaterDemand
     $$ifthen.cond %WaterDemand%==126
         $$include "WaterScenarios/WaterDemandLow26.gms";
@@ -95,9 +104,10 @@ $ifthen.scen set WaterDemand
         $$include "WaterScenarios/WaterDemandHigh85.gms";
         $$setglobal string_demand "H85"
     $$endif.cond
+    $$setglobal scen "%string_atom%%string_demand%"
 $endif.scen
 
-$setglobal scen "%string_atom%%string_demand%"
+
         
 * solve the model
 model osemosys /all/;
