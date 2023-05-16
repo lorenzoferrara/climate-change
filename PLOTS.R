@@ -223,8 +223,13 @@ totcap2 = totcap2[totcap2$scen != 'base',]
 ################################################################################
 
 #WATER USED BY TECH
-water2 <- batch_extract("USEBYTECHNOLOGYANNUAL",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
-water2 = water2[water2$FUEL=='HY']
+water_use <- batch_extract("USEBYTECHNOLOGYANNUAL",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
+water_prod <- batch_extract("PRODUCTIONBYTECHNOLOGYANNUAL",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
+
+water2 = water_prod
+water2$value = water_use$value - water_prod$value
+water2 = water2[water2$FUEL=='HY',]
+water2 = water2[water2$TECH!='DELTA' & water2$TECH!='RIVER',]
 
 water2$TECH=water2$TECHNOLOGY
 for(i in unique(water2$TECHNOLOGY)){
@@ -240,10 +245,10 @@ water2 = water2[water2$scen != 'base',]
 
 {
   x11()
-  p = ggplot(water2[water2$value!=0 & water2$TECH!='HY',]) +
+  p = ggplot(water2[water2$value!=0,]) +
     geom_area(aes(x=as.numeric(YEAR),y=value,fill=TECH)) +
     facet_wrap(scen~.,) +
-    labs(title = "Use of water by technology (excepted hydroelectrical)") +
+    labs(title = "Use of water by technology") +
     scale_fill_brewer(palette="Paired") +
     xlab("year") + ylab("Water used [km3]") + theme_pubr() +
     theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5))
@@ -261,16 +266,98 @@ storage = storage[storage$STORAGE=='DAM' | storage$STORAGE=='H2' | storage$STORA
 storage = storage[storage$YEAR <= 2050,]
 storage = storage[storage$scen != 'base',]
 
+
+storage$DATE = as.numeric(storage$YEAR) + 0.2*as.numeric(storage$SEASON)
 {
   x11()
   p = ggplot(storage) +
-    geom_line(aes(x=as.numeric(YEAR),y=value,color=STORAGE), linewidth=0.5) +
+    geom_line(aes(x=as.numeric(DATE),y=value,color=STORAGE), linewidth=0.5) +
     facet_wrap(scen~.,) +
     xlab("year") + ylab("storage capacity [PJ]") + theme_pubr() +
     theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5))
 
   print(p)
   ggsave(paste0(directory_graphs,"StorageUsage.png"), p)
+}
+
+storage_BH26 = storage[storage$scen == "BH26",]
+{
+  x11()
+  p = ggplot(storage_BH26) +
+    geom_line(aes(x=as.numeric(DATE),y=value,color=STORAGE), linewidth=1.3) +
+    facet_wrap(scen~.,) +
+    xlab("year") + ylab("storage capacity [PJ]") + theme_pubr() +
+    theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5))
+  
+  print(p)
+  ggsave(paste0(directory_graphs,"StorageUsage_BH26.png"), p)
+}
+
+storage_BH85 = storage[storage$scen == "BH85",]
+{
+  x11()
+  p = ggplot(storage_BH85) +
+    geom_line(aes(x=as.numeric(DATE),y=value,color=STORAGE), linewidth=1.3) +
+    facet_wrap(scen~.,) +
+    xlab("year") + ylab("storage capacity [PJ]") + theme_pubr() +
+    theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5))
+  
+  print(p)
+  ggsave(paste0(directory_graphs,"StorageUsage_BH85.png"), p)
+}
+
+storage_NH26 = storage[storage$scen == "NH26",]
+{
+  x11()
+  p = ggplot(storage_NH26) +
+    geom_line(aes(x=as.numeric(DATE),y=value,color=STORAGE), linewidth=1.3) +
+    facet_wrap(scen~.,) +
+    xlab("year") + ylab("storage capacity [PJ]") + theme_pubr() +
+    theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5))
+  
+  print(p)
+  ggsave(paste0(directory_graphs,"StorageUsage_NH26.png"), p)
+}
+
+storage_NH85 = storage[storage$scen == "NH85",]
+{
+  x11()
+  p = ggplot(storage_NH85) +
+    geom_line(aes(x=as.numeric(DATE),y=value,color=STORAGE), linewidth=1.3) +
+    facet_wrap(scen~.,) +
+    xlab("year") + ylab("storage capacity [PJ]") + theme_pubr() +
+    theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5))
+  
+  print(p)
+  ggsave(paste0(directory_graphs,"StorageUsage_NH85.png"), p)
+}
+
+storage = storage[storage$STORAGE != "BAT",]
+{
+  x11()
+  p = ggplot(storage) +
+    geom_line(aes(x=as.numeric(DATE),y=value,color=scen), linewidth=1.3) +
+    #facet_wrap(scen~.,) +
+    xlab("year") + ylab("storage capacity [PJ]") + theme_pubr() +
+    theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5))
+  
+  print(p)
+  ggsave(paste0(directory_graphs,"StorageUsage.png"), p)
+}
+
+storage_85 = storage[storage$scen == "BL85" | storage$scen == "BM85" | storage$scen == "BH85" |
+                       storage$scen == "NL85" | storage$scen == "NM85" | storage$scen == "NH85",]
+{
+  x11()
+  p = ggplot(storage_85) +
+    geom_line(aes(x=as.numeric(DATE),y=value,color=scen), linewidth=1.3) +
+    #facet_wrap(scen~.,) +
+    labs(title = "Adaptation to RCP 8.5") +
+    xlab("year") + ylab("storage capacity [PJ]") + theme_pubr() +
+    theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5))
+  
+  print(p)
+  ggsave(paste0(directory_graphs,"StorageUsage_85.png"), p)
 }
 
 ################################################################################
@@ -295,6 +382,22 @@ use2 = use2[use2$scen!='base',]
   ggsave(paste0(directory_graphs,"TotalWaterUsage.png"), p)
 }
 
+use2_85 = use2[use2$scen == "BL85" | use2$scen == "BM85" | use2$scen == "BH85" |
+                 use2$scen == "NL85" | use2$scen == "NM85" | use2$scen == "NH85",]
+{
+  x11()
+  p = ggplot(use2_85) +
+    geom_line(aes(x=as.numeric(YEAR),y=value,color=scen), linewidth=1.3) +
+    #facet_wrap(scen~.,) +
+    labs(title = "Adaptation to RCP 8.5") +
+    xlab("year") + ylab("Fresh water used [10^9 m3]") + theme_pubr() +
+    theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5)) + 
+    ylim(0,600)
+  print(p)
+  ggsave(paste0(directory_graphs,"TotalWaterUsage_85.png"), p)
+}
+
+
 use3 <- batch_extract("USEANNUAL",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
 use3 = use3[use3$FUEL=="SE",]
 use3 = use3[use3$YEAR<=2050,]
@@ -312,6 +415,8 @@ use3 = use3[use3$scen!='base',]
   print(p)
   ggsave(paste0(directory_graphs,"TotalSeaWaterUsage.png"), p)
 }
+
+
 
 ################################################################################
 ########### PLOT COST ##########################################################
@@ -391,6 +496,12 @@ cost2 = cost |>
   print(p)
   ggsave(paste0(directory_graphs,"OperatingCostMeanByNuclear.png"), p)
   }
+
+
+z = cost |> 
+  group_by(NUCLEAR, YEAR) |>
+  summarise(value = mean(value))
+
 
 ################################################################################
 ########### PLOT CARBON CAPTURE ######################################
