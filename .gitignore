@@ -10,6 +10,7 @@
 .Rhistory
 .DS_Store
 .RData
+*~log
 
 ~$italy_data.gms
 *.log~3
