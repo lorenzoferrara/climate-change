@@ -19,6 +19,22 @@ osemosys_sanitize <- function(.x) {
 
 directory_graphs = "~/GitHub/climate-change/Italy/Graphs/"
 
+
+prod <- batch_extract("PRODUCTIONBYTECHNOLOGYANNUAL",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
+
+prod$TECH=prod$TECHNOLOGY
+for(i in unique(prod$TECHNOLOGY)){
+  prod$TECH[prod$TECH==i] = substr(i, start=1, stop=2)
+}
+
+legend = cbind(unique(prod$TECH), c("BioFuel", "Biomass", "Coal", "Trasformator", "Geothermal", "HevayFuel",
+                           "Hydro", "NaturalGas", "Tidal", "Oil", "Solar", "Wind", "Waste",
+                           "Nuclear", "Uranium", "Batteries", "River", "Sea", "Delta"))
+
+for(i in 1:length(legend[,1])){
+  prod$TECH[prod$TECH==legend[i,1]] = legend[i,2]
+}
+
 ################################################################################
 ########### PLOT EMISSIONS #####################################################
 ################################################################################
@@ -26,6 +42,8 @@ directory_graphs = "~/GitHub/climate-change/Italy/Graphs/"
 emissions <- batch_extract("ANNUALEMISSIONS",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
 emissions = emissions[emissions$YEAR <= 2050,]
 emissions = emissions[emissions$scen != 'base']
+
+emi_cap <- batch_extract("AnnualEmissionLimit",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
 
 {
   x11()
@@ -38,6 +56,20 @@ emissions = emissions[emissions$scen != 'base']
   print(p)
   ggsave(paste0(directory_graphs,"AnnualEmissions.png"), p)
 }
+
+{
+  x11()
+  p = ggplot(emissions |> filter(EMISSION=="CO2")) +
+    geom_line(aes(x=as.numeric(YEAR),y=value,color=scen), linewidth=1)+ 
+    geom_line(data = emi_cap, aes(x=as.numeric(YEAR),y=value),color="red" ,  linewidth=1)+ 
+    labs(title = "Emissions [Mton/yr]",subtitle = "Only emissions of CO2", x = "year", y = "Emission [MtonCo2]") +
+    theme_bw() +
+    theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5))
+  
+  print(p)
+  ggsave(paste0(directory_graphs,"AnnualEmissions.png"), p)
+}
+
 ################################################################################
 ########### PLOT PRODUCTION BY TECHNOLOGY ######################################
 ################################################################################
@@ -280,19 +312,38 @@ use3 = use3[use3$scen!='base',]
   print(p)
   ggsave(paste0(directory_graphs,"TotalSeaWaterUsage.png"), p)
 }
+
 ################################################################################
 ########### PLOT COST ##########################################################
 ################################################################################
 
-cost <- batch_extract("OPERATINGCOST",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
+opcost <- batch_extract("OPERATINGCOST",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
+capinv <- batch_extract("CAPITALINVESTMENT",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
 
-cost = cost |> 
+opcost = opcost |> 
   group_by(scen,YEAR) |>
   summarise(value = sum(value))
-# storage3$value = round(as.numeric(water2$value),2)
 
-cost = cost[cost$YEAR <=2050,]
+capinv = capinv |> 
+  group_by(scen,YEAR) |>
+  summarise(value = sum(value))
+
+cost = opcost 
+cost$value = opcost$value + capinv$value
+
 cost = cost[cost$scen != 'base',]
+
+{
+  x11()
+  p = ggplot(cost) +
+    geom_line(aes(x=as.numeric(YEAR),y=value/1000,color=scen), linewidth=1.3) +
+  #  geom_line(data = opcost, aes(x=as.numeric(YEAR),y=value/1000,color=scen), lty=2 ,linewidth=1.3) +
+  #  geom_line(data = capinv, aes(x=as.numeric(YEAR),y=value/1000,color=scen), lty=3 ,linewidth=1.3) +
+    labs(title = "Total annual cost") +
+    xlab("year") + ylab("Cost [BIllions of $]") + theme_pubr() +
+    theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5))
+  print(p)
+}
 
 
 cost$NUCLEAR = substr(cost$scen,1,1)
@@ -510,4 +561,134 @@ prod2015 = prod3[prod3$YEAR==2015 & prod3$scen==prod3[1,]$scen,]
   print(p)
   ggsave(paste0(directory_graphs,"MixProduttivoPie2015.png"), p)
 }
+
+################################################################################
+########### PLOT SPECIFICS PIE CHARTS ##########################################
+################################################################################
+
+
+prod <- batch_extract("PRODUCTIONBYTECHNOLOGYANNUAL",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
+prod = prod[prod$FUEL=="E1" | prod$FUEL=='E2',]
+prod = prod[ prod$TECHNOLOGY  != "EL00TD0",]
+prod[prod$FUEL=="E1",]$value = 0.95*prod[prod$FUEL=="E1",]$value
+
+prod$TECH=prod$TECHNOLOGY
+for(i in unique(prod$TECHNOLOGY)){
+  prod$TECH[prod$TECH==i] = substr(i, start=1, stop=2)
+}
+
+prod = prod |> 
+  group_by(scen,TECH,YEAR) |>
+  summarise(value = sum(value))
+prod$value = round(as.numeric(prod$value),2)
+
+prod=prod[prod$YEAR<=2050,]
+prod=prod[prod$scen!='base',]
+
+prod3=prod
+for(i in unique(prod3$TECH)){
+  if( sum(prod3[prod3$TECH==i,]$value != 0) ==0 ){
+    prod3 = prod3[prod3$TECH!=i,]
+  }
+}
+
+prod3$value_perc = prod3$value
+for(year in unique(prod3$YEAR)){
+  for(scenario in unique(prod3$scen)){
+    prod3[prod3$YEAR==year & prod3$scen==scenario,]$value_perc = prod3[prod3$YEAR==year & prod3$scen==scenario,]$value/sum(prod3[prod3$YEAR==year & prod3$scen==scenario,]$value)
+  }
+}
+
+for(i in 1:length(legend[,1])){
+  prod3$TECH[prod3$TECH==legend[i,1]] = legend[i,2]
+}
+
+# 2015 BH85
+prod2015 = prod3[prod3$YEAR=='2015' & prod3$scen=='BH85',]
+
+{
+  x11()
+  p = ggplot(prod2015, aes(x = "", y = value_perc, fill = TECH)) +
+    geom_bar(stat = "identity", width = 1, color='black') +
+    geom_segment(aes(x = 0, y = 0, xend = 0, yend = value_perc), color = "black", size = 0.5) +
+    coord_polar("y", start = 0) +
+    # facet_wrap(scen~.,) +
+    # scale_fill_brewer(palette="Paired") +
+    labs(fill = "Technology", title = "Productive Mix in 2015 BH85") +
+    scale_fill_brewer(palette="Paired") +
+    ylab("") + xlab("") +
+    geom_text(data =prod2015[prod2015$value_perc>=1e-2,], aes(label = paste0(round(value_perc*100), "%")), position = position_stack(vjust = 0.5)) +
+    theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5),
+          axis.text = element_blank(), axis.ticks = element_blank(), panel.grid = element_blank())
+  
+  print(p)
+  ggsave(paste0(directory_graphs,"PieBH85_2015.png"), p)
+}
+# 2050 BH85
+prod2015 = prod3[prod3$YEAR=='2050' & prod3$scen=='BH85',]
+
+{
+  x11()
+  p = ggplot(prod2015, aes(x = "", y = value_perc, fill = TECH)) +
+    geom_bar(stat = "identity", width = 1, color='black') +
+    geom_segment(aes(x = 0, y = 0, xend = 0, yend = value_perc), color = "black", size = 0.5) +
+    coord_polar("y", start = 0) +
+    # facet_wrap(scen~.,) +
+    # scale_fill_brewer(palette="Paired") +
+    labs(fill = "Technology", title = "Productive Mix in 2050 BH85") +
+    scale_fill_brewer(palette="Paired") +
+    ylab("") + xlab("") +
+    geom_text(data =prod2015[prod2015$value_perc>=1e-2,], aes(label = paste0(round(value_perc*100), "%")), position = position_stack(vjust = 0.5)) +
+    theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5),
+          axis.text = element_blank(), axis.ticks = element_blank(), panel.grid = element_blank())
+  
+  print(p)
+  ggsave(paste0(directory_graphs,"PieBH85_2050.png"), p)
+}
+# 2015 NH85
+prod2015 = prod3[prod3$YEAR=='2015' & prod3$scen=='NH85',]
+
+{
+  x11()
+  p = ggplot(prod2015, aes(x = "", y = value_perc, fill = TECH)) +
+    geom_bar(stat = "identity", width = 1, color='black') +
+    geom_segment(aes(x = 0, y = 0, xend = 0, yend = value_perc), color = "black", size = 0.5) +
+    coord_polar("y", start = 0) +
+    # facet_wrap(scen~.,) +
+    # scale_fill_brewer(palette="Paired") +
+    labs(fill = "Technology", title = "Productive Mix in 2015 NH85") +
+    scale_fill_brewer(palette="Paired") +
+    ylab("") + xlab("") +
+    geom_text(data =prod2015[prod2015$value_perc>=1e-2,], aes(label = paste0(round(value_perc*100), "%")), position = position_stack(vjust = 0.5)) +
+    theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5),
+          axis.text = element_blank(), axis.ticks = element_blank(), panel.grid = element_blank())
+  
+  print(p)
+  ggsave(paste0(directory_graphs,"PieNH85_2015.png"), p)
+}
+# 2050 NH85
+prod2015 = prod3[prod3$YEAR=='2050' & prod3$scen=='NH85',]
+
+{
+  x11()
+  p = ggplot(prod2015, aes(x = "", y = value_perc, fill = TECH)) +
+    geom_bar(stat = "identity", width = 1, color='black') +
+    geom_segment(aes(x = 0, y = 0, xend = 0, yend = value_perc), color = "black", size = 0.5) +
+    coord_polar("y", start = 0) +
+    # facet_wrap(scen~.,) +
+    # scale_fill_brewer(palette="Paired") +
+    labs(fill = "Technology", title = "Productive Mix in 2050 NH85") +
+    scale_fill_brewer(palette="Paired") +
+    ylab("") + xlab("") +
+    geom_text(data =prod2015[prod2015$value_perc>=1e-2,], aes(label = paste0(round(value_perc*100), "%")), position = position_stack(vjust = 0.5)) +
+    theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5),
+          axis.text = element_blank(), axis.ticks = element_blank(), panel.grid = element_blank())
+  
+  print(p)
+  ggsave(paste0(directory_graphs,"PieNH85_2050.png"), p)
+}
+
+#7A9DA9
+
+
 
