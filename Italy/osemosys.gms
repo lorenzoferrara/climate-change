@@ -21,7 +21,7 @@
 * open a Command Prompt window in this folder, and enter:
 * gams osemosys.gms
 * 5. Some results are created in file SelResults.CSV that you can view in Excel.
-* 6. To run the scenarios set 'noatom == 1 ' to exclude nuclear power plants, or 0 to include it;
+* 6. To run the scenarios set 'noatom = 1 ' to exclude nuclear power plants, or 0 to include it;
 * for the water parameter 1, 10, 100  represent the demand level (low, Medium, High);
 * for water availability 26, 45, 85 represent the RCP scenarios;
 * concatenate the last two number in 'WaterDemand' to create a scenario ( eg: 126 Low demand + high availability).
