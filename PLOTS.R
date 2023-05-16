@@ -134,6 +134,92 @@ for(year in unique(prod3$YEAR)){
   ggsave(paste0(directory_graphs,"MixProduttivo.png"), p)
 }
 
+prod3_NoNuke = prod3[prod3$scen=="BH85",]
+{
+  x11()
+  p = ggplot(prod3_NoNuke) +
+    geom_area(aes(x=as.numeric(YEAR),y=value,fill=TECH)) +
+    labs(title = "Production by Technology [PJ/yr]", subtitle = "Energy production by set of technology using the same fuel") +
+    scale_fill_brewer(palette="Paired") +
+    facet_wrap(scen~.,) +
+    xlab("year") + ylab("Energy [PJ]") + theme_pubr() + 
+    theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5))
+  
+  print(p)
+  ggsave(paste0(directory_graphs,"ProductionByTechnologyNoNuke.png"), p)
+}
+
+prod3_Nuke = prod3[prod3$scen=="NH85",]
+{
+  x11()
+  p = ggplot(prod3_Nuke) +
+    geom_area(aes(x=as.numeric(YEAR),y=value,fill=TECH)) +
+    labs(title = "Production by Technology [PJ/yr]", subtitle = "Energy production by set of technology using the same fuel") +
+    scale_fill_brewer(palette="Paired") +
+    facet_wrap(scen~.,) +
+    xlab("year") + ylab("Energy [PJ]") + theme_pubr() + 
+    theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5))
+  
+  print(p)
+  ggsave(paste0(directory_graphs,"ProductionByTechnologyNuke.png"), p)
+}
+
+################################################################################
+########### PLOT USE OF WATER FROM PRODUCTION BY TECHNOLOGY ####################
+################################################################################
+
+prod <- batch_extract("PRODUCTIONBYTECHNOLOGYANNUAL",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
+prod = prod[prod$FUEL=="E1" | prod$FUEL=='E2',]
+prod = prod[ prod$TECHNOLOGY  != "EL00TD0",]
+prod[prod$FUEL=="E1",]$value = 0.95*prod[prod$FUEL=="E1",]$value
+prod = prod[ prod$value  != 0,]
+
+input <- batch_extract("InputActivityRatio",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
+input=input[input$YEAR=="2040" & input$MODE_OF_OPERATION=="1" & input$FUEL=="HY" & input$TECHNOLOGY!="DELTA",]
+output <- batch_extract("OutputActivityRatio",all_gdx)[[1]] |> setDT() |> osemosys_sanitize()
+output=output[output$YEAR=="2040" & output$MODE_OF_OPERATION=="1" & output$FUEL=="HY" & output$TECHNOLOGY!="RIVER",]
+
+prod$WATER = prod$value 
+for(i in unique(prod$TECHNOLOGY)){
+  prod$WATER[prod$TECHNOLOGY==i] = prod$value * (input[input$TECHNOLOGY==i,]$value - output[output$TECHNOLOGY==i,]$value)
+}
+
+prod = prod |> 
+  group_by(scen,TECH,YEAR) |>
+  summarise(value = sum(value))
+prod$value = round(as.numeric(prod$value),2)
+
+prod=prod[prod$YEAR<=2050,]
+prod=prod[prod$scen!='base',]
+
+prod3=prod
+for(i in unique(prod3$TECH)){
+  if( sum(prod3[prod3$TECH==i,]$value != 0) ==0 ){
+    prod3 = prod3[prod3$TECH!=i,]
+  }
+}
+
+prod3$value_perc = prod3$value
+for(year in unique(prod3$YEAR)){
+  for(scenario in unique(prod3$scen)){
+    prod3[prod3$YEAR==year & prod3$scen==scenario,]$value_perc = prod3[prod3$YEAR==year & prod3$scen==scenario,]$value/sum(prod3[prod3$YEAR==year & prod3$scen==scenario,]$value)
+  }
+}
+
+{
+  x11()
+  p = ggplot(prod3) +
+    geom_area(aes(x=as.numeric(YEAR),y=value,fill=TECH)) +
+    labs(title = "Production by Technology [PJ/yr]", subtitle = "Energy production by set of technology using the same fuel") +
+    scale_fill_brewer(palette="Paired") +
+    facet_wrap(scen~.,) +
+    xlab("year") + ylab("Energy [PJ]") + theme_pubr() + 
+    theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5))
+  
+  print(p)
+  ggsave(paste0(directory_graphs,"ProductionByTechnology.png"), p)
+}
+
 ################################################################################
 ########### PLOT ACCUMULATED CAPACITY ##########################################
 ################################################################################
