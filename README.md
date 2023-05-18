@@ -2,6 +2,8 @@
 
 <h4 align="left">Project for the course of Energy and Climate Cheange modeling and scenarios at Politecnico di Milano, 2022/2023</h4>
 
+<p align="left"> Team name: WATERGAMS </p>
+
 <p align="left"> Team members:
 <ul>
   <li>Camilla Citterio (<a href="https://github.com/CamiCit/" target="_blank">Github</a>, <a href="https://www.linkedin.com/in/ /" target="_blank">Linkedin</a>)</li>
