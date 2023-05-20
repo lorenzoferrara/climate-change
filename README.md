@@ -8,7 +8,7 @@
 <ul>
   <li>Camilla Citterio (<a href="https://github.com/CamiCit/" target="_blank">Github</a>, <a href="https://www.linkedin.com/in/ /" target="_blank">Linkedin</a>)</li>
   <li>Lorenzo Ferrara (<a href="https://github.com/lorenzoferrara/" target="_blank">Github</a>, <a href="https://www.linkedin.com/in/lorenzo-ferrara-567211244/" target="_blank">Linkedin</a>) </li> 
-  <li>Matteo Ghesini (<a href="https://github.com/Matteo9999/" target="_blank">Github</a>, <a href="https://www.linkedin.com/in/ /" target="_blank">Linkedin</a>)</li>
+  <li>Matteo Ghesini (<a href="https://github.com/MatteoGhesini/" target="_blank">Github</a>, <a href="https://www.linkedin.com/in/ /" target="_blank">Linkedin</a>)</li>
   <li>Luca Lazzari (<a href="https://github.com/Lukelazza/" target="_blank">Github</a>, <a href="https://www.linkedin.com/in/ /" target="_blank">Linkedin</a>)</li>
 </ul>
 </p>
