@@ -8,7 +8,6 @@
 * osemosys_dec.gms
 * italy_data.gms
 * water_data.gms
-* 
 * osemosys_equ.gms
 *
 * To run this GAMS version of OSeMOSYS on your PC:
@@ -44,6 +43,7 @@ $include osemosys_equ.gms
 ****************************
 ******** SCENARIOS *********
 ****************************
+
 $$setglobal string_atom "N"
 $ifthen.scen set noatom
     $$ifthen.cond %noatom%==0
@@ -117,7 +117,7 @@ option threads=0;
 solve osemosys minimizing z using mip;
 * create results in file SelResults.CSV
 $include osemosys_res.gms
-$include report.gms
+*$include report.gms
 execute_unload 'Results\results_%scen%.gdx';
 
 
