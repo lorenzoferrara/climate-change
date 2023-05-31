@@ -17,7 +17,7 @@ osemosys_sanitize <- function(.x) {
   .x[, scen := str_replace(scen,".gdx","")]
   .x[, gdx := NULL]}
 
-directory_graphs = "~/GitHub/climate-change/Plots/Water/"
+directory_graphs = "~/GitHub/climate-change/Result Visualization/Plots/Water/"
 
 ################################################################################
 ##### CREATION OF THE LEGEND ###################################################
